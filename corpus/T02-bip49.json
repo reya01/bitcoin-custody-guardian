@@ -1,0 +1,63 @@
+{
+ "title": "BIP-49 P2WPKH-nested addresses",
+ "topic_ids": [
+  "T02"
+ ],
+ "level": "intermediate",
+ "risk_class": "caution",
+ "plain": "Your seed words \u2014 the 12- or 24-word list that controls your bitcoin \u2014 get turned into receiving addresses (the long codes you hand out to get paid) by a fixed recipe called a derivation scheme. A wallet, meaning the app or device you use to manage bitcoin, follows that recipe. BIP-49, from May 2016, is one such recipe. A 'BIP' is a Bitcoin Improvement Proposal: a numbered design document. This one is meant for HD wallets \u2014 'hierarchical deterministic' wallets, which grow a whole tree of keys from a single seed. It produces one particular address type: 'P2WPKH nested in P2SH'. Unpacked: Segregated Witness, or 'segwit', is a Bitcoin transaction format defined in BIP-141. 'P2WPKH' stands for 'pay to witness public key hash' \u2014 the segwit way of locking coins to one person's public key, the shareable half of a two-part key. 'P2SH' stands for 'pay to script hash' \u2014 an older way of locking coins to the fingerprint of a script, which is a mini-program. 'Nested' means the new segwit style is wrapped inside the older style, like a letter inside an envelope, so software from before segwit could still handle the address. BIP-49's big design choice: these addresses live in their own dedicated accounts (labeled sections of a wallet) instead of being mixed into existing ones. Reason: compatibility. Type the same seed words into a wallet that does not understand BIP-49 and that account simply will not appear. That failure is loud and obvious. The rejected alternative \u2014 mixing old and new address styles in one account \u2014 could make a wallet look fine while quietly missing some of your coins. (Each unspent chunk of bitcoin is called a 'UTXO', or unspent transaction output.) Two takeaways. An empty-looking wallet after you type your seed words in does not prove your coins are gone; the wallet may just not support this account type. And these accounts label their extended public keys \u2014 watch-only copies that can see balances but cannot spend \u2014 with the prefix 'ypub' instead of the older 'xpub'.",
+ "technical": "BIP-49 (author Daniel Weigl; assigned 2016-05-19; status Deployed; public domain) defines the derivation scheme for BIP-32 hierarchical deterministic (HD) wallets whose addresses are P2WPKH-nested-in-P2SH \u2014 BIP-141 segwit pay-to-pubkey-hash outputs wrapped in a BIP-16 pay-to-script-hash. Path: m/purpose'/coin_type'/account'/change/address_index, with purpose = 49' (hardened); all other levels per BIP-44. Construction: witness = <signature> <pubkey>; scriptSig = <0 <20-byte-key-hash>> (0x160014{20-byte-key-hash}); scriptPubKey = HASH160 <20-byte-script-hash> EQUAL (0xA914{20-byte-script-hash}87), the script hash being HASH160 of the serialized scriptSig. Extended keys use alternate version bytes: mainnet 0x049d7cb2 ('ypub', public) and 0x049d7878 ('yprv', private); testnet 0x044a5262 ('upub') and 0x044a4e28 ('uprv'); further prefixes are registered in SLIP-0132. Rationale: for BIP-44-capable wallets the BIP rejects adding segwit addresses to existing accounts (same keys, or branched chains) in favor of dedicated segwit-only accounts, so a BIP-49 masterseed restored into a non-BIP-49 wallet fails visibly \u2014 the account is not discovered at all \u2014 instead of partially, with UTXOs missed. Backwards compatibility is intentionally absent. Test vectors (testnet, mnemonic 'abandon' eleven times then 'about'): account 0 root m/49'/1'/0'; first receiving key m/49'/1'/0'/0/0, private key cULrpoZGXiuC19Uhvykx7NugygA3k86b3hmdCeyvHYQZSxojGyXJ, keyhash 0x38971f73930f6c141d977ac4fd4a727c854935b3, address 2Mww8dCYPUpKHofjgcXcBCEGmniw9CoaiD2.",
+ "claims": [
+  {
+   "claim": "BIP-49 defines the derivation scheme for hierarchical deterministic (HD) wallets using the P2WPKH-nested-in-P2SH serialization format for segregated witness transactions.",
+   "source": "Abstract"
+  },
+  {
+   "claim": "A common derivation scheme lets a user run different HD wallets with the same masterseed, and/or a single account, seamlessly.",
+   "source": "Motivation"
+  },
+  {
+   "claim": "The derivation path is m/purpose'/coin_type'/account'/change/address_index with purpose value 49'; all other levels are used as defined in BIP-44.",
+   "source": "Specifications, Public key derivation"
+  },
+  {
+   "claim": "The scriptSig is <0 <20-byte-key-hash>> (0x160014{20-byte-key-hash}) and the scriptPubKey is HASH160 <20-byte-script-hash> EQUAL (0xA914{20-byte-script-hash}87).",
+   "source": "Specifications, Address derivation"
+  },
+  {
+   "claim": "Extended public keys use version bytes 0x049d7cb2 to produce a 'ypub' prefix and extended private keys use 0x049d7878 for 'yprv'; testnet uses 0x044a5262 ('upub') and 0x044a4e28 ('uprv').",
+   "source": "Specifications, Extended Key Version"
+  },
+  {
+   "claim": "Additional registered extended-key version bytes are listed in SLIP-0132.",
+   "source": "Specifications, Extended Key Version"
+  },
+  {
+   "claim": "BIP-49 deliberately uses dedicated segregated-witness-only accounts, so a non-BIP-49-compatible wallet importing the same masterseed either shows the account or not at all, rather than showing it while missing UTXOs.",
+   "source": "Considerations"
+  },
+  {
+   "claim": "BIP-49 is not backwards compatible by design; an incompatible wallet will not discover accounts at all.",
+   "source": "Backwards Compatibility"
+  },
+  {
+   "claim": "BIP-49 was authored by Daniel Weigl, assigned 2016-05-19, has status 'Deployed', and is placed in the public domain.",
+   "source": "BIP header and Copyright section"
+  },
+  {
+   "claim": "Test vectors use the mnemonic 'abandon' eleven times followed by 'about' on testnet; the first receiving key at m/49'/1'/0'/0/0 derives the testnet address 2Mww8dCYPUpKHofjgcXcBCEGmniw9CoaiD2.",
+   "source": "Test vectors"
+  }
+ ],
+ "warnings": [
+  "An empty or missing account after typing in your seed words does not mean the bitcoin is gone \u2014 the wallet may not support BIP-49 accounts; do not assume loss and do not discard the seed.",
+  "Never use or send funds to the test mnemonic in this spec ('abandon' eleven times, then 'about') \u2014 it is public test data and anyone can take money sent to it.",
+  "Never share your real seed words with anyone."
+ ],
+ "source_title": "BIP-49: Derivation scheme for P2WPKH-nested-in-P2SH based accounts",
+ "source_url": "/opt/data/cache/corpus-src/bip-0049.txt",
+ "notes_for_reviewer": "Source URL is the canonical bip-0049.mediawiki location in the bitcoin/bips repo; the ingested file was /opt/data/cache/corpus-src/bip-0049.txt \u2014 confirm this matches citation policy. All hex bytes, key prefixes, paths, and the testnet address were transcribed exactly; recommend independently re-deriving 2Mww8dCYPUpKHofjgcXcBCEGmniw9CoaiD2, since a single-character error would invalidate the test vector. Context added in plain text beyond the source (flag if strictly-sourced-only wording is required): the xpub-vs-ypub contrast, the rationale that nesting let pre-segwit software handle these addresses, the '12- or 24-word' seed length, and the inference that funds on the public test mnemonic are stealable by anyone. 'Assigned 2016-05-19' is the BIP number assignment date, not segwit activation (2017); plain text says 'from May 2016' on that basis. Staleness risk: nested segwit is a transitional format; most current wallets default to BIP-84 native segwit ('zpub') or BIP-86 taproot \u2014 consider companion entries so users can distinguish ypub/zpub/vpub. risk_class set to 'caution' rather than 'danger': the spec contains no destructive procedure, but misreading the compatibility behavior could lead a user to wrongly conclude funds are lost.",
+ "corpus_version": "0.0.1-poc",
+ "verified_on": "not yet \u2014 awaiting human review",
+ "reviewed": false
+}
