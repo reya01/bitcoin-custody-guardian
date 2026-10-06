@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SECURITY FEATURE — this manifest intentionally declares NO permissions at all.
+
+  In particular there is no INTERNET permission, and there never will be.
+  Privacy here is architectural, not a setting: with no INTERNET permission the
+  Android runtime makes any network access impossible for this app. Any
+  network-monitoring tool must show zero traffic for this package, because no
+  code path to create any can exist. Do not add permissions or an internet
+  grant to this file. See PRODUCT_SPEC.md §3, principle 1.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CustodyGuardian">
+
+        <!-- Launcher activity: the ONLY exported component in the app. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

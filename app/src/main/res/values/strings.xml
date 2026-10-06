@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bitcoin Custody Guardian</string>
+    <string name="privacy_note">This app has zero permissions and no internet access. Nothing you type or receive ever leaves this device.</string>
+</resources>
