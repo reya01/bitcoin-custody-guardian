@@ -33,9 +33,15 @@ sys.path.insert(0, _HERE)
 from guardian_core import compose  # noqa: E402
 from answer_step import answer_step, LlamaServerError  # noqa: E402
 
-EVAL_PATH = os.path.join(_ROOT, "eval", "T06-walkthrough.jsonl")
+EVAL_PATH = os.environ.get(
+    "GUARDIAN_EVAL_FILE",
+    os.path.join(_ROOT, "eval", "T06-walkthrough.jsonl"),
+)
 CORPUS = os.path.join(_ROOT, "corpus")
-RESULTS_JSON = os.path.join(_HERE, "eval_results.json")
+RESULTS_JSON = os.environ.get(
+    "GUARDIAN_EVAL_OUT",
+    os.path.join(_HERE, "eval_results.json"),
+)
 
 SYNONYMS = {
     "don't": "do not", "won't": "will not", "can't": "can not",

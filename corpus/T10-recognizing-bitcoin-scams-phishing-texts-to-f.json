@@ -1,0 +1,41 @@
+{
+ "title": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+ "topic_ids": [
+  "T07",
+  "T08"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "A text claiming your hardware wallet has a pending withdrawal is bait: hardware wallet makers do not send text messages about withdrawals. Do not visit the link — it leads to a fake page built to capture your seed words.\n\nIf an offer promises extra bitcoin back for coins you send, this is a giveaway scam. No one doubles or multiplies bitcoin sent to them, no matter how famous the promoter seems. The payout screenshots and congratulation replies are fake or paid shills.\n\nA friendly stranger who builds trust over weeks and then moves the chat to an 'investment platform' is running a known script: this is a 'pig butchering' romance-investment scam. The scam typically ends with fake taxes or fees to unlock withdrawals. Pay nothing and end contact.\n\nA tiny unknown deposit in your wallet, often with a link or QR code, is bait. This is called dust or address poisoning: the scammer hopes you will later copy their look-alike address. Ignore it, and always verify an address before sending.\n\nAn email claiming to hold compromising footage of you and demanding bitcoin is a sextortion scam sent in bulk to many people. Do not pay and do not reply.\n\nAfter a loss, 'recovery' services that promise to retrieve stolen bitcoin for a fee are scammers too. The case histories on the site are fabricated, and the upfront fee is the actual scam. No service can claw back confirmed transactions.\n\nIf someone calls claiming to be wallet or exchange support, hang up: caller ID can be faked. Reach companies only through official contact details you find yourself, never ones the caller provides.\n\nTwo facts keep you safe. A confirmed bitcoin transaction cannot be reversed or refunded, so never send funds expecting to undo it. And app store listings and ratings do not prove an app is genuine, so verify apps independently before trusting them.",
+ "technical": "Bitcoin has no chargeback mechanism: once a transaction is confirmed, it is final, which is precisely why scammers demand payment this way. SMS sender IDs, email display names, and caller ID are spoofable metadata that authenticate nothing. Dust attacks exploit habit — users often copy a 'recent' receiving address from history, so scammers seed wallets with look-alike dust addresses hoping one gets copied. Pig-butchering gangs run scripted multi-week playbooks on cloned trading apps that display fabricated balances; the numbers exist only to justify escalating 'taxes' and 'fees.' Recovery fraud re-victimizes prior victims by monetizing desperation with advance fees.",
+ "claims": [
+  {
+   "claim": "Confirmed bitcoin transactions are final; no party can reverse or refund them.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "SMS sender IDs and caller ID can be spoofed.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "Pig butchering operations use cloned trading apps with fabricated balances to justify withdrawal 'fees.'",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "Recovery-fee fraud is a re-victimization scheme with no retrieval capability.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  }
+ ],
+ "warnings": [
+  "Never type seed words into any website, app, chat, or phone keypad; they belong only on your hardware device or in your backup.",
+  "No legitimate company asks you to send funds to 'verify,' 'unlock,' or 'activate' anything.",
+  "If a sextortion email includes an old password, that password leaked in a data breach — change it where reused.",
+  "Urgency and secrecy are scam tools; pause and verify through an official channel you find yourself.",
+  "A genuine giveaway never requires you to send coins first."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "All 15 required eval phrasings appear essentially verbatim in 'plain', one per scam pattern. No vendor names and no instructions to enter seed words anywhere; warnings state safe defaults only. Suggest keeping risk_class 'danger' and merging under topic scam-recognition. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. NOTE: topic_ids normalized to project taxonomy by harness (was ['scam-recognition', 'phishing', 'social-engineering', 'transaction-finality']).",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}

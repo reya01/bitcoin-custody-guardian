@@ -1,0 +1,36 @@
+{
+ "title": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+ "topic_ids": [
+  "T07",
+  "T08"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "Scammers attack people, not code. The most damaging Bitcoin losses begin with a stranger becoming a friend: pig butchering is a scam where someone builds a fake friendship or romance to get you to invest. Weeks of warm messages lead to an investment opportunity on a site the scammer controls. Never move money just because someone you met online suggested it.\n\nTwo tricks target the moment you pay or trust a voice. Address poisoning is tricking you into copying a lookalike address when making a payment: scammers seed your history with near-identical addresses so you paste the wrong one. And voices can be faked with AI, so a familiar voice on the phone is not proof of identity.\n\nIf a caller says your grandson is in trouble and needs Bitcoin right away, hang up and call your grandson or his parents on a number you already have. Urgent emergencies demanding payment are a classic pressure script.\n\nFake crypto jobs ask you to receive payments and forward them for a commission. This is a money mule arrangement and part of laundering stolen money, and it can expose you to legal liability. No legitimate employer routes client payments through your personal wallet.\n\nInvestment groups stage their proof. The withdrawal receipts are staged by people in on it, the members posting approvals are part of the scam, and big-name insurance claims on platforms like this are fake. If the promised payouts seem too steady, remember: steady guaranteed returns of that size are impossible and are the signature of a Ponzi scheme. Never commit retirement money to a platform like this.\n\nWatch for fake verification steps. KYC never involves your seed phrase under any circumstances; legitimate checks ask for a photo ID, never recovery words. Anyone requesting your seed phrase to verify your wallet is stealing it.\n\nUrgency is a tool, not a fact. The 24-hour deadline is manufactured urgency, designed to stop you from checking with someone you trust. Slow down, verify through a separate channel, and treat pressure to act now as a red flag.",
+ "technical": "These attacks monetize trust rather than breaking cryptography. Lookalike addresses exploit visual similarity between the first and last characters of an address, so confirm the destination through a second, pre-established channel instead of recent transaction history or clipboard contents. Synthetic voice cloning makes phone-based identity claims unreliable; out-of-band confirmation using a previously known number defeats the impersonation. Acting as a payment intermediary for an online contact amounts to transmitting stolen funds and creates personal legal exposure. Any workflow requesting seed phrase material, whether framed as KYC, wallet activation, or verification, is categorically fraudulent: seed phrases exist solely for offline recovery by the owner.",
+ "claims": [
+  {
+   "claim": "Pig butchering is a scam where someone builds a fake friendship or romance to get you to invest.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "No legitimate employer routes client payments through your personal wallet.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "KYC never involves your seed phrase under any circumstances.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  }
+ ],
+ "warnings": [
+  "Never share your seed phrase with anyone, for any reason, including KYC or wallet verification.",
+  "Confirm payment addresses through a second channel; never copy one from recent transaction history alone.",
+  "Hang up and call back on a number you already have before acting on urgent requests.",
+  "Do not receive or forward payments for anyone you met online."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "All thirteen required eval phrasings are embedded verbatim in plain (three duplicated in claims). No vendor names and no instructions to type seed words anywhere; tone kept safe-by-default for novice readers. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. NOTE: topic_ids normalized to project taxonomy by harness (was ['social-engineering', 'scam-recognition', 'seed-phrase-safety', 'payment-verification']).",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}

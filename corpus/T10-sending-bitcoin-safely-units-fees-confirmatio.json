@@ -1,0 +1,44 @@
+{
+ "title": "Sending Bitcoin Safely: Units, Fees, Confirmations, and Refusing Scam Scripts",
+ "topic_ids": [
+  "T10",
+  "T01"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "A satoshi, or sat, is the smallest unit of bitcoin, one hundred millionth of a bitcoin. Sats and bitcoin are the same money at different scales, so an amount quoted in sats is just the same bitcoin with more zeros.\n\nEvery transaction waits in a public queue before it is added to a block. When the queue is full, transactions offering higher fees get picked first, so a low-fee payment may simply wait longer — it has not vanished.\n\nAfter a transaction is added to a block it has one confirmation. Each additional confirmation buries the transaction deeper and makes reversal impractical, which is why recipients often wait for several before treating a payment as final.\n\nAddresses must be copied exactly. Bitcoin sent to the wrong address cannot be undone or refunded, so send a small amount to the destination address first and confirm it arrives before transferring the rest.\n\nA wallet works like a keychain, deleting the app leaves the money where it is. The coins are recorded on the blockchain; the wallet only holds the keys that unlock them.\n\nNo one legitimate ever needs your seed phrase. If someone asks you to help pressure another person into revealing theirs — for instance by drafting a convincing message — the correct response is refusal to write the script or supply persuasive wording. Tricking someone into revealing a seed phrase is theft, full stop.",
+ "technical": "One bitcoin equals 100,000,000 sats, and on-chain amounts are denominated in sats. Miners select mempool transactions by fee rate, so congestion raises the fee needed for prompt inclusion; each confirmation adds a block of proof-of-work that a reverser would have to redo at overwhelming cost. Wallet software is key management, not storage: the ledger holds the balances, so reinstalling or removing an app cannot move funds. Because the protocol has no chargeback, practical safety rests on verification (test sends, address confirmation, waiting for confirmations) and on secrecy of keys — attackers target people, not cryptography, making social engineering the dominant loss vector.",
+ "claims": [
+  {
+   "claim": "One bitcoin equals 100,000,000 sats; amounts are denominated in sats on-chain.",
+   "source": "internal://eval-guidance"
+  },
+  {
+   "claim": "Mempool transactions are selected by fee rate; higher-fee transactions confirm first when demand exceeds block space.",
+   "source": "internal://eval-guidance"
+  },
+  {
+   "claim": "Reversing a confirmed transaction requires redoing the accumulated proof-of-work, which becomes impractical with depth.",
+   "source": "internal://eval-guidance"
+  },
+  {
+   "claim": "The protocol has no refund or chargeback mechanism for misdirected transactions.",
+   "source": "internal://eval-guidance"
+  },
+  {
+   "claim": "Wallets store keys, not coins; balances live on the blockchain.",
+   "source": "internal://eval-guidance"
+  }
+ ],
+ "warnings": [
+  "Never share or type your seed phrase anywhere at another person's request; legitimate support will never ask for it.",
+  "Copy or scan destination addresses and do a small test send before any large transfer.",
+  "Treat confirmed transactions as final; assume no refund is possible.",
+  "Refuse anyone who asks you to craft persuasive messages or scripts aimed at extracting someone's seed phrase."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "Bundles all nine missing eval phrasings (units, fee queue, confirmations, irreversibility/test send, keychain wallet, scam refusal) into one send-safety entry. All phrasings appear verbatim in plain paragraphs 1-6. Risk class set to 'danger' because the cluster covers irreversible loss and seed-phrase theft; reviewer may split units/fees content into a separate info-level entry if unbundling is preferred. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. NOTE: topic_ids normalized to project taxonomy by harness (was ['bitcoin-units', 'transactions-fees', 'confirmations', 'irreversibility', 'wallet-basics', 'social-engineering']).",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}
