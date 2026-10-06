@@ -1,0 +1,91 @@
+{
+ "title": "The First 7 Days — An Inheritance Walkthrough",
+ "app": "Bitcoin Custody Guardian",
+ "version": "0.1",
+ "rule_one": "Nothing is urgent. Bitcoin cannot be stolen by waiting. It can be lost by rushing. Every irreversible mistake in Bitcoin happens in minutes; every safe step can be taken calmly. You have time. Use it.",
+ "days": [
+  {
+   "day": 1,
+   "title": "Secure the paper, touch nothing",
+   "goal": "lose nothing. Recover nothing. Change nothing",
+   "dos": [
+    "Collect everything Bitcoin-related into one box you control:",
+    "Any hardware wallets, USB sticks, cards with a chip (Ledger, BitBox02,",
+    "Any papers with handwritten or printed lists of words (12 or 24, or",
+    "Any \"wallet files\", USB drives labeled with wallet names, letters of",
+    "Anything metal with words/letters stamped or punched into it",
+    "Keep the box somewhere safe and normal (a lockable drawer, a safe).",
+    "Write down (on paper, not in the app) *where you found each thing*."
+   ],
+   "donts": [
+    "Do not plug anything in yet.",
+    "Do not reset, format, \"clean up\", or wipe any device — even if it seems",
+    "Do not photograph word lists. Phones automatically back up photos to the",
+    "Do not type the words into any app, website, or this app.",
+    "Do not delete anything on his computer or phone — \"wallet\" files,",
+    "Do not tell anyone what you found or how much there is."
+   ]
+  },
+  {
+   "day": 2,
+   "title": "Make a written inventory (no secrets on the page)",
+   "goal": "know what you have, in plain words, on your own paper",
+   "dos": [
+    "What it physically is (\"small black device, buttons, 'Ledger' on back\")",
+    "Where it was found (\"second drawer of his desk\")",
+    "Anything written on it or its packaging (\"label says 'main'\")",
+    "Safe deposit box? Home safe? Attorney's office? Bank vault?"
+   ],
+   "donts": []
+  },
+  {
+   "day": 3,
+   "title": "Learn what each thing is (the app explains, the box stays closed)",
+   "goal": "vocabulary. Not action",
+   "dos": [
+    "\"What is a seed phrase?\" (5 min)",
+    "\"What is a hardware wallet?\" (5 min)",
+    "\"What is Sparrow / Ledger Live / an exchange account?\" (5 min each)",
+    "\"What is multisig? What is a 'descriptor' file?\" (10 min — only if you"
+   ],
+   "donts": []
+  },
+  {
+   "day": 4,
+   "title": "Look, don't touch (verification with open eyes)",
+   "goal": "understand the setup's shape without entering any secrets anywhere",
+   "dos": [
+    "Word lists: confirm each list is complete (the number of words it",
+    "Devices: note their brand and model from the packaging or the back of",
+    "His computer: open his browser bookmarks. Wallet-related bookmarks are",
+    "Exchange accounts (River, Strike, Swan, Coinbase…): you can see"
+   ],
+   "donts": []
+  },
+  {
+   "day": 5,
+   "title": "Know your options (no action yet)",
+   "goal": "understand the three honest paths forward",
+   "dos": [],
+   "donts": []
+  },
+  {
+   "day": 6,
+   "title": "Assemble your verification plan",
+   "goal": "a written plan for the first real action, which is always the same: prove you can open the wallet without risking anything",
+   "dos": [],
+   "donts": []
+  },
+  {
+   "day": 7,
+   "title": "Rest, then repeat what worked",
+   "goal": "consolidate",
+   "dos": [
+    "Re-read your inventory and your Day 6 plan.",
+    "Do nothing irreversible. If you completed Day 6's verification and saw",
+    "Start the next phase at your pace: the app's guides on"
+   ],
+   "donts": []
+  }
+ ]
+}
