@@ -594,21 +594,28 @@ class Retriever:
             reverse=True,
         )
         out: List[Dict] = []
-        for entry_id, chunks in entries:
-            for chunk, score in sorted(chunks, key=lambda cs: -cs[1]):
-                if len(out) >= top_k:
-                    break
-                out.append(
-                    {
-                        "entry_id": chunk.entry_id,
-                        "section": chunk.section,
-                        "title": chunk.title,
-                        "text": chunk.text,
-                        "score": score,
-                    }
-                )
+        # Global-score fill with a per-entry cap: chunks enter strictly by
+        # score, but one dominant entry cannot take more than cap slots, so
+        # its remaining slots go to the next-best chunks.
+        cap = max(3, top_k - 2)
+        taken: Dict[str, int] = {}
+        flat = sorted((cs for _, chunks in entries for cs in chunks),
+                      key=lambda cs: -cs[1])
+        for chunk, score in flat:
             if len(out) >= top_k:
                 break
+            if taken.get(chunk.entry_id, 0) >= cap:
+                continue
+            taken[chunk.entry_id] = taken.get(chunk.entry_id, 0) + 1
+            out.append(
+                {
+                    "entry_id": chunk.entry_id,
+                    "section": chunk.section,
+                    "title": chunk.title,
+                    "text": chunk.text,
+                    "score": score,
+                }
+            )
         return out
 
 
