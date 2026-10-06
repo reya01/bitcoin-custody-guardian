@@ -1,0 +1,52 @@
+{
+ "title": "Found Paper with 24 Handwritten Words: Seed Phrase Handling",
+ "topic_ids": [
+  "T06",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "A piece of paper with 24 handwritten words on it is a seed phrase — the master key for the inherited bitcoin. Whoever holds those words can control the funds, so treat the paper as the most valuable object in the home. For now, do not photograph it, do not type it anywhere yet, and keep it exactly where it is.\n\nThe numbering (1 to 24) tells you the order matters: the words only work as a complete set, in that exact order — a partial word list is not usable on its own. So there is nothing you need to do with the words right now.\n\nIf the words are spread across three pages, keep the pages together in one place, in order. Never put seed words into any app, cloud, or notes app — not page 2, not a shortened version, not even briefly. A phone copy creates a leakable digital trail and still cannot recover the wallet.\n\nLater steps in this walkthrough cover securing the paper and moving the funds safely. Until a verified step asks, no legitimate person or service will ever need you to read the words aloud or type them in. Keep the paper dry, hidden, and together.",
+ "technical": "A 24-word handwritten list matching the BIP-39 vocabulary is a BIP-39 mnemonic: it encodes entropy plus a checksum, and any compliant wallet can derive the same keys from the full, correctly ordered sequence. The paper is therefore a single point of failure equivalent to the private keys themselves; numbering across pages means the list was split, and a partial word list is not usable on its own, while out-of-order words fail checksum validation.\n\nDo not photograph it, transcribe it, or type it anywhere yet: every digital copy — camera roll, notes app, cloud sync, clipboard, password manager — widens exposure with no custodial benefit and can survive deletion through syncs and backups. Keep handling physical and offline until a verified recovery step in the walkthrough requires the mnemonic; treat any unsolicited request to read or enter the words as a scam signal.",
+ "claims": [
+  {
+   "claim": "A handwritten list of 24 words is a seed phrase — the master key that can control the inherited bitcoin.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not photograph it or make any digital image of the paper.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not type it anywhere yet — no website, app, or device — until a verified walkthrough step requires it.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep it exactly where it is; if it must be moved, carry the paper by hand to one secure spot.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never put seed words into any app, cloud, or notes app, even partially or briefly.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A partial word list is not usable on its own; recovery requires all 24 words in numbered order.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep the pages together in one place so the set is never split, lost, or reordered.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Anyone who obtains these words can take the bitcoin: never share them, read them aloud, or type them in response to an unexpected request.",
+  "No digital copy of a seed phrase is safe; photos, notes apps, cloud, and password managers all create leakable records.",
+  "Separating the pages risks permanent loss; keep them together, dry, and out of sight."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers Q(T06-005) and Q(T06-006). All MUST_INCLUDE phrases appear verbatim in plain or claims; the em dash in 'a seed phrase — the master key' is intentional. MUST_NOT phrasings avoided; no typing/pasting seeds, no device wipes, no named professionals. Please confirm T07 tag fits physical-storage scope. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

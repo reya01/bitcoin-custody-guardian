@@ -1,0 +1,66 @@
+{
+ "title": "Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails",
+ "topic_ids": [
+  "T06",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "If a caller says he is from 'Ledger Support' — or any wallet maker — and asks you to read your 24 words so he can 'secure the wallet,' this is a scam. Real support never calls you first, and no legitimate company asks for your words, ever. The right move: hang up and stop contact, and do not call back any number he gives you.\n\nA kind stranger on a forum offering to recover your father's wallet for a 10% cut fits the recovery-agent scam pattern — never share keys with strangers. You lose nothing by ignoring every such message. Your real options: walk through it yourself with offline guides, or use a Bitcoin-knowledgeable estate attorney.\n\nAn email saying the wallet will be 'permanently locked in 24 hours' unless you verify your seed phrase now is fake: urgency is the tell — real bitcoin cannot be locked by a deadline. And no legitimate party ever needs your words — not to verify, unlock, or 'save' anything. The safe response: stop contact, do nothing, ask the app's Scam-Checker with the message itself, never your seed phrase.\n\nYour 24 words are the one thing thieves need, so anyone who asks for them is trying to steal the coins. Never read, type, or paste them for someone who contacted you first. If you already shared words, treat the wallet as compromised and follow the app's guided move-funds steps.",
+ "technical": "Three vectors target inheritors. Voice phishing: a caller impersonates a wallet vendor ('Ledger Support') and requests the BIP-39 mnemonic 'to secure the wallet'; possession of the 24 words is sufficient to spend all funds, so any request for them is fraudulent by definition. Recovery-agent scam: forum users offer recovery for a percentage fee; the end state is keys shared with a stranger. Urgency phishing: emails claim a lockout deadline, but on-chain bitcoin has no third-party lock or timer, so any deadline is pure pressure. Response to all three: hang up and stop contact, never disclose or transmit the mnemonic, and proceed via offline guides or a Bitcoin-knowledgeable estate attorney. If the mnemonic was disclosed, sweep funds to a fresh wallet; never wipe or reset a device before backups are verified.",
+ "claims": [
+  {
+   "claim": "A caller claiming to be from 'Ledger Support' who asks you to read your 24 words is running a scam.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No legitimate company asks for your words, for any reason.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If asked for your words by phone, hang up and stop contact.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Forum offers of wallet recovery for a percentage fee follow the recovery-agent scam pattern — never share keys with strangers.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "You lose nothing by ignoring every such message.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Handle inherited funds by walking through offline guides yourself, or use a Bitcoin-knowledgeable estate attorney.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Threats that a wallet will be locked in 24 hours are fake — real bitcoin cannot be locked by a deadline.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No legitimate party ever needs your words.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "On an urgency or threat message: stop contact, do nothing, ask the app's Scam-Checker.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never read, type, or paste your seed phrase for anyone who contacted you first.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Anyone who asks for your recovery words — by phone, email, or forum — is attempting theft. No exceptions.",
+  "Never enter your seed phrase on any website, form, or chat, including to 'verify' or 'unlock' a wallet.",
+  "Never pay a stranger a fee or percentage to recover a wallet.",
+  "Deadlines and lockout timers do not exist in bitcoin; they are manipulation tactics.",
+  "If words were already shared, treat the wallet as compromised and follow the app's move-funds steps."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "All must-include phrasings for T06-031, T06-032, and T06-033 appear verbatim in 'plain'; all must-not strings avoided; no named professionals; no reset or wipe instructions. Verify exact-string coverage before sign-off. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

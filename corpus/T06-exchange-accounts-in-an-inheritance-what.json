@@ -1,0 +1,87 @@
+{
+ "title": "Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply",
+ "topic_ids": [
+  "T06",
+  "T07",
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "Finding emails from an exchange like Coinbase means you've found a real asset to track — but do not try to reset passwords yet. You are not the account owner in the eyes of the exchange, and resets at this stage can trigger locks that slow everything down. Account recovery is a legal and identity process — do it deliberately with documents in hand. Today, just note that the account exists and keep the statements: save the emails, screenshots of balances, and any monthly statements so you can show what was there.\n\nBe very careful with anyone who contacts you first. If a support chat offers to recover the account if you 'verify a code' they text you, that is a classic scam pattern — no legitimate exchange asks you to read back codes from an inbound contact. Contact the exchange only through its official website yourself — never through a link or chat that contacted you. Type the web address yourself or use a bookmark you made from a trusted source, and share no codes with anyone.\n\nWhen you are ready to pursue the account, bring death certificate and estate documents through the official process — exchanges have a dedicated route for deceased account holders. Do not pose as the account owner; the official process is how the exchange legally confirms who may act for the estate.\n\nIs the bitcoin in his Coinbase account backed up by the seed phrase you found? No — exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. That seed phrase matters only for any separate self-custody wallets you find, and it should never be typed into any exchange site.\n\nKeep the two tracks separate in your inventory: one entry for the custodial exchange account, which is recovered through the legal process, and one for self-custody wallets, which are recovered through the backups and devices. Mixing them up is what leads people to try seed phrases on exchange logins — which never works and puts the backup at risk.",
+ "technical": "Exchange-held balances are custodial: the exchange controls the keys and its internal ledger, and the account balance is an obligation owed to the account holder (now the estate). Access runs through authentication plus identity and estate verification — a death certificate and documents establishing legal authority — via the exchange's official deceased-account process. Do not initiate password resets before this paperwork is ready; premature reset attempts can trip anti-fraud locks and complicate verification. All contact must be self-initiated at the exchange's officially published domain; inbound chats, links, emails, or calls offering 'recovery' are phishing vectors, and no legitimate exchange requests read-back of SMS or one-time codes.\n\nSeed phrases (BIP-39 backups) restore only self-custody wallets; they have no relationship to custodial account balances and must never be entered or dictated into any website, chat, or verification flow. Maintain two distinct inventory tracks — custodial accounts (legal/identity recovery) and self-custody holdings (backup/device recovery) — since the recovery paths, timelines, and risks differ.",
+ "claims": [
+  {
+   "claim": "If you find emails showing an exchange account (such as Coinbase), do not try to reset passwords yet.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Account recovery is a legal and identity process — do it deliberately with documents in hand.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Today, just note that the account exists and keep the statements — save emails, balance screenshots, and monthly statements as evidence for the estate.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Contact the exchange only through its official website yourself — never through a link or chat that contacted you.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No legitimate exchange asks you to read back codes from an inbound contact.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A support chat that asks you to verify a code it texts you is a phishing pattern; end the contact and share the code with no one.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "To pursue the account, bring death certificate and estate documents through the official process (the exchange's deceased-account or estates channel).",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not pose as the account owner; the official process exists to verify who may legally act for the deceased holder's estate.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The account is accessed with login and identity documents, not seed words.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A seed phrase found among the deceased's effects backs up only self-custody wallets; it does not unlock or restore a custodial exchange account.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep the two tracks separate in your inventory: custodial exchange accounts on one track, self-custody wallets and their backups on the other.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never type, dictate, or photograph a seed phrase into any website, chat, support flow, or identity verification.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Attempting password resets before estate documents are ready can trigger security locks and complicate the deceased-account process.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Bereaved families are actively targeted by 'recovery' scams; treat all inbound contacts as untrusted until verified against the exchange's officially published website.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never enter, read aloud, or photograph a seed phrase into any website, chat, call, or 'recovery' verification — no legitimate process needs it.",
+  "Treat any inbound contact offering to help recover the account as a phishing attempt; scammers specifically target bereaved families.",
+  "Do not attempt password resets or logins before estate documents are in hand — this can lock the account and delay legal recovery.",
+  "Do not share texted verification or one-time codes with anyone, including people claiming to be exchange support.",
+  "Do not pose as the account owner; use the exchange's official deceased-account process instead."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers T06-028, T06-029, T06-030 (exchange_accounts). All nine must_include phrases are embedded verbatim or near-verbatim in both plain and claims. All must_not phrasings verified absent. Safe-by-default checks: no instruction to enter seed words anywhere, no device reset/wipe instructions, no named paid professionals (Coinbase is named only because the reviewed user questions name it; kept generic elsewhere). Open items for reviewer: (1) confirm risk_class=caution vs danger given the active-phishing angle in T06-029; (2) confirm topic mapping — T07 included for the scam/security content and T02 for the custodial-vs-self-custody distinction; (3) claim 14 states the 'why' behind not resetting early — please confirm it matches the reviewed standard's rationale. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

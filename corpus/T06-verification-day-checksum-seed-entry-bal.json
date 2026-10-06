@@ -1,0 +1,52 @@
+{
+ "title": "Verification Day: Checksum, Seed Entry, Balance, Then Stop",
+ "topic_ids": [
+  "T06"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "Today has one goal: proving the wallet and the coins are real — nothing else. Before you type anything secret, verify the download checksum first: the wallet maker's official site publishes a code that must match the file you installed. If it does not match, stop and get help before going further.\n\nOnce the checksum matches, enter the seed words once, into the verified software only. Never type them into a website, an exchange, a recovery page, or any other program. Genuine wallet software never needs your words typed somewhere else.\n\nWhen the wallet opens, write down the first receiving address, then confirm the balance appears. The written address lets you double-check later that you are in the right wallet, and the balance is your proof the keys work. Then stop — no sending, no upgrading, nothing else that day.\n\nIf you hoped to verify the wallet, move coins to an exchange, and set up a new hardware wallet all in one afternoon to get it over with, slow down: the rule is one difficult thing per day. Do the verification only — no sending or moving the same day.\n\nEach extra irreversible step is a fresh chance for a permanent mistake, and none of these steps are urgent. The coins will wait. Transfers and new hardware get their own days, once the balance is confirmed and you understand each step.",
+ "technical": "Compare the installer's locally computed digest (for example, SHA-256) against the hash published by the wallet's official source; only then proceed to seed entry. Seed words are entered exactly once, only into the verified binary — never into a browser, exchange, or any third-party tool.\n\nAfter the wallet synchronizes, record the first receiving address and the confirmed balance, then take no further action that day: no transaction signing, no software or firmware upgrades, no fund movement. Pacing standard: one difficult, irreversibility-bearing task per day; sends, exchange transfers, and hardware-wallet migration belong on separate days, after the balance and backups are verified.",
+ "claims": [
+  {
+   "claim": "Verify the download checksum first, before entering seed words into any software.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Enter the seed words once, into the verified software only — never into a website, exchange, or other tool.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "After the wallet loads, write down the first receiving address, then confirm the balance appears.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "After confirming the balance, stop — no sending, no upgrading, nothing else that day.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The pacing rule is one difficult thing per day.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "On verification day, do the verification only — no sending or moving the same day.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Each extra irreversible step is a fresh chance for a permanent mistake.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "If the checksum does not match, do not enter the seed words — stop and use the app's help flow.",
+  "Never type seed words into a website, exchange, or wallet-checker tool; legitimate wallet software never asks for them in a browser.",
+  "Never reset, wipe, or factory-clear any device before the backups and the balance are fully verified.",
+  "After the balance appears, stop for the day: no sending, no upgrading, no moving funds."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers Q(T06-037) and Q(T06-038); all must-include phrases appear verbatim in plain and claims. Must-not-include phrasings avoided — no same-day transaction, transfer, or batching advice; sends and hardware migration are explicitly deferred to later days. No professionals named; no reset or wipe instructions. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

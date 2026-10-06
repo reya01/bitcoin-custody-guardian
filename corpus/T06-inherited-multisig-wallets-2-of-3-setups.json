@@ -1,0 +1,91 @@
+{
+ "title": "Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File",
+ "topic_ids": [
+  "T06",
+  "T07",
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "A wallet marked '2 of 3' is a shared-control setup: three hardware wallets were created together, and any two of the three devices can move the funds. Two devices are enough to act — the third is a spare that adds safety, not a requirement to get started. But the descriptor file is needed too — it describes the whole setup, including which devices belong together and how many signatures are required. Keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices.\n\nThe envelope labeled 'descriptor' that looks like computer code is valuable — do not clean it up or throw it away. The descriptor is not a secret by itself: it is a description of how the wallet was built, not a key. But it is required to rebuild a multisig wallet, so without it, even two working devices cannot show you the coins. Keep it with the key locations and list it in the inventory so it never gets mistaken for junk.\n\nIf one of the three hardware wallets is missing, the coins are not lost. No — two of three still works, so with any two devices plus the descriptor you can recover the funds. Do not panic, and do not reset or wipe the devices you still have. Check the backup locations first and keep searching for the third — it may turn up in a safe deposit box, another room, or with someone the owner trusted.\n\nCan you open the wallet right now with just the two devices and the descriptor? Yes — a 2-of-3 setup opens with any two devices plus the descriptor. But still do the full Day 6 verification sequence first: clean computer, verified software, then the devices. One difficult thing per day — do not rush the first real action. Viewing the balance does not move the coins; sending them is a separate step for later, after everything checks out.\n\nTwo rules never change, no matter how confident you feel: never type seed words into a computer, website, or app, and never reset or wipe any device before every backup is verified. If anyone pressures you to move the coins quickly, stop and slow down — that pressure itself is a common scam warning sign.",
+ "technical": "A '2 of 3' label denotes a threshold-signature policy: three cosigning keys were generated, and a valid spend requires any two signatures. Any two of the three devices can move the funds; the third exists for redundancy. The descriptor (an output descriptor or wallet-configuration file listing the script type, the three extended public keys, and derivation paths) is mandatory recovery metadata: wallet software cannot reconstruct the multisig addresses from the devices alone, so the descriptor file is needed too — it describes the whole setup. The descriptor contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it, so store it with the same care as other inheritance documents and list it in the inventory.\n\nRecovery procedure: on a clean, dedicated computer, obtain wallet software from its official source and verify it, then connect any two of the three devices and load the wallet from the descriptor. If one device is missing, the setup remains fully recoverable — two of three still works — but keep searching for the third and do not reset or wipe any device before backup verification is complete. Never type any cosigner's seed words into the computer; the devices sign directly. Balance viewing is read-only, and the first spend requires on-device confirmation on both devices, so pace it: one difficult thing per day.",
+ "claims": [
+  {
+   "claim": "In a wallet labeled '2 of 3', any two of the three devices can move the funds.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Two devices are enough to recover and spend from a 2-of-3 setup; the third device is a spare that preserves backup redundancy.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The descriptor file is needed too — it describes the whole setup, including which three devices belong together and how many signatures are required.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep all three devices and the file together so a single future loss never leaves fewer than two working devices.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The descriptor is not a secret by itself — it contains no private keys and cannot move funds on its own.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "It is required to rebuild a multisig wallet; without it, even two working devices cannot display or spend the funds.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep the descriptor with the key locations and list it in the inventory so it is never mistaken for junk.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If one of the three hardware wallets is missing, the coins are not lost — two of three still works.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not panic and do not reset or wipe the devices you still have when one multisig device is missing.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Check the backup locations first and keep searching for the third device before assuming it is permanently lost.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A 2-of-3 setup opens with any two devices plus the descriptor.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Still do the full Day 6 verification sequence first: clean computer, verified software, then the devices — before opening or moving anything.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "One difficult thing per day — do not rush the first real action.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never type seed words into a computer, website, or app; the hardware devices hold the keys and sign directly.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never reset or wipe any hardware wallet before all backups and recovery information have been verified.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Viewing a recovered wallet's balance does not move the coins; sending funds is a separate, later step.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never type seed words into any computer, phone, website, or app — the devices sign directly and the words stay offline.",
+  "Never reset or wipe a hardware wallet before every backup and recovery document has been verified.",
+  "Do not discard or 'clean up' the descriptor — it is required to rebuild the multisig wallet, and losing it can make recovery far harder.",
+  "The descriptor is not a private key, but avoid sharing it publicly: it reveals the wallet's existence and balance to whoever holds it.",
+  "If anyone pressures you to move the coins quickly, stop — urgency is a common scam pattern, not part of the inheritance process."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers eval items Q(T06-024) through Q(T06-027). All MUST_INCLUDE phrases embedded verbatim in `plain` (P1: 2-of-3 mechanics and descriptor necessity; P2: descriptor handling; P3: missing-device reassurance; P4: opening with two devices plus Day 6 verification and pacing) and restated across claims 1-13. Verified absent: all MUST_NOT phrases; no instruction anywhere to paste or type seed words (the opposite is instructed); no reset/wipe-before-backup-verification instructions (the opposite is instructed); no paid professionals named. Open questions for review: (1) the privacy caveat on the descriptor (technical section, warning 4) — confirm it does not conflict with the 'not a secret by itself' reviewed standard; (2) topic_ids T07/T02 included tentatively pending taxonomy confirmation; (3) risk_class set to 'caution' rather than 'info' because irreversible-loss mistakes (discarding the descriptor, wiping a device) are plausible in this scenario. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

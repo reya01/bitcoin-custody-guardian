@@ -1,0 +1,47 @@
+{
+ "title": "Inventory Privacy: What to Tell Family and What Never to Write Down",
+ "topic_ids": [
+  "T06"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "No — do not tell anyone what you found or how much there is — not yet. This is not about distrusting your sister. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway.\n\nIf she asks, tell family only that records exist and you are working through them carefully. That answer is honest and true. Wait until the wallet is verified and an attorney advises you before any numbers or details go to anyone, including close relatives.\n\nThe same privacy rule applies to your Day 2 inventory sheet. Never copy the words into your inventory — not the full 24, not part of them, not a hint of them. Those words are the money itself: anyone who reads them can move everything, and an inventory page is exactly the kind of document that gets carried around, shown to helpers, or left on a table.\n\nInstead, write only a description like '24-word list found, sealed envelope, 3 pages'. Record where each item was found, what it looks like, and its condition — never its contents. The inventory page must contain no secrets: no recovery words, no passwords, no PINs, no amounts.",
+ "technical": "Disclosure control: treat both the balance and the existence of recovery material as confidential during the inheritance inventory. Sharing of amounts is deferred until two conditions are met — the wallet has been verified against its backup, and an attorney has advised on the estate process. Until then, family communications state only that records exist and are being reviewed carefully.\n\nInventory hygiene: the inventory document records metadata only — location, medium (paper, card, hardware wallet), word count (12 or 24), and physical condition. Recovery words, passphrases, and PINs are never transcribed, dictated, or photographed into the inventory or stored digitally anywhere; the inventory page must contain no secrets. Recovery words function as a bearer instrument: anyone who obtains them controls the funds.",
+ "claims": [
+  {
+   "claim": "Do not tell anyone what you found or how much there is — not yet.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Tell family only that records exist and you are working through them carefully.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Wait until the wallet is verified and an attorney advises you before sharing details or amounts.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never copy the words into your inventory.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Write only a description like '24-word list found, sealed envelope, 3 pages'.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The inventory page must contain no secrets.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "The recovery words are the money: anyone who sees or hears them can take the funds. Never read them aloud, type them, or photograph them — even when family offers to help.",
+  "Early disclosure of amounts can spark disputes and make the estate a target; hold details back until verification and legal advice are complete.",
+  "Keep the inventory page secret-free: it may pass through many hands, including helpers and couriers."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers T06-015 and T06-016 (inventory_privacy). All six must_include phrasings appear verbatim in plain and claims. 'Attorney' is generic per policy; no professionals named. No instruction transmits seed words or resets devices. Please confirm the quoted example description string matches the reviewed walkthrough wording. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

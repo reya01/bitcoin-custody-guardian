@@ -1,0 +1,60 @@
+{
+ "title": "Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake",
+ "topic_ids": [
+  "T06"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "If a 'support technician' says the only fix for your wallet software is installing AnyDesk or similar remote-control software, it is a scam. Remote-control software requests are always a scam - no legitimate support needs control of your computer. Stop contact immediately: install nothing, hang up or close the chat, and delete the message.\n\nA sympathetic stranger - even one who shares your story, like a widow whose kids also inherited crypto - may ask you to send 0.001 bitcoin first to 'unlock' the estate transfer her family received. Send-a-small-amount-first is always a scam: nothing is ever unlocked by paying first. Stop contact and do nothing; your bitcoin stays safe exactly where it is.\n\nYou do not need to become paranoid about everything - just learn five signals. It is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first. No legitimate company asks for your words - not wallet makers, exchanges, banks, or anyone claiming to represent the estate.\n\nYour safe default costs nothing: you lose nothing by ignoring every such message. If something matters, it will still be true tomorrow. Verify it yourself through official channels - this app, or contact details you find on your own, never a link or number from the message.",
+ "technical": "Remote-access pattern: fraudsters posing as wallet or exchange 'support' direct targets to install remote-control software, then observe recovery words, swap receiving addresses, or install malware. Any unsolicited request for remote control of a machine that touches wallet software or key material is fraud; stop contact immediately and install nothing. Advance-fee pattern: a small 'unlocking' or 'activation' payment (e.g., 0.001 BTC) required before an inheritance is released is advance-fee fraud; no Bitcoin mechanism requires prepayment to release funds.\n\nClassification heuristic: an inbound message is a scam if it requests seed words or keys, manufactures urgency, requests a test payment, requests remote access, or initiated contact first. Ignore-and-delete has zero cost, so it is the safe default.",
+ "claims": [
+  {
+   "claim": "Remote-control software requests are always a scam.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No legitimate support needs control of your computer.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If a 'support technician' asks you to install remote-control software such as AnyDesk, stop contact immediately.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Send-a-small-amount-first is always a scam.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Nothing is ever unlocked by paying first.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If someone says a small payment such as 0.001 bitcoin will unlock an estate transfer, stop contact and do nothing.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "It is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No legitimate company asks for your words.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "You lose nothing by ignoring every such message.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never install remote-control software (e.g., AnyDesk) at the request of anyone who contacted you; it grants full access to your computer and anything you type.",
+  "Never send any amount of bitcoin - even 0.001 - to 'unlock', 'activate', or 'release' a transfer or inheritance; sent coins cannot be recovered.",
+  "Never type, speak, or photograph your recovery words for anyone; anyone who asks is a scammer.",
+  "Do not reset, wipe, or 'clean' any device until your backup is verified - a scammer's scare story is never a reason to reset."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Verbatim must_include phrasing from T06-034/035/036 appears in both plain and claims. AnyDesk is named only as a scam vector, never as an instruction. Safe-by-default verified: no seed-entry guidance, no pre-verification resets, no named professionals. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

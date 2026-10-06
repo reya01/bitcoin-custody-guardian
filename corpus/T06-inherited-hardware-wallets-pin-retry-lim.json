@@ -1,0 +1,53 @@
+{
+ "title": "Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help",
+ "topic_ids": [
+  "T06",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "If you have already entered a wrong PIN twice, stop entering PINs immediately. Some devices erase themselves after too many wrong attempts, and you cannot know how many tries remain. Put the device down and find the seed phrase backup first: a card or booklet, sometimes metal, with 12 or 24 words, often kept with his papers, in a safe, or in a safe-deposit box. That backup is what holds the funds; the device is only one way to reach them.\n\nDo not power them on yet on day one. Power on only when you have both the PIN and the backup words in hand, because that is when a lockout no longer risks the coins. Until then, look instead: note the brand and model from the packaging or the back of each device and add it to your inventory. That is real progress without touching anything.\n\nIf a friend offers to plug the Ledger into his computer and figure it out for you, thank him and say no, even if he is genuinely good with computers. Do not hand devices or words to anyone. Almost every stranger who offers to help a grieving heir is a scammer — even friends of friends — and a well-meaning helper can still lock the device or connect unknown software. You can walk through it yourself with offline guides, one small step at a time, with no one else's hands involved.",
+ "technical": "Hardware wallet PIN entry is rate-limited and unforgiving: some firmware locks, delays, or self-wipes after repeated wrong attempts, so treat the next wrong PIN as if it could be the last. The BIP-39 seed backup is the actual source of custody; with it, a locked or wiped device is replaceable hardware, while without it the device may be the only path to the funds.\n\nBrand and model can be recorded from packaging, engraving, or labels without powering on, which is why booting is deferred until both the PIN and the backup words are in hand. Any third party with access to the device, its PIN, or its seed — including a well-meaning friend with a laptop — introduces lockout and exfiltration risk; anyone who needs the device or the words in order to help is unqualified or worse.",
+ "claims": [
+  {
+   "claim": "Stop entering PINs immediately after wrong attempts; some devices erase themselves after too many wrong attempts.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Put the device down and find the seed phrase backup first.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not power them on yet on day one; power on only when you have both the PIN and the backup words.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Look instead: note the brand and model from the packaging or the back.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not hand devices or words to anyone.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Almost every stranger who offers to help a grieving heir is a scammer — even friends of friends.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Walk through it yourself with offline guides.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Repeated wrong PINs can lock or self-wipe a device; never guess PINs.",
+  "Never type, photograph, or paste seed words into any computer, phone, or website.",
+  "Never reset, wipe, or 'recover' a device before the seed backup is located and verified.",
+  "Anyone asking for the device, its PIN, or the words, however friendly, is a risk, not a resource."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Merges T06-012/013/014 into one device-handling entry. All must-include phrasings appear verbatim in plain and are anchored as claims. Coldcard-specific wipe behavior is deliberately generalized to 'some devices' per the reviewed standard. No seed-entry, reset, or named-professional content anywhere. Recommend keeping risk_class 'danger' since a wipe is irreversible loss. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

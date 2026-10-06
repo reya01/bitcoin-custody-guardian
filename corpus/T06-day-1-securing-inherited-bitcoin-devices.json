@@ -1,0 +1,92 @@
+{
+ "title": "Day 1: Securing inherited bitcoin devices, word lists, and computers",
+ "topic_ids": [
+  "T06",
+  "T07",
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "First, take a breath. If you found a USB stick or a small device labeled 'Ledger' or another wallet name, do not plug it in yet. Plugging it in cannot show you what is inside without the right steps, and hasty actions are where mistakes happen. Instead, put everything bitcoin-related in one box: the device itself, its cable, any envelopes, papers, and small metal plates. Nothing is lost by waiting — bitcoin does not expire or fade, so taking days or weeks to gather things calmly is completely safe.\n\nWhile sorting you may find a metal plate with words stamped into it, an envelope holding more words, or papers with lists of 12 or 24 words. Keep every word list you find — even if two of them look identical — because some backups are split across pages or materials, and a single page or plate may be incomplete on its own. At this stage you cannot tell which list is 'the real one,' so nothing should be discarded as a copy. Put them all in the same box together.\n\nBefore anyone cleans or tidies the office, collect every paper with word lists and every small device first, and do not let anything get thrown out — not by relatives, not by hired cleaners. Folded papers, SD cards, and pocket-sized devices are exactly the things that disappear into a vacuum bag or a recycling bin. You have time — nothing is urgent, and moving slowly is what protects you here.\n\nOn his computer you may see a file called 'wallet.dat' and an app called Sparrow. Do not delete anything on his computer: wallet files and apps may be needed to open the wallet later. If a relative suggests wiping the laptop for privacy, hold off — wipe only after the wallet is recovered or a professional says it is safe. Set the laptop aside with the box, and do not lend it out.\n\nFor now, your only job is to gather and protect. Everything goes into one box in one safe place, out of sight. Do not enter the words anywhere — not into a phone, computer, or website — and do not photograph them; paper and metal keep the words safe exactly as they are. Once the box is complete, move on to the next step of this walkthrough.",
+ "technical": "A device labeled 'Ledger' is a hardware wallet: a dedicated signing device, not ordinary USB storage. Connecting it now reveals nothing without its PIN and a recovery plan, and unknown removable media should be treated as untrusted, so leave it unplugged for now. The actual backup is usually a BIP39 seed phrase of 12 or 24 words recorded on paper, card, or metal. Backups may also be SLIP39/Shamir shares split across several plates or pages — each share alone is incomplete — or a BIP39 passphrase stored on a separate card, which is why every word list must be preserved until redundancy is proven. Do not enter any of these words into a device, app, or website at this stage.\n\nOn the computer, 'wallet.dat' is a Bitcoin Core wallet file that can contain private keys, and Sparrow is a desktop wallet/watch-only client whose wallet file and keystore settings may be needed to reconstruct or spend the funds. Related artifacts (keystore files, descriptor exports, app data) may also matter, so preserve the computer and all removable media unmodified: no deletions, reinstalls, or drive wipes until the funds are recovered and moved, or a qualified professional confirms the data is no longer needed. There is no expiry or time limit that justifies destructive action.",
+ "claims": [
+  {
+   "claim": "If you find a USB stick or small device labeled with a wallet brand such as 'Ledger', do not plug it in yet — set it aside with the other materials.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Put everything bitcoin-related in one box: devices, cables, papers, envelopes, and small metal items.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Nothing is lost by waiting — inherited bitcoin does not expire, so materials can be gathered calmly over days or weeks.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep every word list you find, even one that looks like a duplicate of another.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Some backups are split across pages or materials, so a single plate, card, or page may be only one part of the whole backup.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Put all word lists, plates, and papers in the same box together so parts of a split backup are never separated.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Before anyone cleans or tidies the office, collect every paper with word lists and every small device first.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not let anything get thrown out during cleaning, sorting, or distribution of the estate.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "You have time — nothing is urgent on day one; no deadline justifies rushing or destroying anything.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not delete anything on his computer.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Wallet files and apps such as 'wallet.dat' and Sparrow may be needed to open the wallet later, so leave them in place.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Wipe the computer only after the wallet is recovered or a professional says it is safe.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never enter or photograph word lists on any phone, computer, or website.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not reset, wipe, or update a wallet device before the backup words have been found and verified.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Treat any unknown USB stick or removable medium as untrusted and do not connect it to a computer at this stage.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not hand wallet devices, media, or word lists to third parties such as repair shops for inspection.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never type, paste, or photograph seed words on any phone, computer, or website — anyone who asks you to enter them is almost certainly a scammer.",
+  "Do not guess the PIN on a hardware wallet; repeated wrong attempts can erase the device. Leave it unplugged for now.",
+  "Do not reset, wipe, or update any wallet device before the word-list backups are found and verified.",
+  "Cleaning or wiping the computer before recovery can permanently destroy the only copy of the keys.",
+  "No legitimate helper, estate service, or 'recovery agent' will ever need the words themselves — refuse anyone who asks.",
+  "Keep the box somewhere private and tell as few people as possible what it contains."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "All 12 must_include phrases from T06-001 through T06-004 appear verbatim in `plain` (P1: plug/box/waiting; P2: word lists/split backups/same box; P3: collect first/nothing thrown out/no urgency; P4: no deletion/needed later/wipe timing) and are mirrored in claims 1-12. Must_not strings were checked as literal substrings and avoided, including inside prohibitions (e.g., we say 'do not reset, wipe, or update a wallet device' rather than 'reset the device'). Safe-by-default extras added: no photographing or typing seed words, no PIN guessing, scam warning, and 'professional' kept generic with no named services. topic_ids T02/T07 are tentative mappings for the software-wallet and backup-material content — please confirm against the taxonomy. Em dash in 'you have time — nothing is urgent' preserved from source. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

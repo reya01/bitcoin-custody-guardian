@@ -1,0 +1,53 @@
+{
+ "title": "What This App Cannot Tell You: Prices, Selling, and Picks",
+ "topic_ids": [
+  "T06",
+  "T07",
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "You may want to ask: what is bitcoin's price right now, and should I sell everything before it drops? The honest answer is that the app is offline and cannot know current prices, and it cannot give financial or investment advice. It will not predict the price, and it will not tell you to sell or to hold.\n\nThis limit is a safety feature, not a dodge. Selling inherited coins can have real tax consequences, and the choice is yours to make with help you choose. For tax and sale decisions, see the guides and consult a professional when you get there. Nothing forces a sale this week: take the time to finish securing and verifying what you inherited first.\n\nThe same honesty applies to shopping questions. Which hardware wallet brand should you buy? Which lawyer should handle the estate? The corpus can describe the categories of devices and their trade-offs, but it never picks a specific product or paid professional for you. Expect no endorsements, no rankings, and no affiliate links.\n\nFor finding help, the directory lists categories and evidence for you to judge: what each kind of professional does, what credible credentials look like, and what questions to ask. The judgment stays with you, not with this app.",
+ "technical": "The application is fully offline: no network connection, no market data feed, and no trusted price source, so any price it displayed would be fabricated. It therefore implements no price lookup, no forecasting, and no buy/sell/hold recommendation; for live prices and personalized investment or tax questions, the review standards require an explicit out-of-scope statement that points to the relevant guides instead of approximating an answer.\n\nProduct and professional selection is handled the same way. The corpus documents device categories and their trade-offs in neutral comparison terms and maintains a professional directory of categories with evidence criteria, but it contains no endorsements, rankings, affiliate links, or named recommendations. Neutrality is a deliberate design constraint, not an omission.",
+ "claims": [
+  {
+   "claim": "The app is offline and cannot know current prices.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "It cannot give financial or investment advice, including whether to sell or hold.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "For tax and sale decisions, see the guides and consult a professional when you get there.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The corpus can describe the categories of devices and their trade-offs.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "It never picks a specific product or paid professional for you.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The directory lists categories and evidence for you to judge.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The app makes no prediction about whether the price will rise or fall.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Anyone urging you to sell immediately, or claiming to know where the price is headed, is expressing an opinion this app cannot and will not verify.",
+  "Never type your seed words into any website, app, or chat to check a price or balance; this app never asks for them either.",
+  "Treat pressure to move or sell inherited coins before you have verified your own backup as a red flag."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Consolidates T06-039 and T06-040 (out_of_corpus_honesty). All six MUST_INCLUDE phrasings appear verbatim in plain and are mirrored as claims. MUST_NOT_INCLUDE content (crash claims, sell-now advice, named models or lawyers) is absent; no paid professionals are named and no seed-word entry is instructed. Verify directory wording against the reviewed standard before publishing. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

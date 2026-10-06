@@ -1,0 +1,57 @@
+{
+ "title": "Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device",
+ "topic_ids": [
+  "T06",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "If the device asks for a PIN you don't have, do not reset it. Stop guessing and find the backup words first: repeated wrong entries can lock the device, and resetting without the seed phrase backup destroys access to the bitcoin forever. Look for a card or paper word list kept with the device or with important documents.\n\nIf someone says hardware wallets should be reset before recovering so no one else's data remains, don't — never reset a device you did not set up yourself. A reset erases its keys; only the seed phrase backup can restore them. Check for the seed phrase backup before touching the device; with it you can always recover, and without it a reset is final.\n\nIf the screen is cracked and the device won't turn on, don't panic: no — the bitcoin is on the blockchain, not in the device. The seed phrase can restore the wallet on a new device, even from a different brand. Do not try to repair or open it yourself yet. Keep the device safe and unchanged while you find the backup.\n\nIn every case the order is the same: find and verify the backup words first, then handle hardware. Never type the backup words into any website, app, or message, and never share them with anyone who contacts you.",
+ "technical": "A hardware wallet is a signing device, not a store of funds: balances live on the blockchain, and the device's secure element only holds the private keys. PIN lockouts are anti-brute-force protection, not deletion, but any reset — deliberate or triggered on some models by repeated failed attempts — clears the keys from the secure element; only the BIP-39 seed phrase backup can regenerate them. An heir should treat the backup's existence as unverified until it is located and checked.\n\nA dead or damaged device does not affect the funds: the seed phrase can reconstruct the wallet on any BIP-39-compatible device, including another brand. Do not attempt repair or teardown before the backup situation is resolved; tampering can complicate later secure-element inspection if recovery ever depends on it.",
+ "claims": [
+  {
+   "claim": "If the PIN is unknown, do not reset the device; stop guessing and find the backup words first, because repeated wrong guesses can lock the device.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Resetting without the seed phrase backup destroys access to the bitcoin forever.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never reset a device you did not set up yourself.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A reset erases its keys; only the seed phrase backup can restore them.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Check for the seed phrase backup before touching the device.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "No — the bitcoin is on the blockchain, not in the device.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "The seed phrase can restore the wallet on a new device, even from a different brand.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not try to repair or open it yourself yet.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never reset or wipe the device before the seed phrase backup has been found and verified.",
+  "Do not keep guessing the PIN — repeated failures can permanently lock some devices.",
+  "Do not open, repair, or tamper with a damaged device before the backup is located.",
+  "Never type, paste, or photograph the seed words into any website, app, or chat, and never share them with anyone who contacts you."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Single entry covering T06-009/010/011; all must-include phrases verbatim or near-verbatim in plain and claims; banned phrasings avoided; safe-by-default (no seed-entry instructions, reset never instructed, no professionals named); risk_class set to danger for the irreversible-loss reset hazard — confirm. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

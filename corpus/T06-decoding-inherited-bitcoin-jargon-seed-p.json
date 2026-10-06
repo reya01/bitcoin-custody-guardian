@@ -1,0 +1,99 @@
+{
+ "title": "Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody",
+ "topic_ids": [
+  "T06",
+  "T02",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "A letter in his drawer that says 'seed phrase' is the most important item in the estate. A seed phrase is the master key — 12 or 24 common words that rebuild the wallet. Whoever has the words controls the bitcoin, so that piece of paper is now the most valuable thing you are protecting. There is no safety net behind it: no company or support line can recover it if it is lost. Never type the words into a website or app, never read them out to anyone who contacts you, and keep the letter stored as securely as you found it.\n\nAn 'xpub' next to a long string of letters is a different kind of thing. An xpub is not a secret and cannot spend the bitcoin — it works more like an account number than a key. But it reveals all addresses and transaction history, so it is privacy-sensitive, and it should not be posted or shared publicly. Still keep it in the box and mention it in the inventory, because later it lets you check balances without ever touching the seed words.\n\nIf his Sparrow wallet says 'watch-only' in the corner, that is not a fault. Watch-only means the app can see the balance but cannot spend. Spending requires the keys — the seed phrase or a signed device — which stay offline and untouched. Watch-only is a safe first step for heirs: you can confirm what exists and learn the setup with zero risk of loss, and nothing needs to be reset to make it real.\n\nA paper that says 'add this word when restoring' is a deliberate instruction, not leftover scribble. That is a passphrase — an extra word that combines with the seed phrase. Note that it exists and keep it with the word list, clearly labeled. Do not combine it with anything yet — it changes which wallet opens, so testing or guessing can show an empty-looking wallet that is not really empty. Record it, store it with the words, and wait for the full walkthrough.\n\n'Self-custody' is the word for how he held this money. Self-custody means you hold the keys yourself instead of a company holding them for you. With self-custody the seed phrase is your responsibility — there is no password reset. The comforting part for you: it is the heirs' default because nothing needs to move. The coins stay safely where they are while you verify, secure, and learn; your first job is protecting paper, not moving money.",
+ "technical": "A seed phrase is a BIP39 mnemonic encoding 128 or 256 bits of entropy plus a checksum as 12 or 24 dictionary words; through BIP39/BIP32 derivation it deterministically produces every private key and address the wallet has ever used, which is why possession of the words equals full control and why no issuer, exchange, or support desk can regenerate them. An xpub (extended public key, per BIP32 and its address-type variants such as zpub) is the public half of a derivation account: it enumerates all derived addresses and their transaction history for observation, but it is mathematically incapable of producing a signature. A watch-only wallet, such as Sparrow running in watch-only mode, imports only these public data; any spend attempt fails at signing unless a private key, a seed, or a hardware signing device supplies the signature.\n\nA passphrase is the optional BIP39 '25th word': the same 12/24 words combined with a different passphrase deterministically derive a completely different wallet, so applying it is a wallet-selection event, never a harmless preference, and speculative testing should be avoided. Self-custody denotes exclusive control of the private keys (the seed phrase and any passphrase) rather than a custodian holding them; for an inheritance this means the funds remain valid and stationary on-chain, so the heir's work is key verification, physical security, and patient planning — not migration of coins.",
+ "claims": [
+  {
+   "claim": "A seed phrase is the master key — 12 or 24 common words that rebuild the wallet.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Whoever has the words controls the bitcoin.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If a seed phrase is lost, no company or support line can recover it.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "An xpub is not a secret and cannot spend the bitcoin.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "An xpub reveals all addresses and transaction history, so it is privacy-sensitive.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep the xpub in the box and mention it in the inventory.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Watch-only means the app can see the balance but cannot spend.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Spending requires the keys — the seed phrase or a signed device.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Watch-only is a safe first step for heirs.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "A note saying 'add this word when restoring' refers to a passphrase — an extra word that combines with the seed phrase.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "If a passphrase exists, note that it exists and keep it with the word list.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not combine the passphrase with anything yet — it changes which wallet opens.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Self-custody means you hold the keys yourself instead of a company holding them for you.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "With self-custody the seed phrase is your responsibility — there is no password reset.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Self-custody is the heirs' default because nothing needs to move.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never type or paste seed words into any website, app, email, or chat; no legitimate service will ever request them.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not reset or wipe any device before all backups are verified.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Do not test passphrase combinations speculatively — record the passphrase and follow the walkthrough instead.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never type, paste, or photograph the seed words into or onto anything digital — no website, app, email, cloud note, or photo roll. A legitimate service will never ask for them.",
+  "No real support line can recover or reissue a seed phrase; anyone who contacts you offering to 'recover' the inherited bitcoin is a scam attempt.",
+  "Do not test passphrase combinations to see what opens — a wrong combination displays an unrelated, seemingly empty wallet. Record the passphrase and follow the walkthrough step by step.",
+  "Do not reset or wipe any hardware wallet or device until every backup and written record has been verified and the inventory is complete.",
+  "The xpub is privacy-sensitive but not secret-losing: do not publish it, but know that losing it loses nothing — the seed words are what matter."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Entry covers all five jargon items T06-019 through T06-023. All 15 must_include phrasings appear near-verbatim in 'plain' and are restated in claims. Checked must_not_include compliance: xpub never framed as a master key; watch-only framed as safe with nothing to reset; passphrase framed as record-now, combine-later, never 'add it now to test'; self-custody framed as personal key control, not company custody. Safe-by-default checks pass: no instruction to type or paste seed words anywhere, no reset or wipe before backup verification, no paid professionals named. Em dashes (U+2014) follow the reviewed source phrasing. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}

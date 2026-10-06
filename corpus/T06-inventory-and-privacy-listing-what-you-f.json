@@ -1,0 +1,52 @@
+{
+ "title": "Inventory and privacy: listing what you found without exposing it",
+ "topic_ids": [
+  "T06",
+  "T07"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "As you gather items, make a simple paper list. For each one, write down three things: what it physically is (for example, 'a small device like a USB stick' or 'a steel plate'), where it was found (the room, drawer, safe, or box), and anything written on it or its packaging, such as a brand name, a label, or a marking like 'backup words'.\n\nOne firm limit: describe, don't copy. If a card or paper shows a list of words, do not write those words into the inventory — just note that a sealed word card was found. The same goes for passwords: the list maps what exists; it never holds the secrets themselves.\n\nKeep the inventory on your own paper, not shared online. Location notes reveal where valuables and backups are, and a synced or shared copy can be read by anyone who later gains access to that account — the last person you want holding a map to everything.\n\nWhen others are involved, share only what is needed, when it is needed. A helper can usually do their part knowing that an item exists, without learning where every backup is kept.\n\nStore the paper somewhere private and safe, and update it as you learn more.",
+ "technical": "The inventory is a metadata record, never a copy of secret material. Per item, capture: (1) physical description and type; (2) discovery location; (3) observable labels, packaging text, and tamper-evident condition. Where secret material exists (recovery words, passphrases, PINs, account passwords), record only its presence and format — for example, 'sealed card, 24 word positions' — never its contents. Because the document functions as an attack-surface map — location notes reveal where valuables and backups are — it must remain on paper under the heir's control, outside shared cloud storage, email, and messaging. Apply least-privilege disclosure: share only what is needed, when it is needed, to a named person for a defined task.",
+ "claims": [
+  {
+   "claim": "For each item you find, write down what it physically is, such as 'small USB-style device' or 'steel plate'.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "For each item, record where it was found — the room, drawer, safe, or box.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "For each item, note anything written on it or its packaging, such as brand names, labels, and markings.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Never copy recovery words or any passwords into the inventory; note only that such material exists and its condition.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Keep the inventory on your own paper, not shared online.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Location notes reveal where valuables and backups are, so guard the inventory as carefully as the items themselves.",
+   "source": "BTCG Inheritance Walkthrough"
+  },
+  {
+   "claim": "Share only what is needed, when it is needed, with a specific person for a specific purpose.",
+   "source": "BTCG Inheritance Walkthrough"
+  }
+ ],
+ "warnings": [
+  "Never write recovery words, PINs, passphrases, or account passwords in the inventory — describe the item, do not transcribe its secrets.",
+  "Do not place the inventory in shared or synced online storage; a leaked copy is a map to every valuable and backup.",
+  "Avoid telling people where backups are kept before you understand what you hold; premature sharing invites theft and scam targeting."
+ ],
+ "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+ "source_url": "internal://walkthrough",
+ "notes_for_reviewer": "Covers T06-017 and T06-018. All must_include phrases appear verbatim in 'plain' and are mirrored in 'claims'. T06-018's exclusion is handled as describe-don't-transcribe: labels and packaging text are recorded, but recovery words and passwords are never copied into the inventory. T06-017's excluded phrasings are avoided; negative guidance is expressed via the approved 'own paper, not shared online' line. No paid professionals named; no device reset or seed-entry instructions anywhere. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": true,
+ "reviewed_on": "2026-10-06"
+}
