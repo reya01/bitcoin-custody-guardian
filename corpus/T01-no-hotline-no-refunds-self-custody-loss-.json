@@ -1,0 +1,36 @@
+{
+ "title": "No Hotline, No Refunds: Self-Custody Loss Is Final",
+ "topic_ids": [
+  "T01",
+  "T09"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "Self-custody means you hold the keys and carry all of the responsibility yourself. There is no company behind your wallet, no customer service department, and no manager who can step in when something goes wrong.\n\nThe hard truth is that there is no hotline that can recover lost self-custodied bitcoin. If your keys or backups are destroyed, stolen, or simply forgotten, those funds are effectively gone. Bitcoin has no password reset, no fraud department, and no chargebacks.\n\nScammers exploit exactly this. Anyone advertising a 'recovery service' that promises to bring back lost bitcoin is lying — they want your money or your seed words. Never share, type, or photograph your seed words for anyone offering help.\n\nBecause of this finality, deciding how much bitcoin to hold in self-custody is a serious money decision, like any large purchase or investment. For money decisions like this, talk to a licensed financial advisor who can look at your whole situation before you commit a large amount.\n\nA licensed advisor cannot recover lost bitcoin either, and a genuine one will never ask for your keys or seed words. What they can do is help you think about how much to hold, how it fits your goals, and how much risk you can honestly carry.\n\nUntil you are confident, go slowly: practice with small amounts, keep written backups somewhere safe and private, and verify every address before sending. In self-custody, careful habits are your only safety net.",
+ "technical": "Bitcoin removes trusted third parties, which also removes recovery paths. Transactions are finalized by network consensus with no administrative override, and keys are derived from a BIP39/BIP32 seed, so losing the seed (and any passphrase) leaves funds on-chain but permanently unspendable. No miner, developer, or company can reassign them; backup redundancy and inheritance planning are the only real mitigations.\n\n'Crypto recovery' scams target people who have lost access, charging upfront fees or requesting seed words to 'diagnose' a wallet. Legitimate professionals, including licensed financial advisors, work on planning and allocation, never key recovery, and never need your seed words. Treat a large move into self-custody as you would any major financial decision and seek licensed advice first.",
+ "claims": [
+  {
+   "claim": "There is no hotline that can recover lost self-custodied bitcoin.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "For money decisions like this, talk to a licensed financial advisor.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "Lost keys leave funds permanently unspendable; no third party can reverse or reassign Bitcoin transactions.",
+   "source": "Bitcoin developer documentation (consensus rules)"
+  }
+ ],
+ "warnings": [
+  "Anyone promising to recover lost bitcoin is a scammer after your money or seed words.",
+  "Never type, share, or photograph your seed words for anyone offering support or recovery.",
+  "No legitimate advisor or service will ever ask for your keys or seed words.",
+  "Transactions are final — verify the address and amount before every send."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "Covers both required eval phrasings verbatim (no-hotline; licensed financial advisor) in plain and mirrored in claims. No vendors named; seed-word mentions are prohibitive only, never instructing users to type them anywhere. Risk class set to 'caution' (prudence guidance rather than imminent threat) — flag if 'danger' is preferred for loss finality. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}

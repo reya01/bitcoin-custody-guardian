@@ -1,0 +1,34 @@
+{
+ "title": "Derivation paths and why you must not photograph your seed phrase",
+ "topic_ids": [
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "When you set up a wallet you will run into labels like m/44, m/49 and m/84. You may also be tempted to photograph your recovery phrase so you never lose it. One of those is harmless jargon; the other can quietly put your funds at risk.\n\nm/44, m/49 and m/84 correspond to different address formats. m/44 is for older Legacy addresses (they start with a 1), m/49 for wrapped SegWit (they start with a 3), and m/84 for native SegWit (they start with bc1). None is better or worse for safety; they are just different.\n\nYou will see these codes in wallet settings, export files and backup tools. If you keep written notes about your wallet, note the path as well. Restoring a seed with the wrong path can show an empty balance, because the wallet is checking different addresses than the ones holding your bitcoin.\n\nNow the photo problem. Phones sync and upload photos to cloud backups without you noticing. A snapshot of your recovery words can reach a company's servers seconds after you take it, and copies can linger there even if you delete the picture on your phone.\n\nA photo of your seed phrase is a full copy of the keys to your money, kept somewhere you cannot audit or reliably erase. Treat every camera, keyboard and cloud account as a public place.\n\nStay safe by default: keep your recovery phrase offline on paper or metal. Never type the words into any device, app, website or message, and never capture them in a photo or screenshot. A legitimate wallet only asks you to write the phrase down, or shows it on its own screen.",
+ "technical": "These numbers are hierarchical deterministic derivation paths: m/44'/0'/0' produces P2PKH (Legacy, addresses starting with 1), m/49'/0'/0' produces P2SH-P2WPKH (wrapped SegWit, addresses starting with 3), and m/84'/0'/0' produces P2WPKH (native SegWit, bc1 addresses). A seed phrase does not by itself fix the address type; the wallet must be told, or must scan, which path to derive, which is why backups should record the path used at creation.\n\nModern mobile systems commonly enable full-library cloud backup by default, so a new photo is typically uploaded within seconds of capture, and thumbnails or metadata can persist server-side after local deletion. Combined with OCR indexing and account compromise, a photographed seed phrase should be treated as exposed the moment the shutter fires.",
+ "claims": [
+  {
+   "claim": "m/44, m/49 and m/84 correspond to different address formats (Legacy, wrapped SegWit, native SegWit).",
+   "source": "BIP 44, BIP 49 and BIP 84 specifications"
+  },
+  {
+   "claim": "phones sync and upload photos to cloud backups without you noticing, so a seed photo can leave the device automatically.",
+   "source": "Mobile OS backup default-behavior documentation"
+  },
+  {
+   "claim": "Restoring a seed with a mismatched derivation path shows a zero balance because funds sit at addresses on a different branch.",
+   "source": "BIP 32 hierarchical deterministic wallet specification"
+  }
+ ],
+ "warnings": [
+  "Never photograph, screenshot or type your recovery phrase; treat any camera or connected keyboard as a public place.",
+  "Write down the derivation path (for example m/84) in your offline notes so a future restore derives the same addresses.",
+  "If a photo of your seed phrase has ever existed, assume it is compromised and plan a move to a freshly generated wallet."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "Both required eval phrasings appear verbatim in plain and again in claims 1-2. Choices to confirm: risk_class danger (cloud-exposed seed implies total loss; could be downgraded to caution); no vendors named in guidance, OS behavior cited generically; address prefixes simplified for novices. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}

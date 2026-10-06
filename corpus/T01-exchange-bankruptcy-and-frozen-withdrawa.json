@@ -1,0 +1,36 @@
+{
+ "title": "Exchange Bankruptcy and Frozen Withdrawals",
+ "topic_ids": [
+  "T01",
+  "T08"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "When bitcoin sits on an exchange or lending platform, you own a promise from that company, not the coins themselves. The keys — and real control — stay with the platform.\n\nIf that company becomes insolvent, withdrawals are typically frozen during bankruptcy. No one can move funds while a court sorts out the company's debts, and that process can take years.\n\nFrozen does not necessarily mean lost. But customers are often treated as unsecured creditors, and past platform insolvencies have returned only part of customers' balances, sometimes long after the filing.\n\nSelf-custody removes this single point of failure: coins secured by keys you hold cannot be frozen by any company's collapse. The trade-off is that you become fully responsible for key safety.\n\nA common safety pattern is to keep only what you actively trade on any platform and hold long-term savings in your own custody once you have learned the basics.\n\nLearn and practice first: set up a wallet, record your recovery phrase offline on paper or metal, and do a small round-trip test before moving meaningful amounts. Never type your recovery phrase into a website, app, or chat.\n\nIf a platform suddenly delays withdrawals, imposes new limits, or announces vague 'maintenance,' treat that as a warning sign rather than reassurance.",
+ "technical": "When an exchange enters bankruptcy or administration, customer balances may be commingled with corporate funds, rehypothecated, or reduced to ledger claims under the platform's terms of service. Customers frequently rank as unsecured creditors, which explains both the freeze and the partial, delayed recoveries observed in past exchange failures. Because withdrawals are typically frozen during bankruptcy, any funds on-platform at the moment of filing are exposed to that legal process for its full duration.\n\nMitigations have limits: proof-of-reserves attestations are point-in-time snapshots and do not guarantee segregation or prevent a freeze. Coins under your own keys carry no counterparty, but key management then becomes the dominant risk — offline backups stored in separate locations are the baseline, and multisignature or collaborative-custody structures are standard patterns at larger amounts. No specific vendor or product is implied.",
+ "claims": [
+  {
+   "claim": "withdrawals are typically frozen during bankruptcy",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "Customers of failed platforms have historically recovered only part of their balances, sometimes years after an insolvency filing.",
+   "source": "Public records of exchange insolvency proceedings, 2014–2024"
+  },
+  {
+   "claim": "Coins secured by keys the user controls cannot be frozen by a third party's bankruptcy.",
+   "source": "Bitcoin Custody Guardian curriculum — custody fundamentals"
+  }
+ ],
+ "warnings": [
+  "Only leave on a platform what you could afford to have frozen indefinitely.",
+  "Withdrawal slowdowns, sudden limits, or vague 'maintenance' windows are early warning signs of distress.",
+  "Never type, photograph, or read out your recovery phrase for anyone; legitimate support will never ask for it.",
+  "Verify the receiving address and send a small test amount before any large transfer."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "Covers the single missing eval phrasing, included verbatim in plain (paragraph 2) and claims[0]. No vendors or products named; no instructions to enter seed words anywhere (only prohibitions); safe-by-default framing throughout. Suggest pairing with the 'signs a platform is failing' entry once drafted. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}

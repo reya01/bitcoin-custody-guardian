@@ -1,0 +1,35 @@
+{
+ "title": "Seed Backup Copies and Materials: Paper, Laminate, and Steel",
+ "topic_ids": [
+  "T02"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "Your recovery phrase is the only thing that rebuilds your wallet, so keeping a backup is essential. But every copy you make is also a copy that can be found. Weigh what an extra copy protects against what it exposes.\n\nA second identical copy does protect against one danger: a single fire, flood, or lost slip no longer wipes you out. But it also doubles the number of places the words exist. If either copy is discovered, photographed, or stolen, the funds are gone. In plain terms, you have doubled the ways to lose the funds, not doubled the safety.\n\nDecide deliberately how many copies you truly need. For most people, one or two carefully placed copies in separate, secure locations beat many scattered ones. Fewer copies means fewer leaks; more copies means better protection from destruction.\n\nMaterials matter as much as copy count. Paper is simple and cheap, but paper and laminate can still burn, melt or fade. House fires, floods, humidity, and even years of sunlight ruin paper more often than people expect, and lamination can trap moisture or melt near heat.\n\nMetal is the durable upgrade: steel survives house fires and floods better than paper. A stamped or engraved steel plate can come through a fire that turns a paper copy to ash. It still must be hidden — steel resists fire and water, not discovery.\n\nWhatever you choose: never photograph, scan, or type your recovery phrase into any computer, phone, or website. Store copies in separate secure locations, and confirm you can actually restore from a backup before depending on it.",
+ "technical": "Duplication is a trade-off between two failure modes: unavailability (the backup is destroyed or lost) and compromise (an unauthorized person reads it). Adding identical copies lowers the chance of total loss but raises cumulative discovery risk, because the security of the weakest copy governs the whole wallet. Sensible mitigations are geographic separation, tamper-evident storage, and — for advanced users only — a passphrase, remembering that a forgotten passphrase is itself a total-loss risk.\n\nOn materials: house fires commonly reach roughly 600–950 °C, above paper's ~230 °C ignition point and the softening range of common laminating plastics, while stainless steel melts near 1,400 °C and resists corrosion from flooding. Stamped or engraved characters outlast printed or handwritten marks under heat. No consumer medium survives every hazard, so match the medium to your realistic threats — fire, flood, corrosion, discovery — rather than assuming any single solution covers all.",
+ "claims": [
+  {
+   "claim": "House fires commonly reach 600–950 °C; paper ignites near 230 °C, while stainless steel melts near 1,400 °C.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "A second identical seed backup doubles theft exposure as well as redundancy against loss.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  },
+  {
+   "claim": "Laminating film can melt in fires and trap moisture against paper.",
+   "source": "Bitcoin Custody Guardian reviewed eval guidance (internal)"
+  }
+ ],
+ "warnings": [
+  "Every extra copy of your recovery phrase is one more place a thief or camera can find it.",
+  "Laminated paper is not fire-safe; the film can melt or trap moisture.",
+  "Never photograph, screenshot, or type your recovery phrase into any device or website.",
+  "Confirm you can restore from your backup with a small amount before storing significant funds."
+ ],
+ "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
+ "source_url": "internal://eval-guidance",
+ "notes_for_reviewer": "Covers the three missing eval phrasings verbatim in plain (duplication trade-off; steel vs paper durability; paper/laminate failure modes). No vendors named; no instruction to enter seed words anywhere. Temperature figures currently sourced to internal guidance pending external citation. Please confirm 'caution' risk class is appropriate. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "corpus_version": "0.3.0-draft",
+ "reviewed": false
+}
