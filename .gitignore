@@ -1,0 +1,13 @@
+# build artifacts
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+*.keystore
+!debug.keystore
+.DS_Store
+*.iml
+.idea/
+captures/
+.cxx/
