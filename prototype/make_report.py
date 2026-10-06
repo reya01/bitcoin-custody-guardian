@@ -25,11 +25,14 @@ lines.append("**Answerer:** local llama.cpp llama-server (built from source with
              "127.0.0.1:9200, temperature 0, generous completion cap (1600; caps exist only to prevent runaway errors), /no_think.\n")
 lines.append("> Progress log: baseline 0/40 (empty corpus coverage) -> 9/40 after T06 corpus + extractive step -> "
              "23/40 (58%) after entry-aggregated retrieval (top_k=8, 87% phrase coverage) and approved corpus. "
-             "This run also captured a clean model-floor comparison: local Qwen3-1.7B passed 6/18 of its items; "
-             "GLM-5.3 (flex, served as failover when siblings killed the local server) passed 17/22. "
-             "Scam detection went 6/6, multisig 4/4. Remaining weak categories: day1_securing 0/4, "
-             "out_of_corpus_honesty 0/2, word_list_handling 1/4, inventory_privacy 1/4 - these are "
-             "model-precision failures (phrasing of the target guidance), now the primary lever.\n")
+             "Model-floor evidence across runs: local Qwen3-1.7B passed 6/18 (33%) of its items; GLM-5.3 via "
+             "flex failover passed 17/22 and 22/33 (67-77%) across two runs; a Qwen3-4B Q4_K_M attempt was "
+             "OOM-killed by the host (3.3GB RSS vs 3.9GB RAM shared with other agents) - 4B-class models do not "
+             "fit this dev host, and the on-device floor decision belongs on real 8GB target hardware. "
+             "Scam detection 6/6 and multisig 4/4 on the approved corpus. Remaining weak categories "
+             "(day1_securing 0/4, out_of_corpus_honesty 0/2, word_list_handling 1/4, inventory_privacy 1-2/4) "
+             "are model-precision failures - the corpus contains the target phrasing but smaller models do not "
+             "assemble it verbatim.\n")
 lines.append("\n## Grading rules\n")
 lines.append("- must_include: case-insensitive substring after normalization "
               "(lowercase, punctuation→space, documented synonym table: don't→do not, "
