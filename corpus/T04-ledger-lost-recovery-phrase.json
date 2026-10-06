@@ -74,15 +74,16 @@
   }
  ],
  "warnings": [
-  "Never reset your Ledger device \u2014 including by entering the wrong PIN three times \u2014 before moving every coin to a safe temporary account. Resetting erases the keys, and without your Secret Recovery Phrase the coins are lost forever.",
+  "Never reset your Ledger device — including by entering the wrong PIN three times — before moving every coin to a safe temporary account. Resetting erases the keys, and without your Secret Recovery Phrase the coins are lost forever.",
   "Never share your Secret Recovery Phrase. Ledger will never ask for it; anyone who does is a scammer.",
-  "If both the Secret Recovery Phrase and the PIN are lost, no one can recover the funds \u2014 not even Ledger.",
+  "If both the Secret Recovery Phrase and the PIN are lost, no one can recover the funds — not even Ledger.",
   "If you have a second Ledger device, do not wipe the first one until you are certain every asset was moved off the lost phrase."
  ],
  "source_title": "I lost my 24-word Secret Recovery Phrase (Ledger support; last updated 05/13/2026)",
  "source_url": "/opt/data/cache/corpus-src/batch3/ledger-lost-recovery-phrase.txt",
- "notes_for_reviewer": "Staleness: cached article is dated 05/13/2026 (future-dated relative to this batch) \u2014 verify the live page. Reset-via-settings steps are given only for Nano X / Nano S / Nano S Plus; newer Ledger models (e.g., Stax, Flex) are not covered \u2014 confirm whether to extend. Naming: source uses 'Ledger Wallet (formerly Ledger Live)' \u2014 confirm current branding at review time. The step-1 parenthetical about outdated Ledger OS preventing sends is terse; I interpreted it as 'move funds before updating the OS' \u2014 please verify. Source's 'compromised accounts' in step 2 means accounts tied to the lost phrase; I paraphrased to avoid confusion. Content is Ledger-specific and covers crypto assets generally, not Bitcoin only. Step 1 suggests exchanges as temporary custody, which sits oddly with our self-custody teaching; consider app-side guidance to keep that window short or prefer a second hardware wallet (our addition, not the source's). Inheritor angle: an inheritor with a device but no phrase sheet and no PIN faces the unrecoverable case \u2014 consider cross-linking to inheritance planning entries. I deliberately avoided asserting BIP-39 or any mnemonic standard, since the source does not mention them.",
+ "notes_for_reviewer": "Staleness: cached article is dated 05/13/2026 (future-dated relative to this batch) — verify the live page. Reset-via-settings steps are given only for Nano X / Nano S / Nano S Plus; newer Ledger models (e.g., Stax, Flex) are not covered — confirm whether to extend. Naming: source uses 'Ledger Wallet (formerly Ledger Live)' — confirm current branding at review time. The step-1 parenthetical about outdated Ledger OS preventing sends is terse; I interpreted it as 'move funds before updating the OS' — please verify. Source's 'compromised accounts' in step 2 means accounts tied to the lost phrase; I paraphrased to avoid confusion. Content is Ledger-specific and covers crypto assets generally, not Bitcoin only. Step 1 suggests exchanges as temporary custody, which sits oddly with our self-custody teaching; consider app-side guidance to keep that window short or prefer a second hardware wallet (our addition, not the source's). Inheritor angle: an inheritor with a device but no phrase sheet and no PIN faces the unrecoverable case — consider cross-linking to inheritance planning entries. I deliberately avoided asserting BIP-39 or any mnemonic standard, since the source does not mention them. Human operator approved 2026-10-06 (Telegram).",
  "corpus_version": "0.0.1-poc",
- "verified_on": "not yet \u2014 awaiting human review",
- "reviewed": false
+ "verified_on": "not yet — awaiting human review",
+ "reviewed": true,
+ "reviewed_date": "2026-10-06"
 }

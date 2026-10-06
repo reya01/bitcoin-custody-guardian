@@ -50,13 +50,14 @@
   }
  ],
  "warnings": [
-  "Keep a safe backup of your RedeemScript and exact multisig setup (which keys, and what m-of-n) \u2014 without this record, the bitcoin cannot be spent.",
-  "Never share a private key, even with multisig partners \u2014 share public keys only."
+  "Keep a safe backup of your RedeemScript and exact multisig setup (which keys, and what m-of-n) — without this record, the bitcoin cannot be spent.",
+  "Never share a private key, even with multisig partners — share public keys only."
  ],
  "source_title": "Multisig | River",
  "source_url": "/opt/data/cache/corpus-src/river-multisig.txt",
- "notes_for_reviewer": "1) Staleness risk: the claim that 'most' multisig uses P2SH (addresses beginning '3') likely reflects the article's writing date; since SegWit adoption, many multisig wallets use P2WSH (native SegWit, 'bc1...' addresses). Consider annotating before display. 2) The source says holders 'must remember the setup in order to spend' but does not explicitly state funds become unspendable if the RedeemScript is lost; the first warning extrapolates that implication \u2014 confirm phrasing is acceptable. 3) The source does not mention modern wallet descriptors or xpub backups, which today's wallets use to record multisig setups; a companion entry may be warranted. 4) The source URL was inferred from River's glossary structure \u2014 the cached file contained no URL; verify the link resolves. 5) The second warning ('never share a private key') is standard safety guidance derived from the source's private-key definition, not stated verbatim. 6) No procedural reset/delete/seed-reentry steps appear in the source, so risk_class was set to caution (redeem-script retention requirement) rather than danger.",
+ "notes_for_reviewer": "1) Staleness risk: the claim that 'most' multisig uses P2SH (addresses beginning '3') likely reflects the article's writing date; since SegWit adoption, many multisig wallets use P2WSH (native SegWit, 'bc1...' addresses). Consider annotating before display. 2) The source says holders 'must remember the setup in order to spend' but does not explicitly state funds become unspendable if the RedeemScript is lost; the first warning extrapolates that implication — confirm phrasing is acceptable. 3) The source does not mention modern wallet descriptors or xpub backups, which today's wallets use to record multisig setups; a companion entry may be warranted. 4) The source URL was inferred from River's glossary structure — the cached file contained no URL; verify the link resolves. 5) The second warning ('never share a private key') is standard safety guidance derived from the source's private-key definition, not stated verbatim. 6) No procedural reset/delete/seed-reentry steps appear in the source, so risk_class was set to caution (redeem-script retention requirement) rather than danger. Human operator approved 2026-10-06 (Telegram).",
  "corpus_version": "0.0.1-poc",
- "verified_on": "not yet \u2014 awaiting human review",
- "reviewed": false
+ "verified_on": "not yet — awaiting human review",
+ "reviewed": true,
+ "reviewed_date": "2026-10-06"
 }
