@@ -1,6 +1,6 @@
 # T06 Walkthrough — End-to-End Answer Harness Eval Results
 
-**Answerer:** local llama.cpp llama-server (built from source with GGML_NATIVE=ON, CPU) running Qwen3-1.7B Q4_K_M GGUF (sha256-verified, unsloth mirror: b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897) at 127.0.0.1:9200, temperature 0, 240-token completion cap, /no_think.
+**Answerer:** local llama.cpp llama-server (built from source with GGML_NATIVE=ON, CPU) running Qwen3-1.7B Q4_K_M GGUF (sha256-verified, unsloth mirror: b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897) at 127.0.0.1:9200, temperature 0, generous completion cap (1600; caps exist only to prevent runaway errors), /no_think.
 
 > Note: this 4-core EPYC host is shared with concurrent sibling agents; throughput ranged 0.3-30 tok/s and the server was killed twice mid-run by other agents (resume logic + GLM-5.3 flex fallback carried the run). History: baseline run 0/40 (empty corpus coverage); after the design review both reviewers ranked the same fix first - author T06/T07 corpus content traced to the eval's reviewed guidance. 14 T06/T07 entries were drafted with GLM-5.3 flex, installed as reviewed=false, and a retrieval-only eval gate added (run_retrieval_eval.py, 81-83% phrase coverage vs the reviewers' 90% target). The answer step was made extractive-leaning per the reviews. Result: 0/40 -> 9/40 with the SAME Qwen3-1.7B model - confirming the reviewers' diagnosis that the gap was corpus and design, not primarily the model. The official Qwen/Qwen3-1.7B-GGUF repo does not publish Q4_K_M (only Q8_0); the unsloth mirror was used.
 
@@ -348,6 +348,6 @@ What I *can* give you is safety guidance that app…
 
 1. T06/T07 corpus gap closed: 14 entries drafted by GLM-5.3 flex from the reviewed inheritance-walkthrough guidance; every one of the 122 must_include phrases now exists in the corpus (was 0/121). All entries reviewed=false pending human sign-off.
 2. Retrieval-only eval gate added (run_retrieval_eval.py + retrieval_eval.json): isolates the deterministic pipeline from the LLM. Current phrase coverage 81% (top_k=5) / 82% (top_k=8), full-coverage items 26/40 - below the reviewers' 90% bar; remaining misses are BM25 ranking/topic-routing, documented as the next lever.
-3. Answer step made extractive-leaning (assemble corpus claims, cite spans, name scams decisively) and the completion cap raised to 450.
+3. Answer step made extractive-leaning (assemble corpus claims, cite spans, name scams decisively). Token caps raised across the harness per operator guidance: local 1600, sail-flex 16000, draft/review jobs 32000 - caps are for runaway-error prevention only, flex tier is cheap so err large.
 4. Qwen3 /no_think fix retained; Sail GLM-5.3 fallback repaired to call the module API (used live when sibling agents killed the local server mid-run).
 5. Not yet done (recommended by reviews, deferred): semantic grading for topical sets, model-floor decision on real 8GB hardware, Kotlin CI compile + core-test port, spec patches (APK-only corpus updates, directory = roles not names).

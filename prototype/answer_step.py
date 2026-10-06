@@ -126,7 +126,7 @@ def llama_answer(messages: List[Dict[str, str]], timeout: int = 1500) -> str:
         "temperature": 0.0,
         "top_p": 0.8,
         "top_k": 20,
-        "max_tokens": 450,
+        "max_tokens": 1600,
     }
     req = urllib.request.Request(
         url,
@@ -155,7 +155,7 @@ def sail_answer(messages: List[Dict[str, str]], timeout: int = 1200) -> str:
     for attempt in range(2):
         try:
             out = call_flex("zai-org/GLM-5.3", msgs,
-                            max_completion_tokens=2500, timeout_s=timeout)
+                            max_completion_tokens=16000, timeout_s=timeout)
             out = _strip_think(out)
             if out:
                 return out
