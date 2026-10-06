@@ -563,9 +563,9 @@ class Retriever:
 
     def retrieve(self, query: str, top_k: int = 5,
                  prefer_topics: Optional[List[str]] = None) -> List[Dict]:
-        out = []
-        scored = self.index.search(query, max(top_k * 3, 12))
+        scored = self.index.search(query, max(top_k * 12, 60))
         pref = set(prefer_topics or [])
+        boosted = []
         for chunk, score in scored:
             boost = 0.0
             if pref:
@@ -573,17 +573,43 @@ class Retriever:
                 overlap = len(pref & set(chunk_topics))
                 if overlap:
                     boost = 2.0 + overlap  # topic-prior re-rank
-            out.append(
-                {
-                    "entry_id": chunk.entry_id,
-                    "section": chunk.section,
-                    "title": chunk.title,
-                    "text": chunk.text,
-                    "score": round(score + boost, 4),
-                }
-            )
-        out.sort(key=lambda d: (-d["score"], d["entry_id"]))
-        return out[:top_k]
+            boosted.append((chunk, round(score + boost, 4)))
+
+        # Entry-level aggregation: rank whole entries by their best chunk so
+        # one matching claim pulls in its sibling claims/warnings. Title-token
+        # overlap boosts entries whose title matches the question vocabulary,
+        # which BM25 chunk scoring alone can miss.
+        q_tokens = set(_tokenize(query))
+        by_entry: Dict[str, List[Tuple[Chunk, float]]] = {}
+        title_boost: Dict[str, float] = {}
+        for chunk, score in boosted:
+            by_entry.setdefault(chunk.entry_id, []).append((chunk, score))
+            if chunk.entry_id not in title_boost and chunk.section == "title":
+                ov = len(q_tokens & set(_tokenize(chunk.text)))
+                title_boost[chunk.entry_id] = min(ov, 4) * 0.9
+        entries = sorted(
+            by_entry.items(),
+            key=lambda kv: max(s for _, s in kv[1])
+            + title_boost.get(kv[0], 0.0),
+            reverse=True,
+        )
+        out: List[Dict] = []
+        for entry_id, chunks in entries:
+            for chunk, score in sorted(chunks, key=lambda cs: -cs[1]):
+                if len(out) >= top_k:
+                    break
+                out.append(
+                    {
+                        "entry_id": chunk.entry_id,
+                        "section": chunk.section,
+                        "title": chunk.title,
+                        "text": chunk.text,
+                        "score": score,
+                    }
+                )
+            if len(out) >= top_k:
+                break
+        return out
 
 
 # ==========================================================================

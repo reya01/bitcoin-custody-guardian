@@ -137,7 +137,7 @@ def main(limit=None, backend="auto"):
     have = {r["id"] for r in results}
     for i, item in enumerate(items):
         t0 = time.time()
-        comp = compose(item["prompt"], CORPUS, top_k=3)
+        comp = compose(item["prompt"], CORPUS, top_k=8)
         try:
             out = answer_step(item["prompt"], comp, backend=backend)
             answer, used = out["answer"], out["backend"]

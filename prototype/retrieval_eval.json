@@ -7,7 +7,7 @@
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inventory-and-privacy-listing-what-you-f"
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -31,10 +31,10 @@
   "category": "day1_securing",
   "retrieved": [
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:inherited-multisig-wallets-2-of-3-setups",
-   "T06:inventory-privacy-what-to-tell-family-an"
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -59,9 +59,9 @@
   "retrieved": [
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:verification-day-checksum-seed-entry-bal",
-   "T06:what-this-app-cannot-tell-you-prices-sel"
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -85,10 +85,10 @@
   "category": "day1_securing",
   "retrieved": [
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T02:what-is-a-seed-phrase",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T02:what-is-a-seed-phrase"
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -114,8 +114,8 @@
    "T06:found-paper-with-24-handwritten-words-se",
    "T06:found-paper-with-24-handwritten-words-se",
    "T06:found-paper-with-24-handwritten-words-se",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:word-list-safety-no-email-or-cloud-copie"
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se"
   ],
   "phrase_hits": 4,
   "phrases_total": 4,
@@ -143,12 +143,12 @@
   "category": "word_list_handling",
   "retrieved": [
    "T06:found-paper-with-24-handwritten-words-se",
-   "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
    "T06:found-paper-with-24-handwritten-words-se"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 3,
   "phrases_total": 3,
   "phrases": [
    {
@@ -157,7 +157,7 @@
    },
    {
     "phrase": "a partial word list is not usable on its own",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "keep the pages together in one place",
@@ -172,7 +172,7 @@
    "T06:word-list-safety-no-email-or-cloud-copie",
    "T06:word-list-safety-no-email-or-cloud-copie",
    "T06:word-list-safety-no-email-or-cloud-copie",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:word-list-safety-no-email-or-cloud-copie",
    "T06:word-list-safety-no-email-or-cloud-copie"
   ],
   "phrase_hits": 2,
@@ -197,12 +197,12 @@
   "category": "word_list_handling",
   "retrieved": [
    "T06:word-list-safety-no-email-or-cloud-copie",
-   "T06:found-paper-with-24-handwritten-words-se",
    "T06:word-list-safety-no-email-or-cloud-copie",
-   "T06:what-this-app-cannot-tell-you-prices-sel",
-   "T04:restoring-a-bitbox02-from-recovery-words"
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie"
   ],
-  "phrase_hits": 1,
+  "phrase_hits": 2,
   "phrases_total": 3,
   "phrases": [
    {
@@ -215,7 +215,7 @@
    },
    {
     "phrase": "this app never asks for your words",
-    "result": "fail"
+    "result": "synonym"
    }
   ]
  },
@@ -251,10 +251,10 @@
   "category": "device_handling",
   "retrieved": [
    "T06:inherited-hardware-wallet-unknown-pin-re",
-   "T06:verification-day-checksum-seed-entry-bal",
-   "T06:inherited-multisig-wallets-2-of-3-setups",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:inventory-privacy-what-to-tell-family-an"
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -279,9 +279,9 @@
   "retrieved": [
    "T06:inherited-hardware-wallet-unknown-pin-re",
    "T06:inherited-hardware-wallet-unknown-pin-re",
-   "T02:what-are-public-and-private-keys",
-   "T02:bip-84-bech32-addresses",
-   "T02:bip-49-p2wpkh-nested-addresses"
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T04:setting-up-and-restoring-a-blockstream-j"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -304,26 +304,26 @@
   "id": "T06-012",
   "category": "device_handling",
   "retrieved": [
-   "T06:inherited-hardware-wallets-pin-retry-lim",
-   "T06:inherited-hardware-wallets-pin-retry-lim",
-   "T02:bip-44-multi-account-hierarchy",
    "T04:setting-up-and-restoring-a-blockstream-j",
-   "T06:inheritance-scams-fake-support-calls-rec"
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j"
   ],
-  "phrase_hits": 3,
+  "phrase_hits": 0,
   "phrases_total": 3,
   "phrases": [
    {
     "phrase": "stop entering PINs immediately",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "some devices erase themselves after too many wrong attempts",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "put the device down and find the seed phrase backup first",
-    "result": "exact"
+    "result": "fail"
    }
   ]
  },
@@ -332,10 +332,10 @@
   "category": "device_handling",
   "retrieved": [
    "T06:exchange-accounts-in-an-inheritance-what",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T03:cold-storage-and-hardware-wallets",
-   "T03:cold-storage-and-hardware-wallets",
-   "T03:cold-storage-and-hardware-wallets"
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
   "phrase_hits": 0,
   "phrases_total": 3,
@@ -359,9 +359,9 @@
   "category": "device_handling",
   "retrieved": [
    "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:inherited-hardware-wallets-pin-retry-lim",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inheritance-scams-fake-support-calls-rec",
    "T06:day-1-securing-inherited-bitcoin-devices"
   ],
   "phrase_hits": 3,
@@ -387,11 +387,11 @@
   "retrieved": [
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:what-this-app-cannot-tell-you-prices-sel",
-   "T02:what-are-public-and-private-keys",
-   "T06:inheritance-scam-alerts-remote-control-r"
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "phrase_hits": 1,
+  "phrase_hits": 2,
   "phrases_total": 3,
   "phrases": [
    {
@@ -400,7 +400,7 @@
    },
    {
     "phrase": "tell family only that records exist and you are working through them carefully",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "wait until the wallet is verified and an attorney advises you",
@@ -414,11 +414,11 @@
   "retrieved": [
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:inventory-and-privacy-listing-what-you-f",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:inventory-and-privacy-listing-what-you-f"
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 3,
   "phrases_total": 3,
   "phrases": [
    {
@@ -427,7 +427,7 @@
    },
    {
     "phrase": "write only a description like '24-word list found, sealed envelope, 3 pages'",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "the inventory page must contain no secrets",
@@ -442,19 +442,19 @@
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 0,
   "phrases_total": 3,
   "phrases": [
    {
     "phrase": "keep the inventory on your own paper, not shared online",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "location notes reveal where valuables and backups are",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "share only what is needed, when it is needed",
@@ -468,9 +468,9 @@
   "retrieved": [
    "T06:inventory-and-privacy-listing-what-you-f",
    "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:inventory-privacy-what-to-tell-family-an"
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-and-privacy-listing-what-you-f"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -494,10 +494,10 @@
   "category": "jargon_decoding",
   "retrieved": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:exchange-accounts-in-an-inheritance-what"
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -521,9 +521,9 @@
   "category": "jargon_decoding",
   "retrieved": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T02:bip-44-multi-account-hierarchy",
-   "T02:what-is-a-seed-phrase",
-   "T02:what-is-a-seed-phrase",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p"
   ],
   "phrase_hits": 3,
@@ -548,7 +548,7 @@
   "category": "jargon_decoding",
   "retrieved": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p"
@@ -576,9 +576,9 @@
   "retrieved": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T04:restoring-a-bitbox02-from-recovery-words",
-   "T06:day-1-securing-inherited-bitcoin-devices",
-   "T04:restoring-a-bitbox02-from-recovery-words"
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -601,11 +601,11 @@
   "id": "T06-023",
   "category": "jargon_decoding",
   "retrieved": [
-   "T02:bip-39-the-standard-behind-your-12-24-wo",
    "T01:how-to-get-started-with-bitcoin-self-cus",
-   "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:exchange-accounts-in-an-inheritance-what"
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
   "phrase_hits": 0,
   "phrases_total": 3,
@@ -657,8 +657,8 @@
   "retrieved": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
-   "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
   "phrase_hits": 3,
@@ -684,7 +684,7 @@
   "retrieved": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
-   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
@@ -739,8 +739,8 @@
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
-   "T08:what-to-do-if-you-were-scammed-ftc",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -765,11 +765,11 @@
   "retrieved": [
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:inherited-hardware-wallet-unknown-pin-re",
-   "T02:what-are-public-and-private-keys"
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 3,
   "phrases_total": 3,
   "phrases": [
    {
@@ -782,7 +782,7 @@
    },
    {
     "phrase": "bring death certificate and estate documents through the official process",
-    "result": "fail"
+    "result": "synonym"
    }
   ]
  },
@@ -792,11 +792,11 @@
   "retrieved": [
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
-   "T02:what-is-a-seed-phrase",
-   "T03:cold-storage-and-hardware-wallets",
-   "T02:what-is-a-seed-phrase"
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 3,
   "phrases_total": 3,
   "phrases": [
    {
@@ -809,7 +809,7 @@
    },
    {
     "phrase": "keep the two tracks separate in your inventory",
-    "result": "fail"
+    "result": "exact"
    }
   ]
  },
@@ -819,9 +819,9 @@
   "retrieved": [
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec",
-   "T06:inherited-hardware-wallets-pin-retry-lim",
    "T06:inheritance-scams-fake-support-calls-rec",
-   "T04:i-lost-my-secret-recovery-phrase-ledger"
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -845,10 +845,10 @@
   "category": "scam_detection",
   "retrieved": [
    "T06:inheritance-scams-fake-support-calls-rec",
-   "T06:inherited-hardware-wallets-pin-retry-lim",
    "T06:inheritance-scams-fake-support-calls-rec",
-   "T08:spotting-investment-scams-ftc",
-   "T08:spotting-investment-scams-ftc"
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -873,9 +873,9 @@
   "retrieved": [
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec",
-   "T06:found-paper-with-24-handwritten-words-se",
-   "T06:found-paper-with-24-handwritten-words-se",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -900,9 +900,9 @@
   "retrieved": [
    "T06:inheritance-scam-alerts-remote-control-r",
    "T06:inheritance-scam-alerts-remote-control-r",
-   "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scam-alerts-remote-control-r",
-   "T06:day-1-securing-inherited-bitcoin-devices"
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -928,8 +928,8 @@
    "T06:inheritance-scam-alerts-remote-control-r",
    "T06:inheritance-scam-alerts-remote-control-r",
    "T06:inheritance-scam-alerts-remote-control-r",
-   "T02:bip-44-multi-account-hierarchy",
-   "T08:what-to-do-if-you-were-scammed-ftc"
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -953,10 +953,10 @@
   "category": "scam_detection",
   "retrieved": [
    "T06:inheritance-scam-alerts-remote-control-r",
-   "T06:inventory-privacy-what-to-tell-family-an",
-   "T02:bip-84-bech32-addresses",
-   "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:inheritance-scams-fake-support-calls-rec"
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r"
   ],
   "phrase_hits": 3,
   "phrases_total": 3,
@@ -979,11 +979,11 @@
   "id": "T06-037",
   "category": "verification_sequence",
   "retrieved": [
-   "T06:found-paper-with-24-handwritten-words-se",
    "T02:what-is-a-seed-phrase",
-   "T06:verification-day-checksum-seed-entry-bal",
-   "T06:verification-day-checksum-seed-entry-bal",
-   "T03:cold-storage-and-hardware-wallets"
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T06:found-paper-with-24-handwritten-words-se"
   ],
   "phrase_hits": 0,
   "phrases_total": 4,
@@ -1011,12 +1011,12 @@
   "category": "verification_sequence",
   "retrieved": [
    "T06:verification-day-checksum-seed-entry-bal",
-   "T02:what-is-a-seed-phrase",
    "T06:verification-day-checksum-seed-entry-bal",
-   "T02:what-is-a-seed-phrase",
-   "T03:cold-storage-and-hardware-wallets"
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger"
   ],
-  "phrase_hits": 2,
+  "phrase_hits": 3,
   "phrases_total": 3,
   "phrases": [
    {
@@ -1029,7 +1029,7 @@
    },
    {
     "phrase": "each extra irreversible step is a fresh chance for a permanent mistake",
-    "result": "fail"
+    "result": "exact"
    }
   ]
  },
@@ -1040,8 +1040,8 @@
    "T06:what-this-app-cannot-tell-you-prices-sel",
    "T06:what-this-app-cannot-tell-you-prices-sel",
    "T06:what-this-app-cannot-tell-you-prices-sel",
-   "T01:how-to-get-started-with-bitcoin-self-cus",
-   "T06:found-paper-with-24-handwritten-words-se"
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T06:what-this-app-cannot-tell-you-prices-sel"
   ],
   "phrase_hits": 2,
   "phrases_total": 3,
@@ -1067,8 +1067,8 @@
    "T06:what-this-app-cannot-tell-you-prices-sel",
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T01:how-to-get-started-with-bitcoin-self-cus",
-   "T04:restoring-a-bitbox02-from-recovery-words",
-   "T06:inherited-hardware-wallet-unknown-pin-re"
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
   "phrase_hits": 2,
   "phrases_total": 3,
