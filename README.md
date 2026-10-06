@@ -19,6 +19,7 @@ A fully-local, no-network Android app: private on-device AI that helps bitcoiner
 - [docs/PRODUCT_SPEC.md](docs/PRODUCT_SPEC.md) — product specification (v0.1)
 - [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md) — knowledge corpus sources & curation plan
 - [docs/EVAL_SET.md](docs/EVAL_SET.md) — golden eval set structure & samples (release gate)
+- [docs/INHERITANCE_WALKTHROUGH.md](docs/INHERITANCE_WALKTHROUGH.md) — the "first 7 days" guided walkthrough (core UX template)
 
 ## License
 MIT — see [LICENSE](LICENSE).
