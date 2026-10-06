@@ -1,0 +1,97 @@
+{
+ "title": "Restoring a BitBox02 from recovery words (BitBox)",
+ "topic_ids": [
+  "T04"
+ ],
+ "level": "novice",
+ "risk_class": "danger",
+ "plain": "Recovery words (also called a 'seed') are your list of 12 or 24 everyday words in a fixed order \u2014 the master key to your Bitcoin. A hardware wallet is a small device that keeps your keys offline. If your BitBox02 was lost, replaced, or reset, entering these words restores your wallet (your access to your Bitcoin). Restoring does not move coins; it rebuilds the keys to the Bitcoin addresses (the spots on Bitcoin's public record where your coins sit). Only ever type recovery words into a trusted hardware wallet \u2014 never into an app, website, or photo. Anyone who gets them can steal your coins. You need: your 12 or 24 words in exact order; a BitBox02 or another trusted hardware wallet supporting BIP-39 (a shared rulebook that makes the same words work on different wallets); the latest BitBoxApp (the computer app); and updated firmware (the device's built-in software). Careful: if a passphrase (an optional extra secret password on top of the words) was used, the words alone are not enough. Enter the same passphrase afterwards, or you open a different, empty wallet. To restore: open the BitBoxApp, connect the device, confirm the pairing code (matching codes on computer and device), choose 'Restore from recovery words', name the device and confirm the name and date on it, pick 12 or 24 words, then type each word letter by letter in order. Every word must sit in its exact place. The words don't search for your wallet \u2014 they calculate it, so one wrong letter or one swapped word builds a different, empty wallet. After four letters, the device knows which word you mean. Set a new device password, then wait for synchronization (the app fetching your history) \u2014 seconds to minutes. If no balance appears, your coins are usually not lost: check word order, passphrase, that all accounts were added, and that syncing finished. Very old 'Legacy' addresses (starting with 1) are not shown by default \u2014 BitBox02 uses newer bc1 addresses. A microSD backup (a memory card with the same words) is faster.",
+ "technical": "Restoration regenerates a BIP-39 deterministic wallet; it does not transfer funds \u2014 it re-derives the keys controlling already-existing blockchain addresses. Requirements: the 12- or 24-word BIP-39 mnemonic in correct sequence, a BitBox02 or other trusted BIP-39-compatible hardware wallet, the latest BitBoxApp, and current device firmware. With an optional BIP-39 passphrase, the mnemonic alone is insufficient: the identical passphrase must be re-applied after restore, otherwise derivation yields a different, empty wallet. Procedure: open the BitBoxApp, connect the BitBox02, set screen orientation, verify the pairing code, select 'Restore from recovery words', name the device, confirm name and date on-device, select 12 or 24 words, then enter each word letter-by-letter on the device. Restoration is deterministic: a wrong letter, a correctly spelled word in the wrong position, or transposed words each derive a distinct valid wallet. Word entry uses the official English BIP-39 word list; every word becomes uniquely identifiable after its first four letters (1-3 letters allow multiple words; e.g., L-E-G corresponds to 'leg', L-E-G-A to 'legally', L-E-G-E to 'legend'), and only the actually displayed word is confirmed. Finish by setting a device password; synchronization then runs, taking a few seconds to several minutes depending on accounts and transactions. Empty-balance triage: coins are usually not lost \u2014 typical causes are wrong word or order, missing/incorrect passphrase, accounts not yet added, or incomplete synchronization. Legacy compatibility: very old wallets used '1...'-prefixed Legacy addresses, while BitBox02 defaults to 'bc1...' addresses, so a correctly restored wallet can appear empty while coins remain at legacy addresses; remedy is sending to a new bc1 address, or support-assisted recovery in compatible software if the old device is gone. A microSD backup contains the same words and speeds restoration; extracting words from microSD is an emergency-only measure (device lost or irreparably damaged, no analog backup).",
+ "claims": [
+  {
+   "claim": "Restoring from recovery words does not load coins onto the device; it only restores access to already-existing blockchain addresses.",
+   "source": "Intro paragraph of the article"
+  },
+  {
+   "claim": "Restoration requires the 12 or 24 recovery words in the correct order, a BitBox02 or another trusted hardware wallet supporting BIP-39, the latest version of the BitBoxApp, and updated firmware on the device.",
+   "source": "'What you need' section"
+  },
+  {
+   "claim": "If an optional passphrase was used, the recovery words alone are not enough; the same passphrase must be entered after restoration, otherwise a different, empty wallet opens.",
+   "source": "'What you need' section, passphrase note"
+  },
+  {
+   "claim": "Restoration is deterministic: a correctly spelled word is still wrong if it is not in the exact position recorded in the backup; a wrong letter, a correct word in the wrong position, or wrong order each open a different wallet.",
+   "source": "'Every position must match' note under 'Restore your wallet'"
+  },
+  {
+   "claim": "The BitBox02 uses the official English BIP-39 word list, designed so every word becomes uniquely identifiable after its first four letters: 1-3 letters allow multiple words, 4 or more letters define exactly one word (example: L-E-G = 'leg', L-E-G-A = 'legally', L-E-G-E = 'legend').",
+   "source": "'How word auto-completion works' section"
+  },
+  {
+   "claim": "During typing, the device may temporarily suggest a word, but only the actually displayed word is confirmed.",
+   "source": "'How word auto-completion works' section"
+  },
+  {
+   "claim": "If no balance is shown after restoration, the coins are usually not lost; in most cases a different wallet was opened, caused by a wrong word, correct words in wrong order or position, a missing or incorrect passphrase, accounts not yet added, or ongoing synchronization.",
+   "source": "'After restoration \u2013 no balance visible' section"
+  },
+  {
+   "claim": "Recovery words do not search for an existing wallet \u2014 they calculate it, and even a minimal deviation deterministically creates a different, usually empty, wallet.",
+   "source": "'Why this happens' note under 'After restoration \u2013 no balance visible'"
+  },
+  {
+   "claim": "Very old wallets used Legacy addresses starting with '1...', while the BitBox02 uses newer 'bc1...' address types by default, so a correctly restored wallet can appear empty even though the coins are still on an older address.",
+   "source": "'Legacy address types' section"
+  },
+  {
+   "claim": "For coins on Legacy addresses: if you still have access to the old wallet, send the coins to a new BitBox02 address (recommended: 'bc1...'); if not, contact support, as the wallet may need to be restored in compatible software and then transferred.",
+   "source": "'What can you do?' under 'Legacy address types'"
+  },
+  {
+   "claim": "A wrong input can still open a valid wallet: every valid combination of words generates a technically correct but different wallet, which is why coins may not be visible.",
+   "source": "FAQ: 'Can a wrong input still open a valid wallet?'"
+  },
+  {
+   "claim": "Recovery words must never be entered into the BitBoxApp, on websites, in the browser, in password managers, in cloud storage, or in photos or notes; an app asking for them is most likely a fake app or phishing attempt, and the user should abort immediately and contact support with details about where it was downloaded.",
+   "source": "Security warning block and FAQ: 'Can I enter my recovery words into the BitBoxApp?'"
+  },
+  {
+   "claim": "The passphrase is never part of the 12/24-word backup and must be entered separately; without it, a different wallet is opened.",
+   "source": "FAQ: 'Does the 12/24-word backup contain my passphrase?'"
+  },
+  {
+   "claim": "Synchronization takes from a few seconds to several minutes, depending on the number of accounts and transactions.",
+   "source": "FAQ: 'How long does synchronization take?'"
+  },
+  {
+   "claim": "Restoration on another hardware wallet is possible as long as it supports the BIP-39 standard, but words should only be entered on trusted hardware.",
+   "source": "FAQ: 'Can I restore on another hardware wallet?'"
+  },
+  {
+   "claim": "The microSD backup contains the same recovery words and speeds up restoration.",
+   "source": "FAQ: 'Can I use the microSD backup instead of the words?'"
+  },
+  {
+   "claim": "Reading recovery words from the microSD backup should be done only as an absolute emergency, for example if the device is lost or irreparably damaged and no analog backup exists.",
+   "source": "FAQ: 'How can I read my recovery words from the microSD backup?'"
+  },
+  {
+   "claim": "Anyone with access to the recovery words can steal the funds, and Shift Crypto will never ask for them.",
+   "source": "Security warning block at the top of the article"
+  }
+ ],
+ "warnings": [
+  "Enter recovery words only on a trusted hardware wallet device \u2014 never in the BitBoxApp, on websites, in a browser, in password managers, in cloud storage, or in photos or notes.",
+  "Never share your recovery words; anyone with access to them can steal your funds, and Shift Crypto will never ask for them.",
+  "If any app asks for your recovery words, it is almost certainly a fake app or phishing \u2014 stop immediately and contact support.",
+  "If a passphrase was used, you must enter the same passphrase after restoring, or you will open a different, empty wallet.",
+  "No balance after restoring usually does not mean coins are lost \u2014 check word order, passphrase, added accounts, and synchronization before taking any further action."
+ ],
+ "source_title": "How to restore your wallet using recovery words (seed) (BitBox Support Hub)",
+ "source_url": "/opt/data/cache/corpus-src/batch3/bitbox-restore.txt",
+ "notes_for_reviewer": "Source page states it was updated February 13th, 2026 \u2014 re-verify against the live page before release, since BitBoxApp setup screens and menu labels can change between versions (the step sequence and 'Restore from recovery words' label may drift). Two linked companion articles (the microSD restore guide and the emergency extraction of recovery words from a microSD backup) are NOT included in this source; this entry only asserts they exist \u2014 consider ingesting them as separate entries and cross-linking. The legacy-address remedy says the wallet 'may need to be restored in compatible software and then transferred' without naming the software; I deliberately did not add examples. The source never states the BIP-39 word list size (2,048 words); I left that well-known fact out because it is not in the source. Synchronization time ('a few seconds to several minutes') is typical, not guaranteed. The cross-device restore claim is vendor guidance qualified by 'only enter the words on trusted hardware,' which I preserved. Risk class is danger because the procedure involves handling and re-entering the seed; the warnings array must always render with this entry. Plain text is roughly 340 words (within the 150-350 target).",
+ "corpus_version": "0.0.1-poc",
+ "verified_on": "not yet \u2014 awaiting human review",
+ "reviewed": false
+}

@@ -1,0 +1,63 @@
+{
+ "title": "Spotting investment scams (FTC)",
+ "topic_ids": [
+  "T08"
+ ],
+ "level": "novice",
+ "risk_class": "caution",
+ "plain": "An investment is when you put money into something \u2014 like stocks (small shares of ownership in companies) \u2014 hoping it grows over time. An investment scam is a trick: a criminal pretends to help you invest but really just takes your money.\n\nThe FTC \u2014 the U.S. government agency that protects consumers \u2014 says people reported losing more than $7.9 billion to investment scams in 2025. The median loss (the middle person's loss if you lined everyone up from smallest to largest) was more than $10,000.\n\nHow the scam usually works: someone reaches you through social media, WhatsApp (a free messaging app), or online ads. Sometimes it seems to be a friend or an online romantic partner offering to 'coach' you into making a fortune in stocks, forex (betting on changes between world currencies), or cryptocurrency (digital money like Bitcoin). After you send money, they show you fake 'proof' that your investment is doing well. The investment was never real. You lose all the money you put in.\n\nThe FTC gives three checks before you invest:\n\n1. Risk. Risk means the chance of losing money. Every real investment has it. If someone plays down the risk, or acts like the written risk disclosures (the official warnings about what could go wrong) are nothing to worry about, keep your money. That person is a scammer.\n\n2. Reputation. Search the investment company's name, its officials (the people running it), and its promoters (the people pushing it) online, along with words like 'review,' 'scam,' or 'complaint.' Read several pages of results, not just the first.\n\n3. License. A license or registration means a government agency has checked and approved the seller. Many scams start with unlicensed people or unregistered firms. Use the free search tool on the website Investor.gov to check anyone recommending or selling investments. For precious metals or coins, check the CFTC's database (the U.S. agency that polices those markets).\n\nIf you think you were scammed, report it to the FTC at ReportFraud.ftc.gov.",
+ "technical": "This FTC Consumer Alert (April 2026) reports more than $7.9 billion in reported losses to investment scams in 2025, with a median individual loss above $10,000, per FTC data. Contact channels cited: social media, WhatsApp, and online advertising. The scam pattern: an approach framed as a friend or love interest offering 'coaching' in stocks, forex, or cryptocurrency; once the victim invests, the scammer displays fabricated 'proof' of gains, but no real investment exists and the victim loses all money invested.\n\nFTC-recommended checks:\n\n1. Risk: treat risk minimization as disqualifying. All investments carry risk; anyone downplaying risk or dismissing risk disclosures as a formality is presenting a fraud signal.\n\n2. Reputation: search the investment company's name, its officials, and its promoters plus 'review,' 'scam,' or 'complaint,' and review several pages of search results, not only the first.\n\n3. Licensing: many scams begin with unlicensed individuals or unregistered firms. Use the free search tool on Investor.gov to vet anyone recommending or selling investments; for precious metals or coins, use the CFTC database.\n\nReport investment scams to the FTC at ReportFraud.ftc.gov.\n\nSelf-custody relevance: unsolicited cryptocurrency 'coaching' offers are a recognized social-engineering vector, and the red flags above apply to Bitcoin-related pitches. The alert does not cover key-custody procedures such as seed handling or device resets, which are handled by separate corpus entries.",
+ "claims": [
+  {
+   "claim": "FTC data shows reports of more than $7.9 billion in losses to investment scams in 2025.",
+   "source": "Opening paragraph, FTC loss statistics."
+  },
+  {
+   "claim": "The median individual loss to investment scams in 2025 was more than $10,000.",
+   "source": "Opening paragraph, FTC loss statistics."
+  },
+  {
+   "claim": "Scammers commonly reach victims through social media, WhatsApp, or online ads, promising quick profits.",
+   "source": "Second paragraph, description of how scammers make contact."
+  },
+  {
+   "claim": "Approaches may come from a friend or love interest offering 'coaching' in stocks, forex, or cryptocurrency.",
+   "source": "Second paragraph."
+  },
+  {
+   "claim": "After a victim invests, scammers often show fake 'proof' of gains; the investment is not real and the victim loses all money invested.",
+   "source": "Second paragraph."
+  },
+  {
+   "claim": "Investments always involve risk; a person who plays down risk or treats risk disclosures as a mere formality is a scammer.",
+   "source": "First bullet under 'To avoid an investment scam'."
+  },
+  {
+   "claim": "The FTC recommends checking the reputation of the investment company, its officials, and its promoters by searching their names plus 'review,' 'scam,' or 'complaint,' and going through several pages of search results.",
+   "source": "Second bullet under 'To avoid an investment scam'."
+  },
+  {
+   "claim": "Many investment scams start with unlicensed people or unregistered firms; the FTC recommends the free search tool on Investor.gov to check anyone recommending or selling investments.",
+   "source": "Third bullet under 'To avoid an investment scam'."
+  },
+  {
+   "claim": "For investments in precious metals or coins, the FTC recommends checking the CFTC database.",
+   "source": "Third bullet under 'To avoid an investment scam'."
+  },
+  {
+   "claim": "Investment scams can be reported to the FTC at ReportFraud.ftc.gov.",
+   "source": "Closing line of the alert."
+  }
+ ],
+ "warnings": [
+  "If anyone promises big, fast, or 'risk-free' returns, stop \u2014 that is a scam signal, not an opportunity. Do not send money.",
+  "Do not trust 'proof' of gains shown by someone coaching you \u2014 scammers fabricate screenshots and account balances.",
+  "Never share seed words (recovery phrase), wallet passwords, or device access with anyone offering crypto 'coaching' or investment help \u2014 no legitimate professional will ever ask for them."
+ ],
+ "source_title": "With people losing big to investment scams, learn how to spot and avoid them (FTC Consumer Alert, April 2026)",
+ "source_url": "/opt/data/cache/corpus-src/batch3/ftc-investment-scams.txt",
+ "notes_for_reviewer": "Figures ($7.9B total losses; >$10,000 median individual loss; calendar year 2025) come from FTC complaint data and will go stale \u2014 re-verify against the FTC's latest release before publication; reported losses likely understate actual losses. The seed-word warning in warnings[] is an app-added guardrail bridging FTC guidance to Bitcoin self-custody; the source never mentions seed words \u2014 confirm this addition is intended policy. The plain text glosses 'cryptocurrency' as 'digital money like Bitcoin'; the source does not name Bitcoin specifically. The source gives only domain-level references (Investor.gov search tool, CFTC database, ReportFraud.ftc.gov) with no deep links \u2014 verify exact URLs before in-app deep-linking. 'You end up losing all your money' is the FTC's characterization of this scam pattern and is retained as a safety message. Alert is dated April 2026; check for superseding updates. risk_class is 'caution' rather than 'danger' because the entry contains no device-reset or seed-reentry procedures that could cause data loss if misread.",
+ "corpus_version": "0.0.1-poc",
+ "verified_on": "not yet \u2014 awaiting human review",
+ "reviewed": false
+}
