@@ -2,8 +2,8 @@
 <!--
   SECURITY FEATURE — this manifest intentionally declares NO permissions at all.
 
-  In particular there is no INTERNET permission, and there never will be.
-  Privacy here is architectural, not a setting: with no INTERNET permission the
+  In particular there is no internet permission, and there never will be.
+  Privacy here is architectural, not a setting: with no network permission the
   Android runtime makes any network access impossible for this app. Any
   network-monitoring tool must show zero traffic for this package, because no
   code path to create any can exist. Do not add permissions or an internet
