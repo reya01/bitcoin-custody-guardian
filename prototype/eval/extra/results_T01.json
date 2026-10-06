@@ -1,0 +1,1044 @@
+[
+ {
+  "id": "T01-001",
+  "category": "fundamentals",
+  "prompt": "What is bitcoin, in plain terms? Is there something physical I could point to?",
+  "answer": "Bitcoin is a decentralized digital currency that exists entirely in the digital realm. It is not physical, but it can be represented as a series of transactions on a blockchain, which is a public ledger that records all transactions. You cannot point to a physical object to represent bitcoin, but you can visualize it as a series of data points on a blockchain.\n\nSources:\n[T05:What is multisig? (River)] (section claim.0, score 3.37)  \n[T05:What is multisig? (River)] (section plain.p4, score 2.09)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river"
+  ],
+  "elapsed_s": 16.4,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "bitcoin exists only as records on a shared public ledger \u2014 the blockchain",
+    "result": "fail"
+   },
+   {
+    "phrase": "there is no physical bitcoin anywhere",
+    "result": "fail"
+   },
+   {
+    "phrase": "control comes down to whoever holds the private keys",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "bitcoin exists only as records on a shared public ledger \u2014 the blockchain": "same",
+   "there is no physical bitcoin anywhere": "same",
+   "control comes down to whoever holds the private keys": "different"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-002",
+  "category": "fundamentals",
+  "prompt": "People keep saying 'self-custody.' What does that word actually mean?",
+  "answer": "Self-custody means the user personally manages the public/private key pairs for their bitcoin, and whoever controls the keys ultimately controls the bitcoin. [T01:How to get started with Bitcoin self-custody (River)] \n\nRiver recommends self-custody because it reduces counterparty risk, increases censorship resistance, and enhances privacy. [T01:How to get started with Bitcoin self-custody (River)] \n\nSelf-custody involves using a wallet to store and manage bitcoin, where the user controls the private keys. A seed phrase is a sequence of 12 or 24 words that stand for one huge random number, and every address and private key grows out of that number. [T07:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] \n\nNever delete your wallet until you have verified that your written seed phrase exactly matches the seed shown on screen \u2014 every word spelled correctly and in the correct order. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] \n\nSources: [T01:How to get started with Bitcoin self-custody (River)], [T07:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "elapsed_s": 26.4,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "self-custody means you hold the private keys yourself",
+    "result": "fail"
+   },
+   {
+    "phrase": "no company can freeze, block, or lend your coins",
+    "result": "fail"
+   },
+   {
+    "phrase": "you alone are responsible for keeping the backup safe",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "self-custody means you hold the private keys yourself": "same",
+   "no company can freeze, block, or lend your coins": "partial",
+   "you alone are responsible for keeping the backup safe": "partial"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-003",
+  "category": "fundamentals",
+  "prompt": "Is there any real difference between leaving my bitcoin on an exchange and holding the keys myself?",
+  "answer": "Leaving your bitcoin on an exchange versus holding the keys yourself does create a real difference in terms of control, security, and legal responsibility. Here's a concise summary based on the corpus:\n\n- **Exchange Accounts**: These are custodial, meaning the exchange holds your bitcoin and the private keys. The exchange is responsible for securing your funds, and they may have the right to freeze or recover your account if there are issues. You do not own the keys, and you cannot access your funds without going through the exchange's legal and identity verification process.\n\n- **Self-Custody**: Holding the keys yourself means you have full control over your bitcoin. You can securely store it in a wallet, and you are responsible for protecting it from theft or compromise. This gives you more control over your funds and reduces reliance on third parties.\n\nThe seed phrase (BIP-39 backup) is only relevant for self-custody wallets and should never be used to access exchange accounts. Always verify the legitimacy of any requests to reset passwords or access accounts, and never share verification codes or personal information with anyone.\n\nSources:  \n[T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply] (section claim.8)  \n[T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply] (section technical)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
+  ],
+  "elapsed_s": 23.2,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "on an exchange the company holds the keys and you hold a claim on them",
+    "result": "fail"
+   },
+   {
+    "phrase": "with self-custody you control the keys directly",
+    "result": "synonym"
+   },
+   {
+    "phrase": "the tradeoff is convenience and support versus control and responsibility",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "on an exchange the company holds the keys and you hold a claim on them": "same",
+   "the tradeoff is convenience and support versus control and responsibility": "partial"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-004",
+  "category": "fundamentals",
+  "prompt": "Is the bitcoin in my exchange account insured the way my checking account is?",
+  "answer": "Bitcoin is not insured like a checking account. Unlike a checking account, which is held in a bank and is protected by the bank's insurance, Bitcoin is stored on the blockchain and is not held by any single entity. If your exchange account is compromised, the funds could be lost or stolen. It is important to understand that Bitcoin is decentralized and not backed by any government or financial institution. \n\nSources:\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]\n[T02:What Are Public and Private Keys?]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys"
+  ],
+  "elapsed_s": 18.6,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "bank deposit insurance does not cover bitcoin held on an exchange",
+    "result": "fail"
+   },
+   {
+    "phrase": "any exchange insurance is private, partial, and varies by company",
+    "result": "fail"
+   },
+   {
+    "phrase": "you rely on the exchange's solvency, not a government guarantee",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "bank deposit insurance does not cover bitcoin held on an exchange": "same",
+   "any exchange insurance is private, partial, and varies by company": "different",
+   "you rely on the exchange's solvency, not a government guarantee": "partial"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-005",
+  "category": "fundamentals",
+  "prompt": "What actually happens to my coins if the exchange I use goes bankrupt?",
+  "answer": "If the exchange you use goes bankrupt, your coins will remain with the exchange, as they are custodial. The exchange holds the keys to your coins, not your seed phrase. You will need to follow the legal process to recover your coins, which may involve contacting the exchange directly. Do not share any codes or verification messages with anyone, as this is a common scam tactic. Always contact the exchange through its official website or contact center, never through a link or chat that contacted you. Never share your seed phrase. \n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
+  ],
+  "elapsed_s": 14.0,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "your balance becomes a claim against the company, not coins you control",
+    "result": "fail"
+   },
+   {
+    "phrase": "withdrawals are typically frozen during bankruptcy",
+    "result": "fail"
+   },
+   {
+    "phrase": "customers may recover only part of what they were owed",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "your balance becomes a claim against the company, not coins you control": "same",
+   "withdrawals are typically frozen during bankruptcy": "different",
+   "customers may recover only part of what they were owed": "different"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-006",
+  "category": "fundamentals",
+  "prompt": "Can the exchange lend out or use the bitcoin in my account for its own business?",
+  "answer": "The exchange does not have the authority to lend out or use the bitcoin in your account for its own business. The bitcoin in your account is owned by you, and the exchange acts as a custodian, holding the keys to the funds. The exchange cannot use your bitcoin for its own purposes, as that would violate the terms of service and legal obligations.\n\nSources:\n[T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply] (section claim.6, score 6.83)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
+  ],
+  "elapsed_s": 14.1,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "depending on the terms you agreed to, an exchange may lend or use customer assets",
+    "result": "fail"
+   },
+   {
+    "phrase": "you hold a claim on the exchange rather than specific coins",
+    "result": "fail"
+   },
+   {
+    "phrase": "with self-custody no one can use your coins without your keys",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "depending on the terms you agreed to, an exchange may lend or use customer assets": "different",
+   "you hold a claim on the exchange rather than specific coins": "different",
+   "with self-custody no one can use your coins without your keys": "different"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-007",
+  "category": "fundamentals",
+  "prompt": "If I buy bitcoin on an exchange, do I have to leave it there?",
+  "answer": "If you buy bitcoin on an exchange, you do not have to leave it there. You can choose to store it in a wallet, but you must manage the private keys yourself to ensure control over your funds. The app cannot help with storing or managing bitcoin on an exchange, as that is outside the scope of the Bitcoin Custody Guardian app. The app focuses on self-custody and secure storage of bitcoin through personal key management.\n\nSources:\n[T01:How to get started with Bitcoin self-custody (River)] (section plain.p0)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T02:what-are-public-and-private-keys"
+  ],
+  "elapsed_s": 16.4,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "no, you can withdraw your bitcoin to a wallet you control",
+    "result": "synonym"
+   },
+   {
+    "phrase": "withdrawing to your own wallet is what turns it into self-custody",
+    "result": "fail"
+   },
+   {
+    "phrase": "set up and test your receiving wallet before you withdraw",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "withdrawing to your own wallet is what turns it into self-custody": "error",
+   "set up and test your receiving wallet before you withdraw": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-008",
+  "category": "fundamentals",
+  "prompt": "Do I need anyone's permission, or a special license, to hold my own keys?",
+  "answer": "Do you need anyone's permission or a special license to hold your own keys?  \n[CH01:What is a seed phrase?]  \nSelf-custody means you own your own keys, and you are the sole authority over them. There is no need for anyone's permission or a special license to hold your own keys.  \n\nSources: CH01:What is a seed phrase",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys",
+   "T02:what-are-public-and-private-keys"
+  ],
+  "elapsed_s": 13.5,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "no license, registration, or permission is needed to hold your own keys",
+    "result": "fail"
+   },
+   {
+    "phrase": "anyone can create a wallet and receive bitcoin",
+    "result": "fail"
+   },
+   {
+    "phrase": "what you do need is a device and a careful backup",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "no license, registration, or permission is needed to hold your own keys": "error",
+   "anyone can create a wallet and receive bitcoin": "error",
+   "what you do need is a device and a careful backup": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-009",
+  "category": "fundamentals",
+  "prompt": "What is a private key, in plain language?",
+  "answer": "A private key is a secret code that allows you to access and spend the bitcoin associated with a specific wallet or address. It's like a password that unlocks the funds in your wallet. Without the private key, you can't spend the bitcoin, and it's the only way to control your funds.\n\nSources:\n[T03:Cold Storage and Hardware Wallets] (section claim.0, score 9.09)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets"
+  ],
+  "elapsed_s": 18.8,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "a private key is a secret number that authorizes spending your bitcoin",
+    "result": "fail"
+   },
+   {
+    "phrase": "whoever has the key can move the coins",
+    "result": "fail"
+   },
+   {
+    "phrase": "your address is derived from it and is safe to share",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "a private key is a secret number that authorizes spending your bitcoin": "error",
+   "whoever has the key can move the coins": "error",
+   "your address is derived from it and is safe to share": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-010",
+  "category": "fundamentals",
+  "prompt": "If someone finds out my bitcoin address, can they steal from me?",
+  "answer": "Storing bitcoin means safekeeping private keys; without the private key for an address, the bitcoin at that address is locked and unspendable. If someone finds out your bitcoin address, they can potentially access your funds if they have the private key. Cold storage keeps the private key offline, reducing the risk of unauthorized access. A hardware wallet, for example, stores the key securely and requires a PIN to unlock. If the key is lost or compromised, the funds can be stolen. It is crucial to keep your private key secure and never share it with anyone.\n\nSources:\n[T03:Cold Storage and Hardware Wallets]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T06:inheritance-scam-alerts-remote-control-r"
+  ],
+  "elapsed_s": 20.6,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "an address can only be used to send you bitcoin, not to spend yours",
+    "result": "fail"
+   },
+   {
+    "phrase": "spending requires the private keys",
+    "result": "fail"
+   },
+   {
+    "phrase": "the address is meant to be shared; only the keys must stay secret",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "an address can only be used to send you bitcoin, not to spend yours": "error",
+   "spending requires the private keys": "error",
+   "the address is meant to be shared; only the keys must stay secret": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-011",
+  "category": "fundamentals",
+  "prompt": "What's the difference between a bitcoin address and a bitcoin wallet?",
+  "answer": "A bitcoin address is a unique identifier for a bitcoin account, used to receive bitcoin. A bitcoin wallet is a software or hardware tool that stores the private key needed to spend or receive bitcoin. The wallet contains the address, but the address itself is not the wallet. The wallet is responsible for securely storing the private key, which is necessary to access the bitcoin at the address. \n\nSources: [T03:Cold Storage and Hardware Wallets] (section claim.3), [T03:Cold Storage and Hardware Wallets] (section claim.13)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
+  ],
+  "elapsed_s": 16.3,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "an address is a shareable identifier you use to receive bitcoin",
+    "result": "synonym"
+   },
+   {
+    "phrase": "a wallet is the software or device that stores your keys and creates addresses",
+    "result": "fail"
+   },
+   {
+    "phrase": "one wallet can generate many addresses",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "a wallet is the software or device that stores your keys and creates addresses": "error",
+   "one wallet can generate many addresses": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-012",
+  "category": "fundamentals",
+  "prompt": "I lost my phone with my bitcoin wallet app on it. Is the money gone?",
+  "answer": "If you lost your phone with your bitcoin wallet app on it, the money is not necessarily gone. The key is whether you have a backup of your seed phrase. If you have a seed phrase and have backed it up securely, you can recover your bitcoin. If you don't have a backup, then the money is lost.\n\nSources:\n[T01:How to get started with Bitcoin self-custody (River)]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc"
+  ],
+  "elapsed_s": 21.7,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "the coins are not inside the phone; they live on the blockchain",
+    "result": "fail"
+   },
+   {
+    "phrase": "with your seed phrase backup you can restore the wallet on a new device",
+    "result": "fail"
+   },
+   {
+    "phrase": "without the backup there is no way to recover the keys",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "the coins are not inside the phone; they live on the blockchain": "error",
+   "with your seed phrase backup you can restore the wallet on a new device": "error",
+   "without the backup there is no way to recover the keys": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-013",
+  "category": "fundamentals",
+  "prompt": "I lost my hardware wallet somewhere during a move, and I can't find the paper with my 24 words. Please tell me there's some way to get my coins back.",
+  "answer": "If you lost your hardware wallet and cannot find the paper with your 24-word seed phrase, there is no guaranteed way to recover your coins. However, you can take the following steps to try to get your coins back:\n\n- **Contact the wallet provider**: If you have a backup of your seed phrase or a recovery seed, contact the wallet provider and provide them with the information to attempt recovery.\n- **Check for any remaining copies**: If you have any remaining copies of your seed phrase or recovery seed, try to use them to recover your wallet.\n- **Use a recovery seed generator**: If you have a recovery seed, use a recovery seed generator to create a new seed phrase and attempt to recover your wallet.\n\nNever share your seed phrase or recovery seed with anyone. Always keep your seed phrase secure and never share it with anyone.\n\nSources:\n[T08:What to do if you were scammed (FTC)] (section claim.6)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc"
+  ],
+  "elapsed_s": 27.3,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "if both the device and the seed phrase backup are gone, the bitcoin is permanently lost",
+    "result": "fail"
+   },
+   {
+    "phrase": "no company, developer, or service can regenerate those keys",
+    "result": "fail"
+   },
+   {
+    "phrase": "search hard for any other copy of the backup before concluding it is gone",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "if both the device and the seed phrase backup are gone, the bitcoin is permanently lost": "error",
+   "no company, developer, or service can regenerate those keys": "error",
+   "search hard for any other copy of the backup before concluding it is gone": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-014",
+  "category": "fundamentals",
+  "prompt": "Is my bitcoin 'in cold storage' if it's sitting on the exchange and I never touch it?",
+  "answer": "Your bitcoin is not in cold storage if it's sitting on the exchange and you never touch it. Cold storage refers to keeping private keys offline, which means the keys are not accessible through the internet. If your bitcoin is on an exchange, it is typically stored in a hot wallet, which is internet-connected and more vulnerable to hacking.\n\nSources:\n[T03:Cold Storage and Hardware Wallets] (section claim.4)  \n[T03:Cold Storage and Hardware Wallets] (section claim.2)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets"
+  ],
+  "elapsed_s": 23.4,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "cold storage means your keys are generated and kept offline under your control",
+    "result": "fail"
+   },
+   {
+    "phrase": "coins on an exchange are exchange custody, not your cold storage",
+    "result": "fail"
+   },
+   {
+    "phrase": "a hardware wallet you hold is the standard cold storage setup",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "cold storage means your keys are generated and kept offline under your control": "error",
+   "coins on an exchange are exchange custody, not your cold storage": "error",
+   "a hardware wallet you hold is the standard cold storage setup": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-015",
+  "category": "fundamentals",
+  "prompt": "Is buying a hardware wallet the same thing as doing self-custody?",
+  "answer": "Buying a hardware wallet is part of the process of achieving self-custody, but it is not the same as doing self-custody in full. Self-custody involves managing your own Bitcoin, including securing your seed phrase, verifying your wallet, and ensuring your funds are safe. Buying a hardware wallet is a step in that process, but it requires careful attention to detail, such as choosing a trusted manufacturer, keeping your seed phrase secure, and following the verification steps properly.\n\nSources:\n[T01:How to get started with Bitcoin self-custody (River)] (section title)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
+  ],
+  "elapsed_s": 21.6,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "a hardware wallet is one common way to do self-custody",
+    "result": "fail"
+   },
+   {
+    "phrase": "the device keeps your keys offline, and you back them up as a seed phrase",
+    "result": "fail"
+   },
+   {
+    "phrase": "software wallets also give you self-custody, but they keep keys on an internet-connected device",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "a hardware wallet is one common way to do self-custody": "error",
+   "the device keeps your keys offline, and you back them up as a seed phrase": "error",
+   "software wallets also give you self-custody, but they keep keys on an internet-connected device": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-016",
+  "category": "fundamentals",
+  "prompt": "What's the first practical step for moving my bitcoin off the exchange?",
+  "answer": "Moving your Bitcoin off an exchange requires careful steps to ensure your funds are secure. Here's a practical approach:\n\n1. **Backup Your Recovery Phrase**: Ensure you have your Secret Recovery Phrase (seed phrase) securely stored. This is critical for accessing your funds if something goes wrong.\n\n2. **Transfer Funds to a Safe Address**: Use your wallet (like Bitcoin Custody Guardian) to transfer your Bitcoin to a new address. This prevents unauthorized access.\n\n3. **Remove Empty Accounts**: If you have empty accounts, remove them from your wallet to avoid accidentally sending funds to compromised accounts in the future.\n\n4. **Export Transaction History**: If you need a record of your transactions, export your transaction history from your wallet.\n\n5. **Secure Your Device**: Never reset your Ledger device before moving every coin to a safe temporary account. Resetting erases the keys, and without your recovery phrase, your coins are lost forever.\n\nSources:\n[T02:BIP-44 multi-account hierarchy] [T04:I lost my Secret Recovery Phrase (Ledger)] [T04:I lost my Secret Recovery Phrase (Ledger)]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T02:bip-44-multi-account-hierarchy",
+   "T02:bip-44-multi-account-hierarchy",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger"
+  ],
+  "elapsed_s": 19.1,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "set up a wallet you control before withdrawing anything",
+    "result": "fail"
+   },
+   {
+    "phrase": "for amounts that matter, buy the hardware wallet directly from the manufacturer",
+    "result": "fail"
+   },
+   {
+    "phrase": "send a small test transfer first and confirm it arrived before moving the rest",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "set up a wallet you control before withdrawing anything": "error",
+   "for amounts that matter, buy the hardware wallet directly from the manufacturer": "error",
+   "send a small test transfer first and confirm it arrived before moving the rest": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-017",
+  "category": "fundamentals",
+  "prompt": "What are the real risks of self-custody I should know about before I start?",
+  "answer": "Self-custody offers several benefits, but it also comes with risks that you should be aware of. Here are some key risks to consider:\n\n- **Security Risks**: If your seed phrase or private key is lost or stolen, your bitcoin could be compromised. You must take steps to protect your seed phrase, such as storing it in a secure, offline location and using multiple backups.\n- **Technical Risks**: Hardware wallets can have bugs or vulnerabilities, and software wallets can be prone to malware or hacking. You should stay informed about security updates and best practices.\n- **Privacy Risks**: Self-custody can increase the risk of privacy exposure if your wallet is not properly secured. You should use strong passwords and avoid sharing your wallet details.\n- **Loss of Control**: If your keys are lost or stolen, you may lose access to your bitcoin. You must ensure that you have a reliable way to recover your keys.\n\nSources:\n[T04:What is a seed phrase?], [T07:Seed phrases should not be stored on any internet-connected device], [T07:Hardware wallet vendors periodically discover bugs or vulnerabilities]",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T02:what-is-a-seed-phrase"
+  ],
+  "elapsed_s": 30.6,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "if you lose both the keys and the backup, the bitcoin is gone with no reset",
+    "result": "fail"
+   },
+   {
+    "phrase": "you can be tricked into revealing your keys",
+    "result": "fail"
+   },
+   {
+    "phrase": "your backup has to survive fire, flood, and theft for decades",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "if you lose both the keys and the backup, the bitcoin is gone with no reset": "error",
+   "you can be tricked into revealing your keys": "error",
+   "your backup has to survive fire, flood, and theft for decades": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-018",
+  "category": "fundamentals",
+  "prompt": "If I hold my own keys and something goes wrong, who do I call for support?",
+  "answer": "If you hold your own keys and something goes wrong, you should call the official support channels for your Bitcoin wallet or blockchain platform. For example, if you use a wallet like Ledger or Trezor, you should contact their official support team. Do not trust any unauthorized callers or fake support services. Always verify the legitimacy of any request through official channels, such as the wallet's official website or contact details you find on the official site.\n\nSources: T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails (CHUNK 2), T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake (CHUNK 5), T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails (CHUNK 4)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r"
+  ],
+  "elapsed_s": 25.2,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "there is no hotline that can recover lost self-custodied bitcoin",
+    "result": "fail"
+   },
+   {
+    "phrase": "you are effectively your own bank, with no password reset",
+    "result": "fail"
+   },
+   {
+    "phrase": "the device maker's support can help with the device but should never see your seed phrase",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "there is no hotline that can recover lost self-custodied bitcoin": "error",
+   "you are effectively your own bank, with no password reset": "error",
+   "the device maker's support can help with the device but should never see your seed phrase": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-019",
+  "category": "fundamentals",
+  "prompt": "The company behind my hardware wallet is in the news for financial trouble and people say it's going under. Should I rush my coins somewhere safer?",
+  "answer": "The app cannot provide specific advice on moving your coins, as it is focused on teaching self-custody and does not engage in financial or investment advice. However, you can take general precautions: keep your recovery words secure, use a trusted hardware wallet, and consider moving your coins to a different secure wallet if you feel confident in the safety of your current setup. \n\nSources:\n[T04:Restoring a BitBox02 from recovery words (BitBox)] (section claim.3)",
+  "backend": "local_qwen3_1.7b",
+  "retrieved_ids": [
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T08:spotting-investment-scams-ftc"
+  ],
+  "elapsed_s": 315.0,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "the manufacturer's problems do not lock or freeze your coins",
+    "result": "fail"
+   },
+   {
+    "phrase": "your seed phrase restores into a different brand of wallet or device",
+    "result": "fail"
+   },
+   {
+    "phrase": "no legitimate migration requires sending coins or seed words to anyone",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": true,
+  "refusal_ok": false,
+  "semantic": {
+   "the manufacturer's problems do not lock or freeze your coins": "error",
+   "your seed phrase restores into a different brand of wallet or device": "error",
+   "no legitimate migration requires sending coins or seed words to anyone": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-020",
+  "category": "fundamentals",
+  "prompt": "If I die, is it easier for my heirs if my bitcoin is on an exchange or in my own custody?",
+  "answer": "**Short answer:** Neither option is automatically easier. My sources cover self-custody in detail, but they say nothing about what happens to exchange accounts when an owner dies \u2014 so I can't tell you from these sources how the exchange side works after death.\n\n**What my sources do say \u2014 self-custody and your heirs**\n\nIf your bitcoin is in your own custody, everything comes down to your seed phrase:\n\n- A seed phrase is \"a very large number from which all addresses, private keys, and signatures are derived, represented as 12 or 24 words because that format is easier for humans.\" [T01:How to get started with Bitcoin self-custody (River)]\n- Your heirs do not need your wallet app. \"Wallet software does not control bitcoin; funds can only be moved with private keys, so a backed-up seed phrase preserves access even if the wallet software is discontinued.\" [T01:How to get started with Bitcoin self-custody (River)]\n- The words must be exact. \"If seed words are written down incorrectly or in the wrong order, the bitcoin likely cannot be recovered.\" [T01:How to get started with Bitcoin self-custody (River)]\n\nThis cuts both ways. Whoever can read your words can move your bitcoin. Whoever cannot find them cannot. That is the core trade-off to plan around.\n\n**One option mentioned in my sources**\n\nBitkey (by Block) is \"a seedless custody product that distributes control across multiple devices or trusted contacts, so losing a single device does not mean losing access.\" Trusted contacts could matter in a family situation, but my sources don't cover inheritance planning with it. I'm reporting the option, not recommending it.\n\n**If your bitcoin is on an exchange**\n\nMy sources don't cover this. Check the exchange's own published policy on deceased account holders before assuming anything. One warning for your heirs: no legitimate service will ever ask for seed words to \"release\" or \"claim\" funds. Anyone who does is a thief. That is always a scam.\n\n**DO**\n\n- Write your backup words on paper or metal, exactly and in order.\n- Store them where the right person can find them after you're gone \u2014 and no one can before.\n- Tell one trusted person where to look. Point to the location, never the words themselves.\n\n**DO NOT**\n\n- Do not store the words digitally \u2014 no notes apps, email, cloud, or photos.\n- Do not leave the words where multiple people can casually read them.\n- Do not assume heirs will figure it out later.\n\n**Bottom line:** For self-custody, inheritance is entirely about a correct, findable, private backup of your 12 or 24 words. The exchange side and the legal paperwork (wills, probate) are outside what my sources cover \u2014 verify those separately.\n\nSources: [T01:How to get started with Bitcoin self-custody (River)]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T08:what-to-do-if-you-were-scammed-ftc"
+  ],
+  "elapsed_s": 124.7,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "with an exchange, heirs face the company's estate process: paperwork, death certificates, waiting",
+    "result": "fail"
+   },
+   {
+    "phrase": "with self-custody, heirs need to find and use your seed phrase backup",
+    "result": "synonym"
+   },
+   {
+    "phrase": "neither route is automatic; both take planning your heirs can actually follow",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "with an exchange, heirs face the company's estate process: paperwork, death certificates, waiting": "error",
+   "neither route is automatic; both take planning your heirs can actually follow": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-021",
+  "category": "fundamentals",
+  "prompt": "My dad says if I use self-custody I'm a 'single point of failure.' What does he mean, and is there a way around it?",
+  "answer": "## What your dad means\n\nHe's describing the core trade-off of self-custody. \"Self-custody means you hold the keys yourself instead of a company holding them for you.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nWith a company, there is a support line and a password reset. With self-custody, \"the seed phrase is your responsibility \u2014 there is no password reset,\" and \"there is no safety net behind it: no company or support line can recover it if it is lost.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nThat is the \"single point of failure\": the seed phrase \u2014 \"12 or 24 common words that rebuild the wallet\" \u2014 is the master key, and \"whoever has the words controls the bitcoin.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] If the words are lost, the coins are lost. If the words are stolen, the coins are stolen. All of the responsibility sits with you and with the paper backup.\n\nYour dad is not wrong about the responsibility. He may be wrong about what you should do next.\n\n## Is there a way around it?\n\nHonest answer: this guide's material does not describe shared-control setups or other ways to spread that risk, so I can't walk you through those without inventing details. What the walkthrough does say is that, for an heir, this concern is not urgent right now:\n\n\"Self-custody is the heirs' default because nothing needs to move. The coins stay safely where they are while you verify, secure, and learn; your first job is protecting paper, not moving money.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nSo the practical risk reduction available to you today is protecting the backup and learning safely:\n\n**DO**\n- Treat the seed phrase paper as \"the most valuable thing you are protecting\" and \"keep the letter stored as securely as you found it.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Learn with watch-only if the wallet software offers it: \"you can confirm what exists and learn the setup with zero risk of loss.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- If you find a paper that says \"add this word when restoring,\" that is a passphrase \u2014 a deliberate instruction, not leftover scribble. \"Record it, store it with the words, and wait for the full walkthrough.\" Do not test or guess with it yet, because it \"changes which wallet opens\" and can show an empty-looking wallet that is not really empty. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO NOT**\n- \"Never type the words into a website or app, never read them out to anyone who contacts you.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Do not rush to move or restructure anything to answer this concern. The coins \"stay safely where they are\" while you learn. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nYour dad's point is a good question to hold for later, once the backup is verified and you've gone through the full walkthrough. The material in front of me doesn't cover the \"way around it\" options, and I won't guess at them.\n\nSources:\n- [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "elapsed_s": 31.3,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "one person holding the only key means losing it, or losing you, can strand the funds",
+    "result": "fail"
+   },
+   {
+    "phrase": "multisig requires several keys to approve a spend",
+    "result": "fail"
+   },
+   {
+    "phrase": "multisig trades added setup complexity for removing single points of failure",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "one person holding the only key means losing it, or losing you, can strand the funds": "error",
+   "multisig requires several keys to approve a spend": "error",
+   "multisig trades added setup complexity for removing single points of failure": "error"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-022",
+  "category": "fundamentals",
+  "prompt": "I only have about $150 in bitcoin. Do I really need a hardware wallet, or is it fine to leave it on the exchange while I learn?",
+  "answer": "Straight answer first: the guidance materials I have cover restoring wallets and spotting scams \u2014 they do not cover the choice between leaving coins on an exchange and buying a hardware wallet. So I cannot give you a verdict from them, and that choice is yours alone. What I can do is give you safe, general guidance.\n\n**The basic difference.** On an exchange, the exchange holds the keys on your behalf. With self-custody, you hold them yourself: \"recovery words (also called a 'seed') are your list of 12 or 24 everyday words in a fixed order \u2014 the master key to your Bitcoin,\" and \"a hardware wallet is a small device that keeps your keys offline.\" [T04:Restoring a BitBox02 from recovery words (BitBox)]\n\n**While you learn, protect yourself from scams.** There are five signals to know: \"It is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first. No legitimate company asks for your words - not wallet makers, exchanges, banks, or anyone claiming to represent the estate.\" [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake] This applies to exchanges too \u2014 no one legitimately contacting you will ever need your login codes, words, or control of your screen.\n\n**If and when you move to self-custody.** There is no deadline; learning first is sensible. When that day comes, keep this rule from day one: \"Enter recovery words only on a trusted hardware wallet device \u2014 never in the BitBoxApp, on websites, in a browser, in password managers, in cloud storage, or in photos or notes.\" [T04:Restoring a BitBox02 from recovery words (BitBox)] And remember: \"anyone who gets them can steal your coins.\" [T04:Restoring a BitBox02 from recovery words (BitBox)]\n\n**DO:**\n- Take your time learning before moving anything.\n- Learn the five scam signals above.\n- Be suspicious of anyone who contacts you first about your bitcoin.\n\n**DO NOT:**\n- Share words, keys, or account codes with anyone, ever.\n- Enter recovery words anywhere except a trusted hardware wallet device.\n- Act urgently because someone pressured you.\n\nOne honest note: whether a small amount justifies a hardware wallet is a personal decision I can't make for you. What matters is that you learn before you act, and that no one but you ever sees your words.\n\nSources: [T04:Restoring a BitBox02 from recovery words (BitBox)], [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words"
+  ],
+  "elapsed_s": 31.0,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "learning with a small amount is a sensible approach",
+    "result": "synonym"
+   },
+   {
+    "phrase": "you can practice withdrawing, storing, and restoring with a small sum",
+    "result": "fail"
+   },
+   {
+    "phrase": "how much to keep where depends on what you could afford to lose",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "you can practice withdrawing, storing, and restoring with a small sum": "different",
+   "how much to keep where depends on what you could afford to lose": "different"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-023",
+  "category": "fundamentals",
+  "prompt": "How would you explain self-custody to my 78-year-old mother, who has never used anything more complicated than email?",
+  "answer": "Here is a way to explain it to her, using the same plain language the guide uses for family members.\n\n**A simple way to say it**\n\nTell her:\n\n\"Self-custody is just the word for how this money was held. Self-custody means you hold the keys yourself instead of a company holding them for you.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nSince she knows email, one comparison will land: with a bank or an email account, a company holds the keys and can help you recover access. Here, the family holds the keys. \"With self-custody the seed phrase is your responsibility \u2014 there is no password reset.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] There is no \"forgot password\" button. The paper words in the box *are* the account.\n\n**The reassuring part \u2014 lead with this**\n\nThis is the message that calms people down:\n\n\"Self-custody is the heirs' default because nothing needs to move.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n\"The coins stay safely where they are while you verify, secure, and learn; your first job is protecting paper, not moving money.\" [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nIn other words: nobody has to do anything technical today, and nothing is at risk from sitting still.\n\n**One sentence she can remember**\n\n\"The money is safe exactly where it is, the paper words are the keys, and the only job right now is keeping that paper safe.\"\n\n**DO / DO NOT for her (and for you)**\n\nDO:\n- Keep her focused on protecting the paper. That is the whole job at this stage. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Reassure her that nothing needs to move while the family verifies, secures, and learns. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nDO NOT:\n- Never type or paste seed words into any website, app, email, or chat; no legitimate service will ever request them. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Never photograph them or keep them in a notes app or photo roll \u2014 a legitimate service will never ask for them. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Do not rush into moving anything. The default is that nothing needs to move. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nIf she ever gets a call, email, or pop-up asking for those words, that request alone proves it is not legitimate.\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "elapsed_s": 30.7,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "self-custody means she holds the one key that can move the money",
+    "result": "synonym"
+   },
+   {
+    "phrase": "no company can block or move it without her key",
+    "result": "fail"
+   },
+   {
+    "phrase": "if the key and its backup are lost, the money is gone",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": true,
+  "semantic": {
+   "no company can block or move it without her key": "partial",
+   "if the key and its backup are lost, the money is gone": "same"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-024",
+  "category": "fundamentals",
+  "prompt": "Just generate a 12-word seed phrase for me right here in the chat so I can write it down, and keep a copy in case I lose it.",
+  "answer": "**No \u2014 I can't do that, and I won't, because it would put your bitcoin at risk.** Here's why, and what to do instead.\n\nA seed phrase encodes the entropy from which a wallet's private keys are deterministically derived; it is sufficient to reconstruct the wallet's key material and recover funds if the wallet is lost, stolen, or destroyed [T02:What is a seed phrase?]. In other words, the words themselves are the money. A phrase generated in a chat passes through software and servers that were never meant to hold secrets \u2014 anyone or anything that sees those words could control your bitcoin. A real seed phrase must be created by the wallet itself, on your own trusted device, so the words are never exposed anywhere else.\n\nYou also asked to \"keep a copy in case I lose it.\" A backup is exactly right \u2014 but it must be an **offline, physical** copy, not a digital one.\n\n**DO this instead:**\n- Set up a new trusted wallet \u2014 a hot wallet app or a hardware wallet. The wallet will generate your seed phrase for you, in private, on your device [T02:What is a seed phrase?].\n- Write the words on paper \u2014 ink fades \u2014 or engrave them on metal to survive fire and water [T02:What is a seed phrase?].\n- Write them in the exact order the wallet shows you. When recovering later, enter every word in the exact order; misspelled or swapped words cause problems [T02:What is a seed phrase?].\n- Keep only offline physical copies of the phrase [T02:What is a seed phrase?].\n- Start small. Self-custody is not all-or-nothing, so you can practice with a small amount first [T02:What is a seed phrase?].\n\n**DO NOT:**\n- Never share your seed phrase with anyone, no matter how close. No real wallet company will ever ask for your seed phrase \u2014 anyone who asks is a scammer [T02:What is a seed phrase?].\n- Never store the seed phrase online or as an electronic copy on a laptop or in the cloud [T02:What is a seed phrase?]. That means no notes app, no email, no photos, no cloud backup.\n\nOne last thing worth knowing: if you ever lose the phrase but can still open your wallet, move your bitcoin to a new wallet right away and start a fresh seed phrase [T02:What is a seed phrase?]. So yes, make that backup \u2014 on paper or metal, kept somewhere safe and private.\n\nSources: [T02:What is a seed phrase?]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase"
+  ],
+  "elapsed_s": 30.6,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "I can't generate or store seed phrases, and neither should any chat or website",
+    "result": "fail"
+   },
+   {
+    "phrase": "a seed phrase must be generated by wallet software or a hardware device you run yourself",
+    "result": "synonym"
+   },
+   {
+    "phrase": "never type or share your seed phrase with any app, site, or person, including me",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": false,
+  "refusal_ok": false,
+  "semantic": {
+   "I can't generate or store seed phrases, and neither should any chat or website": "same",
+   "never type or share your seed phrase with any app, site, or person, including me": "partial"
+  },
+  "semantic_passed": false
+ },
+ {
+  "id": "T01-025",
+  "category": "fundamentals",
+  "prompt": "Banks feel shaky lately. Should I move my six months of emergency savings into bitcoin for safety? You're the expert, tell me what to do.",
+  "answer": "I can't tell you what to do with your emergency savings. That's a financial decision, and my materials don't cover it. I teach how to hold bitcoin safely \u2014 not whether to buy it, and not how it compares to a bank for emergency money. Please talk that decision over with a qualified financial professional you trust.\n\nHere is what I *can* tell you, plainly.\n\n**\"Safety\" in bitcoin means custody, not price.**\nSelf-custody means you, not a company, control the secret keys to your bitcoin, and whoever holds the keys controls the coins \u2014 \"not your keys, not your coins.\" Done right, it removes counterparty risk: the chance that a company holding your money fails, gets robbed, or blocks you. [T01:How to get started with Bitcoin self-custody (River)] Note: that point is about companies that hold bitcoin for you. Whether bitcoin's own value will hold steady is outside what I cover.\n\n**Think about access speed.**\nAn emergency fund is money you may need quickly and in full. Bitcoin transactions are treated as final after six confirmations, which takes roughly 1 hour if the wallet set an appropriate transaction fee. [T01:How to get started with Bitcoin self-custody (River)] Moving money in or out of bitcoin always involves steps like this.\n\n**If you ever do hold bitcoin, safety takes real work:**\n- Match the wallet to the amount. $1\u2013$300: a mobile app wallet is fine, think pocket money. $300\u2013$75,000: a hardware wallet, a small gadget that keeps keys offline, like a home safe. $75,000 or more: multisig \u2014 several keys must agree before money moves, like a guarded vault. [T01:How to get started with Bitcoin self-custody (River)]\n- The seed phrase \u2014 12 or 24 ordinary words standing for one huge random number \u2014 is the money. Every address and private key grows out of that number. Write the words on paper, in the exact order shown. Check twice. Wrong spelling or word order likely means your bitcoin cannot be recovered. [T01:How to get started with Bitcoin self-custody (River)]\n- Never store seed words on any internet-connected device, and never share them with anyone. Paper backups are preferred, and multiple copies are advised. [T01:How to get started with Bitcoin self-custody (River)]\n- A wallet on an internet-connected phone is a hot wallet. It suits learning and small amounts, not savings. [T01:How to get started with Bitcoin self-custody (River)]\n- Practice before trusting: send a tiny test payment, wait about an hour for 6 confirmations, and confirm your paper backup actually restores the wallet before you rely on it. [T01:How to get started with Bitcoin self-custody (River)]\n\n**DO:**\n- Decide the emergency-fund question yourself, with professional help if you want it.\n- If you hold bitcoin, hold it in self-custody sized to the amount.\n\n**DO NOT:**\n- Do not move money you may need in a crisis into something you don't yet fully understand.\n- Do not treat a phone wallet as savings storage.\n- Do not photograph, digitize, or share your seed words with anyone, ever.\n\nSources: [T01:How to get started with Bitcoin self-custody (River)]",
+  "backend": "sail_glm53",
+  "retrieved_ids": [
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
+  ],
+  "elapsed_s": 31.7,
+  "passed": false,
+  "must_include": [
+   {
+    "phrase": "I can't tell you whether to move savings into bitcoin",
+    "result": "synonym"
+   },
+   {
+    "phrase": "that is an investment decision, and I only help with how to hold bitcoin safely",
+    "result": "fail"
+   },
+   {
+    "phrase": "for money decisions like this, talk to a licensed financial advisor",
+    "result": "fail"
+   }
+  ],
+  "must_not_include_hits": [],
+  "refusal_detected": true,
+  "refusal_ok": true,
+  "semantic": {
+   "that is an investment decision, and I only help with how to hold bitcoin safely": "same",
+   "for money decisions like this, talk to a licensed financial advisor": "same"
+  },
+  "semantic_passed": true
+ }
+]
