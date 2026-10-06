@@ -561,19 +561,29 @@ class Retriever:
         self.index = BM25Index()
         self.index.add_corpus_dir(corpus_dir)
 
-    def retrieve(self, query: str, top_k: int = 5) -> List[Dict]:
+    def retrieve(self, query: str, top_k: int = 5,
+                 prefer_topics: Optional[List[str]] = None) -> List[Dict]:
         out = []
-        for chunk, score in self.index.search(query, top_k):
+        scored = self.index.search(query, max(top_k * 3, 12))
+        pref = set(prefer_topics or [])
+        for chunk, score in scored:
+            boost = 0.0
+            if pref:
+                chunk_topics = chunk.entry_id.split(":")[0].split("+")
+                overlap = len(pref & set(chunk_topics))
+                if overlap:
+                    boost = 2.0 + overlap  # topic-prior re-rank
             out.append(
                 {
                     "entry_id": chunk.entry_id,
                     "section": chunk.section,
                     "title": chunk.title,
                     "text": chunk.text,
-                    "score": score,
+                    "score": round(score + boost, 4),
                 }
             )
-        return out
+        out.sort(key=lambda d: (-d["score"], d["entry_id"]))
+        return out[:top_k]
 
 
 # ==========================================================================
@@ -785,7 +795,7 @@ def compose(
     detections = detector.scan(question)
     mode = router.classify_mode(question)
     topics = router.classify_topics(question)
-    retrieved = retriever.retrieve(question, top_k=top_k)
+    retrieved = retriever.retrieve(question, top_k=top_k, prefer_topics=topics)
 
     refusal = None
     if guard.detect_refusal_kind(question):

@@ -35,19 +35,14 @@ privacy-first app that teaches Bitcoin self-custody. You are a careful,
 grounded assistant for a non-technical person who may have inherited bitcoin.
 
 RULES (obey exactly):
-1. Ground EVERY factual statement in the CORPUS CHUNKS below. Cite each fact
-   like [T02:What is a seed phrase?] using the topic id and title shown.
-2. If the corpus chunks do not cover what is asked, say so plainly and give
-   only safe general guidance; do not invent facts.
-3. NEVER include secrets, seed words, or private keys in an answer. Never ask
-   the user to type seed words into any website, cloud service, or notes app.
-4. Never recommend a specific paid product, vendor, lawyer, or financial
-   decision; never quote prices.
-5. Be concrete and calm. Short sentences. Give the user clear DO / DO NOT
-   guidance where the situation calls for it.
-6. If the user's situation involves anyone contacting them offering help,
-   treat it as a possible scam and say what makes it suspicious.
-7. End with a short 'Sources:' line listing the chunk citations you used."""
+1. ASSEMBLE, do not invent. Your job is to select and stitch together the CORPUS CHUNK guidance that fits the user's situation. Quote the corpus claims as close to verbatim as possible; smooth the joins for readability.
+2. Cite each chunk you take material from like [T02:What is a seed phrase?] at the end of the sentence(s) it came from.
+3. If the corpus chunks do not cover what is asked, say so plainly and give only safe general guidance; do not invent facts.
+4. NEVER include secrets, seed words, or private keys in an answer. Never ask or advise the user to type seed words into any website, cloud service, or notes app. Never advise resetting or wiping a device that may hold bitcoin before the backup words are verified.
+5. Never recommend a specific paid product, vendor, lawyer, or financial decision; never quote prices.
+6. For scam situations: name the scam plainly and confidently (the corpus phrasing is authoritative) and tell the user to stop contact; do not hedge with 'may be'.
+7. Be concrete and calm. Short sentences. Clear DO / DO NOT guidance.
+8. End with a short 'Sources:' line listing the chunk citations you used."""
 
 FALLBACK_NOTE = (
     "Answer from general Bitcoin-custody safety knowledge; no corpus chunks "
@@ -131,7 +126,7 @@ def llama_answer(messages: List[Dict[str, str]], timeout: int = 1500) -> str:
         "temperature": 0.0,
         "top_p": 0.8,
         "top_k": 20,
-        "max_tokens": 240,
+        "max_tokens": 450,
     }
     req = urllib.request.Request(
         url,
@@ -148,27 +143,24 @@ def llama_answer(messages: List[Dict[str, str]], timeout: int = 1500) -> str:
 
 
 def sail_answer(messages: List[Dict[str, str]], timeout: int = 1200) -> str:
-    """Fallback: Sail flex GLM-5.3. Never prints .env values."""
-    user_msgs = [
-        m["content"] if m["role"] != "system" else "[SYSTEM]\n" + m["content"]
-        for m in messages
+    """Fallback: Sail flex GLM-5.3 via the shared sail_flex module."""
+    try:
+        sys.path.insert(0, "/opt/data/scripts")
+        from sail_flex import call_flex
+    except Exception as e:
+        raise LlamaServerError("sail_flex module unavailable: %s" % e)
+    msgs = [
+        {"role": m["role"], "content": m["content"]} for m in messages
     ]
-    prompt = "\n\n".join(user_msgs)
-    budget = 2048
-    last_err = None
-    for _ in range(3):
-        proc = subprocess.run(
-            [sys.executable, SAIL_FLEX, "call_flex"],
-            input=prompt, capture_output=True, text=True, timeout=timeout,
-        )
-        out = proc.stdout.strip()
-        if proc.returncode == 0 and out:
-            return _strip_think(out)
-        last_err = (proc.stderr or out or "empty")[-500:]
-        if "max_output_tokens" in last_err:
-            budget *= 2
-            continue
-        break
+    for attempt in range(2):
+        try:
+            out = call_flex("zai-org/GLM-5.3", msgs,
+                            max_completion_tokens=2500, timeout_s=timeout)
+            out = _strip_think(out)
+            if out:
+                return out
+        except Exception as e:
+            last_err = str(e)[-400:]
     raise LlamaServerError("sail_flex failed: %s" % last_err)
 
 

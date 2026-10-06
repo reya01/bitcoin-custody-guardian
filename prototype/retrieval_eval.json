@@ -1,0 +1,1090 @@
+[
+ {
+  "id": "T06-001",
+  "category": "day1_securing",
+  "retrieved": [
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inventory-and-privacy-listing-what-you-f"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not plug it in yet",
+    "result": "exact"
+   },
+   {
+    "phrase": "put everything bitcoin-related in one box",
+    "result": "exact"
+   },
+   {
+    "phrase": "nothing is lost by waiting",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-002",
+  "category": "day1_securing",
+  "retrieved": [
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inventory-privacy-what-to-tell-family-an"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "keep every word list you find",
+    "result": "exact"
+   },
+   {
+    "phrase": "some backups are split across pages or materials",
+    "result": "exact"
+   },
+   {
+    "phrase": "put them all in the same box together",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-003",
+  "category": "day1_securing",
+  "retrieved": [
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:what-this-app-cannot-tell-you-prices-sel"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "collect every paper with word lists and every small device first",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not let anything get thrown out",
+    "result": "exact"
+   },
+   {
+    "phrase": "you have time \u2014 nothing is urgent",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-004",
+  "category": "day1_securing",
+  "retrieved": [
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T02:what-is-a-seed-phrase",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T02:what-is-a-seed-phrase"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not delete anything on his computer",
+    "result": "exact"
+   },
+   {
+    "phrase": "wallet files and apps may be needed to open the wallet later",
+    "result": "exact"
+   },
+   {
+    "phrase": "wipe only after the wallet is recovered or a professional says it is safe",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-005",
+  "category": "word_list_handling",
+  "retrieved": [
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:word-list-safety-no-email-or-cloud-copie"
+  ],
+  "phrase_hits": 4,
+  "phrases_total": 4,
+  "phrases": [
+   {
+    "phrase": "a seed phrase \u2014 the master key",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not photograph it",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not type it anywhere yet",
+    "result": "exact"
+   },
+   {
+    "phrase": "keep it exactly where it is",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-006",
+  "category": "word_list_handling",
+  "retrieved": [
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:found-paper-with-24-handwritten-words-se"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "never put seed words into any app, cloud, or notes app",
+    "result": "exact"
+   },
+   {
+    "phrase": "a partial word list is not usable on its own",
+    "result": "fail"
+   },
+   {
+    "phrase": "keep the pages together in one place",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-007",
+  "category": "word_list_handling",
+  "retrieved": [
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:word-list-safety-no-email-or-cloud-copie"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "no \u2014 never store the seed phrase online or in the cloud",
+    "result": "exact"
+   },
+   {
+    "phrase": "an email copy is a permanent leak anyone can read later",
+    "result": "exact"
+   },
+   {
+    "phrase": "physical offline copies only; metal survives fire",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-008",
+  "category": "word_list_handling",
+  "retrieved": [
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T04:restoring-a-bitbox02-from-recovery-words"
+  ],
+  "phrase_hits": 1,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "count the words on paper instead \u2014 24 or 12",
+    "result": "exact"
+   },
+   {
+    "phrase": "never type the seed words anywhere except verified wallet software at recovery time",
+    "result": "fail"
+   },
+   {
+    "phrase": "this app never asks for your words",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-009",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not reset",
+    "result": "exact"
+   },
+   {
+    "phrase": "resetting without the seed phrase backup destroys access to the bitcoin forever",
+    "result": "exact"
+   },
+   {
+    "phrase": "stop guessing and find the backup words first",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-010",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:inventory-privacy-what-to-tell-family-an"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "never reset a device you did not set up yourself",
+    "result": "exact"
+   },
+   {
+    "phrase": "a reset erases its keys; only the seed phrase backup can restore them",
+    "result": "exact"
+   },
+   {
+    "phrase": "check for the seed phrase backup before touching the device",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-011",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T02:what-are-public-and-private-keys",
+   "T02:bip-84-bech32-addresses",
+   "T02:bip-49-p2wpkh-nested-addresses"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "no \u2014 the bitcoin is on the blockchain, not in the device",
+    "result": "exact"
+   },
+   {
+    "phrase": "the seed phrase can restore the wallet on a new device, even from a different brand",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not try to repair or open it yourself yet",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-012",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T02:bip-44-multi-account-hierarchy",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T06:inheritance-scams-fake-support-calls-rec"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "stop entering PINs immediately",
+    "result": "exact"
+   },
+   {
+    "phrase": "some devices erase themselves after too many wrong attempts",
+    "result": "exact"
+   },
+   {
+    "phrase": "put the device down and find the seed phrase backup first",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-013",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets",
+   "T03:cold-storage-and-hardware-wallets"
+  ],
+  "phrase_hits": 0,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not power them on yet on day one",
+    "result": "fail"
+   },
+   {
+    "phrase": "power on only when you have both the PIN and the backup words",
+    "result": "fail"
+   },
+   {
+    "phrase": "look instead: note the brand and model from the packaging or the back",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-014",
+  "category": "device_handling",
+  "retrieved": [
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:day-1-securing-inherited-bitcoin-devices"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not hand devices or words to anyone",
+    "result": "exact"
+   },
+   {
+    "phrase": "almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends",
+    "result": "exact"
+   },
+   {
+    "phrase": "walk through it yourself with offline guides",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-015",
+  "category": "inventory_privacy",
+  "retrieved": [
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T02:what-are-public-and-private-keys",
+   "T06:inheritance-scam-alerts-remote-control-r"
+  ],
+  "phrase_hits": 1,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not tell anyone what you found or how much there is \u2014 not yet",
+    "result": "exact"
+   },
+   {
+    "phrase": "tell family only that records exist and you are working through them carefully",
+    "result": "fail"
+   },
+   {
+    "phrase": "wait until the wallet is verified and an attorney advises you",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-016",
+  "category": "inventory_privacy",
+  "retrieved": [
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "never copy the words into your inventory",
+    "result": "exact"
+   },
+   {
+    "phrase": "write only a description like '24-word list found, sealed envelope, 3 pages'",
+    "result": "fail"
+   },
+   {
+    "phrase": "the inventory page must contain no secrets",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-017",
+  "category": "inventory_privacy",
+  "retrieved": [
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "keep the inventory on your own paper, not shared online",
+    "result": "exact"
+   },
+   {
+    "phrase": "location notes reveal where valuables and backups are",
+    "result": "exact"
+   },
+   {
+    "phrase": "share only what is needed, when it is needed",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-018",
+  "category": "inventory_privacy",
+  "retrieved": [
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "what it physically is",
+    "result": "exact"
+   },
+   {
+    "phrase": "where it was found",
+    "result": "exact"
+   },
+   {
+    "phrase": "anything written on it or its packaging",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-019",
+  "category": "jargon_decoding",
+  "retrieved": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:exchange-accounts-in-an-inheritance-what"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "a seed phrase is the master key \u2014 12 or 24 common words that rebuild the wallet",
+    "result": "exact"
+   },
+   {
+    "phrase": "whoever has the words controls the bitcoin",
+    "result": "exact"
+   },
+   {
+    "phrase": "no company or support line can recover it if it is lost",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-020",
+  "category": "jargon_decoding",
+  "retrieved": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T02:bip-44-multi-account-hierarchy",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "an xpub is not a secret and cannot spend the bitcoin",
+    "result": "exact"
+   },
+   {
+    "phrase": "it reveals all addresses and transaction history, so it is privacy-sensitive",
+    "result": "exact"
+   },
+   {
+    "phrase": "still keep it in the box and mention it in the inventory",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-021",
+  "category": "jargon_decoding",
+  "retrieved": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "watch-only means the app can see the balance but cannot spend",
+    "result": "exact"
+   },
+   {
+    "phrase": "spending requires the keys \u2014 the seed phrase or a signed device",
+    "result": "exact"
+   },
+   {
+    "phrase": "watch-only is a safe first step for heirs",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-022",
+  "category": "jargon_decoding",
+  "retrieved": [
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T04:restoring-a-bitbox02-from-recovery-words"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "that is a passphrase \u2014 an extra word that combines with the seed phrase",
+    "result": "exact"
+   },
+   {
+    "phrase": "note that it exists and keep it with the word list",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not combine it with anything yet \u2014 it changes which wallet opens",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-023",
+  "category": "jargon_decoding",
+  "retrieved": [
+   "T02:bip-39-the-standard-behind-your-12-24-wo",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:exchange-accounts-in-an-inheritance-what"
+  ],
+  "phrase_hits": 0,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "self-custody means you hold the keys yourself instead of a company holding them for you",
+    "result": "fail"
+   },
+   {
+    "phrase": "with self-custody the seed phrase is your responsibility \u2014 there is no password reset",
+    "result": "fail"
+   },
+   {
+    "phrase": "it is the heirs' default because nothing needs to move",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-024",
+  "category": "multisig_descriptor",
+  "retrieved": [
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "any two of the three devices can move the funds",
+    "result": "exact"
+   },
+   {
+    "phrase": "the descriptor file is needed too \u2014 it describes the whole setup",
+    "result": "exact"
+   },
+   {
+    "phrase": "keep all three devices and the file together",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-025",
+  "category": "multisig_descriptor",
+  "retrieved": [
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "the descriptor is not a secret by itself",
+    "result": "exact"
+   },
+   {
+    "phrase": "it is required to rebuild a multisig wallet",
+    "result": "exact"
+   },
+   {
+    "phrase": "keep it with the key locations and list it in the inventory",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-026",
+  "category": "multisig_descriptor",
+  "retrieved": [
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "no \u2014 two of three still works",
+    "result": "exact"
+   },
+   {
+    "phrase": "do not panic",
+    "result": "exact"
+   },
+   {
+    "phrase": "check the backup locations first and keep searching for the third",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-027",
+  "category": "multisig_descriptor",
+  "retrieved": [
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "yes \u2014 a 2-of-3 setup opens with any two devices plus the descriptor",
+    "result": "exact"
+   },
+   {
+    "phrase": "still do the full Day 6 verification sequence first: clean computer, verified software, then the devices",
+    "result": "exact"
+   },
+   {
+    "phrase": "one difficult thing per day \u2014 do not rush the first real action",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-028",
+  "category": "exchange_accounts",
+  "retrieved": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "do not try to reset passwords yet",
+    "result": "exact"
+   },
+   {
+    "phrase": "account recovery is a legal and identity process \u2014 do it deliberately with documents in hand",
+    "result": "exact"
+   },
+   {
+    "phrase": "today, just note that the account exists and keep the statements",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-029",
+  "category": "exchange_accounts",
+  "retrieved": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T02:what-are-public-and-private-keys"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "contact the exchange only through its official website yourself \u2014 never through a link or chat that contacted you",
+    "result": "exact"
+   },
+   {
+    "phrase": "no legitimate exchange asks you to read back codes from an inbound contact",
+    "result": "exact"
+   },
+   {
+    "phrase": "bring death certificate and estate documents through the official process",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-030",
+  "category": "exchange_accounts",
+  "retrieved": [
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T02:what-is-a-seed-phrase",
+   "T03:cold-storage-and-hardware-wallets",
+   "T02:what-is-a-seed-phrase"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "no \u2014 exchange accounts are custodial: the company holds the keys, not a seed phrase of yours",
+    "result": "exact"
+   },
+   {
+    "phrase": "the account is accessed with login and identity documents, not seed words",
+    "result": "exact"
+   },
+   {
+    "phrase": "keep the two tracks separate in your inventory",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-031",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T04:i-lost-my-secret-recovery-phrase-ledger"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "this is a scam",
+    "result": "exact"
+   },
+   {
+    "phrase": "no legitimate company asks for your words",
+    "result": "exact"
+   },
+   {
+    "phrase": "hang up and stop contact",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-032",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T08:spotting-investment-scams-ftc",
+   "T08:spotting-investment-scams-ftc"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "recovery-agent scam pattern \u2014 never share keys with strangers",
+    "result": "exact"
+   },
+   {
+    "phrase": "you lose nothing by ignoring every such message",
+    "result": "exact"
+   },
+   {
+    "phrase": "walk through it yourself with offline guides, or use a Bitcoin-knowledgeable estate attorney",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-033",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "urgency is the tell \u2014 real bitcoin cannot be locked by a deadline",
+    "result": "exact"
+   },
+   {
+    "phrase": "no legitimate party ever needs your words",
+    "result": "exact"
+   },
+   {
+    "phrase": "stop contact, do nothing, ask the app's Scam-Checker",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-034",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:day-1-securing-inherited-bitcoin-devices"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "remote-control software requests are always a scam",
+    "result": "exact"
+   },
+   {
+    "phrase": "no legitimate support needs control of your computer",
+    "result": "exact"
+   },
+   {
+    "phrase": "stop contact immediately",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-035",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T02:bip-44-multi-account-hierarchy",
+   "T08:what-to-do-if-you-were-scammed-ftc"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "send-a-small-amount-first is always a scam",
+    "result": "exact"
+   },
+   {
+    "phrase": "nothing is ever unlocked by paying first",
+    "result": "exact"
+   },
+   {
+    "phrase": "stop contact and do nothing",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-036",
+  "category": "scam_detection",
+  "retrieved": [
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T02:bip-84-bech32-addresses",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:inheritance-scams-fake-support-calls-rec"
+  ],
+  "phrase_hits": 3,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "it is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first",
+    "result": "exact"
+   },
+   {
+    "phrase": "no legitimate company asks for your words",
+    "result": "exact"
+   },
+   {
+    "phrase": "you lose nothing by ignoring every such message",
+    "result": "exact"
+   }
+  ]
+ },
+ {
+  "id": "T06-037",
+  "category": "verification_sequence",
+  "retrieved": [
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T02:what-is-a-seed-phrase",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T03:cold-storage-and-hardware-wallets"
+  ],
+  "phrase_hits": 0,
+  "phrases_total": 4,
+  "phrases": [
+   {
+    "phrase": "verify the download checksum first",
+    "result": "fail"
+   },
+   {
+    "phrase": "enter the seed words once, into the verified software only",
+    "result": "fail"
+   },
+   {
+    "phrase": "write down the first receiving address, then confirm the balance appears",
+    "result": "fail"
+   },
+   {
+    "phrase": "then stop \u2014 no sending, no upgrading, nothing else that day",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-038",
+  "category": "verification_sequence",
+  "retrieved": [
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T02:what-is-a-seed-phrase",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T02:what-is-a-seed-phrase",
+   "T03:cold-storage-and-hardware-wallets"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "one difficult thing per day",
+    "result": "exact"
+   },
+   {
+    "phrase": "do the verification only \u2014 no sending or moving the same day",
+    "result": "exact"
+   },
+   {
+    "phrase": "each extra irreversible step is a fresh chance for a permanent mistake",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-039",
+  "category": "out_of_corpus_honesty",
+  "retrieved": [
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:found-paper-with-24-handwritten-words-se"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "the app is offline and cannot know current prices",
+    "result": "exact"
+   },
+   {
+    "phrase": "it cannot give financial or investment advice",
+    "result": "exact"
+   },
+   {
+    "phrase": "for tax and sale decisions, see the guides and consult a professional when you get there",
+    "result": "fail"
+   }
+  ]
+ },
+ {
+  "id": "T06-040",
+  "category": "out_of_corpus_honesty",
+  "retrieved": [
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T06:inherited-hardware-wallet-unknown-pin-re"
+  ],
+  "phrase_hits": 2,
+  "phrases_total": 3,
+  "phrases": [
+   {
+    "phrase": "the corpus can describe the categories of devices and their trade-offs",
+    "result": "exact"
+   },
+   {
+    "phrase": "it never picks a specific product or paid professional for you",
+    "result": "exact"
+   },
+   {
+    "phrase": "the directory lists categories and evidence for you to judge",
+    "result": "fail"
+   }
+  ]
+ }
+]
