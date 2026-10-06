@@ -55,3 +55,34 @@ Any hit above is a build-blocker: revert and investigate.
 - No keystores, no signing material, no tokens, no `.env` in this repo.
 - `tools/make_walkthrough_json.py` regenerates `walkthrough.json` from
   INHERITANCE_WALKTHROUGH.md.
+
+## GrapheneOS compatibility (first-class target, not an afterthought)
+
+Bitcoin Custody Guardian is designed to work identically on stock Android and
+[GrapheneOS](https://grapheneos.org). Verified properties of this skeleton:
+
+1. **Zero Google dependencies.** The dependency set is pure `androidx` +
+   Kotlin stdlib (see `app/build.gradle.kts`). No Play Services, no GMS, no
+   Firebase, no Play Core, no billing, no FCM. The app behaves the same with
+   Play Services entirely absent — which is exactly GrapheneOS's default.
+2. **Sideload-native.** GrapheneOS supports sideloading without the Play
+   Protect gating present on stock Android. Our distribution path
+   (GitHub release APK + F-Droid, PRODUCT_SPEC §9) needs no store at all.
+3. **Standard public APIs only.** minSdk 29 / targetSdk 35, Jetpack Compose,
+   `kotlinx`-free stdlib JSON handling via plain `org.json`-equivalent parsing
+   of bundled assets — no CTS-optional or private/hidden APIs anywhere.
+4. **The no-network claim is user-verifiable on GrapheneOS.** GrapheneOS
+   shows network permission indicators per app; because our manifest declares
+   zero permissions, the app *must* appear with no network access. Any
+   network monitor (or GrapheneOS's own indicators) will show zero traffic —
+   the architecture makes the check trivial rather than trusting us.
+5. **Sandbox-fit.** `allowBackup=false`, no exported components beyond the
+   launcher, no content providers, no WebView with remote content, no
+   cleartext traffic possible (no network code exists). The app makes
+   GrapheneOS's hardening a no-op rather than fighting it.
+6. **Update path works without Play.** GrapheneOS users update via F-Droid
+   (with `AllowedAPKSigningKeys` pinning) or by sideloading a
+   developer-signed release APK whose fingerprint is published in the signed
+   release notes.
+
+Checklist addition for every release: `grep -rn "com.google\|play-services\|firebase\|\.gms\|INTERNET" app/src/` must output nothing.
