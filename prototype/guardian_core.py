@@ -324,6 +324,10 @@ _MODE_KEYWORDS: Dict[str, List[str]] = {
         "legit", "legitimate", "asked for my", "someone asked", "should i give",
         "give out", "shared my", "is this safe", "red flag", "trick",
         "someone contacted", "dm", "cold contact", "support agent",
+        "recovery agent", "recovery service", "recovery expert",
+        "unlock", "verification fee", "double your bitcoin", "giveaway",
+        "sextortion", "remote access", "anydesk", "teamviewer",
+        "pig butchering", "romance", "investment opportunity",
     ],
     "verify": [
         "verify", "check", "validate", "confirm", "checksum", "test vector",
@@ -339,6 +343,8 @@ _MODE_KEYWORDS: Dict[str, List[str]] = {
         "walkthrough", "step by step", "steps", "inherit", "inheritance",
         "executor", "heir", "legacy", "when i die", "after i die", "estate",
         "hand over", "successor", "loved ones", "family",
+        "verification day", "day one", "first hours", "inherited",
+        "my father", "my mother", "my husband", "my wife", "my spouse",
     ],
 }
 
@@ -347,43 +353,51 @@ TOPIC_KEYWORDS: Dict[str, List[str]] = {
     "T01": [
         "wallet", "self-custody", "self custody", "custody", "keys", "hold",
         "your own bitcoin", "not your keys", "ownership", "control",
+        "exchange account", "hotline", "refund", "insurance",
     ],
     "T02": [
         "seed phrase", "seed", "recovery phrase", "mnemonic", "bip-39",
         "bip39", "bip 39", "wordlist", "words", "12 words", "24 words",
-        "backup phrase", "passphrase",
+        "backup phrase", "passphrase", "derivation", "m/44", "m/84",
+        "entropy",
     ],
     "T03": [
         "private key", "public key", "address", "wif", "hex key",
-        "spending key", "key format",
+        "spending key", "key format", "cold storage", "sparrow",
     ],
     "T04": [
         "hardware wallet", "signer", "device", "cold storage", "secure element",
         "pin", "firmware", "trezor", "ledger", "bitbox", "coldcard",
+        "jade", "seedsigner", "krux", "bitkey",
     ],
     "T05": [
         "multisig", "multi-sig", "m of n", "quorum", "cosigner", "descriptor",
         "policy",
     ],
     "T06": [
-        "backup", "metal backup", "engrave", "steel", "paper backup", "fire",
-        "water", "durability", "storage of seed",
+        "inheritance", "inherit", "inherited", "heir", "estate", "day one",
+        "first hours", "verification day", "inventory", "walkthrough",
+        "died", "passed away", "spouse", "executor",
     ],
     "T07": [
         "scam", "phishing", "social engineering", "fraud", "fake support",
         "impersonation", "giveaway", "romance", "pressure", "urgency",
+        "recovery agent", "recovery service", "double your", "sextortion",
+        "pig butchering", "investment opportunity",
     ],
     "T08": [
-        "inheritance", "inherit", "executor", "heir", "letter", "estate",
-        "loved ones", "legacy", "dead", "die", "successor",
+        "red flag", "urgent", "deadline", "anydesk", "teamviewer",
+        "remote control", "verify your wallet", "locked out",
+        "support team", "dm", "suspicious message",
     ],
     "T09": [
-        "verify", "checksum", "test vector", "restore", "recovery check",
-        "dry run", "practice recovery", "validate backup",
+        "privacy", "inventory privacy", "tell family", "anonymous", "doxx",
+        "balance private",
     ],
     "T10": [
         "transaction", "signing", "broadcast", "fee", "confirmations",
-        "send bitcoin", "receive bitcoin", "utxo",
+        "send bitcoin", "receive bitcoin", "utxo", "satoshi", "mempool",
+        "irreversible", "jargon", "what does.*mean",
     ],
     "T11": [
         "node", "full node", "pruned", "verification", "trustless",
@@ -391,7 +405,7 @@ TOPIC_KEYWORDS: Dict[str, List[str]] = {
     ],
     "T12": [
         "glossary", "directory", "terms", "definitions", "jargon",
-        "vocabulary",
+        "vocabulary", "mistakes", "recovery stories",
     ],
 }
 

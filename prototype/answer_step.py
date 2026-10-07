@@ -12,7 +12,7 @@ format ([T0x:title]), and carries the guardrail constraints. Deterministic
 settings (temperature 0, fixed seed).
 """
 
-from __future__ import annotations
+from guardian_core import Guardrails  # post-model veto layer
 
 import json
 import os
@@ -177,16 +177,36 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     """Generate the answer for a composed context.
 
     Returns {"answer": str, "backend": str}.
-    Order: deterministic scam rules -> llama-server (auto) -> sail flex;
-    'llama'/'sail' force one. Scam red flags are adjudicated by rule, never
-    by the model (a 1.7B hedges scam verdicts).
+    Order: secret refusal (deterministic, no backend) -> scam verdict
+    (rules, scam-check mode only) -> llama-server (auto) -> sail flex.
+    Post-generation: guardrail scrub + veto. On a must_not_include hit the
+    candidate is DISCARDED and replaced by the refusal template plus the
+    retrieved entries' warnings verbatim - wrong advice is structurally
+    unshippable regardless of backend.
     """
+    g = Guardrails()
+    # 1. Secrets: refuse deterministically, never call any backend (spec §3.2).
+    if composed.detections.is_secret:
+        return {
+            "answer": (
+                "STOP — this looks like secret wallet material (seed words or a "
+                "private key). This app has refused to process it. Never type or "
+                "paste seed words into ANY app, website, or chat — including this "
+                "one. No legitimate party — wallet vendor, support agent, or "
+                "'recovery expert' — will ever need your words. If someone asked "
+                "you for them, it is a scam. Handle the phrase only on paper, "
+                "offline, and move the text out of this screen."
+            ),
+            "backend": "deterministic_secret_refusal",
+        }
+    # 2. Scam verdict: deterministic rules, scam-check mode only (no false
+    # verdicts on innocent questions like price checks).
     import scam_rules
-    verdict = scam_rules.scam_verdict_answer(question)
+    verdict = None
+    if composed.mode == "scam-check":
+        verdict = scam_rules.scam_verdict_answer(question)
     messages = build_messages(question, composed)
     if verdict is not None:
-        # Deterministic verdict block is mandatory; the model only adds
-        # scenario-specific guidance on top (verdict itself is never hedged).
         messages.append({
             "role": "system",
             "content": (
@@ -201,16 +221,53 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
             body = llama_answer(messages) if backend in ("auto", "llama") else sail_answer(messages)
         except LlamaServerError:
             body = sail_answer(messages)
-        return {"answer": verdict + "\n\n" + body.strip(),
-                "backend": "scam_rules+" + ("local_qwen3_1.7b" if backend != "sail" else "sail_glm53")}
-    if backend == "sail":
-        return {"answer": sail_answer(messages), "backend": "sail_glm53"}
-    try:
-        return {"answer": llama_answer(messages), "backend": "local_qwen3_1.7b"}
-    except LlamaServerError:
-        if backend == "llama":
-            raise
-    return {"answer": sail_answer(messages), "backend": "sail_glm53"}
+        candidate = verdict + "\n\n" + body.strip()
+    elif backend == "sail":
+        candidate = sail_answer(messages)
+        backend = "sail_glm53"
+    else:
+        try:
+            candidate = llama_answer(messages)
+            backend = "local_qwen3_1.7b"
+        except LlamaServerError:
+            if backend == "llama":
+                raise
+            candidate = sail_answer(messages)
+            backend = "sail_glm53"
+
+    # 3. Post-model deterministic guardrails (the veto layer).
+    candidate, injected = g.scrub(candidate, question)
+    failures = g.check_constraints(candidate, composed.constraints)
+    if failures["must_not_include"]:
+        warn_lines = []
+        seen = set()
+        for ch in composed.retrieved:
+            for w in ch.get("warnings", []) or []:
+                if w not in seen:
+                    seen.add(w)
+                    warn_lines.append("• " + w)
+        candidate = (
+            g.refusal("out_of_corpus")["text"] if g.refusal("out_of_corpus")
+            else "I cannot give a safe answer to this from my knowledge base."
+        ) + "\n\nSafety rules I must repeat:\n" + "\n".join(warn_lines)
+    # 4. Inheritance mode: panic-action default comes first, always.
+    if composed.mode == "walkthrough" and not candidate.startswith("Do nothing yet"):
+        if any(t in question.lower() for t in (
+                "power on", "plug in", "turn on", "send", "move", "sell",
+                "install", "wipe", "reset", "transfer", "exchange", "check the balance")):
+            candidate = ("Do nothing yet. Nothing is urgent. Take your time.\n\n" + candidate)
+    # 5. Walkthrough mode: retrieved entries' warnings ship verbatim, always.
+    if composed.mode == "walkthrough":
+        warn_lines = []
+        seen = set()
+        for ch in composed.retrieved:
+            for w in ch.get("warnings", []) or []:
+                if w not in seen and w not in candidate:
+                    seen.add(w)
+                    warn_lines.append("• " + w)
+        if warn_lines:
+            candidate += "\n\nSafety rules for this step:\n" + "\n".join(warn_lines)
+    return {"answer": candidate, "backend": backend}
 
 
 if __name__ == "__main__":
