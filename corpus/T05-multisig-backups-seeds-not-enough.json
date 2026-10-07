@@ -1,0 +1,71 @@
+{
+  "id": "T05-multisig-backups-seeds-not-enough",
+  "title": "Multisig Backups: Seeds Are Not Enough",
+  "topics": [
+    "T05"
+  ],
+  "topic_ids": [
+    "T05"
+  ],
+  "plain": "In a multisig wallet, every key has its own seed phrase — a 2-of-3 setup means three separate seed phrases to back up and guard. Only m of the n seeds (two, in a 2-of-3) are needed to sign a transaction, which gives you some redundancy, but each seed still demands careful protection: anyone who gets access to m of your n seed phrases can steal your bitcoin.\n\nSeeds alone are not enough. There are two components to back up to guarantee future recovery: seed phrases and public keys. Confusingly, while only a quorum of seeds is needed to sign, you need all of your public keys — including associated metadata — in order to spend any of your bitcoin. That information is the wallet's configuration, held by the coordinator as a wallet file (for example, the Specter-Desktop wallet backup file). A quorum of seeds without that configuration cannot easily rebuild the wallet, so the wallet file matters every bit as much as the seeds.\n\nThe recommended practice for non-experts is to store a copy of all extended public keys with each individual seed, plus redundant backups in many other places: unsecured in a filing cabinet at home or work, in a safe-deposit box, with your accountant, lawyer, or financial advisor, with an insecure cloud provider (advanced users may want to encrypt this first) — and with your heirs, who may one day have to figure this out without your help. Public keys do not need to be guarded nearly as carefully as seeds: anyone who has them can only see which bitcoin addresses belong to you but cannot spend from them.\n\nFinally, test the recovery. The documented emergency path — replacing a device, loading its seed, and using the wallet backup file to reconstruct the wallet — is exactly what your heirs would have to do one day. Practicing it once yourself turns a theoretical backup into a proven one.",
+  "technical": "Each of the n signers in an m-of-n wallet derives from its own BIP39 seed (24 words by default; expert users may choose shorter seed phrases, though this is not normally recommended). Only m seeds are needed to sign, but the spend policy is defined by the full set of public keys plus associated metadata — the output descriptor — which the coordinator retains as a wallet file. The documented Electrum recovery path makes the dependency explicit: the Specter-Desktop wallet backup file (JSON) supplies the Zpubs, the derivation pathway must match the one the coordinator used (e.g. m/48'/0'/0'/2'), and seed entry must explicitly select BIP39 or Electrum will not correctly recognise and recover the seed. A quorum of seeds without the descriptor cannot straightforwardly reconstruct the address set or the spend condition.\n\nRedundancy guidance for non-experts: store a copy of all extended public keys with each individual seed, plus backups in many other places — unsecured in a filing cabinet at home and/or work, a safe-deposit box, your accountant, lawyer, or financial advisor, an insecure cloud provider (advanced users may want to encrypt this first), and with your heirs, who may one day have to figure this out without your help. Exposure asymmetry: m of n seed phrases enable theft, while public-key material only reveals which bitcoin addresses belong to you and confers no spending power, so it can be distributed widely. Recovery drills: replace a damaged signer and reload its seed; if hardware is unavailable, load the BIP39 seed into Trezor or Electrum — Electrum is difficult to use with multisig, should run on an airgapped machine because it touches private key material, and any key entered on an online machine must thereafter be considered hot.",
+  "claims": [
+    {
+      "claim": "There are two components to your wallet that you need to backup to guarantee future recovery: seed phrases and public keys.",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "One confusing thing about multisig is that you need all of your public keys (including associated metadata) in order to be able to spend any of your bitcoin.",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "Public keys do not need to be guarded nearly as carefully as seeds; anyone who gets access to public key information can only see which bitcoin addresses belong to you but cannot spend from them.",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "For non-expert users, we recommend storing a copy of all extended public keys with each individual seed as well as redundant backups in many other places",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "With your heirs, who may one day have to figure this out without your help",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "Using your Specter-Desktop wallet backup file, identify your Zpubs from the JSON file.",
+      "source": "Emergency Recovery"
+    },
+    {
+      "claim": "Electrum is an open-source software wallet that is free and readily available, but difficult to use with multisig.",
+      "source": "Emergency Recovery"
+    },
+    {
+      "claim": "As it will be touching private key material, we strongly recommend you run this on an airgapped machine",
+      "source": "Emergency Recovery"
+    }
+  ],
+  "warnings": [
+    "DO NOT back up only the seed phrases — the wallet configuration file is required for recovery.",
+    "DO NOT assume a quorum of seeds alone can rebuild a multisig wallet.",
+    "DO NOT store the only copy of the wallet file together with the only copy of the seeds.",
+    "DO NOT fund the wallet before a full recovery test has succeeded.",
+    "DO NOT type seed phrases into an online computer or cloud service."
+  ],
+  "sources": [
+    {
+      "title": "Backup Wallet",
+      "url": "https://btcguide.github.io/backup-wallet.html"
+    },
+    {
+      "title": "Emergency Recovery",
+      "url": "https://btcguide.github.io/emergency-recovery.html"
+    },
+    {
+      "title": "Setup Hardware Wallet Overview",
+      "url": "https://btcguide.github.io/setup-wallets.html"
+    }
+  ],
+  "reviewed": false,
+  "risk": "informational",
+  "audience": "bitcoin self-custody learner",
+  "mode": "learn"
+}

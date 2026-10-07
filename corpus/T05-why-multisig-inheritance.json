@@ -1,0 +1,74 @@
+{
+  "id": "T05-why-multisig-inheritance",
+  "title": "Why Multisig for an Inheritance",
+  "topics": [
+    "T05"
+  ],
+  "topic_ids": [
+    "T05"
+  ],
+  "plain": "Multisignature, or multisig, means a wallet is controlled by several independent keys instead of one. In an m-of-n arrangement you hold n keys and any m of them are needed to act — for example a 2-of-3 scheme with three keys, where a quorum of 2 is required to send funds or safely verify an address to receive funds on.\n\nFor an inheritance, this removes single points of failure. If one key or its device is lost, damaged, or destroyed, the bitcoin is not stranded: you replace the device and load the same seed phrase you previously backed up — and if that device is sold out or its maker has gone out of business, the BIP39 seed can be loaded onto another device. It also protects against theft: anyone who wants to steal the bitcoin needs m of your n seed phrases, so a single compromised key is not enough.\n\nThe trade-off is that there is more to manage and to explain. Each key has its own seed to back up, and spending also requires all of the wallet's public keys and their associated metadata, not just the seeds. Recovery is more involved than with a single-key wallet, and heirs may one day have to figure this out without your help — so the plan must be documented and rehearsed, not just assembled. The work is front-loaded: there are a lot of setup steps, but you only ever need to do them once, and afterwards the wallet can generate (nearly) infinite addresses and sign (nearly) infinite transactions.",
+  "technical": "An m-of-n multisig policy requires m valid signatures from n independent keys to spend. The documented arrangement is 2-of-3, with three keys — a paper wallet generated on the computer and intended only for backup/recovery, a Keystone (formerly Cobo Vault) key, and a Coldcard key — coordinated through Specter-Desktop; sending requires signing on 2-of-3 hardware wallets, and secure receive-address verification likewise requires a quorum (m in m-of-n) of trusted displays.\n\nEstate-relevant properties: theft requires obtaining m of n seed phrases, so a single compromised seed is insufficient; key loss is tolerable, since a damaged or destroyed signer is replaced by loading its previously backed-up seed onto a new device and setting it up again into the multisig; and vendor failure is survivable because BIP39 is the gold standard supported by all major hardware wallets, so a seed can be loaded onto another device (documented fallbacks: Trezor hardware wallet and Electrum software wallet). The spend condition is defined by the full set of public keys plus associated metadata, which must be retained alongside the seeds — the principal complexity an inheritor faces relative to single-key custody. Setup is one-time: while there are a lot of steps, you only ever need to do them once, after which the wallet can generate (nearly) infinite addresses and sign (nearly) infinite transactions.",
+  "claims": [
+    {
+      "claim": "We're going to configure a 2-of-3 multisignature scheme, meaning you will have 3 keys, and a quorum of 2 will be required to send funds (or safely verify an address to receive funds on).",
+      "source": "Setup Hardware Wallet Overview"
+    },
+    {
+      "claim": "With multisig, you only need to have m (of your total n) seed phrases to sign a transaction.",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "Seed phrases should be guarded very carefully as anyone who gets access to m of your n seed phrases can steal your bitcoin!",
+      "source": "Backup Wallet"
+    },
+    {
+      "claim": "In order to send bitcoin, you will need to sign on 2-of-3 of your hardware wallets.",
+      "source": "Send Bitcoin"
+    },
+    {
+      "claim": "However, if for any reason that doesn't work (perhaps devices are sold out or the company has gone out of business), you can load that BIP39 seed onto another device.",
+      "source": "Emergency Recovery"
+    },
+    {
+      "claim": "BIP39 is the gold standard supported by all major hardware wallets",
+      "source": "Emergency Recovery"
+    },
+    {
+      "claim": "While there are a lot of steps here, you only ever need to do them once.",
+      "source": "Setup Hardware Wallet Overview"
+    },
+    {
+      "claim": "After setup is complete, you will be able to generate (nearly) infinite addresses and sign (nearly) infinite transactions.",
+      "source": "Setup Hardware Wallet Overview"
+    }
+  ],
+  "warnings": [
+    "DO NOT assume a lost or destroyed hardware wallet means lost bitcoin — its backed-up seed can restore it.",
+    "DO NOT let any one person or location control enough seeds to reach the quorum.",
+    "DO NOT promise heirs a multisig plan you have never test-recovered yourself.",
+    "DO NOT treat the seeds as the whole wallet — the public-key configuration is required to spend."
+  ],
+  "sources": [
+    {
+      "title": "Setup Hardware Wallet Overview",
+      "url": "https://btcguide.github.io/setup-wallets.html"
+    },
+    {
+      "title": "Backup Wallet",
+      "url": "https://btcguide.github.io/backup-wallet.html"
+    },
+    {
+      "title": "Send Bitcoin",
+      "url": "https://btcguide.github.io/send-bitcoin.html"
+    },
+    {
+      "title": "Emergency Recovery",
+      "url": "https://btcguide.github.io/emergency-recovery.html"
+    }
+  ],
+  "reviewed": false,
+  "risk": "informational",
+  "audience": "bitcoin self-custody learner",
+  "mode": "learn"
+}

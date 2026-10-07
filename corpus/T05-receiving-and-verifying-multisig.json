@@ -1,0 +1,67 @@
+{
+  "id": "T05-receiving-and-verifying-multisig",
+  "title": "Receiving and Verifying on a Multisig Wallet",
+  "topics": [
+    "T05"
+  ],
+  "topic_ids": [
+    "T05"
+  ],
+  "plain": "It is essential to be sure you control a bitcoin address before you use it to receive funds. A mistake here sends bitcoin somewhere you do not control and it cannot be undone — so never give out an address you have not checked on your own devices.\n\nIn multisig, verification is slightly more complicated than in single-key setups. To securely receive funds, you must verify the receive address on at least a quorum (m in m-of-n) of your trusted displays — in the default case, on both hardware wallets (for example the Keystone and the Coldcard), matching what the coordinator app (such as Specter-Desktop) displays. This step is inconvenient by design: the two devices should be kept in different physical locations, so verifying means bringing a quorum together. Once you have verified your address on a quorum of devices, it is safe to give that address out to a payee — or to place it in an inheritance letter your heirs will rely on.\n\nIf a device is damaged or destroyed when you or an heir needs it, recovery is a documented path: replace the device, load the same seed phrase you previously backed up onto it, and set it back up into the multisig. If that is not possible, the BIP39 seed can be loaded onto another device — Trezor and Electrum are the recommended fallbacks — and Electrum should be run on an airgapped machine because it touches private key material; from that point the key should be considered hot if the machine is online.",
+  "technical": "Receive-address verification defends against a compromised or replaced coordinator displaying an attacker-controlled address. In single-key setups one trusted display suffices; in m-of-n multisig the requirement is verification on at least a quorum (m in m-of-n) of trusted displays — the default case means checking both the Keystone (formerly Cobo Vault) and the Coldcard against the coordinator (Specter-Desktop). The inconvenience is structural: the two devices should be kept in different physical locations, so a verification cycle requires gathering a quorum (advanced users can mitigate). Only after quorum verification is an address safe to give to a payee — or to place in documents heirs will act on.\n\nEmergency-recovery pointers: a damaged or destroyed signer is replaced with a new device loaded with the same previously backed-up seed and set up again into the multisig; if that is not possible (devices sold out, company out of business), the BIP39 seed loads onto another device — Trezor or Electrum. The Electrum path requires the Specter-Desktop wallet backup file (Zpubs from the JSON, matching pathway such as m/48'/0'/0'/2'), explicit BIP39 selection during seed entry, an airgapped machine since it touches private key material, and treating the key as hot thereafter if the machine is online. Signing can proceed by PSBT: generate in Specter-Desktop, sign with one key (e.g. the Coldcard or Keystone), load into Electrum via Tools > Load from file, complete the remaining signature, and broadcast.",
+  "claims": [
+    {
+      "claim": "It is essential to be sure you control a bitcoin address before you use it to receive funds.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "Unfortunately, verifying multisig receive addresses is slightly more complicated than in single-key setups.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "In order to securely receive funds, you must verify a given receive address on at least a quorum (m in m-of-n) of your trusted displays.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "In the default case, this means you would check on both your Keystone (formerly Cobo Vault) and your Coldcard.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "Unfortunately, this step can be inconvenient, as the two devices should be kept in different physical locations.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "Once you have verified your address on a quorum of devices, it is safe to give that address out to a payee.",
+      "source": "Verify Receive Address"
+    },
+    {
+      "claim": "If either device is damaged/destroyed, you should replace it with a new one and load the replacement device with the same seed phrase that you previously backed up.",
+      "source": "Emergency Recovery"
+    },
+    {
+      "claim": "Notice from this point, you should now consider this private key as 'hot' assuming your Electrum machine is online.",
+      "source": "Emergency Recovery"
+    }
+  ],
+  "warnings": [
+    "DO NOT trust an address shown only by the coordinator app — verify it on the hardware wallet screens.",
+    "DO NOT put an unverified address in an inheritance letter or any document heirs will follow.",
+    "DO NOT verify on fewer devices than your quorum requires.",
+    "DO NOT keep both signing devices in one place just to make verification easier.",
+    "DO NOT run Electrum recovery on an online machine — treat any key used there as hot."
+  ],
+  "sources": [
+    {
+      "title": "Verify Receive Address",
+      "url": "https://btcguide.github.io/verify-receive-address.html"
+    },
+    {
+      "title": "Emergency Recovery",
+      "url": "https://btcguide.github.io/emergency-recovery.html"
+    }
+  ],
+  "reviewed": false,
+  "risk": "caution",
+  "audience": "bitcoin self-custody learner",
+  "mode": "learn"
+}
