@@ -59,7 +59,7 @@ object CorpusRouter {
     private const val MIN_SCORE = 3
 
     fun route(
-        context: Context,
+        context: Context?, // unused today; kept for future UI-context needs
         query: String,
         corpus: List<Pair<String, CorpusEntry>>,
     ): Route {

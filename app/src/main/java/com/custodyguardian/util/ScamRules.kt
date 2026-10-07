@@ -19,8 +19,14 @@ object ScamRules {
             "seed_request",
             "Asks for seed phrase / keys",
             Regex(
-                "(seed\\s*phrase|recovery\\s*phrase|private\\s*key|24\\s*words|12\\s*words|" +
-                    "your\\s*words|mnemonic|xprv)",
+                "(send\\s*(me|us)?\\s*your?\\s*(seed|recovery|words|private|mnemonic|xprv)|" +
+                    "share\\s*your\\s*(seed|recovery|words|private|mnemonic|xprv)|" +
+                    "enter\\s*your\\s*(seed|recovery|words|private|mnemonic)|" +
+                    "confirm\\s*your\\s*(seed|recovery|words|mnemonic)|" +
+                    "give\\s*(me|us)\\s*(your|the)\\s*(seed|recovery|words|private|mnemonic|keys)|" +
+                    "ask(s|ed)?\\s*(me|you|for)?\\s*(my|your)\\s*(seed|recovery|words|private\\s*keys?|mnemonic)|" +
+                    "read\\s*(out|me)\\s*(your|the)\\s*(seed|recovery|words)|" +
+                    "type\\s*(your|the)\\s*(seed|recovery|words|private))",
                 RegexOption.IGNORE_CASE
             ),
             "No legitimate party — vendor, support, or \"recovery expert\" — ever needs your " +
