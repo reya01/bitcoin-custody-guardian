@@ -1,0 +1,218 @@
+How to Back Up a Seed Phrase
+Cypherpunk Cogitations
+Home
+Sign in
+Subscribe
+Apr 2, 2022
+14 min read
+bitcoin
+How to Back Up a Seed Phrase
+There are a million ways to back up a seed phrase. Nearly all of them have flaws.
+Jameson Lopp
+Advancements in the field of cryptographic assets have spawned an amazingly complex ecosystem with more functionality than you can even keep track of these days. And yet, the entire ecosystem rests upon the fundamental principle of being able to secure your assets and authorize their transfers by crafting and signing transactions with private keys that
+only you control
+.
+It's now possible to store billions of dollars worth of value in 32 bytes of entropy:
+011111100111100000000010001110000011110000010110110111111011011001010111100101001000011011010010010001010110001111010110100001100001001101100001001100001000001100010011111000111000000101001010111011000111010011011111010110000110110010011110110110010001000001111101
+Which can be encoded as a 24 word mnemonic, like so:
+lazy scale mix join hospital swamp furnace move spoil climb volcano around current obscure arrange ladder life first brush salt man exhaust gold autumn
+An entire industry has evolved to help people keep their 32 bytes of entropy secure. I've spent the past 7 years working on this problem, watching people experience catastrophic failures, and incorporating those hard-learned lessons into the best practices I evangelize and bake into our products at
+Casa
+.
+There's no shortage of guides published regarding how to back up a seed phrase, so why am I writing this one? Most guides I've seen are prescriptive. They tell you to do X, Y, and Z and call it a day. My goal is to be more descriptive about the thought process you should follow when planning your seed backup architecture. If you aren't thinking about your threat model, you may follow a prescriptive guide to your own detriment and end up with a false sense of security.
+The Paradox of Choice
+When we discuss backing up seed phrases, we're basically talking about the challenges of making copies of critical data so that you don't lose it. Unfortunately, there are innumerable ways to back up data - you're only really limited by your creativity. The result of this huge space of possible "solutions" means that
+most of them are flawed
+.
+Do not rely upon "the wisdom of the crowd" for advice on storing seed phrases. Whenever I come across threads like this, at least 95% of the answers have single points of failure.
+https://t.co/9jdeF7MoJY
+— Jameson Lopp (@lopp)
+September 14, 2021
+Let me reiterate a previous statement for emphasis:
+An entire industry has evolved to help people keep their 32 bytes of entropy secure.
+Why is this the case? How is it that after over a decade of dealing with private key management for cryptographic assets, we haven't found a bulletproof simple solution for self custody and moved on to more interesting, cutting-edge challenges? I believe it all comes down to the paradox of choice. This is a psychological phenomenon generally applied to consumer decisions, the point being that more choices do not result in a happier consumer because they become overwhelmed by the decision making process. I believe a similar phenomenon occurs for people who self custody because
+the design space for how to architect your key management system is vast
+.
+The best way I can think of to convey this problem is with the following visualization in the form of a decision tree: each black dot is a decision you have to make regarding how you store your seeds. In reality, the decision tree for backing up sensitive key material is far more complex than this diagram. Your goal is to navigate through all the possible decisions until you reach a "safe" (green) final architecture. If you make the WRONG decision somewhere along the line, or fail to even make a decision regarding an important factor, you end up with an architecture that has flaws and will fail in certain scenarios.
+Note that there's more than one sufficiently secure solution - if there was only one solution then it would be far easier for me to simply map out a prescriptive path of how to get there.
+Seed Backup Threat Model
+We already know why we are creating seed backups - to protect against loss of whatever devices (if any) we are storing the keys on for regular use. But what do we need to worry about protecting the backups themselves against?
+Loss due to destruction
+Loss due to complexity / not being able to restore from backup
+Loss to an attacker
+Before we get into any specific backup methods, the first question you should answer is:
+how many backups do you actually need
+? One may not be enough!
+Consider the device (if any) that is being used to store your keys for regular use. Does that device allow you to export the seed phrase whenever you want? If not, you need more than one backup. Assume that you only have one backup - if that backup gets lost / stolen / destroyed / inaccessible for any reason, then you now only have one copy of your seed phrase and you may not have any way to create additional copies if your key management device does not allow exporting the seed phrase. As such, in this situation you would need to create a new wallet, backup the seed phrase, and move all of your funds to the new wallet - all while praying that nothing goes wrong with your sole remaining set of keys (such as the device breaking or getting wiped.)
+While the goal of architecting a key backup solution should be to eliminate single points of failure, I'd posit that you should go a step further and ensure that even if you suffer a loss of one backup, that does not degrade your architecture to the point that it introduces a single point of failure.
+On the flip side, you should recognize that if your backups are vulnerable to being seized by an attacker (who could then steal all the funds from having a single backup) then increasing your redundancy by having multiple backups will simultaneously
+decrease your robustness
+against loss to attackers. We'll want to keep this in mind as we think through potential backup schemes so that we can avoid introducing such a terrible trade-off.
+Murphy's Law is in Play
+Be mindful of your assumptions - in the real world there are very few guarantees. When it comes to securing private keys you want to ensure that no single event can result in the loss or theft of your funds. As such, you should operate under the assumption that any given location in which you store backup data can be compromised.
+For example, even if you use a metal storage device that is robust enough to survive a building fire, you can't assume that you will be able to retrieve it. There are still other threats that could render it inaccessible to you, such as:
+It gets hit by high velocity firehose water and thrown away from the property / into a bunch of run-off that puts it into a sewer or ravine along with tons of other material.
+It gets picked up and pocketed by a fireman / contractor who is sifting through the rubble. You might be surprised by how many people are
+legally allowed to enter your property
+after a fire.
+Fire inspectors determine that due to chemicals on site, the property is contaminated and condemned; only hazmat crews are allowed on site.
+Terrible Backup Schemes
+Let's begin by going through some common forms of backing up seed phrases that are incontrovertibly prone to failure.
+Storing your (unencrypted) seed phrase in any online service. This includes:
+Taking a photo of your seed phrase.
+Any note taking apps that get synced to the cloud.
+Services that sync files from your phone / laptop to the cloud.
+Basically, any online account that could potentially be compromised by an attacker and have its contents read by them. This includes employees who work for that company / service! Here's one (of many) examples of people for whom this backup practice ended in catastrophe:
+$2 Million Allegedly Stolen From Cryptocurrency Vlogger in the Middle of His Livestream [UPDATED]
+Ian Balina, a popular cryptocurrency evangelist, was in the midst of a standard livestream on his YouTube channel on Sunday night when a viewer asked, “Ian, did you know that somebody transferred all your tokens from your account?” With $2 million worth of cryptocurrency gone from his wallet, Balina…
+Gizmodo
+The A.V. Club
+Using a "Brain Wallet" for which you choose the words. Humans are very poor sources of entropy and there are sophisticated attackers who are running daemons with access to billions if not trillions of potential brain wallet phrases who are just waiting to see a deposit made into any of them so that they can sweep the funds.
+In order to protect their backups from physical attackers, some folks naively split the seed phrase into several parts. This exponentially weakens your seed phrase against brute force attacks, as Andreas explains in depth in the following video.
+Don't try to make up your own novel seed phrase scheme; it's nearly guaranteed to be flawed. Even if it's not flawed from a security standpoint, folks often go TOO FAR and make their scheme so complex that they're likely to fail to recover the seed if something goes wrong far in the future. A while back I examined one such scheme devised by someone who emailed me asking if it was a sound plan:
+Bitcoin Seed Security Analysis
+Exploring the bounds of Seed phrase security.
+Cypherpunk Cogitations
+Jameson Lopp
+Along a similar vein, don't bother randomizing your backed-up seed phrases; depending upon the seed phrase length it would be trivial to detect and brute force given that seed phrases have built-in checksums. For example, a random list of 12 seed words only has 479 million combinations and only 30 million would be valid seed phrases; a sophisticated attacker would be able to check them all for funds in a matter of hours.
+What about memorizing your backups? Well, I can only think of one situation in which I'd ever consider that - if I'm fleeing from some calamity without much time to prepare and I'm worried about physical attackers accosting me during the journey or at border crossings. That is to say - I only think
+memorization is a good strategy for temporary emergency use
+. As a long term storage strategy it creates single points of failure:
+You may forget the seed phrase.
+You could be injured and unable to recall it.
+You could die and your heirs would be unable to access it.
+You could have seed phrase coerced out of you.
+Mediocre Backup Schemes
+Generic Shamir's Secret Sharing
+has quite a few weaknesses and pitfalls that I wrote about extensively several years ago. Implementing SSS greatly balloons the total design space and thus introduces a lot more potential for flaws in your backup architecture.
+Shamir’s Secret Sharing Shortcomings
+After extensive research we rejected using Shamir’s Secret Sharing Scheme because it exposes clients to many more risks. We recommend multisig instead.
+Casa Blog
+Jameson Lopp
+Seed Passphrases:
+A really common piece of advice I see being suggested on forums in order to protect your seed phrase backups from being susceptible to theft by a physical attacker is to initialize your single signature wallet with a "25th word passphrase" that must be entered every time you want to use it. This gives you a security model that's the same as a 2 of 2 multisig setup. Do you know why 2 of 2 multisig isn't popular? Because it has 2 single points of failure - if you lose either part, you're screwed. I've seen quite a few people over the years get locked out of their funds because they forgot or lost the passphrase that accompanied their seed phrase.
+Superior Backup Schemes
+Trezor's
+Shamir Backup
+- this is a well-vetted SSS standard. One downside to this solution is that it's not a widely supported backup scheme. As of the time of writing you can only recover this type of backup with a
+Trezor
+Model T,
+Keystone
+, or with
+Electrum
+.
+Blockchain Commons
+Sharded Secret Key Reconstruction
+is well thought out but unlike Trezor's Shamir Backup, you can't buy a dedicated airgapped device to use this cryptographic library. Your options for implementing this backup scheme are:
+Use the
+Gordian SeedTool iOS app
+(good UX but not airgapped)
+Build a
+LetheKit
+Use the
+seedtool-cli
+on an airgapped PC
+Seed XOR
+is, in my opinion, a superior way to achieve the properties that folks try to get with a "25th word passphrase" or via naive seed splitting, while decreasing the complexity and improving plausible deniability. Note that this is essentially an N of N (2-of-2 / 3-of-3 / etc) split backup, so
+you're going to want multiple sets
+of XOR'd backups to ensure that losing a single plate doesn't cause catastrophic loss.
+Multisignature. The great thing about using a wallet that is composed of many keys is that you don't have to worry about any given seed backup being a single point of failure. If an attacker gets one seed phrase, they don't have enough keys to steal your funds. If you lose a seed phrase, you can still spend using the others. This is, of course, assuming that your M of N multisig threshold is not a brittle N of N threshold.
+Multisig setups can add strength through diversity. At Casa 2 of your seed phrases are automatically backed up in different ways without any action needed on your part. Your mobile key gets
+automatically encrypted and backed up
+, while the Casa key is of course secured and backed up in our own cold storage. You can also
+download and store additional encrypted copies
+of the mobile key if you want. As such, a 2-of-3 user only needs to store the seed phrase for their 1 hardware device. 3-of-5 users have 3 hardware devices and can choose if they want to back up 1, 2, or 3 seed phrases as they have more redundancy built into their architecture. If they lose a seed phrase or it gets compromised, it's quite simple to perform a
+key rotation
+in the Casa app.
+Test Your Backup
+Regardless of which backup scheme you choose,
+if you don't actually do a test run of restoring a wallet from it, you can't be confident that it will work when you actually need it
+.
+How should you go about testing your backup?
+Create a new wallet.
+Create your seed phrase backups.
+Deposit a small amount of funds into the wallet, like $10 or $20 worth.
+If possible, create a new wallet with a different name, otherwise delete your current wallet.
+Initialize the new wallet using your seed phrase backup, make sure the funds appear in the wallet, and that you can spend them.
+Casa clients can test their backups by loading the seed phrases onto hardware wallets and then
+performing a health check
+. A more comprehensive test can be performed by following our
+Sovereign Recovery guide
+.
+Tamper Evidence
+Regardless of what form of media you decide to store your backups on (paper / metal / etc) you should take one extra step to ensure that no one can access this data and read it without you realizing. You can achieve this by sealing your backup data inside of an
+opaque, tamper evident bag
+. I suggest signing the bag and storing the serial number of the bag in a note in an encrypted password manager of your choice. That way you can be sure someone didn't simply open the bag and then replace the contents in a similar bag.
+Geographic Diversity
+If any single location has enough key material that a physical attacker could use it to steal funds, you have a single point of failure. You'll want to spread your backups across a variety of physically secure / hard to find locations so that it's unlikely that any single disaster or attacker will be able to cause a simultaneous loss from multiple locations.
+However, you don't want to take this too far! While you want it to be unlikely for an attacker or some event to be able to compromise your seeds, you also need to be able to check them every once in a while to ensure that they have not been compromised. If you never check your backups then a patient attacker could spend years slowly compromising enough of them that they can reconstitute your keys and steal your funds without you realizing until it's too late.
+Backup Device Choices and OPSEC
+It's unfortunate that hardware key management devices tend to ship with a piece of paper that they tell you to write your seed phrase on. I believe this is another example of prescriptive advice that the average person will follow without thinking about more deeply, thus leaving them in a flawed backup situation.
+If you have enough value being secured by private keys to warrant investing ~$100 in a hardware key management device then you should invest another ~$50 in a seed backup device that is practically indestructible. However, when thinking about metal backup devices you once again run into the Paradox of Choice. At time of writing there are over 50 commercial seed backup products on the market along with a handful of DIY methods. I've gone to great lengths to stress test every one that I can find. You can't go wrong if you choose one with an overall "A" grade.
+Metal Bitcoin Seed Storage Reviews
+Stress tests and reviews of seed storage devices.
+Metal Bitcoin Seed Storage Reviews
+Jameson Lopp
+If you choose to purchase a commercially produced metal backup plate,
+do not have it shipped to your home or any other location that will ultimately be used to store a seed phrase
+! You should assume that the shipping address will get leaked and used against you. If you don't have a private mailbox or remailing service, you should consider a DIY solution that just requires a trip to your local hardware store.
+Don't Plan for Protecting Current Value, plan for Future Value
+If you've made it this far you may be thinking "OK this seems like overkill and I only have a few hundred bucks worth of crypto assets so it's not worth the effort."
+But you have to be forward-looking. This guide is laying out a framework for constructing a seed backup plan that you can put in place and reasonably expect to remain intact for years if not decades. In all likelihood, 10 years from now the value of whatever assets your seed phrases can unlock with either be zero or they will be orders of magnitude more than the current value. You don't want to find yourself in a situation where you have a level of security sufficient for protecting $1,000 to be protecting $1,000,000 worth of assets.
+Oh, and One More Thing...
+Your seed phrase
+is not the only thing you should be backing up
+.
+You also need to know several other attributes of how your funds are locked.
+Which wallet software generated the seed. While nearly all wallets generate BIP39 compliant seeds, some, such as Electrum, do not.
+Script Type (P2PKH / P2WKH / P2SH / P2WSH / etc)
+Derivation Path
+If multisig, what M of N is required for spending and
+all of the extended public keys
+A potential solution for this is
+wallet output descriptors
+which is a standard for describing all of the aforementioned attributes in one blob of data. However, at time of writing only a handful of wallets support importing and exporting output descriptors.
+If you don't know these attributes then you will end up playing "treasure hunt" using the known common wallet attributes at
+walletsrecovery.org
+and if any of the attributes are nonstandard, you may never find your funds despite having the keys that can be used to unlock them!
+Note that these attributes are not particularly sensitive like your private keys are - if they leak to an attacker who doesn't have a spending threshold of your private keys, they can't spend your funds. I'd suggest keeping a copy of them with every seed phrase backup - inside of your tamper evident bag, of course.
+Seed Storage is a Personal Problem
+It isn't just personal because it's your assets we're talking about. It's personal because many of the choices you make will be based upon options that are unique to your situation. They may be unique due to your jurisdiction, your family, your mobility, your resources, etc.
+That's why I think prescriptive guides do a disservice - they tend to gloss over all the complexities that tend to arise due to an individual's circumstances.
+Do you want help architecting your key management solution? This is what we do every day at Casa;
+give us a call to learn more
+.
+Published by:
+You might also like...
+Sep
+17
+Bitcoin's Quantum Migration Debate
+A comprehensive review of both sides of Bitcoin's quantum migration debate.
+Sep 17, 2026
+29 min read
+Aug
+17
+BIP-110 Post Mortem
+A comprehensive review of the spam debates and BIP-110 fork movement.
+Aug 17, 2026
+38 min read
+Jul
+01
+Reflections Upon Bitcoin's Block Size Debate
+Analysis of the ideological split and narratives employed during Bitcoin's scaling debates.
+Jul 1, 2026
+12 min read
+May
+21
+Quantum Attack Game Theory
+A comprehensive analysis of potential attacks and undesirable outcomes resulting from a cryptographically relevant quantum computer being wielded against the Bitcoin network.
+May 21, 2026
+29 min read
+Feb
+23
+A Layman's Guide to BIP-110
+An explanation of why BIP-110 is reckless and doomed to fail.
+Feb 23, 2026
+20 min read
+Cypherpunk Cogitations © 2026
+Powered by Ghost

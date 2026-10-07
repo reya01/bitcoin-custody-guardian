@@ -1,0 +1,61 @@
+Jameson Lopp | /
+Articles | ../articles
+Presentations | ../presentations
+Interviews | ../interviews
+Projects | ../projects
+Bitcoin Info(current) | ../bitcoin-information
+Lightning Info | ../lightning-information
+Contact | ../contact
+Awesome Security Resources | https://github.com/decalage2/awesome-security-hardening
+Bitcoin is Safe | https://bitcoinissafe.com/
+Bitcoin's Security Model: A Deep Dive | https://blog.lopp.net/bitcoins-security-model-a-deep-dive/
+Jolly Roger's Security Guide for Beginners | /pdf/Jolly_Rogers_Security_Guide_for_Beginners.pdf
+Hacktown OPSEC Guide | http://hacktownpagdenbb.onion/Links0/Chapter-1.html
+Thoughts on Secure Storage of Crypto Assets | https://blog.lopp.net/thoughts-on-secure-storage-of--bitcoins-and-other-crypto-assets/
+Documented Physical Attacks | https://github.com/jlopp/physical-bitcoin-attacks/blob/master/README.md
+Physical Attack Stats | https://stats.gart.io/
+Timeline of Exchange Hacks | https://cryptosec.info/exchange-hacks/
+Timeline of Hardware Wallet Hacks | https://thecharlatan.ch/List-Of-Hardware-Wallet-Hacks/
+Triple Sec Digital Security Scheme | https://nau.github.io/triplesec/
+Beginner's Guide | https://www.athena-alpha.com/bitcoin-security/
+Bitcoin Security &amp; Storage 101 | https://www.youtube.com/watch?v=nYm8ROOSRCk
+Bitcoin Support DIY Guides | https://guides.bitcoinsupport.com/
+Casa Wealth Security Protocol | https://docs.casa.io/wealth-security-protocol
+Cryptoasset Inheritance Planning | https://www.amazon.com/Cryptoasset-Inheritance-Planning-Simple-Owners/dp/1947910116/
+Cryptocurrency Security Standard | https://cryptoconsortium.github.io/CCSS/
+The Dos and Don'ts of Key Management | https://blog.casa.io/the-dos-and-donts-of-bitcoin-key-management/
+Securing Your Wallet | https://bitcoin.org/en/secure-your-wallet
+Smart Custody Book | https://github.com/BlockchainCommons/SmartCustodyBook
+Wallet Security Checklist | https://snout0x.com/crypto-wallet-security-checklist/
+Bitcoin Confirmation Risk Calculator | https://jlopp.github.io/bitcoin-confirmation-risk-calculator/
+Binary Watch | https://binarywatch.org/
+Wallet Scrutiny | https://walletscrutiny.com/
+Self-Custody Score | https://dont-trust-verify.com/tools/self-custody-score
+Century Metadata | https://centurymetadata.org/
+How to Back up a Seed Phrase | https://blog.lopp.net/how-to-back-up-a-seed-phrase/
+How to Bury a Backup | https://blog.lopp.net/how-bury-bitcoin-seed-phrase-backup/
+Metal Seed Storage Reviews | https://jlopp.github.io/metal-bitcoin-storage-reviews/
+Penlock | https://penlock.io/
+Seed XOR | https://seedxor.com/
+Treatise on Bitcoin Seed Backup Device Design | https://blog.lopp.net/a-treatise-on-bitcoin-seed-backup-device-design/
+Guided Multisig Wallet Setup | https://bitcoin-safe.org/en/knowledge/setup-multisig-wallet/
+Guided SingleSig Wallet Setup | https://bitcoin-safe.org/en/knowledge/setup-singlesig-wallet/
+Bitkey | https://bitkey.io/
+DIY Multisig Guide | https://btcguide.github.io/
+Electrum Cold Storage Guide | http://docs.electrum.org/en/latest/coldstorage.html
+Glacier | https://glacierprotocol.org/
+Gregersen-Gono Standard | /pdf/gregersen-gono-cryptocurrency-storage-white-paper.pdf
+HODL Guides | https://github.com/DriftwoodPalace/guides
+Intro to Paper Wallets &amp; Cold Storage | https://www.youtube.com/watch?v=I1uefzJJ6nM
+Paper Wallet Cold Storage Guide | https://coinsutra.com/make-bitcoin-paper-wallet-spend-bitcoins/
+Proof Wallet | https://github.com/hodlwave/proof-wallet
+Rusty's Remarkably Unreliable Guide To Bitcoin Storage | https://github.com/rustyrussell/bitcoin-storage-guide
+Simple Self-Custody Cold Storage Scenario | https://github.com/BlockchainCommons/SmartCustodyWhitePapers/blob/master/%23SmartCustody-_Simple_Self-Custody_Cold_Storage_Scenario.md
+Subzero | https://github.com/square/subzero
+Tordl Wallet Protocols | https://github.com/fresheneesz/TordlWalletProtocols
+Antbleed | https://bitcoinmagazine.com/culture/bitmain-can-remotely-shut-down-your-antminer-and-everyone-elses
+Bitcoin CVEs | https://en.bitcoin.it/wiki/Common_Vulnerabilities_and_Exposures
+Dark Skippy | https://darkskippy.com/
+Bitcoin Abuse | https://www.bitcoinabuse.com/
+Crypto Scam DB | https://cryptoscamdb.org/
+Scam Alert | https://scam-alert.io/

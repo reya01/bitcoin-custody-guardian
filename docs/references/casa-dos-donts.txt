@@ -1,0 +1,231 @@
+The dos and don'ts of bitcoin key management
+Bitcoin
+Security
+Product Updates
+Casa Website
+Search
+Sign up
+Log in
+Casa Blog - Bitcoin Security Made Easy
+Bitcoin
+Security
+threats
+Private Key Management
+The dos and don'ts of bitcoin key management
+by
+Jameson Lopp
+6 years ago
+13 min read
+Bitcoin provides users with an incredibly high level of sovereignty over their money. You may have heard the phrase "be your own bank" which does a good job describing the power that bitcoin enables its users to wield. The flip side is that being your own bank comes with a lot of responsibility. The same features that make bitcoin so valuable (permissionlessness, censorship resistance, seizure resistance, etc.) also make it attractive to malicious actors. These malicious actors have come up with a wide variety of traps to fool bitcoin users into parting with their money, making bitcoin more challenging to use safely. The internet is a dangerous place, but we have the tools to protect ourselves!
+Do take control
+If you don't take possession of your own private keys, there's no way for you to truly know if they are secure. Any trusted third party such as an exchange is a black box to you.
+If you don't bother mastering your bitcoin then someone else will master it without you.
+— Jameson Lopp (@lopp)
+May 17, 2020
+When you entrust your keys to someone else, you might feel like you're ridding yourself of the risks that come with
+securing private keys
+. This is not the case — all of those threats still exist, but now
+you no longer have control over putting measures in place to stop them
+. Furthermore, your threat model actually expands because now there are additional risks to your money:
+Collusion against you by the custodian
+Internal attacks within the custodial organization
+External attacks incentivized by the custodian holding funds of many people
+The rest of this post may feel daunting due to its length, but knowledge is power!
+Do protect yourself
+Practice strong cyber hygiene on
+all your online accounts
+. Assume that your usernames and passwords to every service will get leaked. Use a password manager (preferably one secured by hardware second factor authentication (2FA) such as a Yubikey), to generate unique passwords for every service. Similarly, add 2FA to every online account that supports it, preferably hardware-based 2FA. If a service only supports TOTP, then you can secure those secrets on hardware (a Yubikey) via
+Yubico Authenticator
+.
+If you're not deeply familiar with best practices for cybersecurity and operational security, I recommend reading
+Jolly Roger's Security Guide For Beginners
+.
+Understand the trade-offs between convenience and security when it comes to your private keys. A single-signature hot wallet on your phone is great for "carrying around" spending money but should not be used to store your life savings. On the other hand, a geographically-distributed multisig setup should be inconvenient enough to access that you only spend from it on a monthly or yearly basis.
+Use dedicated hardware devices to store your private keys. Verify send addresses on dedicated hardware devices; don't trust addresses
+displayed in browsers or desktop software
+.
+Be sure to check the entire destination address when sending, not just the first few characters. There are many types of malware that will try to swap out your intended address for a similar-looking one owned by the malware authors.
+ComboJack malware tries to steal your cryptocurrency by changing the data in your clipboard | ZDNet
+Blockchain makes bitcoin tick, but it’s much bigger than that cryptocurrency. Here’s how it works and why it might change how you buy anything from mangoes to diamonds.
+ZDNet
+Danny Palmer
+Develop a solid plan for how to recover from disaster scenarios. This may involve a seed phrase backup scheme for which there are a
+variety of cold storage guides
+. We're not a fan of users having to manage seed phrase data; we explain why in this post.
+Casa’s Seedless Security Model
+Seed phrases are the keys to your bitcoin kingdom; Jameson makes the case for why bitcoin users should not need to manually manage their seed phrase backups.
+Casa Blog
+Jameson Lopp
+If you choose to store your seed phrase backups on metal devices, make sure you buy one that has been stress tested and shown to survive extreme environments!
+Metal Bitcoin Seed Storage Reviews
+Stress tests and reviews of seed storage devices.
+Metal Bitcoin Seed Storage Reviews
+Jameson Lopp
+Verify that the software you install is authentic and not a
+malicious lookalike
+. Unfortunately, verifiability is different for every platform. For desktop software, you can verify GPG signatures if you're comfortable with command line use. Mobile apps are generally cryptographically signed, but that signature is only verified by the app store. To prevent installing an imposter mobile app, go to the website of the company and click on a link to install the mobile app from their site.
+Don't get phished
+Don't type your seed phrase into any computer that is connected to the internet! Especially not into a web browser! Now that many bitcoin users are protecting their keys with dedicated hardware devices, we're seeing attackers go after the biggest remaining weakness: the human operator.
+Typosquatting
+is a lesser-known attack vector where malicious actors will buy domains that are close misspellings of common bitcoin web services. You should only visit financial websites via bookmarks to ensure that you don't accidentally end up on a typosquatter's malicious site.
+6 arrested in the UK and Netherlands in €24 million cryptocurrency theft
+Today, the UK’s South West Regional Cyber Crime Unit (SW RCCU) in a joint operation with the Dutch police (Politie), Europol, Eurojust and the UK’s National Crime Agency (NCA) has arrested 6 individuals after a 14-month long investigation into a €24 million cryptocurrency theft.
+Europol
+Fun fact learned while researching this: good guy exchange
+Bitonic
+registered
+http://bitadress.org/
+to prevent typosquatting.
+Similar to typosquatting is an issue where malicious sites pay for search engine advertisements, thus bumping up their sites before the normal search results. This is another reason to bookmark the sites you use rather than using a search engine to visit them; you might accidentally click on a malicious link.
+Don't install malware
+Avoid installing many browser extensions; they can
+easily be malicious
+and see all of your browsing activity.
+Exclusive: Google removes 49 Chrome extensions caught stealing crypto-wallet keys | ZDNet
+The Chrome extensions were mimicking cryptocurrency wallet apps like Ledger, MyEtherWallet, Trezor, Electrum, and others, but, in reality, they were stealing users’ private keys and mnemonic phrases.
+ZDNet
+Catalin Cimpanu
+Don't use wallets that are browser extensions; they
+may be outright scams
+.
+Don't run software wallets on a desktop machine that has lots of other software installed. You increase the risk of other software being
+compromised via dependency injection
+that will install clipboard malware and trojans that
+scan your computer for private keys
+.
+Don't fall victim to
+ransomware that hijacks your hard drive
+. Only install authentic software and make sure you
+back up your hard drive regularly
+so that you can recover data in the event that you lose access to your data.
+Don't use web-based QR code generators — especially not "bitcoin QR code generators" — since they may replace your address with their own.
+This website claims to turn your addresseinto a QR code, but actually just outputs their own address no matter what you put in. Nice try, scammers.
+from
+Bitcoin
+Do verify the authenticity of any software you install, if at all possible. This means checking file hashes and GPG signatures on any binaries that you download. Do not install software to hold your private keys if you can't verify what it's doing. This includes things like running AWS images that are maintained by third parties.
+Bitcoin Core node Hacked
+from
+Bitcoin
+Don't create technical weaknesses
+Most users should not store private key backups digitally; especially not in an online service. While it is possible to create secure digital backups, you need to be an advanced user in order to so safely.
+$2 Million Allegedly Stolen From Cryptocurrency Vlogger in the Middle of His Livestream [UPDATED]
+Ian Balina, a popular cryptocurrency evangelist, was in the midst of a standard livestream on his YouTube channel on Sunday night when a viewer asked, “Ian, did you know that somebody transferred all your tokens from your account?” With $2 million worth of cryptocurrency gone from his wallet, Balina…
+Gizmodo
+We recommend against using browser-based wallets, even if it's just a browser interface to a hardware wallet; the attack surface for browsers is huge.
+Security Issues with Browser-Based Bitcoin Wallets
+While no wallet software can protect you against every security issues, at Casa we have concluded that browser-based wallets are the most vulnerable for a variety of reasons.
+Casa Blog
+Jameson Lopp
+Similarly, if you're using Tor browser to access a web service that displays bitcoin addresses for deposits, you should be aware that malicious Tor relays could swap out addresses for their own.
+How Malicious Tor Relays are Exploiting Users in 2020 (Part I)
+In December 2019 I wrote about The Growing Problem of Malicious Relays on the Tor Network with the motivation to rise awareness and to improve the situation over time. Unfortunately instead of…
+Medium
+nusenu
+Don't use brain wallets — humans are terrible at generating entropy! If you send funds to a brain wallet composed of common English words, it will likely be stolen in seconds.
+Don't use Shamir's Secret Sharing; it has many downsides that I go into detail here:
+Shamir’s Secret Sharing shortcomings
+After extensive research we rejected using Shamir’s Secret Sharing scheme because it exposes clients to many more risks. We recommend multisig instead.
+Casa Blog
+Jameson Lopp
+Don't manually split up your seed phrases; it drastically reduces their security against being brute forced.
+Don't get creative and try to obfuscate your seed backups. You'll likely degrade the security and run the risk of data loss. I go into depth with one example in this post:
+Bitcoin Seed Security Analysis
+An analysis of Bitcoin seed security.
+Casa Blog
+Jameson Lopp
+Along a similar vein, don't bother randomizing your backed-up seed phrases; depending upon the seed phrase length it would be trivial to detect and brute force given that seed phrases have built-in checksums. For example, a 12-word phrase only has 500 million combinations, of which perhaps 50,000 would be valid; a sophisticated attacker would be able to check them all for funds in a matter of minutes.
+Don't use paper wallets. They're very hard to use securely and it's easy to accidentally lose funds if you don't understand all the risks.
+One common theme we've seen with new Casa clients is that they have split up their funds across a variety of single signature hardware devices or paper wallets. While this does decrease your risk of catastrophic loss it actually
+increases
+your risk of partial loss.
+Don't believe that distributing your keys across many single points of failure is safe
+.
+Don't get scammed
+Don't believe scareware/blackmail messages, even if they include your username and password to various services — those are taken from database leaks that get sold on the dark web. At time of writing, the latest variant of these are "sextortion scams" that will claim that they installed malware on your computer and recorded embarrassing images of you.
+Steer clear of "bitcoin doubling" scams. Nobody is going to take your bitcoin and then give even more back to you for the pleasure of holding onto your money for a matter of minutes. The time value of money simply isn't that high.
+No, Bill Gates / Elon Musk / Jack Dorsey / your favorite celebrity are not running a bitcoin giveaway. If you send bitcoin to an address that promises to send more back to you, I guarantee you'll get 0 BTC back.
+— Jameson Lopp (@lopp)
+April 24, 2020
+Don't try to collect airdrops; they
+may be fake.
+Some may try to phish for your credentials to online wallets/services. More sophisticated scams will be malware wallets that steal your bitcoin. The only safe way to collect airdropped forkcoins from a wallet is
+after
+you have moved your bitcoin to a completely new wallet.
+Bitcoin Gold Wallet Scam Nets $3 Million in Illicit Earnings - CoinDesk
+A scammer successfully made more than $3 million after getting the private keys to bitcoin gold users’ wallets during the fork’s launch period.
+CoinDesk
+Omkar Godbole
+Avoid the temptation to send bitcoin to mixer websites; most are scams. Mixing can only be done safely by running your own mixing software so that you retain control of your private keys.
+JoinMarket
+,
+Wasabi
+, and
+Whirlpool
+are several such examples.
+Recently got into trading and sending Bitcoin, without research decided to try and send BTC to a mixer and (despite 151 confirmations) the mixer has yet to display the funds I sent
+from
+Bitcoin
+Don't invest in Initial Coin Offerings without performing plenty of due diligence. A
+Bloomberg research report
+concluded that 80% of ICOs have been fraudulent.
+Similarly, don't fall victim to greed and participate in "pump-and-dump" groups. The most likely outcome of such activity will be that a few insiders end up profiting and you end up losing your money.
+Here’s How Scammers Are Using Fake News To Screw With Bitcoin Investors
+In the largely unregulated world of bitcoin and cryptocurrency, fraudsters are getting rich by deliberately spreading false information to affect the price of their holdings using social media, scam n
+BuzzFeed News
+Ryan Mac
+Don't buy hardware wallets from resellers. Similarly, don't initialize hardware wallets with seed phrases supplied to you by a third party.
+Life Savings Stolen from Second-hand Ledger Hardware Wallet
+Reddit user reports he’s lost all his cryptocurrency after a second-hand Ledger wallet scam.
+Cointelegraph
+Jon Buck
+Don't get hacked
+Don't install remote-access software like Teamviewer on any of your computers.
+I'm devastated, got hacked and lost 40.5 BTCs. Please, help me find who did it
+from
+Bitcoin
+Don't be a target
+Don't make yourself a target by talking about your bitcoin. For example, Cody posted this tweet about a friend whose Coinbase account was hacked. Unfortunately, he leaked the info that he also had a funded Coinbase account.
+This incident with
+@adachis
+is pretty troubling for
+@coinbase
+. I trade all my coins there, worried by their lack of transparency & response
+pic.twitter.com/5nqrXjhzxu
+— codyb (@codybrown)
+May 21, 2017
+Within a few days, he was SIM swapped and his Coinbase account was similarly drained.
+How to lose $8k worth of bitcoin in 15 minutes with Verizon and Coinbase.com
+I call again and repeatedly tap zero to try and get an operator. No dice. A minute later I get a duplicate text message. Incredibly anxious minutes go by as I attempt to reach Verizon. I google…
+Medium
+Cody Brown
+Along the same vein of phone security, avoid connecting your phone number to any online accounts; an attacker could SIM swap your phone number and use it to break into those accounts via password resets. This is so common that it's not even funny any more; when I worked at BitGo we caught onto this trend early and
+removed SMS functionality from our platform
+. And yet, 3 years later, a BitGo engineer fell victim to this same vulnerability (with their Coinbase account).
+The Most Expensive Lesson Of My Life: Details of SIM port hack
+I lost north of $100,000 last Wednesday. It evaporated over a 24-hour time span in a “SIM port attack” that drained my Coinbase account. It has been four days since the incident and I’m gutted. I…
+Coinmonks
+Sean Coonce
+Security is a dynamic environment
+The battles between attackers and defenders are constantly changing as they innovate new tactics and force the opposing side to respond. If you're feeling overwhelmed by the magnitude of threats to your bitcoin, have no fear — we have architected Casa's self-custody solution to mitigate them.
+If you're looking for a consultation on your bitcoin security setup, Casa is ready to help! Our premium tiers of service include Client Advisors who will work with you to customize your setup to your specific needs.
+Get started here
+.
+Stay safe
+Want more tips on bitcoin security? You can join the Casa Security Briefing for a weekly update on news + developments impacting your personal security and privacy.
+The Services are a platform for managing cryptographic keys and nodes. The Services are not an exchange for buying, selling, or trading digital or virtual currency or assets (an “Exchange”), and Casa is not a bank or other financial institution. The Services do not and cannot sell, hold, invest, send or receive money or cause or effect any digital or virtual currency or asset transactions. BY USING THE SERVICES IN ANY MANNER, YOU ACKNOWLEDGE AND AGREE THAT (A) CASA IS NOT IN THE BUSINESS OF PROVIDING FINANCIAL, LEGAL, TAX, ACCOUNTING, OR INVESTMENT ADVICE OR SERVICES, (B) NONE OF THE SERVICES ARE INTENDED TO PROVIDE OR CONTAIN ANY SUCH ADVICE OR SERVICES, AND (C) ANY AND ALL SERVICES ARE PROVIDED FOR INFORMATIONAL PURPOSES ONLY. Casa urges you to consult a qualified professional for any such advice or service.
+Read more posts by this author
+Jameson Lopp
+Jameson Lopp is co-founder and Chief Security Officer of Casa. He is passionate about creating tools to empower individuals; he has been building bitcoin wallets since 2015.
+The link has been copied!
+Newer Post
+Casa supports ION for Bitcoin-based identity
+Older Post
+🎉 Casa Announces Investment from Mantis VC
+Bitcoin
+Security
+Product Updates
+Casa Website
+© 2026
+Casa Blog
+.
+All Rights Reserved.
