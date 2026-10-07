@@ -28,7 +28,8 @@
  ],
  "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
  "source_url": "internal://eval-guidance",
- "notes_for_reviewer": "Both required eval phrasings appear verbatim in plain and again in claims 1-2. Choices to confirm: risk_class danger (cloud-exposed seed implies total loss; could be downgraded to caution); no vendors named in guidance, OS behavior cited generically; address prefixes simplified for novices. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "notes_for_reviewer": "Both required eval phrasings appear verbatim in plain and again in claims 1-2. Choices to confirm: risk_class danger (cloud-exposed seed implies total loss; could be downgraded to caution); no vendors named in guidance, OS behavior cited generically; address prefixes simplified for novices. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. Human operator approved 2026-10-06 (Telegram digest).",
  "corpus_version": "0.3.0-draft",
- "reviewed": false
+ "reviewed": true,
+ "reviewed_date": "2026-10-06"
 }

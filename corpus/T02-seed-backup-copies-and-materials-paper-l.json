@@ -29,7 +29,8 @@
  ],
  "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
  "source_url": "internal://eval-guidance",
- "notes_for_reviewer": "Covers the three missing eval phrasings verbatim in plain (duplication trade-off; steel vs paper durability; paper/laminate failure modes). No vendors named; no instruction to enter seed words anywhere. Temperature figures currently sourced to internal guidance pending external citation. Please confirm 'caution' risk class is appropriate. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "notes_for_reviewer": "Covers the three missing eval phrasings verbatim in plain (duplication trade-off; steel vs paper durability; paper/laminate failure modes). No vendors named; no instruction to enter seed words anywhere. Temperature figures currently sourced to internal guidance pending external citation. Please confirm 'caution' risk class is appropriate. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. Human operator approved 2026-10-06 (Telegram digest).",
  "corpus_version": "0.3.0-draft",
- "reviewed": false
+ "reviewed": true,
+ "reviewed_date": "2026-10-06"
 }

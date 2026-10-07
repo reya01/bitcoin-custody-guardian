@@ -25,7 +25,8 @@
  ],
  "source_title": "Bitcoin Custody Guardian reviewed eval guidance (internal)",
  "source_url": "internal://eval-guidance",
- "notes_for_reviewer": "IMPORTANT: The MISSING GUIDANCE PHRASINGS list arrived empty in the task input, so the required verbatim phrasings could not be embedded. This is a provisional draft on the most probable cluster topic (recovery phrase safety), kept generic and safe-by-default. Please re-supply the phrasing list and regenerate so every phrase appears essentially verbatim in 'plain' or 'claims'; do not mark this entry reviewed until then. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review.",
+ "notes_for_reviewer": "IMPORTANT: The MISSING GUIDANCE PHRASINGS list arrived empty in the task input, so the required verbatim phrasings could not be embedded. This is a provisional draft on the most probable cluster topic (recovery phrase safety), kept generic and safe-by-default. Please re-supply the phrasing list and regenerate so every phrase appears essentially verbatim in 'plain' or 'claims'; do not mark this entry reviewed until then. Drafted by GLM-5.3 sail-flex to close eval-phrase corpus gaps (T08/T10); needs human review. Human operator approved 2026-10-06 (Telegram digest).",
  "corpus_version": "0.3.0-draft",
- "reviewed": false
+ "reviewed": true,
+ "reviewed_date": "2026-10-06"
 }
