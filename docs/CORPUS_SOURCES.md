@@ -57,6 +57,10 @@ version).
 - **Onramp (onrampbitcoin.com/resources)** — first-party resource library: multi-institution custody architecture, inheritance, wealth-management-oriented explainers; complements River's library with a custody-architecture perspective
 - Strike/Swan/Kraken public fee & security documentation for comparison entries
 
+### Operator-designated trusted references (2026-10-07)
+- **Mastering Bitcoin, 3rd Ed. (bitcoinbook/bitcoinbook, develop)** — chapters 04 (keys), 05 (wallets/mnemonics/backups), 06 (transactions/finality), 09 (fees), 13 (security). **License verified: CC-BY-SA 4.0 for the 3rd edition** (docs/references/bitcoinbook-license.txt). Attribution required; same-share for any verbatim reuse — our entries are original rewrites with attribution.
+- **Jameson Lopp's Bitcoin security index** (lopp.net/bitcoin-information/security.html) — link registry; snapshot in docs/references/lopp-security-links.txt. Articles fetched so far: "How to Back up a Seed Phrase", plus Casa "Dos and Don'ts of Key Management" and bitcoin.org "Securing Your Wallet" (fetched as references; licensing per-site, all rewritten in-house).
+
 ### Licensing notes
 - BIPs: PD/BSD-style (fine). Bitcoin Design Guide: CC-BY (fine with attribution).
 - Vendor docs: quote *sparingly*, link-frozen, transformed into plain language — never wholesale copies.
