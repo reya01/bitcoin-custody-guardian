@@ -1,0 +1,56 @@
+{
+ "title": "Handling a Word List: Copying, Storing, Who May Touch It",
+ "topic_ids": [
+  "T02",
+  "T06"
+ ],
+ "plain": "Your recovery word list (often 12 or 24 words) is not a password to an account — it is the money itself. A Bitcoin wallet holds no coins; it holds keys, and modern wallets build every key from one random seed that is written down as this word list. Whoever holds the words holds every key and every coin, forever. Treat the list as the most valuable thing you own, because it is.\n\nDO: Write the words by hand, in order, on paper — or better, stamp or engrave them into metal that can survive a house fire. Keep more than one copy in separate places, so one fire, flood, or lost copy cannot leave you with nothing. Before you depend on it, make sure you can actually restore the wallet from your copy.\n\nDO NOT: Take a photo of the words, type them into a notes app, email them, or save them in any cloud or online account — those can be hacked, and even the company's own employees could read what is stored there. Do not pick the words yourself, and do not split the list into pieces to hide them — homemade schemes almost always end in total loss.\n\nWHO MAY SEE IT: Only you, and anyone you would trust with the entire amount. No legitimate support person, exchange, or app will ever need your words — anyone who asks for them is trying to steal your bitcoin. If you need to check your copy, do it by re-entering the words into your own wallet device itself, never into a website or anything connected to the internet.",
+ "technical": "Modern wallets do not generate keys independently; they derive all keys from a single random seed using a deterministic algorithm. As the reference explains, 'A user of deterministic key generation can back up every key in their wallet by simply recording their seed and a reference to the deterministic algorithm they used' — even a wallet with a million addresses reduces to one seed backup. That seed is entropy (for example, 32 bytes) which the BIP-39 standard encodes as a mnemonic sentence, such as the 24-word example shown in the reference. The mnemonic is therefore the master backup: possession of it allows regeneration of every derived private key and control of all associated funds.\n\nThe backup threat model has three failure modes: loss due to destruction, loss due to complexity or not being able to restore from backup, and loss to an attacker. Redundancy (multiple backups) mitigates the first, but for unencrypted backups it simultaneously increases theft exposure — a trade-off that must be managed deliberately. Certain schemes are disqualified outright: storing an unencrypted seed phrase in any online service, splitting the phrase into parts (which 'exponentially weakens your seed phrase against brute force attacks'), and user-chosen brain wallets ('humans are very poor sources of entropy').",
+ "claims": [
+  {
+   "claim": "A Bitcoin wallet contains only keys, not bitcoins; the keys are associated with bitcoins recorded on the blockchain.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "Modern wallet applications derive keys from a single random seed using a deterministic algorithm, so a user can back up every key in the wallet by recording the seed and the algorithm used.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "32 bytes of entropy can be encoded as a 24-word mnemonic.",
+   "source": "lopp-backup-seed.txt"
+  },
+  {
+   "claim": "Storing an unencrypted seed phrase in any online service — including taking a photo, note apps synced to the cloud, or file-sync services — is incontrovertibly prone to failure because any online account could be compromised, including by employees of that company.",
+   "source": "lopp-backup-seed.txt"
+  },
+  {
+   "claim": "Seed backups must be planned against three threats: loss due to destruction, loss due to complexity or not being able to restore from backup, and loss to an attacker.",
+   "source": "lopp-backup-seed.txt"
+  },
+  {
+   "claim": "One backup may not be enough; the goal is to eliminate single points of failure so that losing one backup does not degrade your architecture to a single point of failure.",
+   "source": "lopp-backup-seed.txt"
+  },
+  {
+   "claim": "Splitting a seed phrase into several parts exponentially weakens it against brute force attacks.",
+   "source": "lopp-backup-seed.txt"
+  },
+  {
+   "claim": "You should not make up your own novel seed phrase scheme — it is nearly guaranteed to be flawed, and brain wallets fail because humans are very poor sources of entropy.",
+   "source": "lopp-backup-seed.txt"
+  }
+ ],
+ "warnings": [
+  "Never photograph, type, or store your word list on any phone, computer, cloud, or online account.",
+  "Never show your words to anyone — no real support agent, exchange, or app will ever ask for them.",
+  "Never choose the words yourself — they must come from your wallet's random generation.",
+  "Never split the word list into pieces or invent your own hiding scheme.",
+  "Keep more than one physical copy so a single fire, flood, or theft cannot take everything.",
+  "Copy the words exactly, in order, and confirm you can restore the wallet before you depend on the backup."
+ ],
+ "source_title": "How to Back Up a Seed Phrase",
+ "source_url": "https://blog.lopp.net/how-to-back-up-a-seed-phrase/",
+ "risk_class": "danger",
+ "reviewed": false,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+}

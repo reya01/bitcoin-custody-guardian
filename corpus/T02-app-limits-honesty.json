@@ -1,0 +1,55 @@
+{
+ "title": "What This App Cannot Know: Honest Limits",
+ "topic_ids": [
+  "T02",
+  "T07"
+ ],
+ "plain": "This app is a teacher, not a bank teller. It never goes online, so it cannot look up today's bitcoin price, cannot see your wallet or your balance, and cannot know what you actually inherited. It also cannot give legal or tax advice, because those answers depend on your country and your personal situation.\n\nWhat it can do is teach you how bitcoin safekeeping works, give you step-by-step checklists, and show you the tricks scammers use. This matters because bitcoin works like digital cash: whoever holds the keys controls the money, and there is no customer service line that can reverse a mistake.\n\nDO: read the lessons, work through the checklists before you move any coins, and learn the common scam patterns. DO NOT: type your seed words into any app or website (including this one), share keys with anyone who contacts you first, or treat any example number in this app as a real price.\n\nFor current prices, use a source you choose and trust. For legal and tax questions, talk to a qualified professional where you live. This app gives you knowledge; the decisions, and the keys, stay with you.",
+ "technical": "This application is deliberately kept outside the transaction path: it holds no private keys, performs no transaction construction or independent validation, and has no network connectivity, so it can neither observe balances nor query market data. This follows the reference's core guidance for Bitcoin systems: 'don't take control of keys away from users and don't outsource validation.' Applying the reference's own evaluation method, in which each component is assessed under a hypothetical scenario where it is completely compromised, a compromise of this app exposes only educational content, never user funds, because no key material ever passes through it.\n\nThe reference states that 'ultimately, the only thing that should be explicitly trusted is a fully validated blockchain,' and that any application which 'explicitly or implicitly vests trust in anything but the blockchain' introduces vulnerability. Accordingly, this app is not a root of trust: users should verify balances with their own wallet software and independently validated blockchain data, and should treat pricing, legal, and tax decisions as outside this app's trust boundary. The offline design also reflects Bitcoin's decentralized security model, in which 'responsibility for maintaining the secrecy of their keys' rests with the user, not with any service provider.",
+ "claims": [
+  {
+   "claim": "Possession of the keys to spend certain bitcoins is equivalent to possession of cash or a chunk of precious metal.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "Users have no recourse within the protocol if coins are lost, misplaced, or stolen, 'just as if they dropped cash on a public sidewalk.'",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "A Bitcoin wallet, containing your keys, can be backed up like any file, even printed on paper for hard-copy backup.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "Bitcoin's decentralized security model puts power in users' hands, along with 'responsibility for maintaining the secrecy of their keys.'",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "Secure Bitcoin design in simple terms: 'don't take control of keys away from users and don't outsource validation.'",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "'Ultimately, the only thing that should be explicitly trusted is a fully validated blockchain.'",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "An application that 'explicitly or implicitly vests trust in anything but the blockchain' introduces vulnerability and should be a source of concern.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "A good method to evaluate any Bitcoin application's security is to consider each component under a hypothetical scenario where it is completely compromised.",
+   "source": "ch13_security.adoc"
+  }
+ ],
+ "warnings": [
+  "Never type your recovery seed words into any app, website, or form — including this one.",
+  "Never share keys or seed phrases with anyone who contacts you first, no matter who they claim to be.",
+  "Do not treat anything in this app as legal or tax advice; consult a qualified professional.",
+  "Look up current prices yourself on a source you choose and trust; this app cannot show them.",
+  "Treat any urgent message about your inherited bitcoin as a scam until proven otherwise."
+ ],
+ "source_title": "Mastering Bitcoin: Programming the Open Blockchain (2nd ed.), Chapter 13 — Bitcoin Security (ch13_security.adoc)",
+ "source_url": "https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch13_security.adoc",
+ "risk_class": "informational",
+ "reviewed": false,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+}

@@ -1,0 +1,56 @@
+{
+ "title": "First Hours: Securing Inherited Bitcoin Safely",
+ "topic_ids": [
+  "T06",
+  "T01"
+ ],
+ "plain": "First, take a breath. Bitcoin does not expire, and nothing has to happen today — rushing is what causes loss. Your only jobs right now are to find things and protect them. DO search calmly for whatever controls the bitcoin: a small device that looks like a USB stick (a hardware wallet), papers or cards with 12 or 24 written words (a recovery phrase), notebooks, safe-deposit keys, and the person's computers and phones. DO NOT throw away, wipe, reset, or 'clean up' anything you find — even a scruffy old laptop or a paper that looks like nonsense may be the only copy of the money.\n\nDO NOT power on the person's computers or plug their devices into anything yet. Computers that have been online for years can carry hidden software that steals bitcoin, and experts warn against running wallets on machines with lots of other programs installed. DO NOT type the written words into any computer, phone, or website — no honest service needs you to do that, and anyone who gets those words can take the money. DO NOT trust strangers who contact you first offering to 'help recover' the bitcoin; that is a known scam pattern.\n\nDO secure what you found, physically, today. Those words on paper work like a signed blank check: anyone who reads them can spend the money. Lock papers and devices in a safe, a locked drawer, or a safe-deposit box. Protect them from fire and water — experts recommend metal backup plates that have been stress-tested to survive extreme environments, or at minimum a fireproof container. Keep copies in more than one secure place, because one location is a single point of failure. DO NOT photograph the words or store them in email, the cloud, or a notes app.\n\nDO write a short plan before you touch anything digital: what you found, where it is now, and who else should know. If you find passwords, keep a paper copy in a safe place — with Bitcoin there is no bank to reset a forgotten password, and losing it means losing the money forever. Then, when you are ready, learn the next steps (checking devices safely, moving the bitcoin to a wallet you control) before you act.",
+ "technical": "In Bitcoin, possession of the private keys is functionally equivalent to possession of the funds: there is no recourse within the protocol if keys are lost, stolen, or destroyed. The inherited funds may be controlled by a hardware wallet, a software wallet on a general-purpose computer, or a written recovery phrase (seed phrase) from which the keys are derived. Most modern wallets are deterministic, meaning a single backup of the recovery phrase is sufficient to restore all past and future addresses; however, some wallets manage many private keys behind the scenes, so a backup covering only the currently visible keys may not recover all funds — a key reason to change nothing and delete nothing before a complete inventory. Until the inherited computing environment can be assessed, treat any internet-connected machine as potentially compromised: trojans exist that scan for private keys and mnemonic phrases, and clipboard malware can silently swap destination addresses.\n\nFor preservation, apply the references' backup principles: use many secure locations rather than a single point of failure, prefer durable media (stress-tested metal seed storage survives extreme environments far better than paper), and encrypt any backup that must be exposed to a network. Longer term, an offline wallet (cold storage) or a hardware wallet — a dedicated device on which no other software can be installed — provides the best balance of very high security and ease of use for savings, optionally hardened with multi-signature so that compromising a single device or location is not enough to spend the funds.",
+ "claims": [
+  {
+   "claim": "Possession of the keys to spend certain bitcoins is equivalent to possession of cash or a chunk of precious metal, and users have no recourse within the protocol if they are lost or stolen.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "Some wallets manage many private keys behind the scenes, so a backup that only covers the keys currently visible to you might not be able to recover all of your funds.",
+   "source": "bitcoinorg-secure-wallet.txt"
+  },
+  {
+   "claim": "Single points of failure are bad for security, so you should consider keeping backup copies in more than one physical place, using durable storage media.",
+   "source": "bitcoinorg-secure-wallet.txt"
+  },
+  {
+   "claim": "Do not type your seed phrase into any computer that is connected to the internet — especially not into a web browser.",
+   "source": "casa-dos-donts.txt"
+  },
+  {
+   "claim": "If you choose to store your seed phrase backups on metal devices, make sure you buy one that has been stress tested and shown to survive extreme environments.",
+   "source": "casa-dos-donts.txt"
+  },
+  {
+   "claim": "Do not run software wallets on a desktop machine that has lots of other software installed, because other software may be compromised by trojans that scan your computer for private keys.",
+   "source": "casa-dos-donts.txt"
+  },
+  {
+   "claim": "Hardware wallets are the best balance between very high security and ease of use, and no software can be installed on them, making them very secure against computer vulnerabilities and online thieves.",
+   "source": "bitcoinorg-secure-wallet.txt"
+  },
+  {
+   "claim": "If the location of your wallets or your passwords are not known by anyone when you are gone, there is no hope that your funds will ever be recovered.",
+   "source": "bitcoinorg-secure-wallet.txt"
+  }
+ ],
+ "warnings": [
+  "Do not power on or plug in the person's computers, phones, or USB devices until you have a safety plan.",
+  "Do not type the 12 or 24 words into any website, app, email, or chat — legitimate services never ask for them.",
+  "Do not throw away, wipe, reset, or reorganize any device, drive, or paper before completing a full inventory.",
+  "Do not photograph the recovery words or save them in email, cloud storage, or notes apps.",
+  "Do not trust anyone who contacts you first offering to recover, unlock, or 'verify' the bitcoin.",
+  "Do not keep every copy in one place — one fire, flood, or break-in could mean permanent loss."
+ ],
+ "source_title": "Securing your wallet – Bitcoin.org",
+ "source_url": "https://bitcoin.org/en/secure-wallet",
+ "risk_class": "caution",
+ "reviewed": false,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+}

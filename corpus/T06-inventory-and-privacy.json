@@ -1,0 +1,56 @@
+{
+ "title": "Making a Private Inventory of What Was Inherited",
+ "topic_ids": [
+  "T06",
+  "T09"
+ ],
+ "plain": "As you sort through what was left behind, keep a running list of anything that might be bitcoin-related: small USB-stick-like gadgets with buttons or a tiny screen, phones and computers, papers with 12 or 24 handwritten words, metal plates with engraved words, notebooks, and printed files. For each item, write down three things only: what it is (a guess is fine), where you found it (which room, drawer, or safe), and its state (working, damaged, sealed, unreadable).\n\nThe one rule that matters most: never copy the secrets themselves into your list. If a paper has words written on it, record 'paper with 24 handwritten words, found in the fireproof box' — never the words themselves. The same goes for PINs and passwords. Anyone who sees those words can spend the bitcoin, and unlike a bank, there is nobody to call to reverse it. Treat those words like the cash itself.\n\nKeep the inventory on paper in a locked drawer or with your other private papers, or on a phone or computer that only you use. Do not email it to yourself, do not store it in a shared cloud account, and do not leave it out where visitors, cleaners, or repair workers can see it. Where you can, keep the list stored separately from the items it describes.\n\nPrivacy matters because possession of the keys is possession of the money. If word spreads that you are holding keys to a meaningful amount, you can become a target for theft or pressure, and a bitcoin transfer cannot be undone. Tell as few people as possible, and be careful with anyone who starts asking questions about what you found.",
+ "technical": "A wallet database contains only keys, not bitcoins; the keys are associated with bitcoins recorded on the blockchain, and proving control of them authorizes spending. Modern wallets derive keys deterministically from a single random seed, so recording the seed plus a reference to the derivation scheme is sufficient to recover every key in the wallet — which is exactly why the seed (and any PIN or passphrase protecting it) must never appear in an inventory. A found device may be a hardware signing device: wallet applications can produce the necessary signatures by working with external tools, and some wallet databases contain only public keys or only some of the private keys (for example in a multisignature scheme), so the device's state — initialized, wiped, or PIN-locked — is the relevant fact to record.\n\nFrom a security-model standpoint, possession of the keys to spend certain bitcoins is equivalent to possession of cash or a chunk of precious metal, and there is no recourse within the protocol for loss or theft. Keys can be backed up like any file, in multiple copies, even printed on paper for hard-copy backup, so paper items in the estate may themselves be the backup. Bitcoin's decentralized model places responsibility for key secrecy on the user, and users on internet-connected general-purpose devices are compromised one by one; an inventory that aggregated secret material would concentrate risk in precisely the way this model warns against.",
+ "claims": [
+  {
+   "claim": "A Bitcoin wallet contains only keys, which are associated with bitcoins recorded on the blockchain; proving control of the keys is what allows spending.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "Losing access to a private key can make it impossible for anyone to ever spend the bitcoins received to the corresponding public key.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "A user of deterministic key generation can back up every key in their wallet by simply recording their seed and a reference to the deterministic algorithm they used.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "Wallet applications may produce the necessary signatures by working with external tools, such as hardware signing devices or other wallets in a multisignature scheme.",
+   "source": "ch05_wallets.adoc"
+  },
+  {
+   "claim": "Possession of the keys to spend certain bitcoins is equivalent to possession of cash or a chunk of precious metal.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "If keys are lost, misplaced, or stolen, users have no recourse within the protocol, just as if they dropped cash on a public sidewalk.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "A Bitcoin wallet containing your keys can be backed up like any file, stored in multiple copies, even printed on paper for hard-copy backup.",
+   "source": "ch13_security.adoc"
+  },
+  {
+   "claim": "Bitcoin's decentralized security model pushes responsibility and control to users, who must maintain the secrecy of their keys, and many users are not able to adequately secure their keys and get hacked, one by one.",
+   "source": "ch13_security.adoc"
+  }
+ ],
+ "warnings": [
+  "Never write seed words, recovery phrases, PINs, or passwords in the inventory — describe the item and its location instead.",
+  "Never photograph, scan, or photocopy papers that contain secret words.",
+  "Keep the inventory on paper in a locked place or on a device only you control — never in email, shared cloud storage, or a shared computer.",
+  "Do not tell people you may have inherited bitcoin keys; knowledge of valuable keys can make you a target for theft.",
+  "Do not type any words or codes you find into a website or app to 'check the balance.'",
+  "If a device or paper is damaged, record its condition and get expert help instead of trying to repair it yourself."
+ ],
+ "source_title": "Mastering Bitcoin — ch05_wallets.adoc (Wallet Recovery) and ch13_security.adoc (Bitcoin Security)",
+ "source_url": "https://github.com/bitcoinbook/bitcoinbook",
+ "risk_class": "caution",
+ "reviewed": false,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+}
