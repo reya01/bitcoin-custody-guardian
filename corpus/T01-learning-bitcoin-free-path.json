@@ -7,60 +7,50 @@
   "topic_ids": [
     "T01"
   ],
-  "plain": "Before moving meaningful money — yours or an inheritance — learn the basics from a structured, free source. BTC Sessions (Ben Perrin) publishes a free 'Zero to Hero' track on YouTube (youtube.com/@BTCSessions) that stacks the most relevant skills for your bitcoin journey, organized into beginner, intermediate, and master tiers on one page.\n\nThe order is the point. Start with mobile wallets, then hardware wallets, then buying bitcoin; continue with privacy, mining, and running a node; and only then take on the master material — a Lightning node, accepting bitcoin payments, and inheritance. Multisig has its own playlist in the 'Dive Deeper' section. Following the sequence means your early mistakes happen with small amounts and simple setups, not with family savings.\n\nThis app is a companion for custody and inheritance planning — it complements self-education and never replaces it. Work through the free curriculum first, then use this guidance when designing your own plan. The same creator also offers paid 1-on-1 coaching for those who want guided help, but the free track covers the essentials.",
-  "technical": "Curriculum reference: BTC Sessions' free Zero to Hero outline (Ben Perrin, youtube.com/@BTCSessions) organizes tutorials into three tiers — Beginner: Mobile Wallets, Hardware Wallets, Buying Bitcoin; Intermediate: Privacy, Mining, Nodes; Master: Lightning Node, Accept Bitcoin Payments, Inheritance — plus Dive Deeper playlists covering Buy & Sell, Mobile Wallets, Hardware wallets, nodes, Mining, Privacy, and Multi-sig. The progression runs from wallets to buying to operational topics (privacy, mining, nodes) to advanced use (Lightning, accepting payments), with Inheritance positioned as a Master-tier topic and Multi-sig available as a deeper playlist bridging single-key and quorum custody.\n\nFor a reader planning an inheritance, the outline's sequencing is the takeaway: wallet basics and buying come first, privacy and node operation next, and inheritance material assumes all of them. Beyond the free tutorials, the same provider offers premium white glove 1-on-1 video calls covering buying, using, and securing bitcoin. This entry intentionally names no other vendors; the standing guidance is to complete free, structured education before executing an inheritance plan, with this app as a companion rather than a substitute.",
+  "plain": "Before moving meaningful money — yours or an inheritance — learn the basics from a structured, free source. BTC Sessions (Ben Perrin) publishes a free 'Zero to Hero' track on YouTube (youtube.com/@BTCSessions) that stacks the most relevant skills for your bitcoin journey, organized into beginner, intermediate, and master tiers on one page.\n\nThe order is the point. Start with mobile wallets, then hardware wallets, then buying bitcoin; continue with privacy, mining, and running a node; and only then take on the master material — a Lightning node, accepting bitcoin payments, and inheritance. Multisig has its own playlist in the 'Dive Deeper' section. Following the sequence means your early mistakes happen with small amounts and simple setups, not with family savings.\n\nThis app is a companion for custody and inheritance planning — it complements self-education and never replaces it. Work through the free curriculum first, then use this guidance when designing your own plan.",
+  "technical": "Curriculum reference: BTC Sessions' free Zero to Hero outline (Ben Perrin, youtube.com/@BTCSessions) organizes tutorials into three tiers — Beginner: Mobile Wallets, Hardware Wallets, Buying Bitcoin; Intermediate: Privacy, Mining, Nodes; Master: Lightning Node, Accept Bitcoin Payments, Inheritance — plus Dive Deeper playlists covering Buy & Sell, Mobile Wallets, Hardware Wallets, Nodes, Mining, Privacy, and Multi-sig. The progression runs from wallets to buying to operational topics (privacy, mining, nodes) to advanced use (Lightning, accepting payments), with Inheritance positioned as a Master-tier topic and Multi-sig available as a deeper playlist bridging single-key and quorum custody.\n\nFor a reader planning an inheritance, the outline's sequencing is the takeaway: wallet basics and buying come first, privacy and node operation next, and inheritance material assumes all of them. This entry intentionally names no other vendors; the standing guidance is to complete free, structured education before executing an inheritance plan.",
+  "risk": "informational",
+  "reviewed": false,
+  "audience": "beginners",
+  "mode": "educational",
   "claims": [
     {
-      "claim": "Zero to hero bitcoiner in one page",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "A free structured learning path for bitcoin exists in the Zero to Hero track by BTC Sessions (Ben Perrin).",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "Stack the most relevant skills for your bitcoin journey",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "The Beginner tier covers mobile wallets, hardware wallets, and buying bitcoin.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "The Beginner tier covers Mobile Wallets, Hardware Wallets, and Buying Bitcoin.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "The Intermediate tier covers privacy, mining, and running a node.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "The Intermediate tier covers Privacy, Mining, and Nodes.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "The Master tier covers lightning nodes, accepting bitcoin payments, and inheritance.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "The Master tier covers Lightning Node, Accept Bitcoin Payments, and Inheritance.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "Multi-sig is offered as a Dive Deeper playlist alongside buy-and-sell, mobile wallet, hardware wallet, node, mining, and privacy playlists.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "Multi-sig is one of the Dive Deeper playlists.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "Inheritance sits in the Master tier, meaning it assumes you are already comfortable with wallets, buying, privacy, mining, and nodes.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     },
     {
-      "claim": "Get premium white glove, 1 on 1 video calls, learning to buy, use, and secure your Bitcoin.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
-    },
-    {
-      "claim": "Inheritance is a Master-tier topic in the free Zero to Hero track.",
-      "source": "BTC Sessions Zero to Hero curriculum outline"
+      "claim": "Learning wallet basics before inheritance planning prevents panicked mistakes.",
+      "source": "Learning Bitcoin: a Free Path for Beginners"
     }
   ],
   "warnings": [
-    "DO NOT buy or hold significant bitcoin before completing the beginner tier.",
-    "DO NOT jump straight to inheritance planning without wallet basics.",
-    "DO NOT treat this app as a replacement for the free curriculum.",
-    "DO NOT learn only from scattered social media tips."
+    "Do not skip the Beginner tier; the Master-tier inheritance material assumes you already handle wallets, buying, privacy, mining, and nodes.",
+    "Do not jump straight to multi-sig or inheritance playlists before single-key wallet basics are second nature.",
+    "Do not move meaningful money — yours or a family inheritance — while you are still learning basic wallet operations.",
+    "Do not treat this app as a substitute for the free curriculum; it complements self-education and never replaces it."
   ],
   "sources": [
-    {
-      "title": "BTC Sessions Zero to Hero curriculum outline",
-      "url": "https://www.btcsessions.com"
-    },
-    {
-      "title": "BTC Sessions (Ben Perrin) on YouTube",
-      "url": "https://www.youtube.com/@BTCSessions"
-    }
-  ],
-  "reviewed": false,
-  "risk": "informational",
-  "audience": "bitcoin self-custody learner",
-  "mode": "learn"
+    "BTC Sessions Learn page — free 'Zero to Hero' curriculum outline (https://btcsessions.com)",
+    "BTC Sessions YouTube channel — Ben Perrin (https://www.youtube.com/@BTCSessions)"
+  ]
 }

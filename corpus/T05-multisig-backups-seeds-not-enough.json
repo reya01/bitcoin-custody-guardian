@@ -64,7 +64,7 @@
       "url": "https://btcguide.github.io/setup-wallets.html"
     }
   ],
-  "reviewed": false,
+  "reviewed": true,
   "risk": "informational",
   "audience": "bitcoin self-custody learner",
   "mode": "learn"

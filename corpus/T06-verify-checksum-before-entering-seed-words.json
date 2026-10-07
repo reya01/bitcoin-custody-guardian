@@ -59,7 +59,7 @@
       "url": "corpus://topics/T06/verification-sequence"
     }
   ],
-  "reviewed": false,
+  "reviewed": true,
   "topic_ids": [
     "T06"
   ]
