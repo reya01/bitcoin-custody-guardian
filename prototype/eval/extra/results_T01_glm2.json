@@ -38,7 +38,8 @@
    "there is no physical bitcoin anywhere": "same",
    "control comes down to whoever holds the private keys": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-002",
@@ -79,7 +80,8 @@
    "no company can freeze, block, or lend your coins": "partial",
    "you alone are responsible for keeping the backup safe": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-003",
@@ -120,7 +122,8 @@
    "on an exchange the company holds the keys and you hold a claim on them": "same",
    "the tradeoff is convenience and support versus control and responsibility": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-004",
@@ -161,7 +164,8 @@
    "any exchange insurance is private, partial, and varies by company": "partial",
    "you rely on the exchange's solvency, not a government guarantee": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-005",
@@ -202,7 +206,8 @@
    "withdrawals are typically frozen during bankruptcy": "partial",
    "customers may recover only part of what they were owed": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-006",
@@ -243,7 +248,8 @@
    "depending on the terms you agreed to, an exchange may lend or use customer assets": "same",
    "you hold a claim on the exchange rather than specific coins": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-007",
@@ -285,7 +291,8 @@
    "withdrawing to your own wallet is what turns it into self-custody": "partial",
    "set up and test your receiving wallet before you withdraw": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-008",
@@ -326,7 +333,8 @@
    "anyone can create a wallet and receive bitcoin": "partial",
    "what you do need is a device and a careful backup": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-009",
@@ -367,7 +375,8 @@
    "a private key is a secret number that authorizes spending your bitcoin": "same",
    "whoever has the key can move the coins": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-010",
@@ -408,7 +417,8 @@
    "spending requires the private keys": "same",
    "the address is meant to be shared; only the keys must stay secret": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-011",
@@ -450,7 +460,8 @@
    "a wallet is the software or device that stores your keys and creates addresses": "partial",
    "one wallet can generate many addresses": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-012",
@@ -491,7 +502,8 @@
    "the coins are not inside the phone; they live on the blockchain": "partial",
    "without the backup there is no way to recover the keys": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-013",
@@ -531,7 +543,8 @@
   "semantic": {
    "no company, developer, or service can regenerate those keys": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-014",
@@ -572,7 +585,8 @@
    "cold storage means your keys are generated and kept offline under your control": "same",
    "a hardware wallet you hold is the standard cold storage setup": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-015",
@@ -613,7 +627,8 @@
    "a hardware wallet is one common way to do self-custody": "partial",
    "software wallets also give you self-custody, but they keep keys on an internet-connected device": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-016",
@@ -654,7 +669,8 @@
    "for amounts that matter, buy the hardware wallet directly from the manufacturer": "different",
    "send a small test transfer first and confirm it arrived before moving the rest": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-017",
@@ -696,7 +712,8 @@
    "you can be tricked into revealing your keys": "different",
    "your backup has to survive fire, flood, and theft for decades": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-018",
@@ -738,7 +755,8 @@
    "you are effectively your own bank, with no password reset": "same",
    "the device maker's support can help with the device but should never see your seed phrase": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-019",
@@ -780,7 +798,8 @@
    "your seed phrase restores into a different brand of wallet or device": "partial",
    "no legitimate migration requires sending coins or seed words to anyone": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-020",
@@ -822,7 +841,8 @@
    "with self-custody, heirs need to find and use your seed phrase backup": "same",
    "neither route is automatic; both take planning your heirs can actually follow": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-021",
@@ -863,7 +883,8 @@
    "multisig requires several keys to approve a spend": "same",
    "multisig trades added setup complexity for removing single points of failure": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-022",
@@ -905,7 +926,8 @@
    "you can practice withdrawing, storing, and restoring with a small sum": "different",
    "how much to keep where depends on what you could afford to lose": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T01-023",
@@ -941,7 +963,8 @@
   ],
   "must_not_include_hits": [],
   "refusal_detected": false,
-  "refusal_ok": true
+  "refusal_ok": true,
+  "passed_final": true
  },
  {
   "id": "T01-024",
@@ -981,7 +1004,8 @@
   "semantic": {
    "a seed phrase must be generated by wallet software or a hardware device you run yourself": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T01-025",
@@ -1021,6 +1045,7 @@
   "semantic": {
    "for money decisions like this, talk to a licensed financial advisor": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  }
 ]

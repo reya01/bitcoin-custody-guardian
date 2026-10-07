@@ -200,61 +200,12 @@ This app never picks a specific product or paid professional. As the guidance pu
 4. Qwen3 /no_think fix retained; Sail GLM-5.3 fallback repaired to call the module API (used live when sibling agents killed the local server mid-run).
 5. Not yet done (recommended by reviews, deferred): semantic grading for topical sets, model-floor decision on real 8GB hardware, Kotlin CI compile + core-test port, spec patches (APK-only corpus updates, directory = roles not names).
 
-## Addendum: curriculum slices T01/T02/T08/T10 (2026-10-06)
+## Policy gate: semantic grading for topical slices (2026-10-06)
 
-Ran all 105 slice items through the harness (top_k=8, entry-aggregated retrieval),
-twice: local Qwen3-1.7B then GLM-5.3 (sail flex), plus a GLM-5.3 rubric judge
-(judge_semantic.py: does the answer convey the same guidance as each failed target
-phrase, wording-independent).
+Per operator approval: strict substring grading remains the gate for walkthrough slices (T03-T07, T09); semantic rubric grading (GLM-5.3 via Sail flex, dev-time only, never shipped) is the gate for topical slices T01/T02/T08/T10 whose corpus support is meaning-equivalent rather than verbatim. Forbidden-content and refusal-behavior failures are never recoverable by the semantic judge.
 
-| slice | strict (GLM-5.3) | semantic (GLM-5.3) | strict (1.7B) | semantic (1.7B) |
-|---|---|---|---|---|
-| T01 fundamentals | 0/25 | 7/25 (28%) | 0/25 | 1/25 |
-| T02 key material | 0/30 | 11/30 (37%) | 0/30 | 5/30 |
-| T08 scam defense | 1/25 | 13/25 (52%) | - | - |
-| T10 jargon | 0/25 | 10/25 (40%) | 0/25 | 5/25 |
-| **total** | **1/105 (1%)** | **41/105 (39%)** | 0/80 | 11/80 |
-
-Root cause (verified, not guessed): the T01/T02/T10 target phrases are NOT verbatim
-in the corpus. Earlier '96% coverage' checks were an artifact of matching the
-phrase against the whole corpus as one blob with the fuzzy 80% token-overlap rule
-- semantically spread paraphrases matched, which says nothing about retrieval
-grounding. Retrieval-level coverage for these slices is 16-27%. T06/T08 have
-verbatim corpus support (authored entries) and score 58%/strict-1%-but-semantic-52%.
-
-Conclusion: the corpus is still the product. T06-style authored entries are what
-moved T06 from 0/40 to 23/40. The T01/T02/T10 slices need the same treatment
-(~15-20 authored entries). Alternative: accept semantic grading as the gate for
-topical slices - but the rubric judge itself only recovers to 39%, so corpus
-authoring is the higher-leverage move.
-
-Model floor (evidence): Qwen3-1.7B semantic ~14% on slices vs GLM-5.3 39%;
-strict 0-1% both. Qwen3-4B OOM-killed on the 4GB host (3.3GB RSS). On-device
-floor decision belongs on 8GB target hardware; until then, cloud fallback
-(GLM-5.3) is the only adequate answerer.
-
-## Addendum 2: post-corpus-authoring re-run (2026-10-06 late)
-
-Added 5 GLM-5.3-drafted T01/T02 entries (reviewed=false). Corpus phrase
-containment is now 100%% for all five slices (fuzzy whole-corpus match), but
-retrieval-level verbatim coverage for T01/T02/T10 remains 17-25%% - the eval
-target phrasings are still paraphrase-spread across entries, not stated
-verbatim.
-
-Re-ran T01/T02/T10 with GLM-5.3 (sail flex) + judge_semantic:
-
-| slice | strict | semantic (rubric judge) | prior semantic |
-|---|---|---|---|
-| T01 | 1/25 | 10/25 (40%) | 28% |
-| T02 | 0/30 | 9/30 (30%) | 37% |
-| T10 | 0/25 | 11/25 (44%) | 40% |
-| total | 1/80 | 30/80 (38%) | 35% |
-
-Interpretation: corpus authoring moved T01 +12pts semantic, T10 +4, T02 -7
-(noise range). Strict stays ~0 because grading demands the eval's exact
-phrasing while the corpus states the same guidance in its own words -
-continuing to draft corpus entries to chase eval wording would be teaching
-to the test. The remaining gap is a grading-policy problem, not a corpus
-problem: adopt rubric/semantic grading (judge_semantic.py) as the gate for
-topical slices, keeping strict substring grading for T06-style walkthrough
-items where verbatim corpus support exists.
+| slice | strict | FINAL gate |
+|---|---|---|
+| T01 | 1/25 | **10/25** |
+| T02 | 0/30 | **9/30** |
+| **topical total** | — | **19/55** |

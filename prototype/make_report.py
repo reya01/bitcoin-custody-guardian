@@ -87,6 +87,28 @@ lines.append("3. Answer step made extractive-leaning (assemble corpus claims, ci
 lines.append("4. Qwen3 /no_think fix retained; Sail GLM-5.3 fallback repaired to call the module API (used live when sibling agents killed the local server mid-run).")
 lines.append("5. Not yet done (recommended by reviews, deferred): semantic grading for topical sets, model-floor decision on real 8GB hardware, Kotlin CI compile + core-test port, spec patches (APK-only corpus updates, directory = roles not names).")
 
+lines.append("\n## Policy gate: semantic grading for topical slices (2026-10-06)\n")
+lines.append("Per operator approval: strict substring grading remains the gate for walkthrough "
+             "slices (T03-T07, T09); semantic rubric grading (GLM-5.3 via Sail flex, dev-time only, "
+             "never shipped) is the gate for topical slices T01/T02/T08/T10 whose corpus support is "
+             "meaning-equivalent rather than verbatim. Forbidden-content and refusal-behavior "
+             "failures are never recoverable by the semantic judge.")
+extra_dir = os.path.join(_HERE, "eval", "extra")
+if os.path.isdir(extra_dir):
+    lines.append("\n| slice | strict | FINAL gate |")
+    lines.append("|---|---|---|")
+    gtotal = [0, 0]
+    for fn in sorted(os.listdir(extra_dir)):
+        if not fn.endswith('_glm2.json'):
+            continue
+        rs = json.load(open(os.path.join(extra_dir, fn)))
+        strict = sum(r['passed'] for r in rs)
+        final = sum(r.get('passed_final', r['passed']) for r in rs)
+        gtotal[0] += final; gtotal[1] += len(rs)
+        lines.append("| %s | %d/%d | **%d/%d** |" % (fn.replace('results_', '').replace('_glm2.json', ''),
+                                                    strict, len(rs), final, len(rs)))
+    lines.append("| **topical total** | — | **%d/%d** |" % tuple(gtotal))
+
 open(OUT, "w").write("\n".join(lines) + "\n")
 print("wrote", OUT)
 print("TOTAL: %d/%d (%.0f%%)" % (passed, total, 100.0 * passed / max(1, total)))

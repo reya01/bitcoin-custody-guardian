@@ -43,7 +43,8 @@
    "do not type it into any website, app or wallet to identify it": "same",
    "keep it hidden and treat it like bearer cash until you know what it controls": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-002",
@@ -89,7 +90,8 @@
    "24 words does not protect better against theft; how secretly you store the phrase is what matters": "partial",
    "each seed phrase controls only its own wallet": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-003",
@@ -134,7 +136,8 @@
    "the private key is the secret that lets the owner spend the bitcoin": "same",
    "holding the keys yourself means no company stands between you and the money": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-004",
@@ -179,7 +182,8 @@
    "treat it with the same care as the seed phrase itself": "same",
    "never paste it into a website, block explorer or online tool": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-005",
@@ -224,7 +228,8 @@
    "the prefix just signals a different address format": "same",
    "sharing it lets someone see all addresses and the full transaction history": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-006",
@@ -270,7 +275,8 @@
    "wallets try the standard paths automatically when restoring": "partial",
    "what actually matters is the seed phrase, any passphrase, and which wallet app was used": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-007",
@@ -316,7 +322,8 @@
    "if she forgets it, those funds are unrecoverable; there is no reset": "partial",
    "only use one if it can be stored reliably, separately from the seed": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-008",
@@ -361,7 +368,8 @@
    "anyone who obtains that image can steal the funds": "same",
    "use paper or stamped metal stored securely instead": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-009",
@@ -408,7 +416,8 @@
    "the fix is to move the funds to a new wallet whose seed has never been digitized": "different",
    "first make sure a correct paper or metal backup of the current seed exists": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-010",
@@ -454,7 +463,8 @@
    "find the written backup before doing anything else": "same",
    "wiping after too many wrong PINs is a deliberate anti-theft feature": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-011",
@@ -501,7 +511,8 @@
    "if the device wipes or dies with no seed backup anywhere, the funds are likely unrecoverable": "partial",
    "avoid guessing at the PIN; wrong attempts count toward the wipe": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-012",
@@ -548,7 +559,8 @@
    "never type the seed into a website, app or validator tool to test it": "same",
    "no legitimate support person will ever ask you to read the words aloud": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-013",
@@ -593,7 +605,8 @@
    "the words are now exposed because they were typed into a chat": "same",
    "plan to move the funds to a new wallet if these words hold value": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-014",
@@ -639,7 +652,8 @@
    "never use a seed phrase created by a person, website or program": "same",
    "let the device create the words during first-time setup and write them down then": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-015",
@@ -685,7 +699,8 @@
    "enter it slowly and record it exactly, including any spaces": "partial",
    "after unlocking, confirm you see the expected balance before assuming anything": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-016",
@@ -731,7 +746,8 @@
    "it also reveals the entire transaction history, so weigh the privacy": "same",
    "an accountant or lawyer can work from view-only access": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-017",
@@ -776,7 +792,8 @@
    "look for a saved descriptor or backup file with the estate papers": "same",
    "losing the descriptor can mean losing the funds even with the keys": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-018",
@@ -823,7 +840,8 @@
    "buy new, directly from the manufacturer": "different",
    "run the genuine check even on a new device": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-019",
@@ -869,7 +887,8 @@
    "funds sent to that wallet can be taken by whoever printed the card": "same",
    "do not use the card; contact the manufacturer about the tampered packaging": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-020",
@@ -915,7 +934,8 @@
    "the will should say that bitcoin exists and where the backup is kept, not the words themselves": "partial",
    "pair the will with a private letter of instruction for your heirs": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-021",
@@ -962,7 +982,8 @@
    "each half is still secret key material that must be protected": "partial",
    "two complete backups in two locations, or multisig, are the proper ways to spread risk": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-022",
@@ -1009,7 +1030,8 @@
    "the words and their secrecy are exactly the same on steel as on paper": "partial",
    "a metal backup only helps if your heirs can find it": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-023",
@@ -1054,7 +1076,8 @@
    "you should hold your own backup so you are not dependent on one person's house and memory": "same",
    "an inheritance plan documents access for heirs without handing over control early": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-024",
@@ -1100,7 +1123,8 @@
    "anyone who hears the words can take everything, immediately": "same",
    "there is no registry or insurance program for seed phrases": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T02-025",
@@ -1147,7 +1171,8 @@
    "a phrase with a bad checksum is rejected instead of opening the wrong wallet": "partial",
    "it is not an extra secret; you copy it like the other words": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-026",
@@ -1193,7 +1218,8 @@
    "you back up the seed once and it covers every address, including future ones": "same",
    "using a new receive address is a privacy habit, not a new key to store": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-027",
@@ -1240,7 +1266,8 @@
    "an empty wallet after restoring can mean a passphrase was used on top of the seed": "different",
    "if he exported an xpub, someone could view the balances without the seed at all": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-028",
@@ -1280,7 +1307,8 @@
   "semantic": {
    "that is a WIF private key for a single address": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-029",
@@ -1325,7 +1353,8 @@
    "one share alone restores nothing \u2014 collect every share you can find": "same",
    "store the shares you find separately so no single loss destroys the set": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T02-030",
@@ -1371,6 +1400,7 @@
    "it is required to rebuild the wallet, especially a multisig, so never discard it": "same",
    "keep it with the records of where the keys live": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  }
 ]

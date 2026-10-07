@@ -22,10 +22,14 @@ for fn in files:
     for r in failed:
         mi_failed = [m['phrase'] for m in r['must_include'] if m['result'] == 'fail']
         if not mi_failed and not r['must_not_include_hits']:
-            # refusal mismatch only
+            # Strict fail is a refusal/behavior mismatch, not a phrase miss.
             r['semantic'] = {}
             r['semantic_passed'] = False
+            r['passed_final'] = False
             continue
+        if r['must_not_include_hits']:
+            # Forbidden content is never recoverable by semantic grading.
+            r['semantic_passed'] = False
         prompt = ("You grade a Bitcoin-safety assistant's answer against required guidance "
                   "phrasings. For each REQUIRED PHRASING, judge whether the ANSWER conveys "
                   "the same guidance (same meaning and actionable content), even if worded "
@@ -45,8 +49,14 @@ for fn in files:
             sem = {p: 'error' for p in mi_failed}
         r['semantic'] = sem
         r['semantic_passed'] = bool(sem) and all(v == 'same' for v in sem.values())
+        # Policy: semantic grading is the pass gate for topical slices
+        # (T01/T02/T08/T10) where verbatim corpus support does not exist;
+        # walkthrough slices (T03-T07, T09) keep strict substring grading.
+        topical = r['id'].split('-')[0] in ('T01', 'T02', 'T08', 'T10')
+        r['passed_final'] = (r['passed'] or r['semantic_passed']) if topical else r['passed']
+    for r in rs:
+        r.setdefault('passed_final', r['passed'])
     json.dump(rs, open(fn, 'w'), indent=1)
     n = len(rs); strict = sum(r['passed'] for r in rs)
-    sfail = [r for r in rs if not r['passed']]
-    sem_p = sum(1 for r in sfail if r.get('semantic_passed'))
-    print(fn, 'strict %d/%d; semantic recover: %d' % (strict, n, sem_p))
+    final = sum(r['passed_final'] for r in rs)
+    print(fn, 'strict %d/%d; FINAL (policy gate) %d/%d' % (strict, n, final, n))
