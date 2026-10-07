@@ -210,3 +210,23 @@ Per operator approval: strict substring grading remains the gate for walkthrough
 | T02 | 0/30 | **9/30** |
 | T10 | 0/25 | **11/25** |
 | **topical total** | — | **30/80** |
+
+## Addendum 3: ScamRules deterministic adjudication (2026-10-06 late)
+
+prototype/scam_rules.py ports the Android ScamRules red-flag set verbatim
+(8 rules). answer_step now short-circuits flagged questions: a mandatory
+deterministic verdict block (scam name + stop-contact guidance from rule
+explanations) is prepended, and the model may only ADD scenario-specific
+next-step guidance on top - it can never soften or re-derive the verdict.
+This keeps the shipped app and the harness behavior aligned and removes the
+reviewers' concern that a 1.7B model hedges scam verdicts.
+
+T08 re-run with rule augmentation: strict 3/25 (was 1), FINAL gate 10/25.
+Deterministic-only verdicts could not satisfy scenario-specific target
+phrasings (e.g. "the members posting approvals are part of the scam") -
+verdict + model-guidance hybrid is the right split.
+
+Backlog status: Kotlin assembleDebug BUILD SUCCESSFUL (nested-comment trap,
+navigation dep, imports); 13-test JVM port green (incl. ScamRules mention-
+vs-demand false-positive fix); spec patches landed (directory=roles,
+license claim corrected); model-floor decision deferred to 8GB hardware.

@@ -168,9 +168,32 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     """Generate the answer for a composed context.
 
     Returns {"answer": str, "backend": str}.
-    Order: llama-server (auto) -> sail flex; 'llama'/'sail' force one.
+    Order: deterministic scam rules -> llama-server (auto) -> sail flex;
+    'llama'/'sail' force one. Scam red flags are adjudicated by rule, never
+    by the model (a 1.7B hedges scam verdicts).
     """
+    import scam_rules
+    verdict = scam_rules.scam_verdict_answer(question)
     messages = build_messages(question, composed)
+    if verdict is not None:
+        # Deterministic verdict block is mandatory; the model only adds
+        # scenario-specific guidance on top (verdict itself is never hedged).
+        messages.append({
+            "role": "system",
+            "content": (
+                "The deterministic rule engine has ALREADY flagged this message "
+                "as a scam and produced a verdict block. That verdict is final: "
+                "do not soften, hedge, or re-derive it. Add ONLY scenario-specific "
+                "guidance grounded in the retrieved corpus chunks (what exactly to "
+                "do next, step by step). Cite [Txx] where used."
+            ),
+        })
+        try:
+            body = llama_answer(messages) if backend in ("auto", "llama") else sail_answer(messages)
+        except LlamaServerError:
+            body = sail_answer(messages)
+        return {"answer": verdict + "\n\n" + body.strip(),
+                "backend": "scam_rules+" + ("local_qwen3_1.7b" if backend != "sail" else "sail_glm53")}
     if backend == "sail":
         return {"answer": sail_answer(messages), "backend": "sail_glm53"}
     try:
