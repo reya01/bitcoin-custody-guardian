@@ -232,3 +232,29 @@ Model floor (evidence): Qwen3-1.7B semantic ~14% on slices vs GLM-5.3 39%;
 strict 0-1% both. Qwen3-4B OOM-killed on the 4GB host (3.3GB RSS). On-device
 floor decision belongs on 8GB target hardware; until then, cloud fallback
 (GLM-5.3) is the only adequate answerer.
+
+## Addendum 2: post-corpus-authoring re-run (2026-10-06 late)
+
+Added 5 GLM-5.3-drafted T01/T02 entries (reviewed=false). Corpus phrase
+containment is now 100%% for all five slices (fuzzy whole-corpus match), but
+retrieval-level verbatim coverage for T01/T02/T10 remains 17-25%% - the eval
+target phrasings are still paraphrase-spread across entries, not stated
+verbatim.
+
+Re-ran T01/T02/T10 with GLM-5.3 (sail flex) + judge_semantic:
+
+| slice | strict | semantic (rubric judge) | prior semantic |
+|---|---|---|---|
+| T01 | 1/25 | 10/25 (40%) | 28% |
+| T02 | 0/30 | 9/30 (30%) | 37% |
+| T10 | 0/25 | 11/25 (44%) | 40% |
+| total | 1/80 | 30/80 (38%) | 35% |
+
+Interpretation: corpus authoring moved T01 +12pts semantic, T10 +4, T02 -7
+(noise range). Strict stays ~0 because grading demands the eval's exact
+phrasing while the corpus states the same guidance in its own words -
+continuing to draft corpus entries to chase eval wording would be teaching
+to the test. The remaining gap is a grading-policy problem, not a corpus
+problem: adopt rubric/semantic grading (judge_semantic.py) as the gate for
+topical slices, keeping strict substring grading for T06-style walkthrough
+items where verbatim corpus support exists.
