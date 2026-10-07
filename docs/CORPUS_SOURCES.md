@@ -53,7 +53,7 @@ version).
 
 ### Buy/sell & temporary-custody material (T09, T11)
 - Exchange review data for directory ranking (see §3): bitcoin.diy reviews (River 2026 review with fee/PoR/closure-complaint detail), onramp.media comparisons, bitbo.io comparisons, Trustpilot + Reddit aggregate sentiment
-- **River Learn / River blog educational library (river.com/learn + river.com blog)** — first-party Bitcoin-education articles (custody, proof of reserves, inheritance, market structure); widely regarded as among the best exchange-published educational content; high volume of plain-language material ideal for T01/T06/T09 rewrites
+- **River Learn / River blog educational library (river.com/learn + river.com blog)** — first-party Bitcoin-education articles (custody, proof of reserves, inheritance, market structure); widely regarded as among the best exchange-published educational content; high volume of plain-language material ideal for T01/T06/T09 rewrites. **License status: UNVERIFIED (2026-10-06) — River Learn carries no explicit open license.** Policy: use as *reference/ground-truth only*; every entry derived from it must be an original plain-language rewrite (in-house, MIT corpus license) with attribution and link-frozen snapshot, never a paraphrase-and-publish of their prose.
 - **Onramp (onrampbitcoin.com/resources)** — first-party resource library: multi-institution custody architecture, inheritance, wealth-management-oriented explainers; complements River's library with a custody-architecture perspective
 - Strike/Swan/Kraken public fee & security documentation for comparison entries
 

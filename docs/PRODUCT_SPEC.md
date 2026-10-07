@@ -134,11 +134,15 @@ model freelancing on the world's most dangerous FAQ.
 
 The model is commodity; the corpus is the moat.
 
-- **Sources (initial, all open/CC):** Bitcoin Core release notes & docs,
+- **Sources (initial):** Bitcoin Core release notes & docs,
   BIPs (32/39/44/84/174/380-series), Sparrow Wallet docs, Bitcoin Design
   Guide, GLADDER/inheritance-oriented guides (e.g., PlanB-style estate
   planning material), hardware-wallet vendor docs (Ledger, BitBox02, Jade,
   SeedSigner, Krux, Liana/functional), bitcoinops topics for jargon depth.
+  **License reality (corrected 2026-10-06 per review):** standards/docs are
+  open; vendor educational libraries (River Learn etc.) carry NO explicit
+  open license — see docs/CORPUS_SOURCES.md §Licensing: they are used as
+  reference only, and every entry is an original in-house rewrite.
 - **Curation pipeline:** each source passage is reviewed, rewritten into
   plain language with the technical original alongside, tagged (topic, level,
   risk class: informational / caution / danger), and **versioned**. New
@@ -297,6 +301,14 @@ constrained format beats the same model asked an open-ended question."
 - Corpus browser with sources visible.
 
 ### Later (v1.x+)
+- **Directory mode — resolved per review (Kimi, 2026-10-06):** there is no
+  separate "wallet directory" listing vendors. Vendor guidance appears only
+  inside corpus entries as **roles** ("temporary custodian while heirs figure
+  things out", "exchange with published proof of reserves", "learning
+  resource") — with named examples inside the entry per Decision #4
+  (2026-10-06), each carrying why it's listed, supporting data, date ranked,
+  and how to re-verify. The mode does not rank vendors; it answers the
+  role-shaped question.
 - Watch-only address importer (xpub-only, xpub handling safe-by-design with
   explicit education about its privacy tradeoffs — xpubs are not secrets but
   are privacy-sensitive; stored in app-private storage only, never shared).
