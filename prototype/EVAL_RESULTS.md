@@ -206,27 +206,32 @@ Per operator approval: strict substring grading remains the gate for walkthrough
 
 | slice | strict | FINAL gate |
 |---|---|---|
-| T01 | 1/25 | **10/25** |
-| T02 | 0/30 | **9/30** |
-| T10 | 0/25 | **11/25** |
-| **topical total** | — | **30/80** |
+| T01 | 0/25 | **8/25** |
+| T02 | 1/30 | **6/30** |
+| T08 | 3/25 | **10/25** |
+| T10 | 0/25 | **8/25** |
+| **topical total** | — | **32/105** |
 
-## Addendum 3: ScamRules deterministic adjudication (2026-10-06 late)
+## Addendum 4: reproducible baseline (temp=0) + scope fix (2026-10-07)
 
-prototype/scam_rules.py ports the Android ScamRules red-flag set verbatim
-(8 rules). answer_step now short-circuits flagged questions: a mandatory
-deterministic verdict block (scam name + stop-contact guidance from rule
-explanations) is prepended, and the model may only ADD scenario-specific
-next-step guidance on top - it can never soften or re-derive the verdict.
-This keeps the shipped app and the harness behavior aligned and removes the
-reviewers' concern that a 1.7B model hedges scam verdicts.
+Engineering fixes:
+- Sail flex temperature pinned to 0.0 (sail_flex.py) - evals are now
+  reproducible. This exposed that the earlier 38% topical numbers were
+  sampling noise; the true baseline is lower.
+- Wrong-refusal fix: withdrawal-to-own-wallet questions were refused both
+  deterministically (detect_refusal_kind) and by the model (over-broad
+  scope instruction). Both fixed; verified live ("Can I withdraw my bitcoin
+  from an exchange account to my own wallet?" now answered fully).
+- Prompt rule 3 rewritten: quote related corpus claims instead of hedging;
+  decline only when no chunk relates.
 
-T08 re-run with rule augmentation: strict 3/25 (was 1), FINAL gate 10/25.
-Deterministic-only verdicts could not satisfy scenario-specific target
-phrasings (e.g. "the members posting approvals are part of the scam") -
-verdict + model-guidance hybrid is the right split.
+Reproducible FINAL-gate numbers (temp=0, GLM-5.3, judge_semantic):
+| slice | strict | FINAL gate |
+|---|---|---|
+| T01 | 0/25 | 8/25 (32%) |
+| T02 | 1/30 | 6/30 (20%) |
+| T08 | 3/25 | 10/25 (40%) |
+| T10 | 0/25 | 8/25 (32%) |
+| topical total | | 32/105 (30%) |
 
-Backlog status: Kotlin assembleDebug BUILD SUCCESSFUL (nested-comment trap,
-navigation dep, imports); 13-test JVM port green (incl. ScamRules mention-
-vs-demand false-positive fix); spec patches landed (directory=roles,
-license claim corrected); model-floor decision deferred to 8GB hardware.
+T06 walkthrough strict gate unchanged: 23/40 (58%).

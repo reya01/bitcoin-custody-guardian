@@ -749,8 +749,16 @@ class Guardrails:
 
     @staticmethod
     def detect_refusal_kind(question: str) -> Optional[str]:
-        """Deterministic refusal routing for clearly out-of-scope questions."""
+        """Deterministic refusal routing for clearly out-of-scope questions.
+
+        "Buy/where to buy" and price questions are refused, but withdrawal
+        questions ("move my coins to a wallet") are self-custody topics the
+        corpus answers — never refuse those.
+        """
         q = question.lower()
+        if any(t in q for t in ("withdraw", "move my", "move your", "transfer to",
+                                "send to my wallet", "own wallet")):
+            return None
         offline_terms = [
             "price", "exchange rate", "buy bitcoin", "where to buy",
             "stock", "news", "weather", "send an email", "latest",

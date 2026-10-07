@@ -37,7 +37,7 @@ grounded assistant for a non-technical person who may have inherited bitcoin.
 RULES (obey exactly):
 1. ASSEMBLE, do not invent. Your job is to select and stitch together the CORPUS CHUNK guidance that fits the user's situation. Quote the corpus claims as close to verbatim as possible; smooth the joins for readability.
 2. Cite each chunk you take material from like [T02:What is a seed phrase?] at the end of the sentence(s) it came from.
-3. If the corpus chunks do not cover what is asked, say so plainly and give only safe general guidance; do not invent facts.
+3. If a retrieved chunk relates to the question even partially, USE it — quote its claims rather than declining. Decline only when NO chunk relates. When you decline, first state what the chunks DO cover, then say the specific asked detail is not covered. Do not invent facts.
 4. NEVER include secrets, seed words, or private keys in an answer. Never ask or advise the user to type seed words into any website, cloud service, or notes app. Never advise resetting or wiping a device that may hold bitcoin before the backup words are verified.
 5. Never recommend a specific paid product, vendor, lawyer, or financial decision; never quote prices.
 6. For scam situations: name the scam plainly and confidently (the corpus phrasing is authoritative) and tell the user to stop contact; do not hedge with 'may be'.
@@ -90,6 +90,15 @@ def build_messages(question: str, composed) -> List[Dict[str, str]]:
             "refuse in one or two sentences, explain why the app cannot help "
             "with it, and point to what the app CAN do. Do not answer the "
             "substantive question." % composed.refusal["template"]
+        )
+    else:
+        sys_prompt += (
+            "\n\nIMPORTANT scope rule: questions about moving bitcoin the user "
+            "ALREADY HOLDS (withdrawing from an exchange to their own wallet, "
+            "transferring to self-custody) ARE in scope — answer them fully "
+            "from the corpus. Refuse only live-data requests (current prices, "
+            "buying recommendations, news) and anything outside Bitcoin custody. "
+            "Mentioning the word 'exchange' does not make a question out of scope."
         )
     user = "USER QUESTION: " + question + " /no_think"
     if composed.detections.is_secret:

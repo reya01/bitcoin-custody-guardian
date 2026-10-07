@@ -1,5 +1,5 @@
 """make_report.py — build EVAL_RESULTS.md from eval_results.json."""
-import json, os, sys
+import json, os, re, sys
 from collections import Counter, defaultdict
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -95,17 +95,24 @@ lines.append("Per operator approval: strict substring grading remains the gate f
              "failures are never recoverable by the semantic judge.")
 extra_dir = os.path.join(_HERE, "eval", "extra")
 if os.path.isdir(extra_dir):
+    # keep only the newest results per slice (highest _glmN suffix)
+    newest = {}
+    for fn in sorted(os.listdir(extra_dir)):
+        m = re.match(r'results_(.+)_glm(\d+)\.json$', fn)
+        if not m:
+            continue
+        slice_name, ver = m.group(1), int(m.group(2))
+        if slice_name not in newest or ver > newest[slice_name][0]:
+            newest[slice_name] = (ver, fn)
     lines.append("\n| slice | strict | FINAL gate |")
     lines.append("|---|---|---|")
     gtotal = [0, 0]
-    for fn in sorted(os.listdir(extra_dir)):
-        if not fn.endswith('_glm2.json'):
-            continue
-        rs = json.load(open(os.path.join(extra_dir, fn)))
+    for slice_name in sorted(newest):
+        rs = json.load(open(os.path.join(extra_dir, newest[slice_name][1])))
         strict = sum(r['passed'] for r in rs)
         final = sum(r.get('passed_final', r['passed']) for r in rs)
         gtotal[0] += final; gtotal[1] += len(rs)
-        lines.append("| %s | %d/%d | **%d/%d** |" % (fn.replace('results_', '').replace('_glm2.json', ''),
+        lines.append("| %s | %d/%d | **%d/%d** |" % (slice_name,
                                                     strict, len(rs), final, len(rs)))
     lines.append("| **topical total** | — | **%d/%d** |" % tuple(gtotal))
 
