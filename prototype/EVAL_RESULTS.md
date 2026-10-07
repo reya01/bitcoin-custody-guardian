@@ -284,3 +284,35 @@ passes ~30%% of its items, GLM-5.3 ~60-65%%. On a 6-8GB phone the bundled
 local-1.7B number; the "Pro brain" (4B+) path and cloud fallback deliver
 roughly the GLM number. Corpus quality and retrieval are no longer the
 bottleneck; model capability and prompt-following are.
+
+## Addendum 7: round-2 review fixes + veto run, final numbers (2026-10-07)
+
+Second external review round (Kimi-K3 C+, DeepSeek-V4-Pro C-, full texts in
+docs/reviews/) synthesized by GLM-5.3 into an ordered plan. Applied fixes:
+post-model veto (wrong advice structurally unshippable), deterministic secret
+refusal before any backend call, topic/mode keyword tables regenerated from
+the real corpus taxonomy, contradiction verdict in the semantic judge,
+inheritance-mode panic prefix, walkthrough warnings shipped verbatim.
+
+Full re-run at temp 0 with all fixes (veto_* results):
+
+| slice | strict | FINAL (policy gate) |
+|---|---|---|
+| T01 | 1/25 | 8/25 |
+| T02 | 1/30 | 4/30 |
+| T08 | 2/25 | 5/25 |
+| T10 | 0/25 | 12/25 |
+| topical | 4/105 | 29/105 |
+| T06 walkthrough | 21/40 | strict-only |
+
+Overall FINAL-mixed: 50/145 (34%). One residual judge overcall found
+(T02-007 'contradicts' on an omitted-condition answer, not opposite advice);
+prompt tightened to "affirmative opposite advice only" - contradiction false
+positives now 1 in 105.
+
+Retrieval coverage: 107/122 (88%). Tests: 41/41 Python core (incl. 2 new
+error-communication tests), 13/13 Kotlin.
+
+Design principles 7+8 added to spec and harness: no answer beats a wrong
+answer; errors must be explicit (plain-language error message, visible
+fallback notes, never improvising through an engine outage).
