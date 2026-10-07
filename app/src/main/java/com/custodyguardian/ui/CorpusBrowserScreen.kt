@@ -12,7 +12,7 @@ import com.custodyguardian.data.AssetLoader
 import com.custodyguardian.data.CorpusEntry
 
 /**
- * CorpusBrowserScreen — list of bundled corpus entries (assets/corpus/*.json)
+ * CorpusBrowserScreen — list of bundled corpus entries (assets/corpus JSON files)
  * + a detail view with title, risk class, plain text, claims, warnings, source.
  */
 @Composable

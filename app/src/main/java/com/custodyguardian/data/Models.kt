@@ -3,7 +3,7 @@ package com.custodyguardian.data
 import kotlinx.serialization.Serializable
 
 /**
- * Corpus JSON entries (assets/corpus/*.json), e.g. T02-river-seed-phrase.json.
+ * Corpus JSON entries (assets/corpus/JSON files), e.g. T02-river-seed-phrase.json.
  * Parsed with kotlinx-serialization. Schema follows the curated corpus format
  * documented in the repo (see corpus/T02-river-seed-phrase.json).
  */

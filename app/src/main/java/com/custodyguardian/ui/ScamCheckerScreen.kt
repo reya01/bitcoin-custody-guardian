@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.custodyguardian.util.MemoryGuards
 import com.custodyguardian.util.ScamRules
@@ -37,9 +38,10 @@ fun ScamCheckerScreen() {
             label = { Text("Paste the suspicious message") },
             minLines = 4,
         )
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        val context = LocalContext.current
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = {
-                val guard = MemoryGuards.detectSeedPhrase(text)
+                val guard = MemoryGuards.detectSeedPhrase(context, text)
                 if (guard is MemoryGuards.Result.SeedPhrase) {
                     secretBlocked = guard.message
                     result = null
