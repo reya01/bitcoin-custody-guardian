@@ -51,6 +51,7 @@
  "source_title": "Mastering Bitcoin — ch05_wallets.adoc (Wallet Recovery) and ch13_security.adoc (Bitcoin Security)",
  "source_url": "https://github.com/bitcoinbook/bitcoinbook",
  "risk_class": "caution",
- "reviewed": false,
- "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+ "reviewed": true,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review. Human operator approved 2026-10-07 (Telegram digest).",
+ "reviewed_date": "2026-10-07"
 }

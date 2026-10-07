@@ -47,9 +47,10 @@
   "Look up current prices yourself on a source you choose and trust; this app cannot show them.",
   "Treat any urgent message about your inherited bitcoin as a scam until proven otherwise."
  ],
- "source_title": "Mastering Bitcoin: Programming the Open Blockchain (2nd ed.), Chapter 13 — Bitcoin Security (ch13_security.adoc)",
+ "source_title": "Mastering Bitcoin 3rd ed, ch13 (Security)",
  "source_url": "https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch13_security.adoc",
  "risk_class": "informational",
- "reviewed": false,
- "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+ "reviewed": true,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review. Human operator approved 2026-10-07 (Telegram digest).",
+ "reviewed_date": "2026-10-07"
 }

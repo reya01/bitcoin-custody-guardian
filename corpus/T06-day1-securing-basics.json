@@ -49,8 +49,9 @@
   "Do not keep every copy in one place — one fire, flood, or break-in could mean permanent loss."
  ],
  "source_title": "Securing your wallet – Bitcoin.org",
- "source_url": "https://bitcoin.org/en/secure-wallet",
+ "source_url": "https://bitcoin.org/en/secure-your-wallet",
  "risk_class": "caution",
- "reviewed": false,
- "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review."
+ "reviewed": true,
+ "notes_for_reviewer": "Drafted by GLM-5.3 grounded in operator-designated references (2026-10-07); needs human review. Human operator approved 2026-10-07 (Telegram digest).",
+ "reviewed_date": "2026-10-07"
 }
