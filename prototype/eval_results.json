@@ -3,7 +3,7 @@
   "id": "T06-001",
   "category": "day1_securing",
   "prompt": "My dad died last week and left a USB stick labeled 'Ledger' in his desk. I don't know anything about bitcoin. What do I do first?",
-  "answer": "You should first set aside the USB stick and any other devices labeled with a wallet brand such as 'Ledger' until you are ready to handle them. Do not plug in any unknown USB stick or removable medium yet. Instead, put everything bitcoin-related in one box: the device itself, its cable, any envelopes, papers, and small metal plates. Nothing is lost by waiting \u2014 bitcoin does not expire or fade, so taking days or weeks to gather things calmly is completely safe.\n\nSources: [T02:What This App Cannot Know: Honest Limits], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]",
+  "answer": "You should first set aside the USB stick and any other bitcoin-related devices with the other materials. Do not plug in the USB stick yet \u2014 it may contain bitcoin keys. Instead, put everything bitcoin-related in one box: the device itself, its cable, any envelopes, papers, and small metal plates. Nothing is lost by waiting \u2014 bitcoin does not expire or fade, so taking days or weeks to gather things calmly is completely safe.\n\nSources: [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.0), [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section plain.p0)",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:day-1-securing-inherited-bitcoin-devices",
@@ -13,9 +13,12 @@
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:inventory-and-privacy-listing-what-you-f",
    "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:inherited-hardware-wallet-unknown-pin-re"
   ],
-  "elapsed_s": 20.9,
+  "elapsed_s": 23.9,
   "passed": false,
   "must_include": [
    {
@@ -38,25 +41,28 @@
    "do not plug it in yet": "same"
   },
   "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  },
  {
   "id": "T06-002",
   "category": "day1_securing",
   "prompt": "While sorting his things I found what looks like a metal plate with words stamped into it, plus an envelope with more words. Should I throw away the envelope since I have the plate?",
-  "answer": "While sorting his things, you found a metal plate with words stamped into it, plus an envelope with more words. You should **not** throw away the envelope. Both items are valuable and should be kept, even if they look identical. The metal plate is a physical backup of your seed phrase, and the envelope contains additional words that may be part of your backup. Keep them in the same box together.  \n\nSources:  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]  \n[T06:Word list safety: no email or cloud copies; checking the list without typing it]  \n[T02:What is a seed phrase?]  \n[T02:Seed Backup Copies and Materials: Paper, Laminate, and Steel]",
+  "answer": "You should **not** throw away the envelope. Both the metal plate and the envelope contain backup words, and they should both be kept safe. The metal plate is durable and resistant to fire and water, so it's a good idea to keep it in a secure location. The envelope contains additional backup words, and even if the plate has the same words, you should still keep the envelope as a backup. The envelope should be kept in a safe place, and you should list both items in your inventory to ensure they are not mistaken for junk.\n\nSources:\n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] [T06:Inventory and privacy: listing what you found without exposing it] [T06:Word list safety: no email or cloud copies; checking the list without typing it]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T02:what-is-a-seed-phrase",
    "T02:seed-backup-copies-and-materials-paper-l",
-   "T06:word-list-safety-no-email-or-cloud-copie"
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "elapsed_s": 20.3,
+  "elapsed_s": 23.0,
   "passed": false,
   "must_include": [
    {
@@ -69,7 +75,7 @@
    },
    {
     "phrase": "put them all in the same box together",
-    "result": "synonym"
+    "result": "fail"
    }
   ],
   "must_not_include_hits": [],
@@ -77,16 +83,18 @@
   "refusal_ok": true,
   "semantic": {
    "keep every word list you find": "same",
-   "some backups are split across pages or materials": "same"
+   "some backups are split across pages or materials": "partial",
+   "put them all in the same box together": "different"
   },
-  "semantic_passed": true,
+  "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-003",
   "category": "day1_securing",
   "prompt": "My mom wants to vacuum and tidy my late husband's office. Anything I should do before she does?",
-  "answer": "Before your mom vacuum and tidy the office, collect every paper with word lists and every small device first, and do not let anything get thrown out \u2014 not by relatives, not by hired cleaners. Folded papers, SD cards, and pocket-sized devices are exactly the things that disappear into a vacuum bag or a recycling bin. You have time \u2014 nothing is urgent, and moving slowly is what protects you here.\n\nSources:\n[T02:What This App Cannot Know: Honest Limits] [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]",
+  "answer": "Before your mom vacuum and tidy the office, collect every paper with word lists and every small device first, and do not let anything get thrown out \u2014 not by relatives, not by hired cleaners. Folded papers, SD cards, and pocket-sized devices are exactly the things that disappear into a vacuum bag or a recycling bin. You have time \u2014 nothing is urgent, and moving slowly is what protects you here.\n\nSources:\n[T02:What This App Cannot Know: Honest Limits] (section claim.6)\n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section plain.p2)",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:day-1-securing-inherited-bitcoin-devices",
@@ -96,9 +104,12 @@
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:verification-day-checksum-seed-entry-bal",
    "T06:first-hours-securing-inherited-bitcoin-s",
-   "T02:what-this-app-cannot-know-honest-limits"
+   "T02:what-this-app-cannot-know-honest-limits",
+   "T02:what-this-app-cannot-know-honest-limits",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
-  "elapsed_s": 16.9,
+  "elapsed_s": 18.9,
   "passed": true,
   "must_include": [
    {
@@ -123,7 +134,7 @@
   "id": "T06-004",
   "category": "day1_securing",
   "prompt": "His laptop has a file called 'wallet.dat' and an app called Sparrow. A relative says I should wipe the laptop for privacy. Should I?",
-  "answer": "You should not wipe the laptop unless the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section plain.p3)  \nThe wallet files and apps like 'wallet.dat' and Sparrow may be needed to open the wallet later, so leave them in place. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  \nIf a relative suggests wiping the laptop for privacy, hold off \u2014 wipe only after the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.11)  \n\nSources:  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section plain.p3)  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.11)",
+  "answer": "You should **not** wipe the laptop unless the wallet is recovered or a professional confirms it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  \nThe wallet files and apps like 'wallet.dat' and Sparrow may be needed to open the wallet later, so leave them in place. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  \nWipe the computer only after the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.11)  \n\nSources:  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  \n[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.11)",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:day-1-securing-inherited-bitcoin-devices",
@@ -133,9 +144,13 @@
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T02:what-is-a-seed-phrase",
-   "T01:how-to-get-started-with-bitcoin-self-cus"
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase"
   ],
-  "elapsed_s": 22.3,
+  "elapsed_s": 25.6,
   "passed": false,
   "must_include": [
    {
@@ -148,7 +163,7 @@
    },
    {
     "phrase": "wipe only after the wallet is recovered or a professional says it is safe",
-    "result": "exact"
+    "result": "synonym"
    }
   ],
   "must_not_include_hits": [],
@@ -158,13 +173,14 @@
    "do not delete anything on his computer": "same"
   },
   "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  },
  {
   "id": "T06-005",
   "category": "word_list_handling",
   "prompt": "I found a piece of paper with 24 handwritten words on it. What is it and what do I do with it?",
-  "answer": "A piece of paper with 24 handwritten words on it is a seed phrase \u2014 the master key for the inherited bitcoin. Whoever holds those words can control the funds, so treat the paper as the most valuable object in the home. For now, do not photograph it, do not type it anywhere yet, and keep it exactly where it is.\n\nYou should treat the paper as the most valuable object in the home and never share the words on it. Do not type the words into a website or app, and do not read them out to anyone. Keep the paper stored securely as you found it.\n\nSources: [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling], [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling], [T06:Making a Private Inventory of What Was Inherited], [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]",
+  "answer": "The paper with 24 handwritten words on it is a **seed phrase** \u2014 the master key for the inherited bitcoin. It is the most valuable object in the home, and whoever holds those words can control the funds. You should treat the paper as the most valuable object in the home and keep it exactly where it is.\n\nYou should **never type the words into a website or app**, and **never read them out to anyone**. The paper is a **private inventory** of what was inherited, and you should record only the **location** and **condition** of the paper, not the words themselves.\n\nSources:\n[T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling] [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling] [T06:Making a Private Inventory of What Was Inherited]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:found-paper-with-24-handwritten-words-se",
@@ -173,11 +189,15 @@
    "T06:found-paper-with-24-handwritten-words-se",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T02:what-are-public-and-private-keys",
+   "T06:word-list-safety-no-email-or-cloud-copie",
    "T06:making-a-private-inventory-of-what-was-i",
-   "T02:bip-39-the-standard-behind-your-12-24-wo"
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:making-a-private-inventory-of-what-was-i",
+   "T06:making-a-private-inventory-of-what-was-i"
   ],
   "elapsed_s": 21.6,
-  "passed": true,
+  "passed": false,
   "must_include": [
    {
     "phrase": "a seed phrase \u2014 the master key",
@@ -185,11 +205,11 @@
    },
    {
     "phrase": "do not photograph it",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "do not type it anywhere yet",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "keep it exactly where it is",
@@ -199,13 +219,19 @@
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
-  "passed_final": true
+  "semantic": {
+   "do not photograph it": "partial",
+   "do not type it anywhere yet": "same"
+  },
+  "semantic_passed": false,
+  "semantic_lenient": false,
+  "passed_final": false
  },
  {
   "id": "T06-006",
   "category": "word_list_handling",
   "prompt": "The words are numbered 1 to 24 across three separate pages. To make it easier to carry, can I copy just page 2 into my notes app?",
-  "answer": "You may not copy just page 2 into your notes app. [T02:Handling a Word List: Copying, Storing, Who May Touch It] states that you should never copy seed words into any app, cloud, or notes app \u2014 not page 2, not a shortened version, not even briefly. A phone copy creates a leakable digital trail and still cannot recover the wallet.\n\nSources:\n[T02:Handling a Word List: Copying, Storing, Who May Touch It]",
+  "answer": "You cannot copy just page 2 into your notes app. The corpus states that never put seed words into any app, cloud, or notes app \u2014 not page 2, not a shortened version, not even briefly. A phone copy creates a leakable digital trail and still cannot recover the wallet. Additionally, the corpus emphasizes that you must keep every word list you find, even if two of them look identical, because some backups are split across pages or materials, and a single page or plate may be incomplete on its own. \n\nSources:\n[T02:Handling a Word List: Copying, Storing, Who May Touch It]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:found-paper-with-24-handwritten-words-se",
@@ -214,15 +240,18 @@
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T02:bip-32-hierarchical-deterministic-wallet",
-   "T02:seed-backup-copies-and-materials-paper-l",
-   "T08:spotting-investment-scams-ftc"
+   "T02:bip-44-multi-account-hierarchy",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
-  "elapsed_s": 16.4,
+  "elapsed_s": 23.3,
   "passed": false,
   "must_include": [
    {
     "phrase": "never put seed words into any app, cloud, or notes app",
-    "result": "synonym"
+    "result": "exact"
    },
    {
     "phrase": "a partial word list is not usable on its own",
@@ -238,16 +267,17 @@
   "refusal_ok": true,
   "semantic": {
    "a partial word list is not usable on its own": "same",
-   "keep the pages together in one place": "different"
+   "keep the pages together in one place": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-007",
   "category": "word_list_handling",
   "prompt": "Can I email the word list to myself so it's safe if the house burns down?",
-  "answer": "You should never store your seed phrase online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin. [T04:Word list safety: no email or cloud copies; checking the list without typing it]\n\nSources:\n[T04:Word list safety: no email or cloud copies; checking the list without typing it]",
+  "answer": "You should never store your recovery word list (the seed phrase) online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin. Never send the word list by email or save it online \u2014 those can be hacked, and even the company's own employees could read what is stored there. \n\nSources: [T02:Handling a Word List: Copying, Storing, Who May Touch It] [T06:Word list safety: no email or cloud copies; checking the list without typing it] [T04:What is a seed phrase?]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:word-list-safety-no-email-or-cloud-copie",
@@ -255,11 +285,15 @@
    "T06:word-list-safety-no-email-or-cloud-copie",
    "T06:word-list-safety-no-email-or-cloud-copie",
    "T02:handling-a-word-list-copying-storing-who",
+   "T02:what-is-a-seed-phrase",
    "T02:handling-a-word-list-copying-storing-who",
    "T02:handling-a-word-list-copying-storing-who",
-   "T02:handling-a-word-list-copying-storing-who"
+   "T02:handling-a-word-list-copying-storing-who",
+   "T02:handling-a-word-list-copying-storing-who",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie"
   ],
-  "elapsed_s": 15.1,
+  "elapsed_s": 19.0,
   "passed": false,
   "must_include": [
    {
@@ -282,13 +316,14 @@
    "physical offline copies only; metal survives fire": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-008",
   "category": "word_list_handling",
   "prompt": "The app is asking me to confirm the word list by typing it in. That's how I check it's complete, right?",
-  "answer": "The app asking you to confirm the word list by typing it in is not a safe check. Count the words on paper instead \u2014 24 or 12 is what a complete list looks like. Also check that every word is readable and the order is unchanged. [T06:Word list safety: no email or cloud copies; checking the list without typing it]\n\nSources: T06:Word list safety: no email or cloud copies; checking the list without typing it",
+  "answer": "You are not correct. The app asking you to type the word list is not a safe check. Count the words on paper instead \u2014 24 or 12 confirms a complete list. Also check that every word is readable and the order is unchanged. \n\nSources: [T06:Word list safety: no email or cloud copies; checking the list without typing it] [T04:Restoring a BitBox02 from recovery words (BitBox)]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:word-list-safety-no-email-or-cloud-copie",
@@ -298,9 +333,13 @@
    "T04:setting-up-and-restoring-a-blockstream-j",
    "T04:restoring-a-bitbox02-from-recovery-words",
    "T04:setting-up-and-restoring-a-blockstream-j",
-   "T06:what-this-app-cannot-tell-you-prices-sel"
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T06:word-list-safety-no-email-or-cloud-copie",
+   "T04:restoring-a-bitbox02-from-recovery-words",
+   "T04:restoring-a-bitbox02-from-recovery-words"
   ],
-  "elapsed_s": 19.0,
+  "elapsed_s": 23.6,
   "passed": false,
   "must_include": [
    {
@@ -324,25 +363,30 @@
    "this app never asks for your words": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-009",
   "category": "device_handling",
   "prompt": "The little black device asks for a PIN and I don't have it. If I keep guessing it might lock \u2014 should I just reset it and start over?",
-  "answer": "If the device asks for a PIN you don't have, do not reset it. Stop guessing and find the backup words first: repeated wrong entries can lock the device, and resetting without the seed phrase backup destroys access to the bitcoin forever. Look for a card or paper word list kept with the device or with important documents. [T02:What is a seed phrase?]\n\nIf the PIN is unknown, do not reset the device; stop guessing and find the backup words first, because repeated wrong guesses can lock the device. BTCG Inheritance Walkthrough. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]\n\nDo not keep guessing the PIN \u2014 repeated failures can permanently lock some devices. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]\n\nIf the screen is cracked and the device won't turn on, don't panic: no \u2014 the bitcoin is on the blockchain, not in the device. The seed phrase can restore the wallet on a new device, even from a different brand. Do not try to repair or open it yourself yet. Keep the device safe and unchanged while you find the backup. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]\n\nIf the Secret Recovery Phrase is lost and the PIN is no longer accessible, or the device has reset, it is impossible to access the assets. Section 'I lost my Secret Recovery Phrase but I no longer have access to my PIN or my Ledger device has reset' [T04:I lost my Secret Recovery Phrase (Ledger)]\n\nThe device can be reset from its settings menu (steps given for Nano X / Nano S / Nano S Plus) or by entering an incorrect PIN three times in a row, after which the device resets as a security measure. Step 3, 'Reset from device settings' and 'Reset from PIN' subsections [T04:I lost my Secret Recovery Phrase (Ledger)]\n\nSources: [T02:What is a seed phrase?], [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device], [T04:I lost my Secret Recovery Phrase (Ledger)]",
+  "answer": "If the device asks for a PIN and you don't have it, do not reset it. Stop guessing and find the backup words first: repeated wrong entries can lock the device, and resetting without the seed phrase backup destroys access to the bitcoin forever. Look for a card or paper word list kept with the device or with important documents. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nIf the PIN is unknown, do not reset the device; stop guessing and find the backup words first, because repeated wrong guesses can lock the device. BTCG Inheritance Walkthrough [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nDo not keep guessing the PIN \u2014 repeated failures can permanently lock some devices. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nIf the screen is cracked and the device won't turn on, don't panic: no \u2014 the bitcoin is on the blockchain, not in the device. The seed phrase can restore the wallet on a new device, even from a different brand. Do not try to repair or open it yourself yet. Keep the device safe and unchanged while you find the backup. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nA hardware wallet is a signing device, not a store of funds: balances live on the blockchain, and the device's secure element only holds the private keys. PIN lockouts are anti-brute-force protection, not deletion, but any reset \u2014 deliberate or triggered on some models by repeated failed attempts \u2014 clears the keys from the secure element; only the BIP-39 seed phrase backup can restore them. An heir should treat the backup's existence as unverified until it is located and checked. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nIf the device has reset, it is impossible to access the assets. Section 'I lost my Secret Recovery Phrase but I no longer have access to my PIN or my Ledger device has reset' [T04:I lost my Secret Recovery Phrase (Ledger)]  \n\nA hardware wallet is a signing device, not a store of funds: balances live on the blockchain, and the device's secure element only holds the private keys. PIN lockouts are anti-brute-force protection, not deletion, but any reset \u2014 deliberate or triggered on some models by repeated failed attempts \u2014 clears the keys from the secure element; only the BIP-39 seed phrase backup can restore them. An heir should treat the backup's existence as unverified until it is located and checked. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nA dead or damaged device does not affect the funds: the seed phrase can reconstruct the wallet on any BIP-39-compatible device, including another brand. Do not attempt repair or teardown before the backup situation is resolved; tampering can complicate later secure-element inspection if recovery ever depends on it. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]  \n\nIf the SRP is lost and the PIN is unavailable, or the device has reset, asset access is unrecoverable; Ledger cannot retrieve the SRP or the PIN. With the PIN still known, the device remains usable and the SRP should be replaced by migration:",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inherited-hardware-wallet-unknown-pin-re",
    "T06:inherited-hardware-wallet-unknown-pin-re",
    "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T06:inherited-hardware-wallet-unknown-pin-re",
    "T06:inherited-hardware-wallet-unknown-pin-re",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T02:what-this-app-cannot-know-honest-limits",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
-   "T02:what-this-app-cannot-know-honest-limits"
+   "T04:i-lost-my-secret-recovery-phrase-ledger"
   ],
-  "elapsed_s": 30.7,
+  "elapsed_s": 60.1,
   "passed": true,
   "must_include": [
    {
@@ -367,7 +411,7 @@
   "id": "T06-010",
   "category": "device_handling",
   "prompt": "My brother says hardware wallets are safest if you factory reset them before recovering, so no one else's data is on there. True?",
-  "answer": "The corpus does not provide information about the safety of factory resetting hardware wallets before recovering. However, it does mention that a reset erases the keys, and only the seed phrase backup can restore them. It also emphasizes that if you do not set up a device yourself, you should not reset it, as a reset is final without the seed phrase.\n\nSources:\n[T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]",
+  "answer": "The corpus states that a reset erases its keys; only the seed phrase backup can restore them. Check for the seed phrase backup before touching the device; with it you can always recover, and without it a reset is final. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]\n\nThe corpus also states that if the Secret Recovery Phrase is lost and the PIN is no longer accessible, or the device has reset, it is impossible to access the assets. [T04:I lost my Secret Recovery Phrase (Ledger)]\n\nThe corpus further states that there is no hotline that can recover lost self-custodied bitcoin. If your keys or backups are destroyed, stolen, or simply forgotten, those funds are effectively gone. Bitcoin has no password reset, no fraud department, and no chargebacks. [T01:No Hotline, No Refunds: Self-Custody Loss Is Final]\n\nSources:\n[T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]\n[T04:I lost my Secret Recovery Phrase (Ledger)]\n[T01:No Hotline, No Refunds: Self-Custody Loss Is Final]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inherited-hardware-wallet-unknown-pin-re",
@@ -375,11 +419,15 @@
    "T01:no-hotline-no-refunds-self-custody-loss-",
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T06:verification-day-checksum-seed-entry-bal",
-   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T04:i-lost-my-secret-recovery-phrase-ledger"
   ],
-  "elapsed_s": 20.7,
+  "elapsed_s": 70.2,
   "passed": false,
   "must_include": [
    {
@@ -388,40 +436,44 @@
    },
    {
     "phrase": "a reset erases its keys; only the seed phrase backup can restore them",
-    "result": "synonym"
+    "result": "exact"
    },
    {
     "phrase": "check for the seed phrase backup before touching the device",
-    "result": "fail"
+    "result": "exact"
    }
   ],
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "never reset a device you did not set up yourself": "same",
-   "check for the seed phrase backup before touching the device": "partial"
+   "never reset a device you did not set up yourself": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-011",
   "category": "device_handling",
   "prompt": "The device screen is cracked and it won't turn on at all. Is the bitcoin gone?",
-  "answer": "The bitcoin is not gone. If the screen is cracked and the device won't turn on, the bitcoin is still on the blockchain, not in the device. The seed phrase can restore the wallet on a new device, even from a different brand. Do not try to repair or open it yourself yet. Keep the device safe and unchanged while you find the backup.\n\nSources: [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]",
+  "answer": "The bitcoin is not gone. The seed phrase can restore the wallet on a new device, even from a different brand. The device is on the blockchain, not in the device. Do not try to repair or open it yourself yet. Keep the device safe and unchanged while you find the backup.\n\nSources: [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inherited-hardware-wallet-unknown-pin-re",
-   "T02:recovery-phrase-safety-basics",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
-   "T04:setting-up-and-restoring-a-blockstream-j",
    "T02:what-this-app-cannot-know-honest-limits",
    "T04:seedsigner-air-gapped-stateless-signing-",
+   "T02:recovery-phrase-safety-basics",
    "T04:setting-up-and-restoring-a-blockstream-j",
-   "T06:inherited-hardware-wallet-unknown-pin-re"
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j"
   ],
-  "elapsed_s": 13.7,
+  "elapsed_s": 40.2,
   "passed": true,
   "must_include": [
    {
@@ -446,7 +498,7 @@
   "id": "T06-012",
   "category": "device_handling",
   "prompt": "There's a PIN retry limit on his Coldcard and I've already tried twice. What should I do?",
-  "answer": "If you have already entered a wrong PIN twice on your Coldcard, you should stop entering PINs immediately. Some devices erase themselves after too many wrong attempts, and you cannot know how many tries remain. Put the device down and find the seed phrase backup first: a card or booklet, sometimes metal, with 12 or 24 words, often kept with his papers, in a safe, or in a safe-deposit box. That backup is what holds the funds; the device is only one way to reach them.\n\nSources: [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]",
+  "answer": "If you have already entered a wrong PIN twice on your Coldcard, you should stop entering PINs immediately. Some devices erase themselves after too many wrong attempts, and you cannot know how many tries remain. Put the device down and find the seed phrase backup first: a card or booklet, sometimes metal, with 12 or 24 words, often kept with his papers, in a safe, or in a safe-deposit box. That backup is what holds the funds; the device is only one way to reach them.\n\nSources: [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help] [T04:Setting up and restoring a Blockstream Jade]",
   "backend": "local_qwen3_1.7b",
   "retrieved_ids": [
    "T04:setting-up-and-restoring-a-blockstream-j",
@@ -456,9 +508,13 @@
    "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T07:social-engineering-scams-romance-fake-jo",
-   "T06:inheritance-scams-fake-support-calls-rec"
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T06:inherited-hardware-wallets-pin-retry-lim"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 37.6,
   "passed": true,
   "must_include": [
    {
@@ -483,19 +539,21 @@
   "id": "T06-013",
   "category": "device_handling",
   "prompt": "Is it okay to power on the hardware wallets today just to see the balance?",
-  "answer": "Powering on a hardware wallet today to check the balance is acceptable, but you should follow the manufacturer's instructions for safe setup and initialization. Hardware wallets are designed to be secure and require physical interaction to activate, so it's important to ensure you follow the correct steps to avoid any security risks. \n\nSources: [T08:Hardware wallets: security and setup]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "**Yes \u2014 powering them on just to look is okay.** Looking at a balance does not move or spend anything.\n\n**Why this is low-risk.** Hardware wallets are the best balance between very high security and ease of use, and no software can be installed on them, making them very secure against computer vulnerabilities and online thieves. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\n**What to expect:**\n- If you check the balance through an app on your phone or computer, that is a watch-only view: the app can see the balance but cannot spend. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- I cannot look it up for you \u2014 this app never goes online, so it cannot see your wallet or your balance. [T02:What This App Cannot Know: Honest Limits]\n- If one of the devices is a SeedSigner, it is an air-gapped stateless signing device: seeds are temporarily stored in memory only while the device is powered, and all memory is wiped when power is removed. [T04:SeedSigner: air-gapped stateless signing device]\n\n**DO:**\n- Save what you find. As with exchange accounts, keep balance screenshots as evidence for the estate. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- If you need to install an app to view the balance, install only from official app stores. [T01:How to get started with Bitcoin self-custody (River)]\n- From time to time, check the vendor's social media or GitHub \u2014 hardware wallet vendors periodically discover bugs or vulnerabilities, and you should update when fixes are released. [T01:How to get started with Bitcoin self-custody (River)]\n\n**DO NOT:**\n- Do not wipe or erase the device or its wallet before the backup words are verified. If a menu offers to erase the wallet, stop and leave it alone.\n- Never enter the seed words into any website, cloud service, or notes app, and never store them on internet-connected devices. [T01:How to get started with Bitcoin self-custody (River)]\n- If you buy any additional hardware wallet, never buy a refurbished or second-hand one; buy directly from the manufacturer to avoid tampered devices. [T01:How to get started with Bitcoin self-custody (River)]\n\nSources: T06:First Hours: Securing Inherited Bitcoin Safely; T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody; T02:What This App Cannot Know: Honest Limits; T04:SeedSigner: air-gapped stateless signing device; T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply; T01:How to get started with Bitcoin self-custody (River)",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:exchange-accounts-in-an-inheritance-what",
    "T01:how-to-get-started-with-bitcoin-self-cus",
-   "T02:what-this-app-cannot-know-honest-limits",
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T04:setting-up-and-restoring-a-blockstream-j",
-   "T06:first-hours-securing-inherited-bitcoin-s"
+   "T02:what-this-app-cannot-know-honest-limits",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T04:seedsigner-air-gapped-stateless-signing-",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
-  "elapsed_s": 21.7,
+  "elapsed_s": 130.7,
   "passed": false,
   "must_include": [
    {
@@ -520,26 +578,31 @@
    "look instead: note the brand and model from the packaging or the back": "different"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-014",
   "category": "device_handling",
   "prompt": "A friend offered to plug the Ledger into his computer and figure it out for me. He's good with computers.",
-  "answer": "You should thank him and say no, even if he is genuinely good with computers. Do not hand devices or words to anyone. Almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends \u2014 and a well-meaning helper can still lock the device or connect unknown software. You can walk through it yourself with offline guides, one small step at a time, with no one else's hands involved.\n\nSources: [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help], [T06:First Hours: Securing Inherited Bitcoin Safely], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers], [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "Thank him and say no \u2014 even though he is genuinely good with computers. Do not hand devices or words to anyone. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n\n**Why \"no\" is the safe answer:**\n\n- A well-meaning helper can still lock the device or connect unknown software. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- If the device does get locked, there is no rescue from the manufacturer: Ledger is unable to retrieve a user's Secret Recovery Phrase or PIN. [T04:I lost my Secret Recovery Phrase (Ledger)]\n- His computer is not a safe place for a wallet either. Do not run software wallets on a desktop machine that has lots of other software installed, because other software may be compromised by trojans that scan your computer for private keys. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\n**DO:**\n\n- Keep the Ledger set aside with the other materials, unplugged. If you find a USB stick or small device labeled with a wallet brand such as 'Ledger', do not plug it in yet \u2014 set it aside with the other materials. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n- Walk through it yourself with offline guides, one small step at a time, with no one else's hands involved. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n\n**DO NOT:**\n\n- Hand the device or any written words to anyone \u2014 even a trusted, skilled friend. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- Plug the Ledger into his computer or anyone else's. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\nYour friend's intentions are probably good. The risk is not his intentions \u2014 it is his hands and his computer. You can do this yourself, one small step at a time.\n\nSources: [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help], [T04:I lost my Secret Recovery Phrase (Ledger)], [T06:First Hours: Securing Inherited Bitcoin Safely], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inherited-hardware-wallets-pin-retry-lim",
    "T06:first-hours-securing-inherited-bitcoin-s",
    "T06:first-hours-securing-inherited-bitcoin-s",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inheritance-scams-fake-support-calls-rec",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
-   "T04:setting-up-and-restoring-a-blockstream-j"
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T06:first-hours-securing-inherited-bitcoin-s",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
-  "elapsed_s": 18.5,
-  "passed": true,
+  "elapsed_s": 15.6,
+  "passed": false,
   "must_include": [
    {
     "phrase": "do not hand devices or words to anyone",
@@ -547,7 +610,7 @@
    },
    {
     "phrase": "almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "walk through it yourself with offline guides",
@@ -557,14 +620,19 @@
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
-  "passed_final": true
+  "semantic": {
+   "almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends": "different"
+  },
+  "semantic_passed": false,
+  "semantic_lenient": false,
+  "passed_final": false
  },
  {
   "id": "T06-015",
   "category": "inventory_privacy",
   "prompt": "My sister wants to know how much dad's bitcoin is worth so we can plan the estate. Should I tell her what I found?",
-  "answer": "Should I tell her what I found? [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]  \nYes, but only if you are ready to verify and secure the wallet first. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]  \nDo not tell anyone what you found or how much there is \u2014 not yet. This is not about distrusting your sister. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]  \n\nSources: [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "**No \u2014 do not tell anyone what you found or how much there is \u2014 not yet.** This is not about distrusting your sister. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**Why waiting matters:** Early disclosure of amounts can spark disputes and make the estate a target; hold details back until verification and legal advice are complete. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**What you can say to her:** Tell family only that records exist and you are working through them carefully. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**On \"how much it's worth\":** any number today would be a guess. This app is offline and cannot know current prices, and it cannot give financial or investment advice \u2014 it will not predict the price or tell you to sell or hold. [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\n**DO:**\n- Tell your sister that records exist and you are working through them carefully.\n- Write a short plan before you touch anything digital: what you found, where it is now, and who else should know. If you find passwords, keep a paper copy in a safe place \u2014 with Bitcoin there is no bank to recover a forgotten password, and losing it means losing the money forever. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\n**DO NOT:**\n- Do not share amounts, wallet details, or passwords with anyone yet \u2014 not in person, by text, or in shared notes.\n- Do not act on the bitcoin before you have verified the wallet and secured it.\n\nSources: [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:What This App Cannot Tell You: Prices, Selling, and Picks], [T06:First Hours: Securing Inherited Bitcoin Safely]",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
@@ -573,9 +641,11 @@
    "T02:what-are-public-and-private-keys",
    "T06:inheritance-scam-alerts-remote-control-r",
    "T01:no-hotline-no-refunds-self-custody-loss-",
-   "T06:making-a-private-inventory-of-what-was-i"
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "elapsed_s": 35.5,
+  "elapsed_s": 31.0,
   "passed": false,
   "must_include": [
    {
@@ -584,7 +654,7 @@
    },
    {
     "phrase": "tell family only that records exist and you are working through them carefully",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "wait until the wallet is verified and an attorney advises you",
@@ -595,18 +665,18 @@
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "tell family only that records exist and you are working through them carefully": "partial",
-   "wait until the wallet is verified and an attorney advises you": "partial"
+   "wait until the wallet is verified and an attorney advises you": "same"
   },
-  "semantic_passed": false,
+  "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  },
  {
   "id": "T06-016",
   "category": "inventory_privacy",
   "prompt": "For the Day 2 inventory, should I write the 24 words on my inventory sheet so everything is in one document?",
-  "answer": "Writing the 24 words on your inventory sheet for Day 2 is not recommended. The corpus explicitly states that you should never copy the words into your inventory \u2014 not the full 24, not part of them, not a hint of them. Those words are the money itself: anyone who reads them can move everything, and an inventory page is exactly the kind of document that gets carried around, shown to helpers, or left on a table.\n\nSources: [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] [T06:Inventory and privacy: listing what you found without exposing it]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "**No. Keep the words off the inventory sheet.**\n\nNever copy the words into your inventory \u2014 not the full 24, not part of them, not a hint of them. Those words are the money itself: anyone who reads them can move everything, and an inventory page is exactly the kind of document that gets carried around, shown to helpers, or left on a table. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nRecovery words function as a bearer instrument: anyone who obtains them controls the funds. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**What to write instead: describe, don't copy.**\n\nWrite only a description like \"24-word list found, sealed envelope, 3 pages.\" Record where each item was found, what it looks like, and its condition \u2014 never its contents. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nThe inventory is a metadata record, never a copy of secret material. Per item, capture: (1) physical description and type; (2) discovery location; (3) observable labels, packaging text, and tamper-evident condition. Where secret material exists (recovery words, passphrases, PINs, account passwords), record only its presence and format \u2014 for example, \"sealed card, 24 word positions\" \u2014 never its contents. [T06:Inventory and privacy: listing what you found without exposing it]\n\nThe inventory page must contain no secrets: no recovery words, no passwords, no PINs, no amounts. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**\"Everything in one document\" is the opposite of what you want.**\n\nThe words belong in their own secure physical backups, separate from the inventory. Keep more than one physical copy so a single fire, flood, or theft cannot take everything. [T02:Handling a Word List: Copying, Storing, Who May Touch It]\n\n**Guard the sheet itself.**\n\nLocation notes reveal where valuables and backups are, so guard the inventory as carefully as the items themselves. It must remain on paper under the heir's control, outside shared cloud storage, email, and messaging. [T06:Inventory and privacy: listing what you found without exposing it]\n\n**DO / DO NOT**\n\n- DO describe the item and its location \u2014 for example, \"sealed word card, 24 words, desk drawer, undamaged.\" [T06:Making a Private Inventory of What Was Inherited]\n- DO NOT write, photograph, or dictate the words, PINs, or passwords into the inventory, or store them digitally anywhere. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n- Never share your seed phrase with anyone \u2014 anyone who obtains the words controls the funds. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nUntil the wallet has been verified against its backup and an attorney has advised on the estate process, tell family only that records exist and are being reviewed carefully. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nSources: [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:Making a Private Inventory of What Was Inherited], [T06:Inventory and privacy: listing what you found without exposing it], [T02:Handling a Word List: Copying, Storing, Who May Touch It]",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:making-a-private-inventory-of-what-was-i",
@@ -615,10 +685,14 @@
    "T06:inventory-privacy-what-to-tell-family-an",
    "T02:handling-a-word-list-copying-storing-who",
    "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:inherited-hardware-wallets-pin-retry-lim"
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-and-privacy-listing-what-you-f"
   ],
-  "elapsed_s": 26.8,
-  "passed": false,
+  "elapsed_s": 46.3,
+  "passed": true,
   "must_include": [
    {
     "phrase": "never copy the words into your inventory",
@@ -626,49 +700,48 @@
    },
    {
     "phrase": "write only a description like '24-word list found, sealed envelope, 3 pages'",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "the inventory page must contain no secrets",
-    "result": "fail"
+    "result": "exact"
    }
   ],
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
-  "semantic": {
-   "write only a description like '24-word list found, sealed envelope, 3 pages'": "partial",
-   "the inventory page must contain no secrets": "same"
-  },
-  "semantic_passed": false,
-  "passed_final": false
+  "passed_final": true
  },
  {
   "id": "T06-017",
   "category": "inventory_privacy",
   "prompt": "Can I store my inventory in a shared family Google Doc so everyone is on the same page?",
-  "answer": "Storing your inventory in a shared family Google Doc is not recommended. The corpus explicitly states that inventory pages must be kept secret-free and not shared online [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]. Sharing your inventory online risks exposing your funds to others who may gain access to the document. Additionally, shared documents can be accessed by anyone who later gains access to the account, which could compromise your privacy and security.\n\nSources:\n[T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:Making a Private Inventory of What Was Inherited], [T06:Inventory and privacy: listing what you found without exposing it]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "**No.** Do not put your inventory in a shared family Google Doc. The guidance on this is direct: \"Keep the inventory on paper in a locked place or on a device only you control \u2014 never in email, shared cloud storage, or a shared computer.\" [T06:Making a Private Inventory of What Was Inherited]\n\n**Why a shared doc is a problem**\n\n\"Location notes reveal where valuables and backups are, and a synced or shared copy can be read by anyone who later gains access to that account \u2014 the last person you want holding a map to everything.\" [T06:Inventory and privacy: listing what you found without exposing it] A Google Doc is exactly that: a synced, shared copy that can outlive your control of the account.\n\n**What to do instead**\n\n- DO keep the inventory \"on paper in a locked drawer or with your other private papers, or on a phone or computer that only you use.\" [T06:Making a Private Inventory of What Was Inherited]\n- DO \"keep the list stored separately from the items it describes.\" [T06:Making a Private Inventory of What Was Inherited]\n- DO keep the page secret-free: \"it may pass through many hands, including helpers and couriers.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n- DO record metadata only \u2014 \"location, medium (paper, card, hardware wallet), word count (12 or 24), and physical condition.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**What never goes in the inventory \u2014 or any shared document**\n\n\"The inventory page must contain no secrets.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] \"Never copy the words into your inventory \u2014 not the full 24, not part of them, not a hint of them. Those words are the money itself: anyone who reads them can move everything.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] \"Recovery words, passphrases, and PINs are never transcribed, dictated, or photographed into the inventory or stored digitally anywhere.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] In short: never share your seed phrase \u2014 with family, in a doc, or anywhere else. \"Recovery words function as a bearer instrument: anyone who obtains them controls the funds.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**What to tell family instead**\n\nYou can keep everyone on the same page without sharing the document itself: \"family communications state only that records exist and are being reviewed carefully.\" Sharing of amounts is deferred until the wallet has been verified against its backup and an attorney has advised on the estate process. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nSources: [T06:Making a Private Inventory of What Was Inherited], [T06:Inventory and privacy: listing what you found without exposing it], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:making-a-private-inventory-of-what-was-i",
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:making-a-private-inventory-of-what-was-i",
    "T06:inventory-and-privacy-listing-what-you-f",
+   "T02:bip-32-hierarchical-deterministic-wallet",
+   "T06:making-a-private-inventory-of-what-was-i",
+   "T06:inventory-and-privacy-listing-what-you-f",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:inventory-and-privacy-listing-what-you-f"
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:making-a-private-inventory-of-what-was-i",
+   "T06:making-a-private-inventory-of-what-was-i"
   ],
-  "elapsed_s": 24.1,
+  "elapsed_s": 30.6,
   "passed": false,
   "must_include": [
    {
     "phrase": "keep the inventory on your own paper, not shared online",
-    "result": "fail"
+    "result": "synonym"
    },
    {
     "phrase": "location notes reveal where valuables and backups are",
-    "result": "fail"
+    "result": "exact"
    },
    {
     "phrase": "share only what is needed, when it is needed",
@@ -679,19 +752,18 @@
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "keep the inventory on your own paper, not shared online": "partial",
-   "location notes reveal where valuables and backups are": "different",
-   "share only what is needed, when it is needed": "different"
+   "share only what is needed, when it is needed": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-018",
   "category": "inventory_privacy",
   "prompt": "I'm making the list of things found. What exactly should I write down for each item?",
-  "answer": "When making your inventory list, for each item you find, write down three things:  \n- What it physically is (e.g., \"a small USB-style device,\" \"a steel plate\"),  \n- Where you found it (e.g., \"the living room,\" \"the bottom drawer\"),  \n- And its state (e.g., \"working,\" \"damaged,\" \"sealed,\" \"unreadable\").  \n\nSources:  \n[T06:Making a Private Inventory of What Was Inherited] [T06:Inventory and privacy: listing what you found without exposing it]",
-  "backend": "local_qwen3_1.7b",
+  "answer": "**What to write for each item \u2014 three things only:**\n\n1. **What it is** \u2014 a guess is fine. For example, \"a small device like a USB stick\" or \"a steel plate.\" [T06:Making a Private Inventory of What Was Inherited] [T06:Inventory and privacy: listing what you found without exposing it]\n2. **Where you found it** \u2014 the room, drawer, safe, or box. [T06:Inventory and privacy: listing what you found without exposing it]\n3. **Its state** \u2014 working, damaged, sealed, or unreadable. [T06:Making a Private Inventory of What Was Inherited]\n\nYou can also note anything written on the item or its packaging, such as a brand name, a label, or a marking like \"backup words.\" [T06:Inventory and privacy: listing what you found without exposing it]\n\n**What counts as a bitcoin-related item to list:** small USB-stick-like gadgets with buttons or a tiny screen, phones and computers, papers with 12 or 24 handwritten words, metal plates with engraved words, notebooks, and printed files. [T06:Making a Private Inventory of What Was Inherited]\n\n**DO:**\n- Make it a simple paper list. [T06:Inventory and privacy: listing what you found without exposing it]\n- Describe items like this: \"24-word list found, sealed envelope, 3 pages.\" [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**DO NOT:**\n- Never write recovery words, PINs, passphrases, or account passwords in the inventory \u2014 describe the item, do not transcribe its secrets. [T06:Inventory and privacy: listing what you found without exposing it]\n- The inventory page must contain no secrets: no recovery words, no passwords, no PINs, no amounts. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n- Never share your seed phrase with anyone, and do not tell anyone what you found or how much there is \u2014 not yet. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nSources: [T06:Making a Private Inventory of What Was Inherited], [T06:Inventory and privacy: listing what you found without exposing it], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]",
+  "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:making-a-private-inventory-of-what-was-i",
    "T06:inventory-and-privacy-listing-what-you-f",
@@ -700,14 +772,18 @@
    "T02:derivation-paths-and-why-you-must-not-ph",
    "T06:inventory-and-privacy-listing-what-you-f",
    "T06:inventory-privacy-what-to-tell-family-an",
+   "T02:bip-32-hierarchical-deterministic-wallet",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T06:inventory-privacy-what-to-tell-family-an",
    "T06:inventory-privacy-what-to-tell-family-an"
   ],
-  "elapsed_s": 19.3,
+  "elapsed_s": 15.5,
   "passed": false,
   "must_include": [
    {
     "phrase": "what it physically is",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "where it was found",
@@ -715,23 +791,24 @@
    },
    {
     "phrase": "anything written on it or its packaging",
-    "result": "fail"
+    "result": "synonym"
    }
   ],
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "anything written on it or its packaging": "different"
+   "what it physically is": "same"
   },
-  "semantic_passed": false,
+  "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  },
  {
   "id": "T06-019",
   "category": "jargon_decoding",
   "prompt": "A letter in his drawer says 'seed phrase'. In plain language, what does that mean for me as his heir?",
-  "answer": "In plain language: that letter is the most important item in the estate. A seed phrase is the master key \u2014 12 or 24 common words that rebuild the wallet. Whoever has the words controls the bitcoin, so that piece of paper is now the most valuable thing you are protecting. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nThere is no safety net behind it: no company or support line can recover it if it is lost. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**What this means for you:**\n\n- The words *are* the control of the bitcoin. If the paper is lost or destroyed, there is no one who can restore access.\n- Never share your seed phrase. Never type the words into a website or app, and never read them out to anyone who contacts you. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Keep the letter stored as securely as you found it. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**One important clarification:** if some of his bitcoin sits in an exchange account such as Coinbase, that account is *not* backed up by this seed phrase. Exchange accounts are custodial \u2014 the company holds the keys, and the account is accessed with login and identity documents, not seed words. The seed phrase matters only for any separate self-custody wallets you find, and it should never be typed into any exchange site. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**DO:**\n- Store the letter securely, exactly as you found it.\n- Treat it as the most valuable item you are protecting.\n\n**DO NOT:**\n- Never share your seed phrase with anyone, especially anyone who contacts you first.\n- Never type the words into a website or app.\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]",
+  "answer": "That letter is the most important item in the estate. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**What it is:** A seed phrase is the master key \u2014 12 or 24 common words that rebuild the wallet. Whoever has the words controls the bitcoin, so that piece of paper is now the most valuable thing you are protecting. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Why it matters so much:** There is no safety net behind it: no company or support line can recover it if it is lost. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO:**\n- Keep the letter stored as securely as you found it. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO NOT:**\n- Never share your seed phrase. Never type the words into a website or app, and never read them out to anyone who contacts you. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Two things to check while you are in the drawer:**\n\n1. If another paper says \"add this word when restoring,\" that is a deliberate instruction, not leftover scribble. It is a passphrase \u2014 an extra word that combines with the seed phrase. Note that it exists and keep it with the word list, clearly labeled. Do not combine it with anything yet \u2014 it changes which wallet opens, so testing or guessing can show an empty-looking wallet that is not really empty. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n2. If some of his bitcoin was in an exchange account (such as Coinbase), that is separate: exchange accounts are custodial \u2014 the company holds the keys, and the account is accessed with login and identity documents, not seed words. The seed phrase matters only for any separate self-custody wallets you find, and it should never be typed into any exchange site. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
@@ -741,9 +818,12 @@
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T02:bip-39-the-standard-behind-your-12-24-wo",
    "T06:exchange-accounts-in-an-inheritance-what",
-   "T02:bip-49-p2wpkh-nested-addresses"
+   "T02:bip-49-p2wpkh-nested-addresses",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
-  "elapsed_s": 23.9,
+  "elapsed_s": 45.9,
   "passed": true,
   "must_include": [
    {
@@ -768,7 +848,7 @@
   "id": "T06-020",
   "category": "jargon_decoding",
   "prompt": "His notes say 'xpub' next to a long string of letters. Is that something valuable or secret?",
-  "answer": "Good news: that string is not a secret key, and no one can spend the bitcoin with it.\n\nAn xpub is not a secret and cannot spend the bitcoin \u2014 it works more like an account number than a key. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nBut it is privacy-sensitive. It reveals all addresses and transaction history, so it should not be posted or shared publicly. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nWhat to do with it:\n\n- DO keep it in the box and mention it in the inventory, because later it lets you check balances without ever touching the seed words. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- DO NOT post it online, email it, or hand it to anyone who offers to \"check the balance\" for you. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nOne caution: the xpub is different from the seed phrase. The seed phrase is the master backup \u2014 the short list of secret words the wallet gave at setup \u2014 and that one must stay private and offline. The xpub is safe to have on paper; the seed words are not. [T02:BIP-44 multi-account hierarchy]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T02:BIP-44 multi-account hierarchy]",
+  "answer": "Short answer: it is not a secret key, and no one can spend the bitcoin with it \u2014 but it is still worth keeping private.\n\n**What an xpub is.** An xpub is not a secret and cannot spend the bitcoin \u2014 it works more like an account number than a key. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Why you should still keep it private.** It reveals all addresses and transaction history, so it is privacy-sensitive, and it should not be posted or shared publicly. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Why it is valuable to you.** Keep it in the box and mention it in the inventory, because later it lets you check balances without ever touching the seed words. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**How it differs from the seed phrase.** The seed phrase is the master backup \u2014 the wallet builds the private key from it, and a thief with the private key can steal your bitcoin without the seed phrase. [T02:What is a seed phrase?] The xpub cannot do that. It cannot move money at all.\n\n**DO:**\n- Keep the xpub with his papers and list it in your inventory. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Treat it like a bank statement: fine for you to hold, not for strangers to see.\n\n**DO NOT:**\n- Do not post or share it publicly, since it exposes the full address and transaction history. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Do not treat it as the backup itself \u2014 only the seed words can recover the funds. [T02:What is a seed phrase?]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T02:What is a seed phrase?]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
@@ -778,9 +858,13 @@
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T08:what-to-do-if-you-were-scammed-ftc",
    "T08:spotting-investment-scams-ftc",
-   "T06:inherited-hardware-wallets-pin-retry-lim"
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 60.7,
   "passed": true,
   "must_include": [
    {
@@ -789,7 +873,7 @@
    },
    {
     "phrase": "it reveals all addresses and transaction history, so it is privacy-sensitive",
-    "result": "synonym"
+    "result": "exact"
    },
    {
     "phrase": "still keep it in the box and mention it in the inventory",
@@ -805,7 +889,7 @@
   "id": "T06-021",
   "category": "jargon_decoding",
   "prompt": "What's the difference between a 'watch-only' wallet and a real one? His Sparrow says 'watch-only' in the corner.",
-  "answer": "**Short answer:** A watch-only wallet can look, but not spend. A \"real\" spending wallet holds or controls the keys that can move the bitcoin.\n\nIf his Sparrow wallet says 'watch-only' in the corner, that is not a fault. Watch-only means the app can see the balance but cannot spend. Spending requires the keys \u2014 the seed phrase or a signed device \u2014 which stay offline and untouched. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Why he set it up this way:** This is a common cold-storage arrangement. A user can receive bitcoin while keeping keys cold by keeping public keys available through a watch-only wallet; the Key Takeaways describe this as exporting an extended public key. [T03:Cold Storage and Hardware Wallets] In other words, Sparrow on his computer is the window \u2014 the keys that can actually spend live somewhere else, such as a hardware wallet or a written word list.\n\n**What this means for you:** Watch-only is a safe first step for heirs: you can confirm what exists and learn the setup with zero risk of loss, and nothing needs to be reset to make it real. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO:**\n- Use the watch-only view to see the balance and learn the setup.\n- Keep his computer and its files intact. Do not delete anything on his computer: wallet files and apps may be needed to open the wallet later. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n- Set the laptop aside with the box, and do not lend it out. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\n**DO NOT:**\n- Do not treat the watch-only label as an error that needs fixing.\n- Do not wipe the laptop for privacy \u2014 hold off; wipe only after the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T03:Cold Storage and Hardware Wallets], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]",
+  "answer": "If his Sparrow wallet says 'watch-only' in the corner, that is not a fault. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**The difference**\n\nA watch-only wallet means the app can see the balance but cannot spend. Spending requires the keys \u2014 the seed phrase or a signed device \u2014 which stay offline and untouched. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nIn technical terms: a watch-only wallet, such as Sparrow running in watch-only mode, imports only public data \u2014 an xpub, which enumerates all derived addresses and their transaction history for observation, but is mathematically incapable of producing a signature. Any spend attempt fails at signing unless a private key, a seed, or a hardware signing device supplies the signature. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nA \"real\" spendable setup is one where you hold the private keys. A seed phrase is the master key \u2014 12 or 24 common words that rebuild the wallet. Whoever has the words controls the bitcoin. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**Why this is good news for you**\n\nWatch-only is a safe first step for heirs: you can confirm what exists and learn the setup with zero risk of loss, and nothing needs to be reset to make it real. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] A user can receive bitcoin while keeping keys cold by keeping public keys available through a watch-only wallet. [T03:Cold Storage and Hardware Wallets]\n\n**DO / DO NOT**\n\n- DO use the watch-only view to confirm what exists and learn the setup. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- DO keep any seed phrase letter stored as securely as you found it \u2014 that piece of paper is now the most valuable thing you are protecting. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- DO NOT type the words into a website or app, and never read them out to anyone who contacts you. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- DO NOT delete anything on his computer: wallet files and apps may be needed to open the wallet later. Set the laptop aside, and do not lend it out. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers], [T03:Cold Storage and Hardware Wallets]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
@@ -814,15 +898,17 @@
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T03:cold-storage-and-hardware-wallets",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
    "T07:social-engineering-scams-romance-fake-jo",
-   "T01:how-to-get-started-with-bitcoin-self-cus"
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
   ],
-  "elapsed_s": 15.8,
+  "elapsed_s": 30.8,
   "passed": true,
   "must_include": [
    {
     "phrase": "watch-only means the app can see the balance but cannot spend",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "spending requires the keys \u2014 the seed phrase or a signed device",
@@ -842,19 +928,21 @@
   "id": "T06-022",
   "category": "jargon_decoding",
   "prompt": "The paper says 'add this word when restoring'. What does that mean?",
-  "answer": "That note is a deliberate instruction, not leftover scribble. A paper that says 'add this word when restoring' refers to a passphrase \u2014 an extra word that combines with the seed phrase. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nWhat this means for you:\n\n**DO:**\n- Note that it exists and keep it with the word list, clearly labeled. [T06:Decoding Inherited Bitcoin Jargon]\n- Record it, store it with the words, and wait for the full walkthrough. [T06:Decoding Inherited Bitcoin Jargon]\n- Keep it offline at all times \u2014 write it by hand on paper, or stamp it into metal. [T02:Recovery Phrase Safety Basics]\n\n**DO NOT:**\n- Combine it with anything yet \u2014 it changes which wallet opens, so testing or guessing can show an empty-looking wallet that is not really empty. [T06:Decoding Inherited Bitcoin Jargon]\n- Assume loss if a wallet ever looks empty. No balance after restoring usually does not mean coins are lost \u2014 check word order, passphrase, added accounts, and synchronization before taking any further action. [T04:Restoring a BitBox02 from recovery words]\n- Never share your seed phrase or this passphrase with anyone.\n\nFor now, simply keep the passphrase stored safely with the word list and wait for the full walkthrough before doing anything with it.\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T04:Restoring a BitBox02 from recovery words (BitBox)], [T02:Recovery Phrase Safety Basics]",
+  "answer": "That note is a deliberate instruction, not leftover scribble. It refers to a **passphrase** \u2014 an extra word that combines with the seed phrase. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO:**\n- Note that the passphrase exists and keep it with the word list, clearly labeled. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Record it, store it with the words, and wait for the full walkthrough. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\n**DO NOT:**\n- Do not combine it with anything yet \u2014 it changes which wallet opens, so testing or guessing can show an empty-looking wallet that is not really empty. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Never share your seed phrase. Never type the words into a website or app, never read them out to anyone who contacts you, and keep the letter stored as securely as you found it. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n\nOne reassurance for later: if a restore ever shows no balance, that usually does not mean coins are lost \u2014 check word order, passphrase, added accounts, and synchronization before taking any further action. [T04:Restoring a BitBox02 from recovery words (BitBox)]\n\nSources: [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T04:Restoring a BitBox02 from recovery words (BitBox)]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T04:restoring-a-bitbox02-from-recovery-words",
+   "T02:derivation-paths-and-why-you-must-not-ph",
    "T02:bip-49-p2wpkh-nested-addresses",
    "T02:what-is-a-seed-phrase",
-   "T02:derivation-paths-and-why-you-must-not-ph",
-   "T02:recovery-phrase-safety-basics",
-   "T02:seed-backup-copies-and-materials-paper-l"
+   "T02:bip-39-the-standard-behind-your-12-24-wo",
+   "T02:what-is-a-seed-phrase",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p",
+   "T06:decoding-inherited-bitcoin-jargon-seed-p"
   ],
-  "elapsed_s": 15.6,
+  "elapsed_s": 15.3,
   "passed": true,
   "must_include": [
    {
@@ -863,7 +951,7 @@
    },
    {
     "phrase": "note that it exists and keep it with the word list",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "do not combine it with anything yet \u2014 it changes which wallet opens",
@@ -879,24 +967,26 @@
   "id": "T06-023",
   "category": "jargon_decoding",
   "prompt": "People keep saying 'self-custody'. What does that actually mean for what I own?",
-  "answer": "**What \"self-custody\" means**\n\nSelf-custody means that you are the person responsible for managing the public/private key pairs for your bitcoin \u2014 and whoever controls your keys, ultimately controls your bitcoin. [T01:How to get started with Bitcoin self-custody (River)]\n\nIn plain terms: no company holds your bitcoin \"for\" you. What you own and control is the key itself, and that key is what lets you move the bitcoin. If someone else holds the key, they control it \u2014 not you.\n\n**What this means for what you own**\n\n- If your bitcoin sits on an exchange, the exchange controls the keys. You have a claim on the exchange, not direct control of the bitcoin.\n- That's why a common safety pattern is to keep only what you actively trade on any platform and hold long-term savings in your own custody once you have learned the basics. [T01:Exchange Bankruptcy and Frozen Withdrawals]\n\n**The trade-off to understand**\n\nIn self-custody, careful habits are your only safety net. [T01:No Hotline, No Refunds: Self-Custody Loss Is Final] There is no hotline and no refunds if something goes wrong \u2014 the responsibility, and the control, are entirely yours.\n\nUntil you are confident, go slowly: practice with small amounts, keep written backups somewhere safe and private, and verify every address before sending. [T01:No Hotline, No Refunds: Self-Custody Loss Is Final]\n\n**DO / DO NOT**\n\n- DO learn the basics first, then hold long-term savings in your own custody.\n- DO keep written backups somewhere safe and private.\n- DO NOT keep more than you actively trade on any platform.\n\nSources: [T01:How to get started with Bitcoin self-custody (River)], [T01:Exchange Bankruptcy and Frozen Withdrawals], [T01:No Hotline, No Refunds: Self-Custody Loss Is Final]",
+  "answer": "## What \"self-custody\" actually means\n\nSelf-custody means you personally manage the public/private key pairs for your bitcoin. In the corpus's own words: \"By self-custody, we mean that you are the person responsible for managing the public/private key pairs\" and \"whoever controls your keys, ultimately controls your bitcoin.\" [T01:How to get started with Bitcoin self-custody (River)]\n\nIn plain terms: there is no company or bank \"holding\" your bitcoin for you. What you own is control of the keys. If the keys \u2014 or the written backup words that represent them \u2014 are in your hands, the bitcoin is yours to move. If someone else controls the keys (an exchange, a platform, a \"helper\"), they ultimately control the bitcoin, not you.\n\n## Why people recommend it\n\nSelf-custody is recommended because it \"reduces counterparty risk, increases censorship resistance, and enhances privacy.\" [T01:How to get started with Bitcoin self-custody (River)] Counterparty risk is the one you've likely heard about: platforms can freeze withdrawals or go bankrupt, and then your access is out of your hands.\n\n## What this means for what you own\n\n- **On an exchange or platform:** the platform controls the keys. You hold a claim against them, not the bitcoin itself.\n- **In your own custody:** you control the keys. The common safety pattern is to \"keep only what you actively trade on any platform and hold long-term savings in your own custody once you have learned the basics.\" [T01:Exchange Bankruptcy and Frozen Withdrawals]\n\n## The trade-off\n\nThere is no hotline and no refunds in self-custody. \"Until you are confident, go slowly: practice with small amounts, keep written backups somewhere safe and private, and verify every address before sending. In self-custody, careful habits are your only safety net.\" [T01:No Hotline, No Refunds: Self-Custody Loss Is Final]\n\n**DO:**\n- Go slowly and practice with small amounts until you're confident.\n- Keep written backups somewhere safe and private \u2014 and do not keep every copy in one place, since \"one fire, flood, or break-in could mean permanent loss.\" [T06:First Hours: Securing Inherited Bitcoin Safely]\n- Keep any device or word list somewhere private, and \"tell as few people as possible what it contains.\" [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\n**DO NOT:**\n- Never make up your own word sentence or choose the words yourself; \"phrases people invent are predictable and can be guessed by attackers.\" [T02:BIP-39 \u2014 the standard behind your 12/24 words]\n- Do not assume anyone can recover it for you if something goes wrong.\n\nSources: [T01:How to get started with Bitcoin self-custody (River)], [T01:Exchange Bankruptcy and Frozen Withdrawals], [T01:No Hotline, No Refunds: Self-Custody Loss Is Final], [T06:First Hours: Securing Inherited Bitcoin Safely], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers], [T02:BIP-39 \u2014 the standard behind your 12/24 words]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T01:exchange-bankruptcy-and-frozen-withdrawa",
    "T01:no-hotline-no-refunds-self-custody-loss-",
    "T06:first-hours-securing-inherited-bitcoin-s",
+   "T06:inventory-and-privacy-listing-what-you-f",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T02:bip-39-the-standard-behind-your-12-24-wo",
-   "T06:inventory-and-privacy-listing-what-you-f",
-   "T06:exchange-accounts-in-an-inheritance-what"
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 45.6,
   "passed": false,
   "must_include": [
    {
     "phrase": "self-custody means you hold the keys yourself instead of a company holding them for you",
-    "result": "fail"
+    "result": "synonym"
    },
    {
     "phrase": "with self-custody the seed phrase is your responsibility \u2014 there is no password reset",
@@ -911,18 +1001,18 @@
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "self-custody means you hold the keys yourself instead of a company holding them for you": "same",
    "with self-custody the seed phrase is your responsibility \u2014 there is no password reset": "same",
    "it is the heirs' default because nothing needs to move": "different"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-024",
   "category": "multisig_descriptor",
   "prompt": "There were three hardware wallets and a file that mentions '2 of 3'. How many devices do I actually need?",
-  "answer": "**Short answer: any two of the three devices, plus the file.**\n\nA wallet marked '2 of 3' is a shared-control setup: three hardware wallets were created together, and any two of the three devices can move the funds. Two devices are enough to act \u2014 the third is a spare that adds safety, not a requirement to get started. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**The file matters as much as the devices.** The descriptor file is needed too \u2014 it describes the whole setup, including which devices belong together and how many signatures are required. Wallet software cannot reconstruct the multisig addresses from the devices alone, so the file is mandatory recovery metadata. The descriptor contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it, so store it with the same care as other inheritance documents and list it in the inventory. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- If one device is missing, the setup remains fully recoverable \u2014 two of three still works \u2014 but keep searching for the third. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- To view or spend: on a clean, dedicated computer, obtain wallet software from its official source and verify it, then connect any two of the three devices and load the wallet from the descriptor. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Balance viewing is read-only, and the first spend requires on-device confirmation on both devices, so pace it: one difficult thing per day. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO NOT:**\n- Do not wipe or reset any device before backup verification is complete. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File] If you ever move funds off a device, it is highly recommended not to wipe it, in case assets were missed during transfer. [T04:I lost my Secret Recovery Phrase (Ledger)]\n- Never type any cosigner's seed words into the computer; the devices sign directly. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File], [T04:I lost my Secret Recovery Phrase (Ledger)]",
+  "answer": "**Short answer: two devices \u2014 plus that file.**\n\nA wallet marked '2 of 3' is a shared-control setup: three hardware wallets were created together, and any two of the three devices can move the funds. Two devices are enough to act \u2014 the third is a spare that adds safety, not a requirement to get started. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**The file matters just as much.** It is the descriptor, and it is needed too \u2014 it describes the whole setup, including which devices belong together and how many signatures are required. Wallet software cannot reconstruct the multisig addresses from the devices alone, so without the file, even two devices are not enough. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nThe descriptor contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it, so store it with the same care as other inheritance documents and list it in the inventory. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- When you are ready to look at the funds: on a clean, dedicated computer, obtain wallet software from its official source and verify it, then connect any two of the three devices and load the wallet from the descriptor. Balance viewing is read-only. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Pace it: one difficult thing per day. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO NOT:**\n- Never type any cosigner's seed words into the computer; the devices sign directly. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Do not reset or wipe any device before backup verification is complete. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nAnd if one of the three hardware wallets ever turns up missing or broken, do not panic: the coins are not lost \u2014 two of three still works, so with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
@@ -932,9 +1022,11 @@
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
-   "T04:i-lost-my-secret-recovery-phrase-ledger"
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
-  "elapsed_s": 15.6,
+  "elapsed_s": 182.1,
   "passed": true,
   "must_include": [
    {
@@ -943,7 +1035,7 @@
    },
    {
     "phrase": "the descriptor file is needed too \u2014 it describes the whole setup",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "keep all three devices and the file together",
@@ -959,19 +1051,21 @@
   "id": "T06-025",
   "category": "multisig_descriptor",
   "prompt": "The envelope labeled 'descriptor' contains what looks like computer code. Is that valuable or should I clean it up?",
-  "answer": "**It is valuable. Do not clean it up or throw it away.**\n\nThe descriptor is not a secret by itself: it is a description of how the wallet was built, not a key. It contains no private keys and cannot move funds on its own. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nBut it is required to rebuild a multisig wallet, so without it, even two working devices cannot show you the coins. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Keep the envelope exactly as you found it.\n- Keep it with the key locations and list it in the inventory so it never gets mistaken for junk. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- In your inventory, write only a description like \"envelope labeled 'descriptor', looks like computer code\" \u2014 record where each item was found, what it looks like, and its condition, never its contents. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\n**DO NOT:**\n- Do not discard or \"clean up\" the descriptor \u2014 it is required to rebuild the multisig wallet, and losing it can make recovery far harder. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- More generally, do not throw away, wipe, or \"clean up\" anything you find \u2014 even a paper that looks like nonsense may be the only copy of the money. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:First Hours: Securing Inherited Bitcoin Safely]",
+  "answer": "**It is valuable. Do not clean it up or throw it away.**\n\nThe envelope labeled 'descriptor' that looks like computer code is valuable \u2014 do not clean it up or throw it away. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**What it is:**\n- The descriptor is not a secret by itself: it is a description of how the wallet was built, not a key. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- It contains no private keys and cannot move funds on its own. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**Why it matters:**\n- It is required to rebuild a multisig wallet, so without it, even two working devices cannot show you the coins. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Losing it can make recovery far harder. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**What to do:**\n- DO keep it with the key locations and list it in the inventory so it never gets mistaken for junk. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- DO record where each item was found, what it looks like, and its condition \u2014 never its contents. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n- DO NOT throw away, wipe, or 'clean up' anything you find \u2014 even a paper that looks like nonsense may be the only copy of the money. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:First Hours: Securing Inherited Bitcoin Safely]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inventory-privacy-what-to-tell-family-an",
    "T06:first-hours-securing-inherited-bitcoin-s",
-   "T05:what-is-multisig-river",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inventory-privacy-what-to-tell-family-an",
-   "T06:day-1-securing-inherited-bitcoin-devices"
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T05:what-is-multisig-river",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
-  "elapsed_s": 15.7,
+  "elapsed_s": 15.6,
   "passed": true,
   "must_include": [
    {
@@ -996,19 +1090,23 @@
   "id": "T06-026",
   "category": "multisig_descriptor",
   "prompt": "One of the three hardware wallets from his multisig setup is missing. Are the coins gone?",
-  "answer": "**No \u2014 the coins are not lost.** Two of three still works, so with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**Why the coins are safe:**\nMultisig setups are written as m-of-n. 'n' is the total number of keys in the group. 'm' is how many must sign. A common choice is 2-of-3: three keys exist, and any two of them can spend the coins. [T05:What is multisig? (River)] In a typical 2-of-3 setup, three public keys are defined and signatures from any two of the corresponding private keys are sufficient to unlock and spend the bitcoin. [T05:What is multisig? (River)]\n\n**What you need to recover the funds:**\n- Any two of the three hardware wallets. Backing up a 2-of-3 multisig setup requires maintaining at least two of the three seed backups plus all three signers' xpubs. [T01:How to get started with Bitcoin self-custody (River)]\n- The wallet's setup record. The holders of a multisig address must remember their exact setup, called the RedeemScript, in order to spend the bitcoin. [T05:What is multisig? (River)] If that record is lost, they cannot spend their bitcoin. [T05:What is multisig? (River)] In this situation, that record is the descriptor file \u2014 with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Check the backup locations first and keep searching for the third \u2014 it may turn up in a safe deposit box, another room, or with someone the owner trusted. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Keep the two devices you still have safe while you search.\n\n**DO NOT:**\n- Do not panic, and do not reset or wipe the devices you still have. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File], [T05:What is multisig? (River)], [T01:How to get started with Bitcoin self-custody (River)]",
+  "answer": "**No \u2014 the coins are not gone.**\n\nA wallet marked \"2 of 3\" is a shared-control setup: three hardware wallets were created together, and any two of the three devices can move the funds. Two devices are enough to act \u2014 the third is a spare that adds safety, not a requirement to get started. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nMultisig setups are written as m-of-n: \"n\" is the total number of keys in the group, and \"m\" is how many must sign. A common choice is 2-of-3: three keys exist, and any two of them can spend the coins. [T05:What is multisig? (River)]\n\nSo if one of the three hardware wallets is missing, the coins are not lost \u2014 two of three still works, and with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**You also need the descriptor file**\n\nThe descriptor file is needed too \u2014 it describes the whole setup, including which devices belong together and how many signatures are required. Wallet software cannot reconstruct the multisig addresses from the devices alone. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nThe group must keep a copy of their exact setup \u2014 without this record, the bitcoin cannot be spent. [T05:What is multisig? (River)] The descriptor contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it, so store it with the same care as other inheritance documents. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Do not panic. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Check the backup locations first and keep searching for the third \u2014 it may turn up in a safe deposit box, another room, or with someone the owner trusted. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- For recovery: on a clean, dedicated computer, obtain wallet software from its official source and verify it, then connect any two of the three devices and load the wallet from the descriptor. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Take it slowly: balance viewing is read-only, and the first spend requires on-device confirmation on both devices, so pace it \u2014 one difficult thing per day. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Going forward, keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Maintain at least two of the three seed backups plus all three signers' xpubs. [T01:How to get started with Bitcoin self-custody (River)]\n\n**DO NOT:**\n- Do not reset or wipe the devices you still have. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Never type any cosigner's seed words into the computer; the devices sign directly. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File], [T05:What is multisig? (River)], [T01:How to get started with Bitcoin self-custody (River)]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T05:what-is-multisig-river",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T05:what-is-multisig-river",
    "T05:what-is-multisig-river",
-   "T06:inherited-multisig-wallets-2-of-3-setups",
    "T05:what-is-multisig-river",
-   "T05:what-is-multisig-river"
+   "T05:what-is-multisig-river",
+   "T05:what-is-multisig-river",
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 15.4,
   "passed": true,
   "must_include": [
    {
@@ -1033,7 +1131,7 @@
   "id": "T06-027",
   "category": "multisig_descriptor",
   "prompt": "I only found two of his devices but I think there was a third. Can I open the wallet with just the two devices and the descriptor right now?",
-  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Artificial urgency \u2014 Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent for a custodian: waiting loses nothing; rushing loses everything.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**Short answer: Yes.** A 2-of-3 setup opens with any two devices plus the descriptor. Two devices are enough to act \u2014 the third is a spare that adds safety, not a requirement to get started. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nAnd to ease the worry first: if one of the three hardware wallets is missing, the coins are not lost. Two of three still works, so with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**What to do, step by step**\n\n1. **Write a short plan before you touch anything digital:** what you found, where it is now, and who else should know. [T06:First Hours: Securing Inherited Bitcoin Safely]\n2. **Do the full Day 6 verification sequence first:** clean computer, verified software, then the devices. One difficult thing per day \u2014 do not rush the first real action. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n3. **On a clean, dedicated computer, obtain wallet software from its official source and verify it,** then connect any two of the three devices and load the wallet from the descriptor. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n4. **View the balance.** Viewing the balance does not move the coins; sending them is a separate step for later, after everything checks out. Balance viewing is read-only. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO**\n- Keep searching for the third device \u2014 it may turn up in a safe deposit box, another room, or with someone the owner trusted. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Once found, keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Store the descriptor with the same care as other inheritance documents and list it in the inventory. It contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO NOT**\n- Do not panic \u2014 two of three still works. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Do not wipe or reset any of the devices you still have before backup verification is complete. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Never type any cosigner's seed words into the computer; the devices sign directly. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nOne more note for later: the first spend requires on-device confirmation on both devices, so pace it \u2014 one difficult thing per day. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]; [T06:First Hours: Securing Inherited Bitcoin Safely]",
+  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Artificial urgency \u2014 Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent for a custodian: waiting loses nothing; rushing loses everything.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**Yes \u2014 two devices plus the descriptor is enough.** A 2-of-3 setup opens with any two devices plus the descriptor, and if one of the three hardware wallets is missing, the coins are not lost \u2014 two of three still works, so with any two devices plus the descriptor you can recover the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\nThe descriptor you have is essential: it is required to rebuild a multisig wallet; without it, even two working devices cannot display or spend the funds. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**But do not rush the first real action.** Do the full Day 6 verification sequence first: clean computer, verified software, then the devices. One difficult thing per day. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**Step by step:**\n1. Use a clean, dedicated computer. Obtain the wallet software from its official source and verify it. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n2. Connect any two of the three devices and load the wallet from the descriptor. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n3. View the balance. Viewing the balance does not move the coins; sending them is a separate step for later, after everything checks out. The first spend requires on-device confirmation on both devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**About the missing third device:**\n- Keep searching for the third \u2014 it may turn up in a safe deposit box, another room, or with someone the owner trusted. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Once you find it, keep all three devices and the file together, so that a single future loss never leaves you with fewer than two working devices. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO:**\n- Write a short plan before you touch anything digital: what you found, where it is now, and who else should know. [T06:First Hours: Securing Inherited Bitcoin Safely]\n- Store the descriptor with the same care as other inheritance documents and list it in the inventory. It contains no private keys and cannot move funds by itself, but it reveals the wallet's existence and balance to whoever holds it. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n\n**DO NOT:**\n- Do not reset or wipe the devices you still have. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Never type any cosigner's seed words into the computer \u2014 the devices sign directly. [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]\n- Do not hand wallet devices, media, or word lists to third parties such as repair shops for inspection. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]\n\nSources: [T06:Inherited Multisig Wallets: '2 of 3' Setups and the Descriptor File]; [T06:First Hours: Securing Inherited Bitcoin Safely]; [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]",
   "backend": "scam_rules+local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inherited-multisig-wallets-2-of-3-setups",
@@ -1042,15 +1140,17 @@
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
    "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:first-hours-securing-inherited-bitcoin-s",
-   "T06:found-paper-with-24-handwritten-words-se"
+   "T06:inherited-multisig-wallets-2-of-3-setups",
+   "T06:inherited-multisig-wallets-2-of-3-setups"
   ],
-  "elapsed_s": 31.5,
+  "elapsed_s": 61.6,
   "passed": true,
   "must_include": [
    {
     "phrase": "yes \u2014 a 2-of-3 setup opens with any two devices plus the descriptor",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "still do the full Day 6 verification sequence first: clean computer, verified software, then the devices",
@@ -1058,7 +1158,7 @@
    },
    {
     "phrase": "one difficult thing per day \u2014 do not rush the first real action",
-    "result": "exact"
+    "result": "synonym"
    }
   ],
   "must_not_include_hits": [],
@@ -1070,19 +1170,23 @@
   "id": "T06-028",
   "category": "exchange_accounts",
   "prompt": "I found emails showing he had a Coinbase account. Should I reset the password now to get in?",
-  "answer": "**No \u2014 do not reset the password yet.**\n\nFinding emails from an exchange like Coinbase means you've found a real asset to track \u2014 but do not try to reset passwords yet. You are not the account owner in the eyes of the exchange, and resets at this stage can trigger locks that slow everything down. Account recovery is a legal and identity process \u2014 do it deliberately with documents in hand. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**DO today:**\n- Note that the account exists and keep the statements: save the emails, screenshots of balances, and any monthly statements so you can show what was there. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- Write a short plan before you touch anything digital: what you found, where it is now, and who else should know. [T06:First Hours: Securing Inherited Bitcoin Safely]\n- If you find passwords, keep a paper copy in a safe place \u2014 with Bitcoin there is no bank to reset a forgotten password, and losing it means losing the money forever. [T06:First Hours: Securing Inherited Bitcoin Safely]\n\n**DO NOT:**\n- Do not attempt password resets or logins on the exchange account yet. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- Do not use the seed phrase here. Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nOne more thing: never share your seed phrase with anyone, and it should never be typed into any exchange site. That seed phrase matters only for any separate self-custody wallets you find. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T06:First Hours: Securing Inherited Bitcoin Safely]",
+  "answer": "**No \u2014 do not reset the password yet.**\n\nFinding emails from an exchange like Coinbase means you've found a real asset to track \u2014 but do not try to reset passwords yet. You are not the account owner in the eyes of the exchange, and resets at this stage can trigger locks that slow everything down. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**Why waiting matters**\n\nAccount recovery is a legal and identity process \u2014 do it deliberately with documents in hand. Access runs through identity and estate verification \u2014 a death certificate and documents establishing legal authority \u2014 via the exchange's official deceased-account process. Premature reset attempts can trip anti-fraud locks and complicate verification. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**What to do today**\n\n- DO write a short plan before you touch anything digital: what you found, where it is now, and who else should know. [T06:First Hours: Securing Inherited Bitcoin Safely]\n- DO note that the account exists and keep the statements \u2014 save emails, balance screenshots, and monthly statements as evidence for the estate. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**When you contact the exchange**\n\nAll contact must be self-initiated at the exchange's officially published domain. Inbound chats, links, emails, or calls offering \"recovery\" are phishing vectors, and no legitimate exchange requests read-back of SMS or one-time codes. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**If you also found a seed phrase**\n\nThe bitcoin in his Coinbase account is not backed up by that seed phrase. Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nNever share your seed phrase with anyone, and it should never be typed into any exchange site or website. It matters only for any separate self-custody wallets you find. Keep two distinct inventory tracks \u2014 custodial accounts (legal/identity recovery) and self-custody holdings (backup/device recovery) \u2014 since the recovery paths, timelines, and risks differ. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T06:First Hours: Securing Inherited Bitcoin Safely]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:first-hours-securing-inherited-bitcoin-s",
-   "T06:exchange-accounts-in-an-inheritance-what",
    "T02:bip-49-p2wpkh-nested-addresses",
+   "T06:exchange-accounts-in-an-inheritance-what",
    "T02:bip-44-multi-account-hierarchy",
-   "T02:recovery-phrase-safety-basics",
-   "T08:what-to-do-if-you-were-scammed-ftc"
+   "T08:what-to-do-if-you-were-scammed-ftc",
+   "T02:bip-44-multi-account-hierarchy",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T02:bip-44-multi-account-hierarchy",
+   "T02:bip-44-multi-account-hierarchy"
   ],
-  "elapsed_s": 15.7,
+  "elapsed_s": 30.7,
   "passed": true,
   "must_include": [
    {
@@ -1107,20 +1211,22 @@
   "id": "T06-029",
   "category": "exchange_accounts",
   "prompt": "The exchange's support chat says if I can't access the account, they can help recover it if I verify a code they text me. Fine to proceed?",
-  "answer": "**No \u2014 do not proceed. This is a scam.**\n\nA support chat that asks you to verify a code it texts you is a phishing pattern; end the contact and share the code with no one. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nIf a support chat offers to recover the account if you \"verify a code\" they text you, that is a classic scam pattern \u2014 no legitimate exchange asks you to read back codes from an inbound contact. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nIt is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\n**DO:**\n- End the chat now. Share the code with no one.\n- Contact the exchange only through its official website yourself \u2014 never through a link or chat that contacted you. Type the web address yourself or use a bookmark you made from a trusted source. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- Never share your seed phrase with anyone either \u2014 no legitimate support person will ever ask for it.\n\n**DO NOT:**\n- Read back any code to them.\n- Click any link or open any file they send.\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]",
+  "answer": "**No \u2014 do not proceed. This is a scam.**\n\nA support chat that asks you to verify a code it texts you is a phishing pattern; end the contact and share the code with no one. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nIf a support chat offers to recover the account if you \"verify a code\" they text you, that is a classic scam pattern \u2014 no legitimate exchange asks you to read back codes from an inbound contact. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nIt is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\n**DO:**\n- End the chat now. Share the code with no one.\n- Contact the exchange only through its official website yourself \u2014 never through a link or chat that contacted you. Type the web address yourself or use a bookmark you made from a trusted source. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- If this is an inherited account, access runs through the exchange's official deceased-account process \u2014 identity and estate verification with a death certificate and documents establishing legal authority. Do not try to reset passwords yet; premature reset attempts can trip anti-fraud locks and complicate verification. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**DO NOT:**\n- Never share your seed phrase. Seed phrases restore only self-custody wallets; they have no relationship to custodial account balances and must never be entered or dictated into any website, chat, or verification flow. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- Share no codes with anyone, no matter how urgent they say it is. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:exchange-accounts-in-an-inheritance-what",
    "T06:exchange-accounts-in-an-inheritance-what",
    "T01:no-hotline-no-refunds-self-custody-loss-",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
-   "T06:inherited-hardware-wallet-unknown-pin-re",
    "T02:what-are-public-and-private-keys",
+   "T06:inherited-hardware-wallet-unknown-pin-re",
    "T06:inheritance-scam-alerts-remote-control-r",
-   "T02:what-is-a-seed-phrase"
+   "T02:what-is-a-seed-phrase",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what"
   ],
-  "elapsed_s": 15.9,
-  "passed": false,
+  "elapsed_s": 30.9,
+  "passed": true,
   "must_include": [
    {
     "phrase": "contact the exchange only through its official website yourself \u2014 never through a link or chat that contacted you",
@@ -1132,23 +1238,19 @@
    },
    {
     "phrase": "bring death certificate and estate documents through the official process",
-    "result": "fail"
+    "result": "synonym"
    }
   ],
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
-  "semantic": {
-   "bring death certificate and estate documents through the official process": "different"
-  },
-  "semantic_passed": false,
-  "passed_final": false
+  "passed_final": true
  },
  {
   "id": "T06-030",
   "category": "exchange_accounts",
   "prompt": "Is the bitcoin in his Coinbase account also backed up by the seed phrase I found?",
-  "answer": "**No.** The bitcoin in his Coinbase account is not backed up by the seed phrase you found. Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nA seed phrase found among the deceased's effects backs up only self-custody wallets; it does not unlock or restore a custodial exchange account. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**What the seed phrase does cover**\n\nA seed phrase \u2014 also called a recovery phrase \u2014 is a list of 12 to 24 words that holds everything needed to rebuild a Bitcoin wallet. If a self-custody wallet is lost, stolen, or destroyed, entering the seed phrase into a new wallet brings the bitcoin back. [T02:What is a seed phrase?] It contains all the information needed to recover a Bitcoin wallet if it is lost, stolen, or otherwise compromised. [T02:What is a seed phrase?]\n\n**DO:**\n- Treat the seed phrase as applying only to any separate self-custody wallets you find, such as a hardware wallet or phone wallet app.\n- Keep it secure: your recovery phrase is the only thing that rebuilds your wallet, and every copy you make is also a copy that can be found. [T02:Seed Backup Copies and Materials: Paper, Laminate, and Steel]\n- For the Coinbase account itself, expect to deal with the company using login and identity documents. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**DO NOT:**\n- Never share your seed phrase with anyone.\n- Never enter it on the Coinbase site or any exchange site \u2014 it should never be typed into any exchange site. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T02:What is a seed phrase?], [T02:Seed Backup Copies and Materials: Paper, Laminate, and Steel]",
+  "answer": "**No.** The bitcoin in his Coinbase account is not backed up by the seed phrase you found.\n\nExchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nA seed phrase found among the deceased's effects backs up only self-custody wallets; it does not unlock or restore a custodial exchange account. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nThe seed phrase still matters \u2014 it is for any separate self-custody wallets you find. A seed phrase is a list of 12 to 24 words that holds everything needed to rebuild a Bitcoin wallet, so keep it safe and private. [T02:What is a seed phrase?]\n\n**DO:**\n- Keep the seed phrase secure. Never share your seed phrase with anyone, and it should never be typed into any exchange site. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n- Note that the Coinbase account exists and keep the statements: save the emails, screenshots of balances, and any monthly statements so you can show what was there. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\n**DO NOT:**\n- Do not try to reset passwords yet. You are not the account owner in the eyes of the exchange, and resets at this stage can trigger locks that slow everything down. Account recovery is a legal and identity process \u2014 do it deliberately with documents in hand. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]\n\nSources: [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply], [T02:What is a seed phrase?]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:exchange-accounts-in-an-inheritance-what",
@@ -1156,11 +1258,15 @@
    "T06:exchange-accounts-in-an-inheritance-what",
    "T02:what-is-a-seed-phrase",
    "T02:seed-backup-copies-and-materials-paper-l",
-   "T02:what-is-a-seed-phrase",
    "T02:bip-44-multi-account-hierarchy",
-   "T02:what-are-public-and-private-keys"
+   "T02:what-are-public-and-private-keys",
+   "T02:what-is-a-seed-phrase",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T06:exchange-accounts-in-an-inheritance-what",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 15.4,
   "passed": false,
   "must_include": [
    {
@@ -1183,25 +1289,30 @@
    "keep the two tracks separate in your inventory": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-031",
   "category": "scam_detection",
   "prompt": "A man called saying he's from 'Ledger Support' and asked me to read him the 24 words so he can secure the wallet before hackers get it.",
-  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Impersonates an official service \u2014 Real wallet vendors never initiate contact and never ask for keys; impersonating \"official support\" is the most common crypto scam pattern.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**This is a scam.** A caller claiming to be from \"Ledger Support\" who asks you to read your 24 words is running a scam. Real support never calls you first, and no legitimate company asks for your words, ever. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**Do this now:**\n- Hang up and stop contact. Do not call back any number he gives you. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Never share your seed phrase. Your 24 words are the one thing thieves need, so anyone who asks for them is trying to steal the coins. Never read, type, or paste them for someone who contacted you first. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Ignore the talk about \"hackers\" and acting fast. That pressure is part of the script \u2014 the safe move is the same: hang up.\n\n**If you already read the words to him:**\n- Treat the wallet as compromised and follow the app's guided move-funds steps. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**If you did not share the words:**\n- Your bitcoin is still safe. Ending the contact is all it takes.\n- Do not hand the device or the words to anyone who offers to help next \u2014 almost every stranger who offers to help a grieving heir is a scammer, even friends of friends, and a well-meaning helper can still lock the device or connect unknown software. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- You can walk through securing the wallet yourself with offline guides, one small step at a time, with no one else's hands involved. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]",
+  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Impersonates an official service \u2014 Real wallet vendors never initiate contact and never ask for keys; impersonating \"official support\" is the most common crypto scam pattern.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**This is a scam.** A caller claiming to be from \"Ledger Support\" who asks you to read your 24 words is running a scam. Real support never calls you first, and no legitimate company asks for your words, ever. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**Do this now:**\n\n1. **Hang up and stop contact.** Do not call back any number he gives you. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n2. **Never share your seed phrase with anyone.** Your 24 words are the one thing thieves need, so anyone who asks for them is trying to steal the coins. Never read, type, or paste them for someone who contacted you first. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n3. **Do not hand devices or words to anyone** \u2014 including anyone who calls back offering to \"help secure\" things. A well-meaning helper can still lock the device or connect unknown software. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n\n**Why his story cannot be true:** Ledger keeps no copy of your keys and will never ask you for your phrase; it cannot retrieve your Secret Recovery Phrase or PIN. [T04:I lost my Secret Recovery Phrase (Ledger)]\n\n**If you already read any words to him:** treat the wallet as compromised and follow the app's guided move-funds steps. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]; [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]; [T04:I lost my Secret Recovery Phrase (Ledger)]",
   "backend": "scam_rules+local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inherited-hardware-wallets-pin-retry-lim",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T04:setting-up-and-restoring-a-blockstream-j",
    "T02:what-is-a-seed-phrase",
    "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
+   "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec"
   ],
-  "elapsed_s": 16.7,
+  "elapsed_s": 31.8,
   "passed": true,
   "must_include": [
    {
@@ -1226,19 +1337,23 @@
   "id": "T06-032",
   "category": "scam_detection",
   "prompt": "Someone on a bitcoin forum offered to walk me through recovering my dad's wallet for a 10% fee. He seemed genuinely kind about my loss.",
-  "answer": "**This is a recovery-agent scam.** A kind stranger on a forum offering to recover your father's wallet for a 10% cut fits the recovery-agent scam pattern \u2014 never share keys with strangers. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nStop all contact with this person now. Do not reply further. You lose nothing by ignoring every such message. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO NOT:**\n- Share any keys, words, or devices with him. Never share keys with strangers. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Hand devices or words to anyone. Almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- Pay any fee. \"Recovery\" services that promise to retrieve bitcoin for a fee are scammers too \u2014 the case histories are fabricated, and the upfront fee is the actual scam. [T07:Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery]\n\nHis kindness about your loss is the hook, not a sign of trust. Scams like this take real money: the FTC says people reported losing more than $7.9 billion to investment scams in 2025, with a median loss of more than $10,000. [T08:Spotting investment scams (FTC)]\n\n**DO:**\n- Walk through it yourself with offline guides, one small step at a time, with no one else's hands involved. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- Or use a Bitcoin-knowledgeable estate attorney. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help], [T07:Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery], [T08:Spotting investment scams (FTC)]",
+  "answer": "This is a recovery-agent scam. A kind stranger on a forum offering to recover your father's wallet for a 10% cut fits the recovery-agent scam pattern \u2014 never share keys with strangers. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nHis kindness does not change this. Almost every stranger who offers to help a grieving heir is a scammer \u2014 even friends of friends. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n\n**DO:**\n- Stop all contact. You lose nothing by ignoring every such message. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Walk through it yourself with offline guides, one small step at a time, with no one else's hands involved. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- If you want professional help, use a Bitcoin-knowledgeable estate attorney. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO NOT:**\n- Never pay a stranger a fee or percentage to recover a wallet. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Do not hand devices or words to anyone. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]\n- Do not trust his proof or testimonials. 'Recovery' services that promise to retrieve bitcoin for a fee are scammers too \u2014 the case histories are fabricated, and the upfront fee is the actual scam. [T07:Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery]\n\nYou are not losing your one chance by ignoring him. Your real options are the offline guides or an estate attorney \u2014 both keep the wallet in your hands only.\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help], [T07:Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inherited-hardware-wallets-pin-retry-lim",
    "T06:inheritance-scams-fake-support-calls-rec",
    "T08:spotting-investment-scams-ftc",
-   "T08:spotting-investment-scams-ftc",
    "T06:inherited-hardware-wallets-pin-retry-lim",
+   "T08:spotting-investment-scams-ftc",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
    "T07:recognizing-bitcoin-scams-phishing-texts",
-   "T01:how-to-get-started-with-bitcoin-self-cus"
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T08:spotting-investment-scams-ftc",
+   "T08:spotting-investment-scams-ftc"
   ],
-  "elapsed_s": 16.3,
+  "elapsed_s": 31.3,
   "passed": true,
   "must_include": [
    {
@@ -1263,19 +1378,23 @@
   "id": "T06-033",
   "category": "scam_detection",
   "prompt": "An email says: 'Your inherited wallet will be permanently locked in 24 hours unless you verify your seed phrase now.' What do I do?",
-  "answer": "**This email is a scam. Do not reply, and do not follow its instructions.**\n\nAn email saying the wallet will be \"permanently locked in 24 hours\" unless you verify your seed phrase now is fake: urgency is the tell \u2014 real bitcoin cannot be locked by a deadline. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails] And no legitimate party ever needs your words \u2014 not to verify, unlock, or \"save\" anything. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nWhy the scammer wants your words: a seed phrase is a list of 12 to 24 words that holds everything needed to rebuild a Bitcoin wallet [T02:What is a seed phrase?], and whoever holds those words can control the funds [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling]. People have permanently lost bitcoin through their seed phrase [T02:What is a seed phrase?].\n\n**DO:**\n- Stop contact with the sender. Do not reply or click any links.\n- Do nothing the email demands.\n- Ask the app's Scam-Checker with the message itself \u2014 never your seed phrase. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO NOT:**\n- Never share your seed phrase with anyone, for any reason. No legitimate party ever needs it. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Do not photograph your words or type them anywhere because of this email. [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling]\n\nYour bitcoin is not on a timer. Threats that a wallet will be locked in 24 hours are fake \u2014 real bitcoin cannot be locked by a deadline. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T02:What is a seed phrase?], [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling]",
+  "answer": "**This email is a scam. Delete it and do not respond.**\n\nAn email saying the wallet will be \"permanently locked in 24 hours\" unless you verify your seed phrase now is fake: urgency is the tell \u2014 real bitcoin cannot be locked by a deadline. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nAnd no legitimate party ever needs your words \u2014 not to verify, unlock, or \"save\" anything. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO:**\n- Stop contact and do nothing. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Ask the app's Scam-Checker with the message itself \u2014 never your seed phrase. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO NOT:**\n- Never share your seed phrase with anyone, for any reason.\n- Never enter your seed phrase on any website, form, or chat, including to \"verify\" or \"unlock\" a wallet. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\nYour bitcoin is not going anywhere. There is no deadline, and nothing needs to be \"verified.\" The scammer's only goal is to get your 24 words so he can take the funds himself.\n\nSources: [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec",
    "T06:first-hours-securing-inherited-bitcoin-s",
-   "T02:what-is-a-seed-phrase",
-   "T06:found-paper-with-24-handwritten-words-se",
    "T06:found-paper-with-24-handwritten-words-se",
    "T02:what-is-a-seed-phrase",
-   "T02:what-are-public-and-private-keys"
+   "T02:what-is-a-seed-phrase",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T02:what-are-public-and-private-keys",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:found-paper-with-24-handwritten-words-se",
+   "T06:found-paper-with-24-handwritten-words-se"
   ],
-  "elapsed_s": 16.2,
+  "elapsed_s": 16.1,
   "passed": true,
   "must_include": [
    {
@@ -1300,7 +1419,7 @@
   "id": "T06-034",
   "category": "scam_detection",
   "prompt": "A 'support technician' says the only way to fix his broken wallet software is for me to install AnyDesk so he can control my computer.",
-  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Remote-control software \u2014 Scammers push remote-control apps (AnyDesk, TeamViewer) to watch your screen and capture secrets or take over your device.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**This is a scam.** A real support technician will never need to control your computer.\n\nIf a \"support technician\" says the only fix for your wallet software is installing AnyDesk or similar remote-control software, it is a scam \u2014 remote-control software requests are always a scam, and no legitimate support needs control of your computer [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]. Never install remote-control software (e.g., AnyDesk) at the request of anyone who contacted you; it grants full access to your computer and anything you type [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n\n**Do this now, step by step:**\n\n1. **Stop contact immediately.** Install nothing, hang up or close the chat, and delete the message [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n2. **Do not call back any number he gives you** [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails].\n3. **Never read your 24 words to him or anyone else.** Real support never calls you first, and no legitimate company asks for your words, ever [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails].\n\n**Why you can safely ignore him:** wallet software does not control bitcoin; funds can only be moved with private keys, so a backed-up seed phrase preserves access even if the wallet software is discontinued [T01:How to get started with Bitcoin self-custody (River)]. There is no emergency that requires a stranger to reach into your machine.\n\n**Do NOT:**\n- Install AnyDesk or any remote-control software.\n- Share passwords, codes, or word lists with this person.\n- Act out of urgency \u2014 pressure to move fast is part of the script.\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T01:How to get started with Bitcoin self-custody (River)]",
+  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Remote-control software \u2014 Scammers push remote-control apps (AnyDesk, TeamViewer) to watch your screen and capture secrets or take over your device.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**This is a remote-control scam.** A real support technician never needs access to your computer. Here is exactly what to do next.\n\n**Do now**\n\n1. **Install nothing.** Never install remote-control software (e.g., AnyDesk) at the request of anyone who contacted you; it grants full access to your computer and anything you type [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n2. **Stop contact immediately.** Hang up or close the chat, and delete the message [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n3. **Do not call back any number he gives you.** Real support never calls you first [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails].\n4. **Never read him your 24 words.** No legitimate company asks for your words, ever [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails].\n\n**Why this is dangerous**\n\nFraudsters posing as wallet or exchange \"support\" direct targets to install remote-control software, then observe recovery words, swap receiving addresses, or install malware. Any unsolicited request for remote control of a machine that touches wallet software or key material is fraud [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n\n**Good news about the \"broken\" software**\n\nWallet software does not control bitcoin; funds can only be moved with private keys, so a backed-up seed phrase preserves access even if the wallet software is discontinued [T01:How to get started with Bitcoin self-custody (River)]. You do not need a stranger's remote \"fix.\"\n\n**If you already installed AnyDesk, or feel an urge to clean up**\n\n- Do not delete anything on the computer: wallet files and apps may be needed to open the wallet later [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers].\n- Cleaning or wiping the computer before recovery can permanently destroy the only copy of the keys [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers].\n- Set the computer aside, do not lend it out, and wipe only after the wallet is recovered or a professional says it is safe [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers].\n\n**If he asks for money next**\n\nIf someone says a small payment such as 0.001 bitcoin will unlock an estate transfer, stop contact and do nothing [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]. No Bitcoin mechanism requires prepayment to release funds [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n\n**The safe default:** ignore-and-delete has zero cost, so it is the safe default [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake].\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers], [T01:How to get started with Bitcoin self-custody (River)]",
   "backend": "scam_rules+local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inheritance-scam-alerts-remote-control-r",
@@ -1310,18 +1429,22 @@
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T06:day-1-securing-inherited-bitcoin-devices",
    "T06:day-1-securing-inherited-bitcoin-devices",
-   "T06:inheritance-scam-alerts-remote-control-r"
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:day-1-securing-inherited-bitcoin-devices",
+   "T06:day-1-securing-inherited-bitcoin-devices"
   ],
-  "elapsed_s": 15.9,
+  "elapsed_s": 31.1,
   "passed": true,
   "must_include": [
    {
     "phrase": "remote-control software requests are always a scam",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "no legitimate support needs control of your computer",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "stop contact immediately",
@@ -1337,7 +1460,7 @@
   "id": "T06-035",
   "category": "scam_detection",
   "prompt": "A woman says she's also a widow whose kids inherited crypto, and that sending 0.001 bitcoin first 'unlocks' the estate transfer her family got.",
-  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 \"Send a small amount first\" \u2014 \"Send a small amount first to unlock/test/verify\" is a classic scam marker.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\nThis is a pay-first \"unlock\" scam. The shared-widow story is part of the script: a sympathetic stranger \u2014 even one who shares your story, like a widow whose kids also inherited crypto \u2014 may ask you to send 0.001 bitcoin first to \"unlock\" an estate transfer. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\nHere is exactly what to do next:\n\n**DO:**\n1. **Stop contact and do nothing.** Send-a-small-amount-first is always a scam: nothing is ever unlocked by paying first. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n2. **Leave your bitcoin where it is.** Your bitcoin stays safe exactly where it is \u2014 no transfer is pending, so no action is needed on your wallet. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n3. **If she asks about your situation, keep it vague.** Tell her only that records exist and you are working through them carefully. Wait until the wallet is verified and an attorney advises you before any numbers or details go to anyone, including close relatives. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n4. **If you already sent bitcoin:** contact the exchange (a company that trades crypto) or the ATM operator immediately, say it was a scam, and ask them to reverse it. Crypto lacks the legal protections cards have, so refunds are hard \u2014 act fast. [T08:What to do if you were scammed (FTC)]\n\n**DO NOT:**\n- Never send any amount of bitcoin \u2014 even 0.001 \u2014 to \"unlock\", \"activate\", or \"release\" a transfer or inheritance; sent coins cannot be recovered. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n- Do not give her any numbers, balances, or documents about what you hold, no matter how sympathetic her story sounds. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T08:What to do if you were scammed (FTC)]",
+  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 \"Send a small amount first\" \u2014 \"Send a small amount first to unlock/test/verify\" is a classic scam marker.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**This is a scam \u2014 advance-fee fraud.** The shared story is the hook: a sympathetic stranger \u2014 even one who shares your story, like a widow whose kids also inherited crypto \u2014 is part of the script [T06:Inheritance Scam Alerts]. A small \"unlocking\" or \"activation\" payment (e.g., 0.001 BTC) required before an inheritance is released is advance-fee fraud; no Bitcoin mechanism requires prepayment to release funds [T06:Inheritance Scam Alerts].\n\n**DO:**\n- Stop contact and do nothing; your bitcoin stays safe exactly where it is [T06:Inheritance Scam Alerts].\n- Ignore-and-delete has zero cost, so it is the safe default [T06:Inheritance Scam Alerts].\n- If anyone asks about your situation, say only that records exist and you are working through them carefully. Wait until the wallet is verified and an attorney advises you before any numbers or details go to anyone, including close relatives [T06:Inventory Privacy].\n- If she or \"support\" follows up asking to remotely control your computer or phone: any unsolicited request for remote control of a machine that touches wallet software or key material is fraud; stop contact immediately and install nothing [T06:Inheritance Scam Alerts].\n\n**DO NOT:**\n- Never send any amount of bitcoin \u2014 even 0.001 \u2014 to \"unlock,\" \"activate,\" or \"release\" a transfer or inheritance; sent coins cannot be recovered [T06:Inheritance Scam Alerts].\n- Do not share wallet details, balances, or documents with this person [T06:Inventory Privacy].\n\n**If you already sent bitcoin:**\nContact the exchange (a company that trades crypto) or the ATM operator immediately, say it was a scam, and ask them to reverse it. Crypto lacks the legal protections cards have, so refunds are hard [T08:What to do if you were scammed (FTC)].\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T08:What to do if you were scammed (FTC)]",
   "backend": "scam_rules+local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:inheritance-scam-alerts-remote-control-r",
@@ -1347,18 +1470,21 @@
    "T08:what-to-do-if-you-were-scammed-ftc",
    "T06:first-hours-securing-inherited-bitcoin-s",
    "T08:what-to-do-if-you-were-scammed-ftc",
-   "T06:inventory-privacy-what-to-tell-family-an"
+   "T06:inventory-privacy-what-to-tell-family-an",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T06:inheritance-scam-alerts-remote-control-r",
+   "T08:what-to-do-if-you-were-scammed-ftc"
   ],
   "elapsed_s": 16.1,
-  "passed": true,
+  "passed": false,
   "must_include": [
    {
     "phrase": "send-a-small-amount-first is always a scam",
-    "result": "exact"
+    "result": "synonym"
    },
    {
     "phrase": "nothing is ever unlocked by paying first",
-    "result": "exact"
+    "result": "fail"
    },
    {
     "phrase": "stop contact and do nothing",
@@ -1368,13 +1494,18 @@
   "must_not_include_hits": [],
   "refusal_detected": false,
   "refusal_ok": true,
-  "passed_final": true
+  "semantic": {
+   "nothing is ever unlocked by paying first": "same"
+  },
+  "semantic_passed": true,
+  "semantic_lenient": true,
+  "passed_final": false
  },
  {
   "id": "T06-036",
   "category": "scam_detection",
   "prompt": "How can I tell a real message from a scam without becoming paranoid about everything?",
-  "answer": "You do not need to become paranoid about everything \u2014 just learn five signals. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\n**The five signals**\n\nIt is a scam if they:\n1. Ask for words or keys\n2. Urge speed\n3. Ask for a test payment\n4. Want remote access\n5. Contacted you first\n\nNo legitimate company asks for your words \u2014 not wallet makers, exchanges, banks, or anyone claiming to represent the estate. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\n**Common scam shapes, named plainly**\n\n- **Urgent deadline messages.** An email saying the wallet will be \"permanently locked in 24 hours\" unless you verify your seed phrase now is fake: urgency is the tell \u2014 real bitcoin cannot be locked by a deadline. Treat any urgent message about your inherited bitcoin as a scam until proven otherwise. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails] [T02:What This App Cannot Know: Honest Limits]\n- **\"Recovery agents.\"** No real support line can recover or reissue a seed phrase; anyone who contacts you offering to \"recover\" the inherited bitcoin is a scam attempt. A kind stranger on a forum offering to recover your father's wallet for a 10% cut fits the recovery-agent scam pattern \u2014 never share keys with strangers. You lose nothing by ignoring every such message. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody] [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- **Fake friendships.** Scammers attack people, not code. Pig butchering is a scam where someone builds a fake friendship or romance to get you to invest. Never move money just because someone you met online suggested it. [T07:Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts]\n\n**DO**\n- Stop contact, do nothing, ask the app's Scam-Checker with the message itself, never your seed phrase. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- Keep quiet about what you found: do not tell anyone what you found or how much there is \u2014 not yet. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]\n- Walk through it yourself with offline guides, or use a Bitcoin-knowledgeable estate attorney. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO NOT**\n- Share, photograph, or type your recovery words into any wallet, website, or message \u2014 anyone who obtains them can steal everything. [T02:BIP-84 bech32 addresses]\n- Grant remote access, make a test payment, or act on urgency.\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T02:What This App Cannot Know: Honest Limits], [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T07:Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts], [T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T02:BIP-84 bech32 addresses]",
+  "answer": "You do not need to become paranoid about everything \u2014 just learn five signals. It is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n\n**The five signals**\n\n1. **They ask for words or keys.** No legitimate company asks for your words \u2014 not wallet makers, exchanges, banks, or anyone claiming to represent the estate. [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake] If a caller says he is from \"Ledger Support\" \u2014 or any wallet maker \u2014 and asks you to read your 24 words so he can \"secure the wallet,\" this is a scam. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n2. **They urge speed.** An email saying the wallet will be \"permanently locked in 24 hours\" unless you verify your seed phrase now is fake: urgency is the tell \u2014 real bitcoin cannot be locked by a deadline. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n3. **They ask for a test payment.** [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n4. **They want remote access.** [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake]\n5. **They contacted you first.** Real support never calls you first, and no legitimate company asks for your words, ever. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**Two more tells**\n\n- No real support line can recover or reissue a seed phrase; anyone who contacts you offering to \"recover\" the inherited bitcoin is a scam attempt. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody]\n- Treat any urgent message about your inherited bitcoin as a scam until proven otherwise. [T02:What This App Cannot Know: Honest Limits]\n\n**What to do**\n\n- The right move: hang up and stop contact, and do not call back any number he gives you. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- The safe response: stop contact, do nothing, ask the app's Scam-Checker with the message itself, never your seed phrase. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n- You lose nothing by ignoring every such message. [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails]\n\n**DO / DO NOT**\n\nDO: hang up, stop contact, ignore the message, and run the message itself through the app's Scam-Checker.\n\nDO NOT: share words or keys, make a test payment, grant remote access, or call back any number the caller gives you. Never share, photograph, or type your recovery words (seed) into any wallet, website, or message \u2014 anyone who obtains them can steal everything. [T02:BIP-84 bech32 addresses]\n\nSources: [T06:Inheritance Scam Alerts: Remote-Control Requests, Pay-First 'Unlocks', and Telling Real from Fake], [T06:Inheritance Scams: Fake Support Calls, 'Recovery Agents,' and Deadline Emails], [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, xpub, Watch-Only, Passphrase, Self-Custody], [T02:What This App Cannot Know: Honest Limits], [T02:BIP-84 bech32 addresses]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T02:what-this-app-cannot-know-honest-limits",
@@ -1384,14 +1515,16 @@
    "T02:bip-84-bech32-addresses",
    "T06:decoding-inherited-bitcoin-jargon-seed-p",
    "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
+   "T06:inheritance-scams-fake-support-calls-rec",
    "T06:inheritance-scams-fake-support-calls-rec"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 15.4,
   "passed": true,
   "must_include": [
    {
     "phrase": "it is a scam if they ask for words or keys, urge speed, ask for a test payment, want remote access, or contacted you first",
-    "result": "synonym"
+    "result": "exact"
    },
    {
     "phrase": "no legitimate company asks for your words",
@@ -1411,7 +1544,7 @@
   "id": "T06-037",
   "category": "verification_sequence",
   "prompt": "It's verification day. I installed the wallet software and found the seed words. What is the exact order of steps now?",
-  "answer": "You're set up correctly \u2014 installing the wallet was step one. Verification day follows this order: **checksum, seed entry, balance, then stop.** [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**The exact steps:**\n\n1. **Open the wallet you installed** \u2014 a trusted hot wallet app or connected hardware wallet. [T02:What is a seed phrase?]\n2. **Press recover/import.** [T02:What is a seed phrase?]\n3. **Enter the seed phrase in the exact order.** The wallet will run a checksum check on the words as part of this step. The numbering (1 to 24) tells you the order matters: the words only work as a complete set, in that exact order. [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling] Check each word before confirming \u2014 a misspelled or swapped word can cause recovery failure. [T02:What is a seed phrase?]\n4. **Create a new password/PIN.** [T02:What is a seed phrase?]\n5. **Sync with the blockchain.** The wallet will then show the balance. [T02:What is a seed phrase?] [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n6. **Stop there.** On verification day, do the verification only \u2014 no sending or moving the same day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**DO:**\n- Enter every word in the exact order; misspelled or swapped words cause problems. [T02:What is a seed phrase?]\n- Check each word before confirming. [T02:What is a seed phrase?]\n\n**DO NOT:**\n- Never share your seed phrase. Never enter your seed words into a website, app, chat message, email, spreadsheet, or any \"verification\" form. Legitimate software and support staff will never ask for them. Anyone who does is attempting theft. [T02:Recovery Phrase Safety Basics] The only place your words belong is your own wallet's recover/import screen.\n- Watch for fake verification steps. KYC never involves your seed phrase under any circumstances; legitimate checks ask for a photo ID, never recovery words. [T07:Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts]\n\nSources: [T02:What is a seed phrase?] \u00b7 [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling] \u00b7 [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop] \u00b7 [T02:Recovery Phrase Safety Basics] \u00b7 [T07:Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts]",
+  "answer": "Here is the exact order for verification day:\n\n**Step 1 \u2014 Verify the software before you touch the seed words.**\nCompare the installer's locally computed digest (for example, SHA-256) against the hash published by the wallet's official source; only then proceed to seed entry. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Step 2 \u2014 Recover the wallet (5 steps).**\nSet up a new wallet (trusted hot wallet app or connected hardware wallet), press recover/import, enter the seed phrase in the exact order, create a new password/PIN, then sync with the blockchain. [T02:What is a seed phrase?]\n\nWhen entering the words: enter every word in the exact order \u2014 a misspelled or swapped word can cause recovery failure, so check each word before confirming. [T02:What is a seed phrase?] The numbering (1 to 24) tells you the order matters: the words only work as a complete set, in that exact order. [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling]\n\nSeed words are entered exactly once, only into the verified wallet software \u2014 never into a browser, exchange, or any third-party tool. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Step 3 \u2014 Record the results.**\nAfter the wallet synchronizes, record the first receiving address and the confirmed balance. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Step 4 \u2014 Stop for the day.**\nTake no further action that day: no transaction signing, no software or firmware upgrades, no fund movement. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop] Do the verification only \u2014 no sending or moving the same day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop] If you hoped to verify the wallet, move coins to an exchange, and set up a new hardware wallet all in one afternoon to get it over with, slow down: the rule is one difficult thing per day. Sends, exchange transfers, and hardware-wallet migration belong on separate days, after the balance and backups are verified. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Safety rules that apply all day:**\n- Never share your seed phrase. Never disclose the phrase to anyone, including the wallet vendor \u2014 legitimate vendors never request seed phrases; such requests signal an impersonation scam. [T02:What is a seed phrase?]\n- Never type your seed words into a website, chat message, email, spreadsheet, or any \"verification\" form. Legitimate software and support staff will never ask for them. Anyone who does is attempting theft. [T02:Recovery Phrase Safety Basics]\n\nSources: [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop], [T02:What is a seed phrase?], [T06:Found Paper with 24 Handwritten Words: Seed Phrase Handling], [T02:Recovery Phrase Safety Basics]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T02:what-is-a-seed-phrase",
@@ -1421,9 +1554,13 @@
    "T06:verification-day-checksum-seed-entry-bal",
    "T02:what-is-a-seed-phrase",
    "T02:recovery-phrase-safety-basics",
-   "T07:social-engineering-scams-romance-fake-jo"
+   "T07:social-engineering-scams-romance-fake-jo",
+   "T02:what-is-a-seed-phrase",
+   "T02:what-is-a-seed-phrase",
+   "T06:verification-day-checksum-seed-entry-bal",
+   "T06:verification-day-checksum-seed-entry-bal"
   ],
-  "elapsed_s": 30.9,
+  "elapsed_s": 15.6,
   "passed": false,
   "must_include": [
    {
@@ -1432,7 +1569,7 @@
    },
    {
     "phrase": "enter the seed words once, into the verified software only",
-    "result": "fail"
+    "result": "synonym"
    },
    {
     "phrase": "write down the first receiving address, then confirm the balance appears",
@@ -1447,31 +1584,35 @@
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "verify the download checksum first": "partial",
-   "enter the seed words once, into the verified software only": "same",
-   "write down the first receiving address, then confirm the balance appears": "partial",
+   "verify the download checksum first": "same",
+   "write down the first receiving address, then confirm the balance appears": "same",
    "then stop \u2014 no sending, no upgrading, nothing else that day": "same"
   },
-  "semantic_passed": false,
+  "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  },
  {
   "id": "T06-038",
   "category": "verification_sequence",
   "prompt": "Can I verify the wallet, move the coins to an exchange, and set up a new hardware wallet all in one afternoon to get it over with?",
-  "answer": "No \u2014 slow down. The rule is one difficult thing per day. \"Do the verification only \u2014 no sending or moving the same day.\" [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Today (Verification Day):**\n- Verify the wallet only: checksum, seed entry, balance \u2014 then stop. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n- DO NOT send or move any coins today. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**On later days, one task at a time:**\n- Moving coins: an exchange is \"a company that holds coins for you,\" and the corpus treats it as a temporary account option when moving coins \u2014 not a final home. [T04:I lost my Secret Recovery Phrase (Ledger)]\n- New hardware wallet: a hardware wallet generates a seed encoded as a 12-24 word mnemonic phrase; the words must be stored in order and backed up. [T03:Cold Storage and Hardware Wallets] If you restore a recovery phrase originally created on a phone or computer app onto hardware like Jade, it gains hardware signing, but the security of the phrase itself is unchanged; for full cold storage, the source advises creating a new wallet and sending funds to it. [T04:Setting up and restoring a Blockstream Jade]\n- If you do restore a wallet, the recovery process has five steps: set up a new wallet (trusted hot wallet app or connected hardware wallet), press recover/import, enter the seed phrase in the exact order, create a new password/PIN, then sync with the blockchain. [T02:What is a seed phrase?]\n\n**Safety rules:**\n- Never share your seed phrase. If it is exposed, all funds in the wallet can be stolen; if the seed is lost, the wallet cannot be restored. [T03:Cold Storage and Hardware Wallets]\n- One exception to \"one thing per day\": if you still have wallet access but have lost your seed phrase, move your bitcoin to a new wallet with a new seed phrase immediately. [T02:What is a seed phrase?]\n\nSources: [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop], [T03:Cold Storage and Hardware Wallets], [T04:Setting up and restoring a Blockstream Jade], [T04:I lost my Secret Recovery Phrase (Ledger)], [T02:What is a seed phrase?]",
+  "answer": "**No \u2014 slow down.** The rule is one difficult thing per day. Do the verification only \u2014 no sending or moving the same day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n\n**Today (verification day):**\n- DO: verify the wallet \u2014 confirm the backup words and check the balance. Then stop for the day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n- DO NOT: send or move any coins today, even though it feels good to \"get it over with.\" [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]\n- DO NOT: ever share your seed phrase with anyone. If the seed is exposed, all funds in the wallet can be stolen. [T03:Cold Storage and Hardware Wallets] No legitimate company will ask for it \u2014 the device maker keeps no copy of your keys and will never ask you for your phrase. [T04:I lost my Secret Recovery Phrase (Ledger)]\n\n**On a later day, when you set up the new hardware wallet:**\n- If your phrase was originally created on a phone or computer app, restoring it on hardware gains hardware signing, but the security of the phrase itself is unchanged. For full cold storage, create a new wallet and send funds to it. [T04:Setting up and restoring a Blockstream Jade]\n- During setup, verify the backup by selecting the correct word when prompted. [T04:Setting up and restoring a Blockstream Jade]\n\nMoving the coins and setting up new hardware each deserve their own calm, unhurried day. Spreading the work out is what keeps it safe.\n\nSources: [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop], [T03:Cold Storage and Hardware Wallets], [T04:I lost my Secret Recovery Phrase (Ledger)], [T04:Setting up and restoring a Blockstream Jade]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:verification-day-checksum-seed-entry-bal",
    "T04:setting-up-and-restoring-a-blockstream-j",
-   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T02:what-is-a-seed-phrase",
+   "T04:i-lost-my-secret-recovery-phrase-ledger",
    "T04:restoring-a-bitbox02-from-recovery-words",
    "T04:setting-up-and-restoring-a-blockstream-j",
    "T03:cold-storage-and-hardware-wallets",
+   "T02:what-is-a-seed-phrase",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T04:setting-up-and-restoring-a-blockstream-j",
+   "T02:what-is-a-seed-phrase",
    "T02:what-is-a-seed-phrase"
   ],
-  "elapsed_s": 31.2,
+  "elapsed_s": 16.0,
   "passed": false,
   "must_include": [
    {
@@ -1494,13 +1635,14 @@
    "each extra irreversible step is a fresh chance for a permanent mistake": "partial"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-039",
   "category": "out_of_corpus_honesty",
   "prompt": "What's the bitcoin price right now, and should I sell everything before it drops?",
-  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Artificial urgency \u2014 Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent for a custodian: waiting loses nothing; rushing loses everything.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\n**I can't answer that one \u2014 here's the honest reason why.** This app never goes online, so it cannot look up today's bitcoin price, and it cannot give financial or investment advice. It will not predict the price, and it will not tell you to sell or to hold. [T06:What This App Cannot Tell You: Prices, Selling, and Picks] [T02:What This App Cannot Know: Honest Limits]\n\n**A warning to take seriously.** Anyone urging you to sell immediately, or claiming to know where the price is headed, is expressing an opinion this app cannot and will not verify. [T06:What This App Cannot Tell You: Prices, Selling, and Picks] Treat pressure to move or sell inherited coins before you have verified your own backup as a red flag \u2014 if someone is pushing you to sell right now, stop contact with them. [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\n**What you can do instead, step by step:**\n1. Write a short plan before you touch anything digital: what you found, where it is now, and who else should know. If you find passwords, keep a paper copy in a safe place \u2014 with Bitcoin there is no bank to reset a forgotten password, and losing it means losing the money forever. [T06:First Hours: Securing Inherited Bitcoin Safely]\n2. Verify your own backup before you move or sell any coins. [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n3. Read the lessons, work through the checklists before you move any coins, and learn the common scam patterns. [T02:What This App Cannot Know: Honest Limits]\n\n**DO / DO NOT:**\n- DO NOT enter your seed words into any app or website (including this one), and never share your seed phrase with anyone. [T02:What This App Cannot Know: Honest Limits]\n- DO NOT photograph your recovery words \u2014 phones sync and upload photos to cloud backups without you noticing. [T02:Derivation paths and why you must not photograph your seed phrase]\n- DO NOT treat any example number in this app as a real price. [T02:What This App Cannot Know: Honest Limits]\n\nSources: [T06:What This App Cannot Tell You: Prices, Selling, and Picks], [T02:What This App Cannot Know: Honest Limits], [T06:First Hours: Securing Inherited Bitcoin Safely], [T02:Derivation paths and why you must not photograph your seed phrase]",
+  "answer": "This shows classic scam red flags. Stop contact and do nothing further.\n\n1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.\n\n\u2022 Artificial urgency \u2014 Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent for a custodian: waiting loses nothing; rushing loses everything.\n\nReminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.\n\nI can't answer either part of that question: this app is offline, so it cannot know current prices, and it cannot give financial or investment advice \u2014 it will not predict the price, and it will not tell you to sell or to hold [T06:What This App Cannot Tell You: Prices, Selling, and Picks]. It never goes online, so it cannot look up today's bitcoin price, cannot see your wallet or your balance, and cannot know what you actually inherited [T02:What This App Cannot Know: Honest Limits].\n\nHere is what to do instead, step by step:\n\n1. **Pause before acting.** Anyone urging you to sell immediately, or claiming to know where the price is headed, is expressing an opinion this app cannot and will not verify [T06:What This App Cannot Tell You: Prices, Selling, and Picks]. Treat pressure to move or sell inherited coins before you have verified your own backup as a red flag [T06:What This App Cannot Tell You: Prices, Selling, and Picks]. If someone is pushing you to act fast, stop all contact with them.\n\n2. **Write a short plan before you touch anything digital:** what you found, where it is now, and who else should know. If you find passwords, keep a paper copy in a safe place \u2014 with Bitcoin there is no bank to reset a forgotten password, and losing it means losing the money forever [T06:First Hours: Securing Inherited Bitcoin Safely].\n\n3. **Verify your own backup first.** Work through the checklists before you move any coins [T02:What This App Cannot Know: Honest Limits]. Verify balances with your own wallet software and independently validated blockchain data [T02:What This App Cannot Know: Honest Limits].\n\n4. **Protect your keys.** Never share your seed phrase with anyone. Do not type your seed words into any app or website (including this one), and do not share keys with anyone who contacts you first [T02:What This App Cannot Know: Honest Limits].\n\n5. **Use this app for what it can do:** read the lessons, work through the checklists, and learn the common scam patterns [T02:What This App Cannot Know: Honest Limits]. For live prices and personalized investment or tax questions, the app points you to the relevant guides instead of approximating an answer [T06:What This App Cannot Tell You: Prices, Selling, and Picks].\n\nSources: [T06:What This App Cannot Tell You: Prices, Selling, and Picks]; [T02:What This App Cannot Know: Honest Limits]; [T06:First Hours: Securing Inherited Bitcoin Safely]",
   "backend": "scam_rules+local_qwen3_1.7b",
   "retrieved_ids": [
    "T06:what-this-app-cannot-tell-you-prices-sel",
@@ -1509,15 +1651,19 @@
    "T06:first-hours-securing-inherited-bitcoin-s",
    "T06:what-this-app-cannot-tell-you-prices-sel",
    "T02:what-this-app-cannot-know-honest-limits",
-   "T02:derivation-paths-and-why-you-must-not-ph",
-   "T02:what-is-a-seed-phrase"
+   "T02:bip-32-hierarchical-deterministic-wallet",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T06:what-this-app-cannot-tell-you-prices-sel",
+   "T02:what-this-app-cannot-know-honest-limits",
+   "T02:what-this-app-cannot-know-honest-limits"
   ],
   "elapsed_s": 30.5,
   "passed": false,
   "must_include": [
    {
     "phrase": "the app is offline and cannot know current prices",
-    "result": "fail"
+    "result": "synonym"
    },
    {
     "phrase": "it cannot give financial or investment advice",
@@ -1532,17 +1678,17 @@
   "refusal_detected": false,
   "refusal_ok": true,
   "semantic": {
-   "the app is offline and cannot know current prices": "same",
    "for tax and sale decisions, see the guides and consult a professional when you get there": "different"
   },
   "semantic_passed": false,
+  "semantic_lenient": false,
   "passed_final": false
  },
  {
   "id": "T06-040",
   "category": "out_of_corpus_honesty",
   "prompt": "Which hardware wallet brand should I buy, and can you recommend a lawyer for the estate?",
-  "answer": "I can't pick a brand or a lawyer for you \u2014 that's a firm rule here. The corpus is direct about it: \"Which hardware wallet brand should you buy? Which lawyer should handle the estate? The corpus can describe the categories of devices and their trade-offs, but it never picks a specific product or paid professional for you. Expect no endorsements, no rankings, and no affiliate links.\" [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\nWhat I can give you is the safety guidance that applies no matter which device you choose:\n\n**DO:**\n- Buy directly from the manufacturer. \"Never buy a refurbished or second-hand hardware wallet \u2014 buy only directly from the manufacturer.\" [T01:How to get started with Bitcoin self-custody (River)] Second-hand devices carry the risk of being tampered with. [T01:How to get started with Bitcoin self-custody (River)]\n- Keep the device's software current: \"Hardware wallet vendors periodically discover bugs or vulnerabilities; users should monitor vendor social media or GitHub and update when fixes are released.\" [T01:How to get started with Bitcoin self-custody (River)]\n- Install only the official software that goes with your device, because \"reducing the software on the device reduces its attack surface.\" [T03:Cold Storage and Hardware Wallets]\n\n**DO NOT:**\n- Buy refurbished or second-hand hardware wallets.\n- Install extra or unofficial software on the device.\n\nIf this is an inheritance situation, the brand matters less than the backup words: \"The seed phrase can restore the wallet on a new device, even from a different brand.\" [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device] Whatever device the estate ends up using, the recovery words are the key thing to locate and protect.\n\nFor the lawyer: no names, no referrals. That choice stays with you \u2014 the corpus explains the concepts, but never picks the professional. [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\nSources: [T06:What This App Cannot Tell You: Prices, Selling, and Picks], [T01:How to get started with Bitcoin self-custody (River)], [T03:Cold Storage and Hardware Wallets], [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]",
+  "answer": "**Short answer: I can't pick either one for you \u2014 and that's by design.**\n\nThis app doesn't do endorsements. As the guidance puts it: \"Which hardware wallet brand should you buy? Which lawyer should handle the estate? The corpus can describe the categories of devices and their trade-offs, but it never picks a specific product or paid professional for you. Expect no endorsements, no rankings, or no affiliate links.\" [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\n**What the guidance DOES cover about choosing a device:**\n\n- **Match the category to the amount you're protecting.** The recommended thresholds are: mobile, browser, or desktop wallets for $1\u2013$300; single-signature hardware wallets for $300\u2013$75,000; multisignature hardware setups for $75,000 or more. [T01:How to get started with Bitcoin self-custody (River)] Note that software wallets like Blue Wallet are hot wallets and \"should not be used to store large amounts of bitcoin savings.\" [T01:How to get started with Bitcoin self-custody (River)]\n- **Buy new, buy direct.** \"Never buy a refurbished or second-hand hardware wallet; buy directly from the manufacturer to avoid tampered devices.\" [T01:How to get started with Bitcoin self-custody (River)]\n- **Brand choice is less permanent than it feels.** \"Restoration on another hardware wallet is possible as long as it supports the BIP-39 standard, but words should only be entered on trusted hardware.\" [T04:Restoring a BitBox02 from recovery words (BitBox)] In fact, \"the seed phrase can restore the wallet on a new device, even from a different brand.\" [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device] Restore flows are built for this \u2014 one device's restore option takes words \"from an earlier Jade, another hardware wallet brand (Ledger, Trezor, or Coldcard), or a phone or computer app.\" [T04:Setting up and restoring a Blockstream Jade]\n- **After you buy:** \"Hardware wallet vendors periodically discover bugs or vulnerabilities; users should monitor vendor social media or GitHub and update when fixes are released.\" [T01:How to get started with Bitcoin self-custody (River)]\n- **Keep it clean:** \"Only the official software associated with a hardware wallet should be installed, because reducing the software on the device reduces its attack surface.\" [T03:Cold Storage and Hardware Wallets]\n\n**On the lawyer:** the same rule applies \u2014 no specific paid professional, no rankings, no referrals. [T06:What This App Cannot Tell You: Prices, Selling, and Picks]\n\n**DO / DO NOT:**\n- DO match the wallet category to the amount of bitcoin you're protecting.\n- DO buy new, directly from the manufacturer.\n- DO NOT buy refurbished or second-hand hardware wallets.\n- DO NOT expect this app to endorse a brand, a vendor, or a professional.\n\nSources: [T06:What This App Cannot Tell You: Prices, Selling, and Picks], [T01:How to get started with Bitcoin self-custody (River)], [T04:Restoring a BitBox02 from recovery words (BitBox)], [T04:Setting up and restoring a Blockstream Jade], [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device], [T03:Cold Storage and Hardware Wallets]",
   "backend": "sail_glm53",
   "retrieved_ids": [
    "T06:what-this-app-cannot-tell-you-prices-sel",
@@ -1552,9 +1698,11 @@
    "T01:how-to-get-started-with-bitcoin-self-cus",
    "T04:setting-up-and-restoring-a-blockstream-j",
    "T06:inherited-hardware-wallet-unknown-pin-re",
-   "T03:cold-storage-and-hardware-wallets"
+   "T03:cold-storage-and-hardware-wallets",
+   "T01:how-to-get-started-with-bitcoin-self-cus",
+   "T01:how-to-get-started-with-bitcoin-self-cus"
   ],
-  "elapsed_s": 15.5,
+  "elapsed_s": 45.6,
   "passed": false,
   "must_include": [
    {
@@ -1571,12 +1719,13 @@
    }
   ],
   "must_not_include_hits": [],
-  "refusal_detected": true,
-  "refusal_ok": false,
+  "refusal_detected": false,
+  "refusal_ok": true,
   "semantic": {
-   "the directory lists categories and evidence for you to judge": "partial"
+   "the directory lists categories and evidence for you to judge": "same"
   },
-  "semantic_passed": false,
+  "semantic_passed": true,
+  "semantic_lenient": true,
   "passed_final": false
  }
 ]

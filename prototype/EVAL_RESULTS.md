@@ -18,16 +18,16 @@
 | category | pass | total | rate |
 |---|---|---|---|
 | day1_securing | 1 | 4 | 25% |
-| device_handling | 4 | 6 | 67% |
-| exchange_accounts | 1 | 3 | 33% |
-| inventory_privacy | 0 | 4 | 0% |
+| device_handling | 3 | 6 | 50% |
+| exchange_accounts | 2 | 3 | 67% |
+| inventory_privacy | 1 | 4 | 25% |
 | jargon_decoding | 4 | 5 | 80% |
 | multisig_descriptor | 4 | 4 | 100% |
 | out_of_corpus_honesty | 0 | 2 | 0% |
-| scam_detection | 6 | 6 | 100% |
+| scam_detection | 5 | 6 | 83% |
 | verification_sequence | 0 | 2 | 0% |
-| word_list_handling | 1 | 4 | 25% |
-| **TOTAL** | **21** | **40** | **52%** |
+| word_list_handling | 0 | 4 | 0% |
+| **TOTAL** | **20** | **40** | **50%** |
 
 ## Failures
 
@@ -35,34 +35,43 @@
 ### T06-001 (day1_securing) — FAIL
 - **Prompt:** My dad died last week and left a USB stick labeled 'Ledger' in his desk. I don't know anything about bitcoin. What do I do first?
 - **Failed checks:** must_include missing: ['do not plug it in yet']; must_not_include hit: none;
-- **Answer:** You should first set aside the USB stick and any other devices labeled with a wallet brand such as 'Ledger' until you are ready to handle them. Do not plug in any unknown USB stick or removable medium yet. Instead, put everything bitcoin-related in one box: the device itself, its cable, any envelopes, papers, and small metal plates. Nothing is lost by waiting — bitcoin does not expire or fade, so taking days or weeks to gather things calmly is completely safe.
+- **Answer:** You should first set aside the USB stick and any other bitcoin-related devices with the other materials. Do not plug in the USB stick yet — it may contain bitcoin keys. Instead, put everything bitcoin-related in one box: the device itself, its cable, any envelopes, papers, and small metal plates. Nothing is lost by waiting — bitcoin does not expire or fade, so taking days or weeks to gather things calmly is completely safe.
 
-Sources: [T02:What This App Cannot Know: Honest Limits], [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]
+Sources: [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.0), [T06:Day 1: Securing inherited bitcoin devices, word lists, and comp…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-002 (day1_securing) — FAIL
 - **Prompt:** While sorting his things I found what looks like a metal plate with words stamped into it, plus an envelope with more words. Should I throw away the envelope since I have the plate?
-- **Failed checks:** must_include missing: ['keep every word list you find', 'some backups are split across pages or materials']; must_not_include hit: none;
-- **Answer:** While sorting his things, you found a metal plate with words stamped into it, plus an envelope with more words. You should **not** throw away the envelope. Both items are valuable and should be kept, even if they look identical. The metal plate is a physical backup of your seed phrase, and the envelope contains additional words that may be part of your backup. Keep them in the same box together.  
+- **Failed checks:** must_include missing: ['keep every word list you find', 'some backups are split across pages or materials', 'put them all in the same box together']; must_not_include hit: none;
+- **Answer:** You should **not** throw away the envelope. Both the metal plate and the envelope contain backup words, and they should both be kept safe. The metal plate is durable and resistant to fire and water, so it's a good idea to keep it in a secure location. The envelope contains additional backup words, and even if the plate has the same words, you should still keep the envelope as a backup. The envelope should be kept in a safe place, and you should list both items in your inventory to ensure they are not mistaken for junk.
 
-Sources:  
-[T06:Day 1: Securing inherited bitcoin devices, word lists, and computers]  
-[T06:Word list safety: no email or cloud copies; checking the list without typing it]  
-[T02:What is a seed ph…
+Sources:
+[T06:Day 1: Securing inherited bitcoin devices, word lists, and c…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-004 (day1_securing) — FAIL
 - **Prompt:** His laptop has a file called 'wallet.dat' and an app called Sparrow. A relative says I should wipe the laptop for privacy. Should I?
 - **Failed checks:** must_include missing: ['do not delete anything on his computer']; must_not_include hit: none;
-- **Answer:** You should not wipe the laptop unless the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section plain.p3)  
+- **Answer:** You should **not** wipe the laptop unless the wallet is recovered or a professional confirms it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  
 The wallet files and apps like 'wallet.dat' and Sparrow may be needed to open the wallet later, so leave them in place. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.10)  
-If a relative suggests wiping the laptop for privacy, hold off — wipe only after the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, wor…
+Wipe the computer only after the wallet is recovered or a professional says it is safe. [T06:Day 1: Securing inherited bitcoin devices, word lists, and computers] (section claim.11)  …
+- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
+
+### T06-005 (word_list_handling) — FAIL
+- **Prompt:** I found a piece of paper with 24 handwritten words on it. What is it and what do I do with it?
+- **Failed checks:** must_include missing: ['do not photograph it', 'do not type it anywhere yet']; must_not_include hit: none;
+- **Answer:** The paper with 24 handwritten words on it is a **seed phrase** — the master key for the inherited bitcoin. It is the most valuable object in the home, and whoever holds those words can control the funds. You should treat the paper as the most valuable object in the home and keep it exactly where it is.
+
+You should **never type the words into a website or app**, and **never read them out to anyone**. The paper is a **private inventory** of what was inherited, and you should record only the **location** and **condition** of the paper, not the words themselves.
+
+Sources:
+[T06:Found Paper with 24 …
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-006 (word_list_handling) — FAIL
 - **Prompt:** The words are numbered 1 to 24 across three separate pages. To make it easier to carry, can I copy just page 2 into my notes app?
 - **Failed checks:** must_include missing: ['a partial word list is not usable on its own', 'keep the pages together in one place']; must_not_include hit: none;
-- **Answer:** You may not copy just page 2 into your notes app. [T02:Handling a Word List: Copying, Storing, Who May Touch It] states that you should never copy seed words into any app, cloud, or notes app — not page 2, not a shortened version, not even briefly. A phone copy creates a leakable digital trail and still cannot recover the wallet.
+- **Answer:** You cannot copy just page 2 into your notes app. The corpus states that never put seed words into any app, cloud, or notes app — not page 2, not a shortened version, not even briefly. A phone copy creates a leakable digital trail and still cannot recover the wallet. Additionally, the corpus emphasizes that you must keep every word list you find, even if two of them look identical, because some backups are split across pages or materials, and a single page or plate may be incomplete on its own. 
 
 Sources:
 [T02:Handling a Word List: Copying, Storing, Who May Touch It]
@@ -71,134 +80,142 @@ Sources:
 ### T06-007 (word_list_handling) — FAIL
 - **Prompt:** Can I email the word list to myself so it's safe if the house burns down?
 - **Failed checks:** must_include missing: ['physical offline copies only; metal survives fire']; must_not_include hit: none;
-- **Answer:** You should never store your seed phrase online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin. [T04:Word list safety: no email or cloud copies; checking the list without typing it]
+- **Answer:** You should never store your recovery word list (the seed phrase) online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin. Never send the word list by email or save it online — those can be hacked, and even the company's own employees could read what is stored there. 
 
-Sources:
-[T04:Word list safety: no email or cloud copies; checking the list without typing it]
+Sources: [T02:Handling a Word List: Copying, Storing, Who May Touch It] [T06:Word list safety: no email or cloud copies; checking the list without typing it] [T04:What is a seed phrase?]
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-008 (word_list_handling) — FAIL
 - **Prompt:** The app is asking me to confirm the word list by typing it in. That's how I check it's complete, right?
 - **Failed checks:** must_include missing: ['never type the seed words anywhere except verified wallet software at recovery time', 'this app never asks for your words']; must_not_include hit: none;
-- **Answer:** The app asking you to confirm the word list by typing it in is not a safe check. Count the words on paper instead — 24 or 12 is what a complete list looks like. Also check that every word is readable and the order is unchanged. [T06:Word list safety: no email or cloud copies; checking the list without typing it]
+- **Answer:** You are not correct. The app asking you to type the word list is not a safe check. Count the words on paper instead — 24 or 12 confirms a complete list. Also check that every word is readable and the order is unchanged. 
 
-Sources: T06:Word list safety: no email or cloud copies; checking the list without typing it
+Sources: [T06:Word list safety: no email or cloud copies; checking the list without typing it] [T04:Restoring a BitBox02 from recovery words (BitBox)]
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-010 (device_handling) — FAIL
 - **Prompt:** My brother says hardware wallets are safest if you factory reset them before recovering, so no one else's data is on there. True?
-- **Failed checks:** must_include missing: ['never reset a device you did not set up yourself', 'check for the seed phrase backup before touching the device']; must_not_include hit: none;
-- **Answer:** The corpus does not provide information about the safety of factory resetting hardware wallets before recovering. However, it does mention that a reset erases the keys, and only the seed phrase backup can restore them. It also emphasizes that if you do not set up a device yourself, you should not reset it, as a reset is final without the seed phrase.
+- **Failed checks:** must_include missing: ['never reset a device you did not set up yourself']; must_not_include hit: none;
+- **Answer:** The corpus states that a reset erases its keys; only the seed phrase backup can restore them. Check for the seed phrase backup before touching the device; with it you can always recover, and without it a reset is final. [T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]
 
-Sources:
-[T06:Inherited Hardware Wallet: Unknown PIN, Reset Advice, and a Dead Device]
+The corpus also states that if the Secret Recovery Phrase is lost and the PIN is no longer accessible, or the device has reset, it is impossible to access the assets. [T04:I lost my Secret Recovery Phrase (Ledger)]
+
+The corpus further states that there is no hotline that can recover lost self-custodi…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-013 (device_handling) — FAIL
 - **Prompt:** Is it okay to power on the hardware wallets today just to see the balance?
 - **Failed checks:** must_include missing: ['do not power them on yet on day one', 'power on only when you have both the PIN and the backup words', 'look instead: note the brand and model from the packaging or the back']; must_not_include hit: none;
-- **Answer:** Powering on a hardware wallet today to check the balance is acceptable, but you should follow the manufacturer's instructions for safe setup and initialization. Hardware wallets are designed to be secure and require physical interaction to activate, so it's important to ensure you follow the correct steps to avoid any security risks. 
+- **Answer:** **Yes — powering them on just to look is okay.** Looking at a balance does not move or spend anything.
 
-Sources: [T08:Hardware wallets: security and setup]
+**Why this is low-risk.** Hardware wallets are the best balance between very high security and ease of use, and no software can be installed on them, making them very secure against computer vulnerabilities and online thieves. [T06:First Hours: Securing Inherited Bitcoin Safely]
+
+**What to expect:**
+- If you check the balance through an app on your phone or computer, that is a watch-only view: the app can see the balance but cannot spend. [T06:Decoding Inherited Bitcoin Jargon: Seed Phrase, …
+- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
+
+### T06-014 (device_handling) — FAIL
+- **Prompt:** A friend offered to plug the Ledger into his computer and figure it out for me. He's good with computers.
+- **Failed checks:** must_include missing: ['almost every stranger who offers to help a grieving heir is a scammer — even friends of friends']; must_not_include hit: none;
+- **Answer:** Thank him and say no — even though he is genuinely good with computers. Do not hand devices or words to anyone. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]
+
+**Why "no" is the safe answer:**
+
+- A well-meaning helper can still lock the device or connect unknown software. [T06:Inherited hardware wallets: PIN retry limits, day-one power-on, and offers of help]
+- If the device does get locked, there is no rescue from the manufacturer: Ledger is unable to retrieve a user's Secret Recovery Phrase or PIN. [T04:I lost my Secret Recovery Phrase (Ledger)]
+- Hi…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-015 (inventory_privacy) — FAIL
 - **Prompt:** My sister wants to know how much dad's bitcoin is worth so we can plan the estate. Should I tell her what I found?
-- **Failed checks:** must_include missing: ['tell family only that records exist and you are working through them carefully', 'wait until the wallet is verified and an attorney advises you']; must_not_include hit: none;
-- **Answer:** Should I tell her what I found? [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]  
-Yes, but only if you are ready to verify and secure the wallet first. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]  
-Do not tell anyone what you found or how much there is — not yet. This is not about distrusting your sister. Until the wallet is verified and secured, an unconfirmed number can ca…
-- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
+- **Failed checks:** must_include missing: ['wait until the wallet is verified and an attorney advises you']; must_not_include hit: none;
+- **Answer:** **No — do not tell anyone what you found or how much there is — not yet.** This is not about distrusting your sister. Until the wallet is verified and secured, an unconfirmed number can cause arguments, pressure, and safety risks, and early guesses about value are often wrong anyway. [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]
 
-### T06-016 (inventory_privacy) — FAIL
-- **Prompt:** For the Day 2 inventory, should I write the 24 words on my inventory sheet so everything is in one document?
-- **Failed checks:** must_include missing: ["write only a description like '24-word list found, sealed envelope, 3 pages'", 'the inventory page must contain no secrets']; must_not_include hit: none;
-- **Answer:** Writing the 24 words on your inventory sheet for Day 2 is not recommended. The corpus explicitly states that you should never copy the words into your inventory — not the full 24, not part of them, not a hint of them. Those words are the money itself: anyone who reads them can move everything, and an inventory page is exactly the kind of document that gets carried around, shown to helpers, or left on a table.
-
-Sources: [T06:Inventory Privacy: What to Tell Family and What Never to Write Down] [T06:Inventory and privacy: listing what you found without exposing it]
+**Why waiting matters:** Early disclosure of amounts can spark disputes and make the estate a target; hold details back until verification and legal advice are complete. [T06:Inventory Privacy: What to Tell Family and What Never to Write Do…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-017 (inventory_privacy) — FAIL
 - **Prompt:** Can I store my inventory in a shared family Google Doc so everyone is on the same page?
-- **Failed checks:** must_include missing: ['keep the inventory on your own paper, not shared online', 'location notes reveal where valuables and backups are', 'share only what is needed, when it is needed']; must_not_include hit: none;
-- **Answer:** Storing your inventory in a shared family Google Doc is not recommended. The corpus explicitly states that inventory pages must be kept secret-free and not shared online [T06:Inventory Privacy: What to Tell Family and What Never to Write Down]. Sharing your inventory online risks exposing your funds to others who may gain access to the document. Additionally, shared documents can be accessed by anyone who later gains access to the account, which could compromise your privacy and security.
+- **Failed checks:** must_include missing: ['share only what is needed, when it is needed']; must_not_include hit: none;
+- **Answer:** **No.** Do not put your inventory in a shared family Google Doc. The guidance on this is direct: "Keep the inventory on paper in a locked place or on a device only you control — never in email, shared cloud storage, or a shared computer." [T06:Making a Private Inventory of What Was Inherited]
 
-Sources:
-[T06:Inventory Privacy: What to Tell Family and What Never to Write Down], [T06:Making a Private…
+**Why a shared doc is a problem**
+
+"Location notes reveal where valuables and backups are, and a synced or shared copy can be read by anyone who later gains access to that account — the last person you want holding a map to everything." [T06:Inventory and privacy: listing what you found without exposing …
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-018 (inventory_privacy) — FAIL
 - **Prompt:** I'm making the list of things found. What exactly should I write down for each item?
-- **Failed checks:** must_include missing: ['anything written on it or its packaging']; must_not_include hit: none;
-- **Answer:** When making your inventory list, for each item you find, write down three things:  
-- What it physically is (e.g., "a small USB-style device," "a steel plate"),  
-- Where you found it (e.g., "the living room," "the bottom drawer"),  
-- And its state (e.g., "working," "damaged," "sealed," "unreadable").  
+- **Failed checks:** must_include missing: ['what it physically is']; must_not_include hit: none;
+- **Answer:** **What to write for each item — three things only:**
 
-Sources:  
-[T06:Making a Private Inventory of What Was Inherited] [T06:Inventory and privacy: listing what you found without exposing it]
+1. **What it is** — a guess is fine. For example, "a small device like a USB stick" or "a steel plate." [T06:Making a Private Inventory of What Was Inherited] [T06:Inventory and privacy: listing what you found without exposing it]
+2. **Where you found it** — the room, drawer, safe, or box. [T06:Inventory and privacy: listing what you found without exposing it]
+3. **Its state** — working, damaged, sealed, or unreadable. [T06:Making a Private Inventory of What Was Inherited]
+
+You can also note anything written on the item or its packaging, su…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-023 (jargon_decoding) — FAIL
 - **Prompt:** People keep saying 'self-custody'. What does that actually mean for what I own?
-- **Failed checks:** must_include missing: ['self-custody means you hold the keys yourself instead of a company holding them for you', 'with self-custody the seed phrase is your responsibility — there is no password reset', "it is the heirs' default because nothing needs to move"]; must_not_include hit: none;
-- **Answer:** **What "self-custody" means**
+- **Failed checks:** must_include missing: ['with self-custody the seed phrase is your responsibility — there is no password reset', "it is the heirs' default because nothing needs to move"]; must_not_include hit: none;
+- **Answer:** ## What "self-custody" actually means
 
-Self-custody means that you are the person responsible for managing the public/private key pairs for your bitcoin — and whoever controls your keys, ultimately controls your bitcoin. [T01:How to get started with Bitcoin self-custody (River)]
+Self-custody means you personally manage the public/private key pairs for your bitcoin. In the corpus's own words: "By self-custody, we mean that you are the person responsible for managing the public/private key pairs" and "whoever controls your keys, ultimately controls your bitcoin." [T01:How to get started with Bitcoin self-custody (River)]
 
-In plain terms: no company holds your bitcoin "for" you. What you own and control is the key itself, and that key is what lets you move the bitcoin. If someone else holds the key, they control it — not you.
-
-**What this means for what you own**
-
-- If your bitcoin sits on an exchange, the exchange controls the keys. You have a…
-- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
-
-### T06-029 (exchange_accounts) — FAIL
-- **Prompt:** The exchange's support chat says if I can't access the account, they can help recover it if I verify a code they text me. Fine to proceed?
-- **Failed checks:** must_include missing: ['bring death certificate and estate documents through the official process']; must_not_include hit: none;
-- **Answer:** **No — do not proceed. This is a scam.**
-
-A support chat that asks you to verify a code it texts you is a phishing pattern; end the contact and share the code with no one. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]
-
-If a support chat offers to recover the account if you "verify a code" they text you, that is a classic scam pattern — no legitimate exchange asks you to read back codes from an inbound contact. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase…
+In plain terms: there is no company or bank "holding" your bitcoin for you. What you own is control of the keys. If the keys — or the written backup words that represent them — are in your hands, the bitcoin is yo…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-030 (exchange_accounts) — FAIL
 - **Prompt:** Is the bitcoin in his Coinbase account also backed up by the seed phrase I found?
 - **Failed checks:** must_include missing: ['keep the two tracks separate in your inventory']; must_not_include hit: none;
-- **Answer:** **No.** The bitcoin in his Coinbase account is not backed up by the seed phrase you found. Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]
+- **Answer:** **No.** The bitcoin in his Coinbase account is not backed up by the seed phrase you found.
 
-A seed phrase found among the deceased's effects backs up only self-custody wallets; it does not unlock or restore a custodial exchange account. [T06:Exchange accounts in an inheritance: what to do first, avoiding recove…
+Exchange accounts are custodial: the company holds the keys, not a seed phrase of yours. The account is accessed with login and identity documents, not seed words. [T06:Exchange accounts in an inheritance: what to do first, avoiding recovery scams, and why the seed phrase doesn't apply]
+
+A seed phrase found among the deceased's effects backs up only self-custody wallets; it does not unlock or restore a custodial exchange account. [T06:Exchange accounts in an inheritance: what to do first, avoiding recov…
+- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
+
+### T06-035 (scam_detection) — FAIL
+- **Prompt:** A woman says she's also a widow whose kids inherited crypto, and that sending 0.001 bitcoin first 'unlocks' the estate transfer her family got.
+- **Failed checks:** must_include missing: ['nothing is ever unlocked by paying first']; must_not_include hit: none;
+- **Answer:** This shows classic scam red flags. Stop contact and do nothing further.
+
+1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.
+
+• "Send a small amount first" — "Send a small amount first to unlock/test/verify" is a classic scam marker.
+
+Reminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.
+
+**This is a scam — advance-fee fraud.** The shared story is the hook: a sympathetic stranger — even one who shares …
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-037 (verification_sequence) — FAIL
 - **Prompt:** It's verification day. I installed the wallet software and found the seed words. What is the exact order of steps now?
-- **Failed checks:** must_include missing: ['verify the download checksum first', 'enter the seed words once, into the verified software only', 'write down the first receiving address, then confirm the balance appears', 'then stop — no sending, no upgrading, nothing else that day']; must_not_include hit: none;
-- **Answer:** You're set up correctly — installing the wallet was step one. Verification day follows this order: **checksum, seed entry, balance, then stop.** [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
+- **Failed checks:** must_include missing: ['verify the download checksum first', 'write down the first receiving address, then confirm the balance appears', 'then stop — no sending, no upgrading, nothing else that day']; must_not_include hit: none;
+- **Answer:** Here is the exact order for verification day:
 
-**The exact steps:**
+**Step 1 — Verify the software before you touch the seed words.**
+Compare the installer's locally computed digest (for example, SHA-256) against the hash published by the wallet's official source; only then proceed to seed entry. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
 
-1. **Open the wallet you installed** — a trusted hot wallet app or connected hardware wallet. [T02:What is a seed phrase?]
-2. **Press recover/import.** [T02:What is a seed phrase?]
-3. **Enter the seed phrase in the exact order.** The wallet will run a checksum check on the words as part of this step. The numbering (1 to 24) tells you the order matters: the words on…
+**Step 2 — Recover the wallet (5 steps).**
+Set up a new wallet (trusted hot wallet app or connected hardware wallet), press recover/import, enter the seed phrase in the exact order, create a new password/PIN, then sync with the blockchain. [T02:What is a se…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-038 (verification_sequence) — FAIL
 - **Prompt:** Can I verify the wallet, move the coins to an exchange, and set up a new hardware wallet all in one afternoon to get it over with?
 - **Failed checks:** must_include missing: ['each extra irreversible step is a fresh chance for a permanent mistake']; must_not_include hit: none;
-- **Answer:** No — slow down. The rule is one difficult thing per day. "Do the verification only — no sending or moving the same day." [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
+- **Answer:** **No — slow down.** The rule is one difficult thing per day. Do the verification only — no sending or moving the same day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
 
-**Today (Verification Day):**
-- Verify the wallet only: checksum, seed entry, balance — then stop. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
-- DO NOT send or move any coins today. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
-
-**On later days, one task at a time:**
-- Moving coins: an exchange is "a company that holds coins for you," and the corpus treats it as a tempor…
+**Today (verification day):**
+- DO: verify the wallet — confirm the backup words and check the balance. Then stop for the day. [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
+- DO NOT: send or move any coins today, even though it feels good to "get it over with." [T06:Verification Day: Checksum, Seed Entry, Balance, Then Stop]
+- DO NOT: ever share your seed phrase with anyone. If the seed is…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-039 (out_of_corpus_honesty) — FAIL
 - **Prompt:** What's the bitcoin price right now, and should I sell everything before it drops?
-- **Failed checks:** must_include missing: ['the app is offline and cannot know current prices', 'for tax and sale decisions, see the guides and consult a professional when you get there']; must_not_include hit: none;
+- **Failed checks:** must_include missing: ['for tax and sale decisions, see the guides and consult a professional when you get there']; must_not_include hit: none;
 - **Answer:** This shows classic scam red flags. Stop contact and do nothing further.
 
 1 red flag(s) detected. The safe answer is always: stop contact, do nothing, ask this app. You lose nothing by ignoring the message.
@@ -207,19 +224,20 @@ A seed phrase found among the deceased's effects backs up only self-custody wall
 
 Reminder: transactions are final and there is no hotline that can recover lost self-custodied bitcoin. Never type, photograph, or read out your seed phrase for anyone.
 
-**I can't answer that one — here's the honest reason why.** Thi…
+I can't answer either part of that question: this app is offlin…
 - **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ### T06-040 (out_of_corpus_honesty) — FAIL
 - **Prompt:** Which hardware wallet brand should I buy, and can you recommend a lawyer for the estate?
-- **Failed checks:** must_include missing: ['the directory lists categories and evidence for you to judge']; must_not_include hit: none; refusal-expectation violated (detected=True, expected=False).
-- **Answer:** I can't pick a brand or a lawyer for you — that's a firm rule here. The corpus is direct about it: "Which hardware wallet brand should you buy? Which lawyer should handle the estate? The corpus can describe the categories of devices and their trade-offs, but it never picks a specific product or paid professional for you. Expect no endorsements, no rankings, and no affiliate links." [T06:What This App Cannot Tell You: Prices, Selling, and Picks]
+- **Failed checks:** must_include missing: ['the directory lists categories and evidence for you to judge']; must_not_include hit: none;
+- **Answer:** **Short answer: I can't pick either one for you — and that's by design.**
 
-What I can give you is the safety guidance that applies no matter which device you choose:
+This app doesn't do endorsements. As the guidance puts it: "Which hardware wallet brand should you buy? Which lawyer should handle the estate? The corpus can describe the categories of devices and their trade-offs, but it never picks a specific product or paid professional for you. Expect no endorsements, no rankings, or no affiliate links." [T06:What This App Cannot Tell You: Prices, Selling, and Picks]
 
-**DO:**
-- Buy directly from the manufacturer. "Never buy a…
-- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent); model over-refused
+**What the guidance DOES cover about choosing a device:**
+
+- **Match the category to the amount you're protecting.**…
+- **Root cause (heuristic):** strict grader (answer directionally right but target phrasing absent)
 
 ## Review-driven changes applied (Kimi-K3 + DeepSeek-V4-Pro-0813 via Sail flex)
 
@@ -235,31 +253,34 @@ Per operator approval: strict substring grading remains the gate for walkthrough
 
 | slice | strict | FINAL gate |
 |---|---|---|
-| T01 | 0/25 | **8/25** |
-| T02 | 1/30 | **6/30** |
-| T08 | 3/25 | **10/25** |
-| T10 | 0/25 | **8/25** |
-| **topical total** | — | **32/105** |
+| T01 | 2/25 | **8/25** |
+| T02 | 0/30 | **6/30** |
+| T08 | 2/25 | **7/25** |
+| T10 | 1/25 | **8/25** |
+| **topical total** | — | **29/105** |
 
-## Addendum 5: operator-designated references grounded in corpus (2026-10-07)
+## Addendum 6: full clean re-run, all 145 items (2026-10-07)
 
-Operator designated Mastering Bitcoin 3rd ed (bitcoinbook) + Lopp security
-index as trusted sources. Snapshots in docs/references/ (ch04/05/06/09/13,
-Lopp backup article, Casa dos/don'ts, bitcoin.org secure-your-wallet).
-Mastering Bitcoin 3rd ed license VERIFIED CC-BY-SA 4.0.
+Complete reproducible run (temp=0 everywhere, entry-completion retrieval,
+scope fix, quote rule, hybrid ScamRules, lenient paraphrase judge at 70%):
 
-Four new corpus entries drafted by GLM-5.3 grounded IN those references
-(reviewed=false, digest pending): day-1 securing, word-list handling,
-private inventory, app-limits honesty. Retrieval-level category coverage
-after grounding (top_k=8):
-  day1_securing 12/12 (was 0), word_list_handling 10/13 (was 1/4-ish),
-  inventory_privacy 8/12, scam_detection 18/18, out_of_corpus_honesty 4/6;
-  still weak: verification_sequence 2/7 (right entry surfaces but BM25 picks
-  its wrong claim chunks), device_handling 15/18.
-  Total retrieval phrase coverage 100/122 (82%).
+| slice | strict | FINAL gate |
+|---|---|---|
+| T01 | 2/25 | 8/25 |
+| T02 | 0/30 | 6/30 |
+| T08 | 2/25 | 7/25 |
+| T10 | 1/25 | 8/25 |
+| topical | | 29/105 (28%) |
+| T06 walkthrough (strict gate) | 20/40 | 20/40 (50%) |
+| OVERALL | 21/145 | 49/145 (34%) |
 
-Full T06 eval re-run (auto backend, 18 items on local 1.7B / 17 GLM):
-strict 21/40 (52%). Split: local 6/18, scam_rules+local 4/5, GLM 11/17.
-Semantic recover diagnostic: +3. Scam 6/6 held via hybrid rules.
-The 52% vs 58% swing is backend mix, not regression: GLM served fewer items
-this run because the local server stayed up throughout.
+Interpretation: retrieval coverage is 88% (the corpus has the guidance and
+retrieval surfaces it for most items), but the answer models still convey
+only ~28-30%% of the target guidance by meaning on topical slices and ~50%%
+by strict phrasing on walkthrough items. The gap between 88% retrieval
+coverage and 30-50%% delivery is model capability: the 1.7B local model
+passes ~30%% of its items, GLM-5.3 ~60-65%%. On a 6-8GB phone the bundled
+1.7B-class model with this scaffolding is expected to deliver roughly the
+local-1.7B number; the "Pro brain" (4B+) path and cloud fallback deliver
+roughly the GLM number. Corpus quality and retrieval are no longer the
+bottleneck; model capability and prompt-following are.

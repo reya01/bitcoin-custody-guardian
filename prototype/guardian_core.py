@@ -573,6 +573,8 @@ class Retriever:
                 overlap = len(pref & set(chunk_topics))
                 if overlap:
                     boost = 2.0 + overlap  # topic-prior re-rank
+            if chunk.section.startswith("claim"):
+                boost += 0.8  # curated actionable guidance outranks background prose
             boosted.append((chunk, round(score + boost, 4)))
 
         # Entry-level aggregation: rank whole entries by their best chunk so
@@ -616,6 +618,34 @@ class Retriever:
                     "score": score,
                 }
             )
+        # Entry completion: every entry with >=2 chunks in the budget gets its
+        # remaining claim chunks appended - a matched entry is presented in
+        # full, not as scattered fragments. Hard cap: top_k + 4 total.
+        if out:
+            counts: Dict[str, int] = {}
+            for c in out:
+                counts[c["entry_id"]] = counts.get(c["entry_id"], 0) + 1
+            for best_entry, _ in sorted(counts.items(), key=lambda kv: -kv[1]):
+                if counts[best_entry] < 2 or len(out) >= top_k + 4:
+                    continue
+                extras_left = 2  # fair share: no single entry hoards completion
+                in_out = {c["section"] for c in out if c["entry_id"] == best_entry}
+                for chunk, score in flat:
+                    if len(out) >= top_k + 4 or extras_left <= 0:
+                        break
+                    if chunk.entry_id != best_entry or chunk.section in in_out:
+                        continue
+                    in_out.add(chunk.section)
+                    extras_left -= 1
+                    out.append(
+                        {
+                            "entry_id": chunk.entry_id,
+                            "section": chunk.section,
+                            "title": chunk.title,
+                            "text": chunk.text,
+                            "score": score,
+                        }
+                    )
         return out
 
 

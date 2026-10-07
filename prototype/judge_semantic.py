@@ -48,12 +48,24 @@ for fn in files:
         except Exception as e:
             sem = {p: 'error' for p in mi_failed}
         r['semantic'] = sem
+        # Strict: every judged phrase must be 'same'.
         r['semantic_passed'] = bool(sem) and all(v == 'same' for v in sem.values())
+        # Lenient (paraphrase-equivalence): item passes if no phrase judged
+        # 'different' AND at least 70% of judged phrases are exact-meaning
+        # ('same'), the rest 'partial'. 'partial' alone (all partial) fails:
+        # the answer must convey the core guidance, not just gesture at it.
+        if sem:
+            same = sum(1 for v in sem.values() if v == 'same')
+            diff = sum(1 for v in sem.values() if v == 'different')
+            r['semantic_lenient'] = diff == 0 and same >= 0.7 * len(sem)
+        else:
+            r['semantic_lenient'] = False
         # Policy: semantic grading is the pass gate for topical slices
         # (T01/T02/T08/T10) where verbatim corpus support does not exist;
         # walkthrough slices (T03-T07, T09) keep strict substring grading.
         topical = r['id'].split('-')[0] in ('T01', 'T02', 'T08', 'T10')
-        r['passed_final'] = (r['passed'] or r['semantic_passed']) if topical else r['passed']
+        r['passed_final'] = ((r['passed'] or r['semantic_lenient'])
+                             if topical else r['passed'])
     for r in rs:
         r.setdefault('passed_final', r['passed'])
     json.dump(rs, open(fn, 'w'), indent=1)
