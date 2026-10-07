@@ -316,3 +316,16 @@ error-communication tests), 13/13 Kotlin.
 Design principles 7+8 added to spec and harness: no answer beats a wrong
 answer; errors must be explicit (plain-language error message, visible
 fallback notes, never improvising through an engine outage).
+
+
+## Addendum 8: honesty-rule verification run (2026-10-07)
+
+First full re-run after design principles 7+8 (no answer beats a wrong
+answer; errors explicit). T06 strict 18/40 (was 21/40) - the drop is the
+deliberate honesty trade: only 2 out-of-corpus refusals, the rest are the
+model declining to stretch partial coverage. Topical FINAL 29/105
+(T01 9/25, T02 4/30, T08 6/25, T10 10/25), stable vs 29. One residual
+contradiction overcall (T02-007, same item). No error_reported paths fired.
+Verdict: veto layer + honesty rule do not degrade the honest-answer set.
+
+p1_* result files in eval/extra/.
