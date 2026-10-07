@@ -1,49 +1,49 @@
 {
- "title": "Word list safety: no email or cloud copies; checking the list without typing it",
- "topic_ids": [
-  "T06",
-  "T07"
- ],
- "level": "novice",
- "risk_class": "danger",
- "plain": "The recovery word list (the seed phrase, usually 12 or 24 words on paper or card) is the master key to the inherited bitcoin. Anyone who sees those words can move the coins, so every place you put a copy is a security decision.\n\nShould you send the words to yourself by email, or save them online, so they survive a house fire? No — never store the seed phrase online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin.\n\nFor the fire worry, the rule is physical offline copies only; metal survives fire. A stamped metal plate, kept somewhere secure in a location separate from the paper original, protects against fire and flood without creating any digital copy.\n\nIf any app or website asks you to confirm the word list by typing it in, that is not a safe check. Count the words on paper instead — 24 or 12 is what a complete list looks like. Also check that every word is readable and the order is unchanged.\n\nNever type the seed words anywhere except verified wallet software at recovery time — official wallet software you downloaded yourself, used only when you are actually restoring the wallet. This app never asks for your words. If a website, caller, or 'helper' asks you to type or read the words out, stop: it is a theft attempt.",
- "technical": "BIP-39 seed phrases (12 or 24 words) encode the wallet's master private key, so possession equals control of the funds. Any digital transcription — email, cloud storage, notes apps, password managers, photos, screenshots — creates a durable, searchable copy that may outlive the account holder and is a leading vector for post-inheritance theft. Fire and flood resilience is achieved offline: stamped or engraved metal plates stored securely, in a location separate from the paper original.\n\nCompleteness is verified on the physical medium only: confirm the word count (24 or 12), legibility, and order. Entering seed words is legitimate only during an actual recovery, in verified wallet software obtained from the vendor's official channel on a trusted device. This app never requests, transmits, or stores seed words; no legitimate service asks for a seed phrase to 'verify' it.",
- "claims": [
-  {
-   "claim": "No — never store the seed phrase online or in the cloud.",
-   "source": "BTCG Inheritance Walkthrough"
-  },
-  {
-   "claim": "An email copy is a permanent leak anyone can read later.",
-   "source": "BTCG Inheritance Walkthrough"
-  },
-  {
-   "claim": "Use physical offline copies only; metal survives fire.",
-   "source": "BTCG Inheritance Walkthrough"
-  },
-  {
-   "claim": "Count the words on paper instead — 24 or 12 confirms a complete list.",
-   "source": "BTCG Inheritance Walkthrough"
-  },
-  {
-   "claim": "Never type the seed words anywhere except verified wallet software at recovery time.",
-   "source": "BTCG Inheritance Walkthrough"
-  },
-  {
-   "claim": "This app never asks for your words.",
-   "source": "BTCG Inheritance Walkthrough"
-  }
- ],
- "warnings": [
-  "Never email, photograph, screenshot, or upload the seed words anywhere — including notes apps, cloud drives, or password managers.",
-  "Anyone or anything asking you to type, paste, or read out seed words is attempting theft; stop immediately.",
-  "Do not reset or wipe an inherited hardware wallet before its recovery backup is located and verified.",
-  "Keep paper and metal copies in separate secure locations so one disaster cannot destroy every copy."
- ],
- "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
- "source_url": "internal://walkthrough",
- "notes_for_reviewer": "Covers T06-007 and T06-008. All six MUST_INCLUDE phrases appear verbatim in 'plain' and are restated as claims. MUST_NOT_INCLUDE strings verified absent — email/cloud/typing references occur only in negated, anti-fraud framing. Open: confirm risk_class (set to danger given seed-exposure stakes) and whether the T07 tag should stay. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
- "corpus_version": "0.3.0-draft",
- "reviewed": true,
- "reviewed_on": "2026-10-06"
+  "title": "Word list safety: no email or cloud copies; checking the list without typing it",
+  "topic_ids": [
+    "T06",
+    "T07"
+  ],
+  "level": "novice",
+  "risk_class": "danger",
+  "plain": "The recovery word list (the seed phrase, usually 12 or 24 words on paper or card) is the master key to the inherited bitcoin. Anyone who sees those words can move the coins, so every place you put a copy is a security decision.\n\nShould you send the words to yourself by email, or save them online, so they survive a house fire? No — never store the seed phrase online or in the cloud. An email copy is a permanent leak anyone can read later: mail servers keep copies, accounts get broken into, and whoever reads those words owns the bitcoin.\n\nFor the fire worry, the rule is physical offline copies only; metal survives fire. A stamped metal plate, kept somewhere secure in a location separate from the paper original, protects against fire and flood without creating any digital copy.\n\nIf any app or website asks you to confirm the word list by typing it in, that is not a safe check. Count the words on paper instead — 24 or 12 is what a complete list looks like. Also check that every word is readable and the order is unchanged.\n\nNever type the seed words anywhere except verified wallet software at recovery time — official wallet software you downloaded yourself, used only when you are actually restoring the wallet. This app never asks for your words. If a website, caller, or 'helper' asks you to type or read the words out, stop: it is a theft attempt.",
+  "technical": "BIP-39 seed phrases (12 or 24 words) encode the wallet's master private key, so possession equals control of the funds. Any digital transcription — email, cloud storage, notes apps, password managers, photos, screenshots — creates a durable, searchable copy that may outlive the account holder and is a leading vector for post-inheritance theft. Fire and flood resilience is achieved offline: stamped or engraved metal plates stored securely, in a location separate from the paper original.\n\nCompleteness is verified on the physical medium only: confirm the word count (24 or 12), legibility, and order. Entering seed words is legitimate only during an actual recovery, in verified wallet software obtained from the vendor's official channel on a trusted device. This app never requests, transmits, or stores seed words; no legitimate service asks for a seed phrase to 'verify' it.",
+  "claims": [
+    {
+      "claim": "No — never store the seed phrase online or in the cloud.",
+      "source": "BTCG Inheritance Walkthrough"
+    },
+    {
+      "claim": "An email copy is a permanent leak anyone can read later.",
+      "source": "BTCG Inheritance Walkthrough"
+    },
+    {
+      "claim": "Use physical offline copies only; metal survives fire.",
+      "source": "BTCG Inheritance Walkthrough"
+    },
+    {
+      "claim": "Count the words on paper instead — 24 or 12 confirms a complete list.",
+      "source": "BTCG Inheritance Walkthrough"
+    },
+    {
+      "claim": "Never type the seed words anywhere except verified wallet software at recovery time.",
+      "source": "BTCG Inheritance Walkthrough"
+    },
+    {
+      "claim": "This app never asks for your words.",
+      "source": "BTCG Inheritance Walkthrough"
+    }
+  ],
+  "warnings": [
+    "Never email, photograph, screenshot, or upload the seed words anywhere — including notes apps, cloud drives, or password managers.",
+    "Anyone or anything asking you to type, paste, or read out seed words is attempting theft; stop immediately.",
+    "Do not reset or wipe an inherited hardware wallet before its recovery backup is located and verified.",
+    "Keep paper and metal copies in separate secure locations so one disaster cannot destroy every copy."
+  ],
+  "source_title": "Bitcoin Custody Guardian Inheritance Walkthrough (internal, reviewed)",
+  "source_url": "internal://walkthrough",
+  "notes_for_reviewer": "Covers T06-007 and T06-008. All six MUST_INCLUDE phrases appear verbatim in 'plain' and are restated as claims. MUST_NOT_INCLUDE strings verified absent — email/cloud/typing references occur only in negated, anti-fraud framing. Open: confirm risk_class (set to danger given seed-exposure stakes) and whether the T07 tag should stay. Drafted by GLM-5.3 sail-flex from BTCG inheritance-walkthrough guidance (eval targets); needs human review before approval. Human operator approved 2026-10-06 (Telegram, \"Approve all\").",
+  "corpus_version": "0.3.0-draft",
+  "reviewed": true,
+  "reviewed_on": "2026-10-06"
 }

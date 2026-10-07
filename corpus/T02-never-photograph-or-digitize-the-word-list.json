@@ -1,0 +1,68 @@
+{
+  "id": "T02-never-photograph-or-digitize-the-word-list",
+  "title": "Never Photograph or Digitize the Word List",
+  "topics": [
+    "T02",
+    "T06"
+  ],
+  "audience": "novice inheritor",
+  "mode": "guidance",
+  "risk": "danger",
+  "plain": "The fastest way to lose inherited bitcoin is to put the words somewhere phones, clouds, and malware can reach. Never photograph the word list or store it in a phone, cloud note, or email.\n\nMany phones upload new photos to a cloud gallery automatically; an email or cloud note is one password reset away from a stranger; and malware on a device can read notes, files, and images at rest. A photo also carries time and place details you never meant to share.\n\nThe words belong on physical media you control - paper to start, metal for the long term - and nowhere else. If a photo or digital copy already exists, treat the words as exposed and plan, once you are comfortable, to move the funds to a fresh wallet.",
+  "technical": "Digitizing a recovery phrase multiplies exposure paths: camera rolls on common phones auto-sync to cloud photo services, cloud notes and email are high-value accounts reachable through password resets and account-recovery attacks, and commodity malware routinely scans files, screenshots, and images for BIP-39 wordlists, with OCR making photographs of a phrase just as readable as text. Deleting a photo or note is unreliable remediation, because cloud trash, caches, and backups can retain copies indefinitely. If a phrase has ever been digitized, the conservative treatment is to consider it compromised: generate a new wallet on verified hardware, move the funds once the inheritor is ready, and retire the old phrase. The corpus baseline applies everywhere: record the recovery phrase offline on paper or metal, and never type it into a website, app, or chat. No specific vendor or product is implied.",
+  "claims": [
+    {
+      "claim": "Never photograph the word list or store it in a phone, cloud note, or email.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "Phone camera rolls often sync to cloud galleries automatically.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "Email and cloud accounts can be reached through password resets, so they are not private storage.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "Common malware scans files, screenshots, and images for recovery-phrase word lists.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "A phrase that has ever been digitized should be treated as exposed.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "The remedy for exposure is a fresh wallet on verified hardware, with funds moved once you are ready.",
+      "source": "Never Photograph or Digitize the Word List"
+    },
+    {
+      "claim": "Physical media such as paper or metal is the only appropriate home for the words.",
+      "source": "Never Photograph or Digitize the Word List"
+    }
+  ],
+  "warnings": [
+    "Do not photograph, screenshot, or scan the word list, even briefly.",
+    "Do not store the words in a phone note, cloud document, email draft, or password manager.",
+    "Do not send the words through chat or messaging, not even to yourself.",
+    "Do not assume deleting a photo removes it from cloud backups or device caches."
+  ],
+  "sources": [
+    {
+      "title": "Corpus entry: Exchange Bankruptcy and Frozen Withdrawals (never type a recovery phrase into a website, app, or chat)",
+      "url": "corpus://entries/exchange-bankruptcy-and-frozen-withdrawals"
+    },
+    {
+      "title": "Corpus topic file: Word List Handling (T02)",
+      "url": "corpus://topics/T02/word-list-handling"
+    },
+    {
+      "title": "BIP-39: Mnemonic code for generating deterministic keys",
+      "url": "https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"
+    }
+  ],
+  "reviewed": false,
+  "topic_ids": [
+    "T02",
+    "T06"
+  ]
+}

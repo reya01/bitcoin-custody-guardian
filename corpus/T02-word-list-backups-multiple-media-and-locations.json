@@ -1,0 +1,66 @@
+{
+  "id": "T02-word-list-backups-multiple-media-and-locations",
+  "title": "Back Up the Word List on More Than One Medium, in More Than One Place",
+  "topics": [
+    "T02"
+  ],
+  "audience": "novice inheritor",
+  "mode": "guidance",
+  "risk": "caution",
+  "plain": "A word list written once, on one piece of paper, kept in one place is a single fire, flood, or lost envelope away from gone. Store the word list on more than one physical medium in more than one location, so no single event can destroy every copy at once.\n\nA metal backup survives fire and water; paper does not. Stamping or engraving the words into steel is the standard durable option. Paper is a fine first copy while you learn, but it should never be the only copy.\n\nKeep the copies apart - for example, one at home and one in a separate, trusted place - and make sure the people who will one day need them know that copies exist and how to find them, without the hiding places being obvious to anyone else.",
+  "technical": "Physical media fail in different ways: paper is destroyed by fire, water, and humidity and fades over time, while USB drives and memory cards suffer bit rot, controller failure, and format obsolescence - which is why a recovery phrase belongs on durable offline media rather than digital storage. Stamped or engraved stainless or titanium plates withstand the heat and water exposure that destroys paper and many plastics, making metal the standard long-term medium for a BIP-39 phrase. Redundancy trades against secrecy: every additional copy widens the attack surface, so each location holding a copy must be trusted, and copies should not be created faster than secure places exist to keep them. Because the reader may be arranging this for heirs, a separate note confirming that backups exist - stored away from the backups themselves - helps the right people find the copies without the storage spots being self-evident to a stranger. No specific vendor or product is implied; metal backup kits are a category.",
+  "claims": [
+    {
+      "claim": "Store the word list on more than one physical medium in more than one location.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "A metal backup survives fire and water; paper does not.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "Paper burns, soaks, and fades, so it is a starter copy rather than a permanent record.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "Two copies in one building are one disaster away from zero copies.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "Stamped or engraved metal is the standard durable form for a recovery phrase.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "Every additional copy widens exposure, so each storage location must be trusted.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    },
+    {
+      "claim": "Heirs should be able to find the backups without the hiding places being obvious to strangers.",
+      "source": "Back Up the Word List on More Than One Medium, in More Than One Place"
+    }
+  ],
+  "warnings": [
+    "Do not keep every copy of the word list in one building or one safe.",
+    "Do not rely on a single paper copy as the permanent record.",
+    "Do not store backups where a finder would immediately know what they are.",
+    "Do not create copies faster than you can secure trusted locations for them."
+  ],
+  "sources": [
+    {
+      "title": "Corpus entry: Exchange Bankruptcy and Frozen Withdrawals (offline backups in separate locations as the baseline)",
+      "url": "corpus://entries/exchange-bankruptcy-and-frozen-withdrawals"
+    },
+    {
+      "title": "Corpus topic file: Word List Handling (T02)",
+      "url": "corpus://topics/T02/word-list-handling"
+    },
+    {
+      "title": "BIP-39: Mnemonic code for generating deterministic keys",
+      "url": "https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"
+    }
+  ],
+  "reviewed": false,
+  "topic_ids": [
+    "T02"
+  ]
+}

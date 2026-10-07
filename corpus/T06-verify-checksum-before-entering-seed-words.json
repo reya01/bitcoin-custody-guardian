@@ -1,0 +1,66 @@
+{
+  "id": "T06-verify-checksum-before-entering-seed-words",
+  "title": "Checksum First: Verify the Software Before the Words",
+  "topics": [
+    "T06"
+  ],
+  "audience": "novice inheritor",
+  "mode": "step-by-step",
+  "risk": "danger",
+  "plain": "The most dangerous moment for inherited bitcoin is the first time the recovery words get typed anywhere. Fake wallet downloads and copycat websites exist specifically to catch those words, and inherited devices may already carry software you did not choose. Before anything else, make sure the wallet software itself is genuine.\n\nGenuine wallet software ships with a checksum - a short fingerprint of the exact file you downloaded. Verify the download checksum first, before entering seed words into any software. If the fingerprint matches the one the developers published, the file has not been swapped or tampered with.\n\nWhen you are ready to look at the balance, enter the seed words once, into the verified software, never into a website. Anything that asks for the words - a 'balance checker', a support agent, a chat message - is trying to steal the coins.",
+  "technical": "Wallet projects publish a checksum (typically a SHA-256 digest) for each release file; verifying means recomputing the digest locally and comparing it against the value the developers published over an independent channel, which detects substituted or tampered installers - a common attack delivered through search-result ads and lookalike sites. Where releases are cryptographically signed, checking the developer signature is the stronger equivalent. The device matters as much as the file: inherited computers and phones may already run keyloggers or clipboard-hijacking malware, so verification and seed entry belong on a machine you have reason to trust. A BIP-39 seed entered into compromised software can be swept within minutes, which is why the words should be entered exactly once, into software whose integrity was confirmed first. Balance visibility does not require the seed at all: importing a watch-only public key such as an xpub displays addresses and balances while the seed stays offline. No specific vendor or product is implied; hardware, desktop, and mobile wallets are categories, and the verification step applies to whichever category is chosen.",
+  "claims": [
+    {
+      "claim": "Verify the download checksum first, before entering seed words into any software.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "Enter the seed words once, into the verified software, never into a website.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "A checksum is a short fingerprint proving the downloaded file matches what the developers published.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "Fake wallet downloads and phishing pages are the most common way inherited seed words are stolen.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "Seed words typed into the wrong software can empty the wallet within minutes.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "A watch-only public key can display the balance without ever exposing the seed.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    },
+    {
+      "claim": "Inherited devices may already be compromised, so verify software and enter words on a device you control.",
+      "source": "Checksum First: Verify the Software Before the Words"
+    }
+  ],
+  "warnings": [
+    "Do not type the seed words into any website, form, chat, or 'balance checker'.",
+    "Do not download wallet software from search ads, sponsored links, or lookalike sites.",
+    "Do not skip the checksum step because it feels technical.",
+    "Do not enter seed words on an inherited device you have not verified or reset."
+  ],
+  "sources": [
+    {
+      "title": "BIP-39: Mnemonic code for generating deterministic keys",
+      "url": "https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"
+    },
+    {
+      "title": "Corpus entry: Exchange Bankruptcy and Frozen Withdrawals (self-custody setup and practice-first pattern)",
+      "url": "corpus://entries/exchange-bankruptcy-and-frozen-withdrawals"
+    },
+    {
+      "title": "Corpus topic file: Verification Sequence (T06)",
+      "url": "corpus://topics/T06/verification-sequence"
+    }
+  ],
+  "reviewed": false,
+  "topic_ids": [
+    "T06"
+  ]
+}

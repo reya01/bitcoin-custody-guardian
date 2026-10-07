@@ -1,0 +1,62 @@
+{
+  "id": "T06-confirm-balance-then-stop-on-day-one",
+  "title": "Day One: Confirm the Balance, Then Stop",
+  "topics": [
+    "T06"
+  ],
+  "audience": "novice inheritor",
+  "mode": "step-by-step",
+  "risk": "caution",
+  "plain": "Once the words are in the verified wallet, day one has one job: look, do not act. Write down the first receiving address, then confirm the balance without sending. A wallet shows the balance by reading the public record, so no transaction is ever needed to prove the money is there.\n\nThen stop - no sending, no consolidating, no account changes on day one. Moving, merging, or 'tidying up' coins is where new inheritors make mistakes that cannot be undone, because a bitcoin transaction is permanent once it goes through.\n\nPractice comes later: a small round-trip test with a tiny amount, done only after you are comfortable with the wallet. For now, seeing the funds and knowing the words work is a complete, successful day one.",
+  "technical": "A wallet derives addresses from the seed along standard paths and displays balances by reading the blockchain, so confirming an inherited holding requires no transaction, no broadcast, and no further exposure of the seed beyond the single import. Recording the first receiving address - or better, a watch-only extended public key - creates a durable reference that lets the balance be checked later without the seed words at all. Restraint matters because on-chain actions are irreversible: a send to a wrong address, a fee misconfiguration, or a consolidation that merges holdings into a fresh transaction cannot be undone once confirmed, and consolidation pays fees and links previously separate coins while offering no day-one benefit. The corpus practice-first pattern - set up a wallet, record the recovery phrase offline, and do a small round-trip test before moving meaningful amounts - deliberately places any transacting after the inheritor has gained competence, never on the first day.",
+  "claims": [
+    {
+      "claim": "Write down the first receiving address, then confirm the balance without sending.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "Then stop - no sending, no consolidating, no account changes on day one.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "A wallet confirms a balance by reading the blockchain, not by making a transaction.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "Sent bitcoin cannot be undone, so day-one restraint prevents irreversible mistakes.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "Consolidation creates new transactions, pays fees, and offers no benefit on day one.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "A recorded receiving address or watch-only key allows later balance checks without the seed words.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    },
+    {
+      "claim": "A small round-trip test belongs to the practice stage, after day one.",
+      "source": "Day One: Confirm the Balance, Then Stop"
+    }
+  ],
+  "warnings": [
+    "Do not send, sweep, or consolidate funds on day one.",
+    "Do not change wallet settings, passwords, or accounts just to feel productive.",
+    "Do not post the address publicly or ask strangers to look up the balance.",
+    "Do not treat a confirmed balance as a reason to act."
+  ],
+  "sources": [
+    {
+      "title": "Corpus entry: Exchange Bankruptcy and Frozen Withdrawals (small round-trip test before moving meaningful amounts)",
+      "url": "corpus://entries/exchange-bankruptcy-and-frozen-withdrawals"
+    },
+    {
+      "title": "Corpus topic file: Verification Sequence (T06)",
+      "url": "corpus://topics/T06/verification-sequence"
+    }
+  ],
+  "reviewed": false,
+  "topic_ids": [
+    "T06"
+  ]
+}

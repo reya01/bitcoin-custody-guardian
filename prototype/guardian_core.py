@@ -588,7 +588,7 @@ class Retriever:
                 if overlap:
                     boost = 2.0 + overlap  # topic-prior re-rank
             if chunk.section.startswith("claim"):
-                boost += 0.8  # curated actionable guidance outranks background prose
+                boost += 1.5  # curated actionable guidance outranks background prose
             boosted.append((chunk, round(score + boost, 4)))
 
         # Entry-level aggregation: rank whole entries by their best chunk so
