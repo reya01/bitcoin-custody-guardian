@@ -39,7 +39,8 @@
    "a hardware wallet is the usual way people do this": "same",
    "the point is that malware and remote attackers cannot reach the keys": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-002",
@@ -80,7 +81,8 @@
    "it is convenient for small amounts but more exposed to malware": "partial",
    "keep only what you can afford to lose in a hot wallet and hold the rest offline": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-003",
@@ -121,7 +123,8 @@
    "KYC means identity checks, like photo ID and personal details, that regulated exchanges must run": "same",
    "holding your own keys requires no identity check from anyone": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-004",
@@ -162,7 +165,8 @@
    "the public key and the address built from it are safe to share, like an account number for receiving": "same",
    "the private key is the secret that authorizes spending and must never be shared": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-005",
@@ -202,7 +206,8 @@
   "semantic": {
    "fees and prices are often quoted in sats instead of whole bitcoin": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-006",
@@ -243,7 +248,8 @@
    "a confirmation means the transaction has been included in a block, which happens roughly every ten minutes": "partial",
    "many people wait for six confirmations before treating a large payment as settled": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-007",
@@ -285,7 +291,8 @@
    "when the queue is full, transactions offering higher fees get picked first": "different",
    "a low-fee transaction may simply be stuck until fees come down": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-008",
@@ -327,7 +334,8 @@
    "sat/vB means the fee per unit of size, like paying a courier by the pound": "same",
    "the fee goes to the miners who process transactions, not to your wallet company": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-009",
@@ -368,7 +376,8 @@
    "incoming bitcoin arrives as separate chunks, like notes and coins rather than a bank balance": "same",
    "when you spend, the wallet uses whole chunks and returns the remainder to you as change": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-010",
@@ -409,7 +418,8 @@
    "the unspent remainder from a larger chunk was sent back to a new address your own wallet controls": "same",
    "this is normal for how bitcoin works, not evidence of theft": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-011",
@@ -451,7 +461,8 @@
    "give the address your own wallet generates, it shows you which format it uses": "same",
    "copy and paste the full address exactly, never retype it from memory": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-012",
@@ -492,7 +503,8 @@
    "if the passphrase is forgotten, the bitcoin in that hidden wallet is permanently unreachable with no reset": "same",
    "for inheritance, a passphrase adds one more thing your heirs must find, so only use one if you can store it deliberately": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-013",
@@ -533,7 +545,8 @@
    "the PIN just locks the device itself, like a phone's lock code": "same",
    "forget the PIN and you can wipe the device and restore from the seed phrase, but lose the seed and the money is gone": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-014",
@@ -575,7 +588,8 @@
    "buy directly from the maker or an official reseller, never second-hand or used": "different",
    "a device that arrives already initialized or with a pre-printed seed phrase is a scam and must not be used": "different"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-015",
@@ -616,7 +630,8 @@
    "updates come only through the maker's official app, not pop-ups, emails, or links": "partial",
    "anyone asking you to type your seed phrase into a computer can steal your bitcoin, so close it and do not proceed": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-016",
@@ -656,7 +671,8 @@
   "semantic": {
    "the heirs must locate at least two of the three keys plus the wallet descriptor to restore the wallet": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-017",
@@ -698,7 +714,8 @@
    "it contains no private keys, so by itself nobody can spend from it": "same",
    "for a multisig inheritance the heirs need both the descriptor and enough seed phrases to restore access": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-018",
@@ -740,7 +757,8 @@
    "the hardware wallet's own screen is the trusted source, compare the first and last characters there": "partial",
    "bitcoin sent to the wrong address cannot be undone or refunded": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-019",
@@ -780,7 +798,8 @@
   "semantic": {
    "once the test lands, send the rest to the same verified address": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-020",
@@ -820,7 +839,8 @@
   "semantic": {
    "you search with the public address, the seed phrase is never needed or asked for": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-021",
@@ -860,7 +880,8 @@
   "semantic": {
    "with the seed phrase you can reinstall any compatible wallet and the funds reappear": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-022",
@@ -900,7 +921,8 @@
   "semantic": {
    "this is a script scammers use, once you pay one fee more fees will follow": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-023",
@@ -942,7 +964,8 @@
    "tricking someone into revealing a seed phrase is theft": "same",
    "no legitimate verification ever requires anyone to read a seed phrase aloud": "same"
   },
-  "semantic_passed": true
+  "semantic_passed": true,
+  "passed_final": true
  },
  {
   "id": "T10-024",
@@ -982,7 +1005,8 @@
   "semantic": {
    "the app was built from the xpub, which is public but reveals the whole transaction history": "partial"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  },
  {
   "id": "T10-025",
@@ -1027,6 +1051,7 @@
    "one or two shares alone reveal nothing and restore nothing": "partial",
    "collect at least 3 shares before you even try to restore": "same"
   },
-  "semantic_passed": false
+  "semantic_passed": false,
+  "passed_final": false
  }
 ]

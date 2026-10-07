@@ -208,5 +208,5 @@ Per operator approval: strict substring grading remains the gate for walkthrough
 |---|---|---|
 | T01 | 1/25 | **10/25** |
 | T02 | 0/30 | **9/30** |
-| T10 | 0/25 | **0/25** |
-| **topical total** | — | **19/80** |
+| T10 | 0/25 | **11/25** |
+| **topical total** | — | **30/80** |
