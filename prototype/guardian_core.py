@@ -789,6 +789,8 @@ class Guardrails:
             return dict(REFUSAL_OUT_OF_CORPUS)
         if kind == "offline_or_network":
             return dict(REFUSAL_OFFLINE)
+        if kind == "internal_error":
+            return dict(REFUSAL_ERROR)
         return None
 
     @staticmethod
@@ -811,6 +813,20 @@ class Guardrails:
         if any(t in q for t in offline_terms):
             return "offline_or_network"
         return None
+
+
+REFUSAL_ERROR = {
+    "template": "internal_error",
+    "text": (
+        "Something went wrong inside the app while preparing this answer "
+        "(the answer engine could not be reached). No answer was produced — "
+        "this app never improvises when its safety-checked engine is "
+        "unavailable. What you can do: close and reopen the app and ask "
+        "again. If it keeps failing, the question text and this message can "
+        "be shared with a support contact — the app never sends anything by "
+        "itself."
+    ),
+}
 
 
 # ==========================================================================

@@ -12,7 +12,7 @@ format ([T0x:title]), and carries the guardrail constraints. Deterministic
 settings (temperature 0, fixed seed).
 """
 
-from guardian_core import Guardrails  # post-model veto layer
+from guardian_core import Guardrails, REFUSAL_ERROR  # post-model veto layer
 
 import json
 import os
@@ -35,6 +35,7 @@ privacy-first app that teaches Bitcoin self-custody. You are a careful,
 grounded assistant for a non-technical person who may have inherited bitcoin.
 
 RULES (obey exactly):
+0. HONESTY OVER CONFIDENCE: giving NO answer is always better than giving an incorrect one. If the corpus chunks do not clearly cover what the user asked, say plainly: "I don't know this — it's not in my reviewed material," and say what IS covered. Never guess, extrapolate beyond the corpus, or fill gaps with plausible-sounding advice. A wrong step with inherited bitcoin can lose it permanently.
 1. ASSEMBLE, do not invent. Your job is to select and stitch together the CORPUS CHUNK guidance that fits the user's situation. Quote the corpus claims as close to verbatim as possible; smooth the joins for readability.
 2. Cite each chunk you take material from like [T02:What is a seed phrase?] at the end of the sentence(s) it came from.
 3. If a retrieved chunk relates to the question even partially, USE it — quote its claims rather than declining. Decline only when NO chunk relates. When you decline, first state what the chunks DO cover, then say the specific asked detail is not covered. Do not invent facts.
@@ -206,34 +207,47 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     if composed.mode == "scam-check":
         verdict = scam_rules.scam_verdict_answer(question)
     messages = build_messages(question, composed)
-    if verdict is not None:
-        messages.append({
-            "role": "system",
-            "content": (
-                "The deterministic rule engine has ALREADY flagged this message "
-                "as a scam and produced a verdict block. That verdict is final: "
-                "do not soften, hedge, or re-derive it. Add ONLY scenario-specific "
-                "guidance grounded in the retrieved corpus chunks (what exactly to "
-                "do next, step by step). Cite [Txx] where used."
-            ),
-        })
-        try:
-            body = llama_answer(messages) if backend in ("auto", "llama") else sail_answer(messages)
-        except LlamaServerError:
-            body = sail_answer(messages)
-        candidate = verdict + "\n\n" + body.strip()
-    elif backend == "sail":
-        candidate = sail_answer(messages)
-        backend = "sail_glm53"
-    else:
-        try:
-            candidate = llama_answer(messages)
-            backend = "local_qwen3_1.7b"
-        except LlamaServerError:
-            if backend == "llama":
-                raise
+    try:
+        if verdict is not None:
+            messages.append({
+                "role": "system",
+                "content": (
+                    "The deterministic rule engine has ALREADY flagged this message "
+                    "as a scam and produced a verdict block. That verdict is final: "
+                    "do not soften, hedge, or re-derive it. Add ONLY scenario-specific "
+                    "guidance grounded in the retrieved corpus chunks (what exactly to "
+                    "do next, step by step). Cite [Txx] where used."
+                ),
+            })
+            try:
+                body = llama_answer(messages) if backend in ("auto", "llama") else sail_answer(messages)
+            except LlamaServerError:
+                body = sail_answer(messages)
+            candidate = verdict + "\n\n" + body.strip()
+            backend = "scam_rules+" + backend
+        elif backend == "sail":
             candidate = sail_answer(messages)
             backend = "sail_glm53"
+        else:
+            try:
+                candidate = llama_answer(messages)
+                backend = "local_qwen3_1.7b"
+            except LlamaServerError:
+                if backend == "llama":
+                    raise
+                candidate = sail_answer(messages)
+                backend = "sail_glm53 (fallback: local engine unavailable)"
+                # Errors are acceptable; silent downgrades are not. Tell the user.
+                candidate += (
+                    "\n\n*(Note: the on-device answer engine did not respond, so this "
+                    "answer came from the backup engine. The guidance is checked by "
+                    "the same safety rules either way.)*"
+                )
+    except Exception as e:  # every backend failed: say so, never improvise
+        return {
+            "answer": REFUSAL_ERROR["text"] + f"\n\n(Technical detail: {type(e).__name__})",
+            "backend": "error_reported",
+        }
 
     # 3. Post-model deterministic guardrails (the veto layer).
     candidate, injected = g.scrub(candidate, question)

@@ -59,6 +59,16 @@ the device. She never has to trust a stranger with the setup.
 6. **Fail closed.** Uncertainty, ambiguity, or knowledge-base gaps → the app
    says it doesn't know and suggests what human/professional channel is
    appropriate, rather than guessing.
+7. **No answer beats a wrong answer.** "I don't know this — it's not in my
+   reviewed material" is always an acceptable, preferred outcome. The engine
+   is explicitly instructed (and graded) to admit ignorance rather than fill
+   gaps with plausible-sounding advice; a confident wrong step with inherited
+   bitcoin can lose it permanently.
+8. **Errors are acceptable; silent errors are not.** When anything fails
+   (answer engine down, fallback engine used, a candidate answer vetoed by
+   the safety layer), the app tells the user plainly what happened and what
+   to do next — it never shows a wrong or improvised answer as if nothing
+   happened, and never downgrades engines without a visible note.
 
 ## 4. Users
 

@@ -283,5 +283,30 @@ class TestAnswerRunner(unittest.TestCase):
         self.assertTrue(c.detections.warnings())
 
 
+class ErrorCommunicationTests(unittest.TestCase):
+    """Principle 8: errors must be explicit; no silent downgrades."""
+
+    def test_internal_error_template(self):
+        self.assertIn("Something went wrong", gc.Guardrails.refusal("internal_error")["text"])
+
+    def test_total_backend_failure_reports_error_to_user(self):
+        import answer_step
+        orig_llama, orig_sail = answer_step.llama_answer, answer_step.sail_answer
+
+        def boom(*a, **k):
+            raise RuntimeError("engine dead")
+
+        try:
+            answer_step.llama_answer = boom
+            answer_step.sail_answer = boom
+            c = gc.compose("What is a seed phrase?", CORPUS_DIR, top_k=3)
+            out = answer_step.answer_step("What is a seed phrase?", c, backend="auto")
+        finally:
+            answer_step.llama_answer, answer_step.sail_answer = orig_llama, orig_sail
+        self.assertEqual(out["backend"], "error_reported")
+        self.assertIn("Something went wrong", out["answer"])
+        self.assertNotIn("seed phrase is", out["answer"].lower())
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
