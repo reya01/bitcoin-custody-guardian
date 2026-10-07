@@ -119,3 +119,13 @@ The deterministic guardrails (spec §8) check tags at runtime.
 - Retrieval index built at build time (BM25 + small embedding model, both local).
 - Every release ships: corpus version, changelog, SHA-256, signed release notes.
 - Stale marking: entries carry `verified_on` dates; UI shows staleness for >6 months.
+
+## Added 2026-10-07 (operator-designated round 2)
+- **BTC Guide** (btcguide.github.io) — multisig walkthroughs: why-multisig, quorum
+  choices, seeds-vs-public-keys backups, coordinating multisig, verify-receive-address,
+  emergency recovery. Snapshot: docs/references/btcguide.md. License: MIT (repo
+  api.spdx=MIT) — rewrites with attribution OK.
+- **BTC Sessions** (btcsessions.ca/learn, Ben Perrin) — bitcoin-only educator, free
+  "Zero to Hero" track (mobile wallets, hardware wallets, buying, privacy, nodes,
+  multisig, inheritance). Video-based: reference-only, rewrite-from-notes with
+  attribution; snapshot of curriculum outline: docs/references/btcsessions_learn.md.
