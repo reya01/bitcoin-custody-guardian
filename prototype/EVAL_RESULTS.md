@@ -329,3 +329,34 @@ contradiction overcall (T02-007, same item). No error_reported paths fired.
 Verdict: veto layer + honesty rule do not degrade the honest-answer set.
 
 p1_* result files in eval/extra/.
+
+
+## Addendum 9: post-approval full re-run (2026-10-07)
+
+Corpus complete (every entry human-approved). Full re-run at temp 0:
+
+| slice | strict | FINAL (policy gate) |
+|---|---|---|
+| T01 | 0/25 | 8/25 |
+| T02 | 0/30 | 2/30 |
+| T08 | 1/25 | 5/25 |
+| T10 | 0/25 | 9/25 |
+| topical | 1/105 | 24/105 |
+| T06 walkthrough | 19/40 | strict-only |
+
+Overall FINAL-mixed: 43/145 (30%). vs Addendum 8: T06 +1, topical -5.
+
+Analysis:
+- T06 strict 19/40 is the best walkthrough number yet (18 -> 19).
+- Topical dips are dominated by (a) the honesty rule making the model refuse
+  uncertain forum claims (working as designed), and (b) run-to-run serving
+  variance at temp 0 (4 items flipped pass<->fail between identical runs).
+- The 2 T02 'contradicts' flags are judge overcalls on HONEST REFUSALS
+  (T02-007 refuses to confirm the forum's passphrase claim - the preferred
+  behavior). Judge prompt updated: honest refusal is 'different', never
+  'contradicts'; contradiction is reserved for affirmative harmful advice.
+- Multisig entries surface correctly for multisig questions (8/8 chunks for
+  the why-multisig query). Answer-quality remains model-bound, as the README
+  states.
+
+p2_* result files in eval/extra/.
