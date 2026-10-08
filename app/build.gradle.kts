@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "com.custodyguardian"
     compileSdk = 35
+    ndkVersion = "27.2.12479018"
 
     defaultConfig {
         applicationId = "com.custodyguardian"
@@ -15,6 +16,23 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0"
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+        }
+        externalNativeBuild {
+            cmake {
+                // host checkout of llama.cpp with build-android-arm64/ prebuilt
+                arguments += "-DLLAMA_DIR=${System.getenv("LLAMA_DIR")
+                    ?: "/opt/data/work/answerer/llama.cpp"}"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     // NOTE: no signingConfig is configured here on purpose.
