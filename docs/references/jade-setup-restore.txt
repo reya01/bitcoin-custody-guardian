@@ -1,0 +1,39 @@
+URLs: https://help.blockstream.com/blockstream-jade/set-up-transact-recover-your-wallet/set-up-jade and https://help.blockstream.com/blockstream-jade/set-up-transact-recover-your-wallet/restore-recovery-phrase-to-jade
+TITLE: Blockstream Jade — Set up Jade / Restore recovery phrase to Jade
+
+=== Set up Jade ===
+
+The process of setting up Jade refers to saving a recovery phrase to your device and protecting it behind a PIN. The recovery phrase is used to derive your private keys, which are necessary for spending bitcoin.
+
+Jade's unique security model keeps your recovery phrase encrypted on the device (in cooperation with a blind oracle), protecting a locked Jade from physical key extraction. This requires Jade to communicate with a companion device to perform the decryption.
+
+Tip: You can also use an uninitialized Jade as a stateless signing device (a device that does not store any wallet information and requires you to manually input your recovery phrase for every session).
+
+1. Turn on Jade by plugging it in or holding the power button. If you're using Jade without a USB connection, ensure its battery is charged.
+
+2. Select Set Up Jade and choose your desired Setup Type:
+- Begin Setup: Recommended for most users. Complete Jade initialization in a few simple steps.
+- Advanced Setup: Choose your preferred recovery phrase length, export as SeedQR, and add a BIP39 passphrase.
+
+3. Choose your Setup Method:
+- Create New Wallet: Generate a new recovery phrase for an unused wallet.
+- Restore Wallet: Enter an existing recovery phrase for a previously used hardware device or software wallet.
+
+Note: If your recovery phrase was originally created on a phone or computer app, restoring it on Jade gives you hardware signing but does not change the security of the phrase itself. For full cold storage security, select Create New Wallet instead and send your funds to the new wallet.
+
+4. Write down and protect your recovery phrase offline. Do not take a picture or store online.
+
+Verify your backup by selecting the correct word from your phrase.
+
+Warning: Your recovery phrase grants access to your wallet. Never enter it on another device except for emergency situations.
+
+5. To finalize your Jade setup, you must connect to a companion app via USB, Bluetooth, or QR. Your recovery phrase will not be saved to Jade until you complete the PIN setup process.
+
+=== Restore recovery phrase to Jade ===
+
+If you purchased a new Jade and already have a 12 or 24 word recovery phrase from your previous Jade, or from another device such as Ledger, Trezor, or Coldcard — you can restore your words to Jade and immediately begin using your previous wallet.
+
+1. Turn on Jade and select Set up Jade.
+2. Instead of creating a new wallet, Select Restore Wallet. Choose your recovery phrase length, either 12 or 24 words, or recover via QR Scan.
+3. For 12/24 word recovery phrases, use Jade's keyboard to enter your recovery phrase manually.
+4. Connect your Jade to a compatible companion app using your desired connection method.

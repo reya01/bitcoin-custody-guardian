@@ -129,3 +129,40 @@ The deterministic guardrails (spec §8) check tags at runtime.
   "Zero to Hero" track (mobile wallets, hardware wallets, buying, privacy, nodes,
   multisig, inheritance). Video-based: reference-only, rewrite-from-notes with
   attribution; snapshot of curriculum outline: docs/references/btcsessions_learn.md.
+
+## Authors & educators cited (attribution)
+
+The corpus is built on the work of these authors and publishers. Entries in this
+repository are original plain-language rewrites (in-house, MIT corpus license)
+grounded in their material, credited per entry via `source_title` /
+`source_snapshot`, with license status recorded below.
+
+- **Andreas M. Antonopoulos** — *Mastering Bitcoin*, 3rd ed. (with David A. Harding),
+  O'Reilly / github.com/bitcoinbook. **CC-BY-SA 4.0** (license verified:
+  docs/references/bitcoinbook-license.txt). Corpus chapters grounded here: keys
+  (ch04), wallets & mnemonics (ch05), transactions (ch06), fees (ch09), security (ch13).
+  Snapshots: docs/references/ch04_keys.adoc etc.
+- **Jameson Lopp** — lopp.net Bitcoin security resources and "How to Back up a
+  Seed Phrase" (blog.lopp.net). Snapshots: docs/references/lopp-security-links.txt,
+  lopp-backup-seed.txt. Licensing per-site; all reuse is original rewrite with attribution.
+- **River** (river.com/learn) — first-party Bitcoin-education library: self-custody,
+  seed phrases, cold storage, multisig, public/private keys. **No explicit open
+  license (UNVERIFIED 2026-10-06)** — reference/ground-truth only, never
+  paraphrase-and-publish. Snapshots: docs/references/river-*.txt.
+- **BTC Guide** (btcguide.github.io, by @mflaxman) — multisig walkthroughs.
+  **MIT** — rewrites with attribution OK. Snapshot: docs/references/btcguide.md.
+- **BTC Sessions / Ben Perrin** (btcsessions.ca) — bitcoin-only video educator,
+  free "Zero to Hero" track. Reference-only (video curriculum).
+  Snapshot of outline: docs/references/btcsessions_learn.md.
+- **Bitcoin.org** — "Securing your wallet" page. Snapshot: bitcoinorg-secure-wallet.txt.
+- **BIP authors** (bitcoin/bips repo) — BIP-32/39/43/44/49/84/86/174/329/371/327/341/342/380–382.
+  Snapshots of the four used directly: docs/references/ (bip-00xx.txt).
+- **Hardware-wallet vendors** — Ledger support, BitBox02/Shiftcrypto, Blockstream
+  Jade, SeedSigner. Snapshots: docs/references/{jade-setup-restore,seedsigner-readme,
+  bitbox-restore,ledger-lost-recovery-phrase}.txt.
+- **Casa** — "Dos and Don'ts of Key Management". Snapshot: casa-dos-donts.txt.
+- **FTC Consumer Advice** — scam-recovery and investment-scam articles.
+  Snapshots: ftc-if-scammed.txt, ftc-investment-scams.txt (US government work).
+
+Corrections welcome: if any attribution or license note above is wrong or
+missing, please open an issue.

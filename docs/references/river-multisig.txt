@@ -1,0 +1,41 @@
+Multisig | River
+
+ Glossary
+
+Multisig 
+
+2 min read
+
+A standard bitcoin transaction sends bitcoin to an address. This bitcoin can then be spent by the private key to which it belongs. However, bitcoin can also be sent such that it requires multiple signatures from different private keys. In this way, funds can be jointly held by a family, business partners, corporate boards, or any collective.
+
+Multisig setups are typically described as m-of-n, wherein the signatures of at least m private keys are required, and these private keys must correspond to any of the n defined public keys. For example, in a typical “2-of-3” setup, three public keys will be defined, and signatures from any two of the corresponding private keys are sufficient to unlock and spend the bitcoin.
+
+Most multisig transactions are executed as P2SH transactions, so the address will begin with a “3”. In these cases, the exact script determining which keys are required is not exposed to the blockchain until the bitcoin has been spent. This means that the receivers of the bitcoin, those whose keys formed the multisig address, must remember the setup in order to spend the bitcoin. This setup is called the RedeemScript, as it allows the bitcoin to be redeemed and spent.
+
+Let’s walk through an example: Alice, Bob, and Charlie want to start a company and hold joint custody of some bitcoin. To ensure that one of them cannot steal the collective funds, Alice, Bob, and Charlie share one public key each. They also decide that they will run their company based on majority rule. Thus, any two signatures are sufficient to spend their shared bitcoin. This requirement of two signatures coming from any of the three public keys, is translated to form a script, which is hashed to yield the address to which all three partners will send their contributions to the company fund. This set up would be described as a 2-of-3 multisig.
+
+Related Terms
+
+ Private key
+
+ A private key is used to spend bitcoin received by its corresponding public key. A private key can generate a public key, but not the reverse.
+
+ Learn more.
+
+ Pay-to-Script-Hash (P2SH)
+
+ Pay-to-Script-Hash (P2SH) is a transaction type that lets bitcoin be spent by satisfying any script the sender provides. It is used for multisig and SegWit.
+
+ Learn more.
+
+ Redeem script
+
+ A redeem script is the script used to unlock bitcoin sent to a P2SH address. A P2SH transaction locks bitcoin to the hash of a redeem script.
+
+ Learn more.
+
+ Explore More Terms →
+
+Buy Bitcoin instantly with River today
+
+ Buy bitcoin

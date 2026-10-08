@@ -1,81 +1,82 @@
 {
- "title": "BIP-32 hierarchical deterministic wallets",
- "topic_ids": [
-  "T02",
-  "T05"
- ],
- "level": "intermediate",
- "risk_class": "caution",
- "plain": "Early Bitcoin software made each secret spending key at random. A private key is a secret number that lets its owner spend coins. Because every new key needed a fresh backup, the original Bitcoin program kept a pool of 100 spare keys by default, so people would not have to back up after every single payment. In 2012, Pieter Wuille wrote BIP-32. A BIP is a Bitcoin Improvement Proposal — a numbered design document for Bitcoin software. It describes the hierarchical deterministic wallet, or HD wallet. 'Deterministic' means fixed, not random: one starting secret always produces the same family tree of keys. The wallet first creates a seed — a random number, 128 to 512 bits long (a bit is one yes/no of information), with 256 bits recommended. A standard mixing formula called HMAC-SHA512 turns the seed into a master key (the private key at the top of the tree) plus a partner secret called the chain code. Each branch is an account, like a numbered pocket that keeps money separate. Every account holds two chains: an external chain of addresses (safe-to-share codes that receive money) and an internal chain for change (money sent back to you when you spend). A key plus its chain code is an extended key. Written as text, the secret kind starts with 'xprv' and can spend; the public kind starts with 'xpub' and can only watch and create addresses. Two big wins: you back up once — the seed regrows the whole tree, forever. And sharing can be partial: a shop's webserver (the computer running its website) holding only an xpub can create a fresh address for every customer, yet can never spend the money. One caution: an xpub reveals every address in its branch. Worse, if an xpub leaks along with any one non-hardened private key from that branch, an attacker can calculate the matching private key — and every key below it. Hardened keys, made using the parent's secret instead of its public half, block that climb. That is why they guard the account level.",
- "technical": "BIP-32 defines a tree of ECDSA keypairs over secp256k1, all derived from a single seed. Master key generation: generate seed S of 128–512 bits (256 advised) from a (P)RNG; compute I = HMAC-SHA512(Key = 'Bitcoin seed', Data = S); parse256(I_L) is the master secret key and I_R the master chain code; invalid if parse256(I_L) is 0 or ≥ n. An extended key is a key plus its 32-byte chain code. Each extended key has 2^31 normal children (indices 0..2^31−1) and 2^31 hardened children (indices 2^31..2^32−1, written i_H). CKDpriv((k_par, c_par), i): for hardened i, I = HMAC-SHA512(Key = c_par, Data = 0x00 || ser256(k_par) || ser32(i)); for normal i, Data = serP(point(k_par)) || ser32(i)); then k_i = parse256(I_L) + k_par (mod n) and c_i = I_R. Invalid results (parse256(I_L) ≥ n or k_i = 0) occur with probability below 1 in 2^127; proceed with the next index. CKDpub derives non-hardened public children only; a private child cannot be derived from a public parent. Hence N(m/a/b/c) = M/a/b/c, but hardened steps require the private key. Serialization: a 78-byte structure — version bytes (mainnet 0x0488B21E public / 0x0488ADE4 private; testnet 0x043587CF / 0x04358394), depth, parent fingerprint (first 32 bits of the Hash160 identifier), child number, chain code, and key data — Base58Check-encoded to exactly 111 characters (xprv/xpub on mainnet, tprv/tpub on testnet). Default wallet layout: account i uses external chain m/i_H/0/k and internal chain m/i_H/1/k. Minimum compliance: import an extended public or private key and expose its direct descendants as wallet keys. Security: a parent extended public key plus any non-hardened descendant private key reveals the parent extended private key; hardened derivation at the account level contains such leaks.",
- "claims": [
-  {
-   "claim": "BIP-32, titled 'Hierarchical Deterministic Wallets', was authored by Pieter Wuille, assigned 2012-02-11, and has status 'Deployed'.",
-   "source": "BIP header block"
-  },
-  {
-   "claim": "The Bitcoin reference client originally used randomly generated keys, caching (by default) 100 keys in a pool of reserve keys to avoid needing a backup after every transaction.",
-   "source": "Motivation"
-  },
-  {
-   "claim": "HD wallets can be shared partially or entirely with different systems, each with or without the ability to spend coins.",
-   "source": "Abstract"
-  },
-  {
-   "claim": "Master keys are generated from a seed of 128 to 512 bits (256 bits advised): I = HMAC-SHA512(Key = 'Bitcoin seed', Data = seed); the left 32 bytes of I become the master secret key and the right 32 bytes the master chain code.",
-   "source": "Specification, Master key generation"
-  },
-  {
-   "claim": "Each extended key has 2^31 normal child keys (indices 0 through 2^31−1) and 2^31 hardened child keys (indices 2^31 through 2^32−1).",
-   "source": "Specification, Extended keys"
-  },
-  {
-   "claim": "A derived child key is invalid when parse256(I_L) ≥ n or k_i = 0, which occurs with probability lower than 1 in 2^127; one should proceed with the next index.",
-   "source": "Specification, Child key derivation (CKDpriv)"
-  },
-  {
-   "claim": "Deriving a private child key from a public parent key is not possible; public parent keys can only derive non-hardened public child keys.",
-   "source": "Specification, 'Public parent key → private child key' and CKDpub"
-  },
-  {
-   "claim": "Serialized extended keys form a 78-byte structure that, with 32 checksum bits added, Base58-encodes to exactly 111 characters, starting with 'xprv' or 'xpub' on mainnet and 'tprv' or 'tpub' on testnet.",
-   "source": "Specification, Serialization format"
-  },
-  {
-   "claim": "Extended keys are identified by the Hash160 (RIPEMD160 after SHA256) of the serialized ECDSA public key; the first 32 bits of this identifier are the key fingerprint.",
-   "source": "Specification, Key identifiers"
-  },
-  {
-   "claim": "The default wallet layout organizes an HD wallet into numbered accounts, each with an external chain (m/i_H/0/k) for receiving addresses and an internal chain (m/i_H/1/k) for change and other operations that need not be communicated.",
-   "source": "Specification, The default wallet layout"
-  },
-  {
-   "claim": "Knowing a parent extended public key plus any non-hardened private key descending from it is equivalent to knowing the parent extended private key, and thus every private and public key descending from it.",
-   "source": "Security, Implications"
-  },
-  {
-   "claim": "Hardened keys are used at the account level so that a leak of account-specific or lower private keys cannot compromise the master key or other accounts.",
-   "source": "Security, Implications"
-  },
-  {
-   "claim": "A webserver given only the extended public key of one account's external chain can generate receiving addresses but cannot steal the money, though it can see all incoming payments on that chain.",
-   "source": "Use cases, 'Unsecure money receiver'"
-  },
-  {
-   "claim": "To comply with this standard, a client must at minimum be able to import an extended public or private key and give access to its direct descendants as wallet keys.",
-   "source": "Compatibility"
-  }
- ],
- "warnings": [
-  "Never share a seed or an extended private key (xprv) — either one reveals every private and public key in the tree below it.",
-  "Treat an extended public key (xpub) as more sensitive than a normal public key: it exposes every address in its branch.",
-  "If an xpub and any single non-hardened private key from its branch are exposed together, the parent extended private key can be computed — never store or share xpubs alongside child private keys."
- ],
- "source_title": "BIP-32: Hierarchical Deterministic Wallets",
- "source_url": "/opt/data/cache/corpus-src/bip-0032.txt",
- "notes_for_reviewer": "Scope: BIP-32 covers only key derivation and wallet structure. The 12/24-word mnemonic phrases most users encounter come from BIP-39/BIP-44, which this source predates and never mentions — consider a companion entry so users do not conflate 'seed' with 'seed words'. The Motivation section's description of the Bitcoin reference client (random keys, 100-key reserve pool) is historical; current Bitcoin Core differs, and the plain text is worded as past behavior. The xprv/xpub version bytes are BIP-32's original values; later conventions for other script types (ypub, zpub) come from outside this spec and were deliberately not added. The 2^128 (EC discrete log) and 2^256 (HMAC-SHA512 brute force) figures are assumptions stated by the source, not proven bounds. The xpub-plus-child-private-key compromise claim is central to safe handling and comes from the Implications section — worth extra scrutiny. Level was set to intermediate because extended-key handling goes beyond first-lesson material, though the core 'one backup regrows the whole tree' idea is novice-friendly; reviewer may downgrade if used for novice teaching. The source also contains test vectors, including known-invalid extended keys (useful for QA tooling); not excerpted. BIP status is 'Deployed' and the spec is stable (last changes added test vectors in 2017/2020), so staleness risk is low. Canonical source: bitcoin/bips GitHub repo; cached copy at /opt/data/cache/corpus-src/bip-0032.txt. Human operator approved 2026-10-06 (Telegram).",
- "corpus_version": "0.0.1-poc",
- "verified_on": "not yet — awaiting human review",
- "reviewed": true,
- "reviewed_date": "2026-10-06"
+  "title": "BIP-32 hierarchical deterministic wallets",
+  "topic_ids": [
+    "T02",
+    "T05"
+  ],
+  "level": "intermediate",
+  "risk_class": "caution",
+  "plain": "Early Bitcoin software made each secret spending key at random. A private key is a secret number that lets its owner spend coins. Because every new key needed a fresh backup, the original Bitcoin program kept a pool of 100 spare keys by default, so people would not have to back up after every single payment. In 2012, Pieter Wuille wrote BIP-32. A BIP is a Bitcoin Improvement Proposal — a numbered design document for Bitcoin software. It describes the hierarchical deterministic wallet, or HD wallet. 'Deterministic' means fixed, not random: one starting secret always produces the same family tree of keys. The wallet first creates a seed — a random number, 128 to 512 bits long (a bit is one yes/no of information), with 256 bits recommended. A standard mixing formula called HMAC-SHA512 turns the seed into a master key (the private key at the top of the tree) plus a partner secret called the chain code. Each branch is an account, like a numbered pocket that keeps money separate. Every account holds two chains: an external chain of addresses (safe-to-share codes that receive money) and an internal chain for change (money sent back to you when you spend). A key plus its chain code is an extended key. Written as text, the secret kind starts with 'xprv' and can spend; the public kind starts with 'xpub' and can only watch and create addresses. Two big wins: you back up once — the seed regrows the whole tree, forever. And sharing can be partial: a shop's webserver (the computer running its website) holding only an xpub can create a fresh address for every customer, yet can never spend the money. One caution: an xpub reveals every address in its branch. Worse, if an xpub leaks along with any one non-hardened private key from that branch, an attacker can calculate the matching private key — and every key below it. Hardened keys, made using the parent's secret instead of its public half, block that climb. That is why they guard the account level.",
+  "technical": "BIP-32 defines a tree of ECDSA keypairs over secp256k1, all derived from a single seed. Master key generation: generate seed S of 128–512 bits (256 advised) from a (P)RNG; compute I = HMAC-SHA512(Key = 'Bitcoin seed', Data = S); parse256(I_L) is the master secret key and I_R the master chain code; invalid if parse256(I_L) is 0 or ≥ n. An extended key is a key plus its 32-byte chain code. Each extended key has 2^31 normal children (indices 0..2^31−1) and 2^31 hardened children (indices 2^31..2^32−1, written i_H). CKDpriv((k_par, c_par), i): for hardened i, I = HMAC-SHA512(Key = c_par, Data = 0x00 || ser256(k_par) || ser32(i)); for normal i, Data = serP(point(k_par)) || ser32(i)); then k_i = parse256(I_L) + k_par (mod n) and c_i = I_R. Invalid results (parse256(I_L) ≥ n or k_i = 0) occur with probability below 1 in 2^127; proceed with the next index. CKDpub derives non-hardened public children only; a private child cannot be derived from a public parent. Hence N(m/a/b/c) = M/a/b/c, but hardened steps require the private key. Serialization: a 78-byte structure — version bytes (mainnet 0x0488B21E public / 0x0488ADE4 private; testnet 0x043587CF / 0x04358394), depth, parent fingerprint (first 32 bits of the Hash160 identifier), child number, chain code, and key data — Base58Check-encoded to exactly 111 characters (xprv/xpub on mainnet, tprv/tpub on testnet). Default wallet layout: account i uses external chain m/i_H/0/k and internal chain m/i_H/1/k. Minimum compliance: import an extended public or private key and expose its direct descendants as wallet keys. Security: a parent extended public key plus any non-hardened descendant private key reveals the parent extended private key; hardened derivation at the account level contains such leaks.",
+  "claims": [
+    {
+      "claim": "BIP-32, titled 'Hierarchical Deterministic Wallets', was authored by Pieter Wuille, assigned 2012-02-11, and has status 'Deployed'.",
+      "source": "BIP header block"
+    },
+    {
+      "claim": "The Bitcoin reference client originally used randomly generated keys, caching (by default) 100 keys in a pool of reserve keys to avoid needing a backup after every transaction.",
+      "source": "Motivation"
+    },
+    {
+      "claim": "HD wallets can be shared partially or entirely with different systems, each with or without the ability to spend coins.",
+      "source": "Abstract"
+    },
+    {
+      "claim": "Master keys are generated from a seed of 128 to 512 bits (256 bits advised): I = HMAC-SHA512(Key = 'Bitcoin seed', Data = seed); the left 32 bytes of I become the master secret key and the right 32 bytes the master chain code.",
+      "source": "Specification, Master key generation"
+    },
+    {
+      "claim": "Each extended key has 2^31 normal child keys (indices 0 through 2^31−1) and 2^31 hardened child keys (indices 2^31 through 2^32−1).",
+      "source": "Specification, Extended keys"
+    },
+    {
+      "claim": "A derived child key is invalid when parse256(I_L) ≥ n or k_i = 0, which occurs with probability lower than 1 in 2^127; one should proceed with the next index.",
+      "source": "Specification, Child key derivation (CKDpriv)"
+    },
+    {
+      "claim": "Deriving a private child key from a public parent key is not possible; public parent keys can only derive non-hardened public child keys.",
+      "source": "Specification, 'Public parent key → private child key' and CKDpub"
+    },
+    {
+      "claim": "Serialized extended keys form a 78-byte structure that, with 32 checksum bits added, Base58-encodes to exactly 111 characters, starting with 'xprv' or 'xpub' on mainnet and 'tprv' or 'tpub' on testnet.",
+      "source": "Specification, Serialization format"
+    },
+    {
+      "claim": "Extended keys are identified by the Hash160 (RIPEMD160 after SHA256) of the serialized ECDSA public key; the first 32 bits of this identifier are the key fingerprint.",
+      "source": "Specification, Key identifiers"
+    },
+    {
+      "claim": "The default wallet layout organizes an HD wallet into numbered accounts, each with an external chain (m/i_H/0/k) for receiving addresses and an internal chain (m/i_H/1/k) for change and other operations that need not be communicated.",
+      "source": "Specification, The default wallet layout"
+    },
+    {
+      "claim": "Knowing a parent extended public key plus any non-hardened private key descending from it is equivalent to knowing the parent extended private key, and thus every private and public key descending from it.",
+      "source": "Security, Implications"
+    },
+    {
+      "claim": "Hardened keys are used at the account level so that a leak of account-specific or lower private keys cannot compromise the master key or other accounts.",
+      "source": "Security, Implications"
+    },
+    {
+      "claim": "A webserver given only the extended public key of one account's external chain can generate receiving addresses but cannot steal the money, though it can see all incoming payments on that chain.",
+      "source": "Use cases, 'Unsecure money receiver'"
+    },
+    {
+      "claim": "To comply with this standard, a client must at minimum be able to import an extended public or private key and give access to its direct descendants as wallet keys.",
+      "source": "Compatibility"
+    }
+  ],
+  "warnings": [
+    "Never share a seed or an extended private key (xprv) — either one reveals every private and public key in the tree below it.",
+    "Treat an extended public key (xpub) as more sensitive than a normal public key: it exposes every address in its branch.",
+    "If an xpub and any single non-hardened private key from its branch are exposed together, the parent extended private key can be computed — never store or share xpubs alongside child private keys."
+  ],
+  "source_title": "BIP-32: Hierarchical Deterministic Wallets",
+  "source_url": "https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki",
+  "notes_for_reviewer": "Scope: BIP-32 covers only key derivation and wallet structure. The 12/24-word mnemonic phrases most users encounter come from BIP-39/BIP-44, which this source predates and never mentions — consider a companion entry so users do not conflate 'seed' with 'seed words'. The Motivation section's description of the Bitcoin reference client (random keys, 100-key reserve pool) is historical; current Bitcoin Core differs, and the plain text is worded as past behavior. The xprv/xpub version bytes are BIP-32's original values; later conventions for other script types (ypub, zpub) come from outside this spec and were deliberately not added. The 2^128 (EC discrete log) and 2^256 (HMAC-SHA512 brute force) figures are assumptions stated by the source, not proven bounds. The xpub-plus-child-private-key compromise claim is central to safe handling and comes from the Implications section — worth extra scrutiny. Level was set to intermediate because extended-key handling goes beyond first-lesson material, though the core 'one backup regrows the whole tree' idea is novice-friendly; reviewer may downgrade if used for novice teaching. The source also contains test vectors, including known-invalid extended keys (useful for QA tooling); not excerpted. BIP status is 'Deployed' and the spec is stable (last changes added test vectors in 2017/2020), so staleness risk is low. Canonical source: bitcoin/bips GitHub repo; cached copy at /opt/data/cache/corpus-src/bip-0032.txt. Human operator approved 2026-10-06 (Telegram).",
+  "corpus_version": "0.0.1-poc",
+  "verified_on": "not yet — awaiting human review",
+  "reviewed": true,
+  "reviewed_date": "2026-10-06",
+  "source_snapshot": "docs/references/bip-0032.txt"
 }

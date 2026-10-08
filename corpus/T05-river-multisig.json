@@ -1,63 +1,64 @@
 {
- "title": "What is multisig? (River)",
- "topic_ids": [
-  "T05"
- ],
- "level": "novice",
- "risk_class": "caution",
- "plain": "Normally, sending bitcoin (digital money that exists only online) works like this: the coins go to an address (a long code, like a deposit-box number, that bitcoin can be sent to), and only one private key (a secret number, like a password, that controls those coins) can spend them.\n\nMultisig (short for 'multiple signatures') changes that rule. A signature is proof, made with a private key, that the key's owner approves a payment. With multisig, several different private keys exist, and a set number of them must sign before the coins can move. This lets a group, such as a family, business partners, or a company board, share control of the same bitcoin so no single person can steal it all.\n\nMultisig setups are written as m-of-n. 'n' is the total number of keys in the group. 'm' is how many must sign. A common choice is 2-of-3: three keys exist, and any two of them can spend the coins.\n\nImagine Alice, Bob, and Charlie start a company. Each shares one public key (the safe-to-share 'locker' version of their key). They pick majority rule, so any two of the three can approve spending. Their rule is written as a script (a small program), which is hashed (turned into a short fingerprint) to create the shared address they all pay into. That is a 2-of-3 multisig.\n\nOne important catch: most multisig uses a format called P2SH (Pay-to-Script-Hash), and those addresses start with the number '3'. With P2SH, the exact spending rules stay hidden from the blockchain (Bitcoin's public record) until the coins are actually spent. So the group must keep a copy of their setup, called the RedeemScript, which is the exact script that unlocks the coins. If that record is lost, they cannot spend their bitcoin.",
- "technical": "A standard Bitcoin transaction pays to an address spendable by a single private key. Multisig instead requires signatures from multiple distinct private keys, enabling joint custody by families, business partners, corporate boards, or any collective, and preventing any single participant from spending shared funds alone.\n\nA multisig policy is expressed as m-of-n: n public keys are defined, and signatures from at least m corresponding private keys are required to spend. In a typical 2-of-3 setup, three public keys are defined and any two corresponding signatures are sufficient.\n\nMost multisig transactions are executed as P2SH (Pay-to-Script-Hash), so the address begins with '3'. Under P2SH, funds are locked to the hash of a script; the actual spending conditions, the RedeemScript encoding the m-of-n policy, are not exposed to the blockchain until the funds are spent. Participants must therefore retain the RedeemScript, the full script determining which keys are required, in order to redeem and spend the funds.\n\nIn the source's example, Alice, Bob, and Charlie form a company and share one public key each; their majority rule means any two of the three signatures can spend. This 2-of-3 requirement is encoded in a script, and hashing that script yields the address to which all partners send company funds.",
- "claims": [
-  {
-   "claim": "A standard bitcoin transaction sends bitcoin to an address, and that bitcoin can be spent by the private key to which it belongs.",
-   "source": "River multisig glossary, opening paragraph"
-  },
-  {
-   "claim": "Bitcoin can be sent such that it requires multiple signatures from different private keys, allowing funds to be jointly held by a family, business partners, corporate boards, or any collective.",
-   "source": "River multisig glossary, first paragraph"
-  },
-  {
-   "claim": "Multisig setups are described as m-of-n: signatures of at least m private keys are required, and these keys must correspond to any of the n defined public keys.",
-   "source": "River multisig glossary, second paragraph"
-  },
-  {
-   "claim": "In a typical 2-of-3 setup, three public keys are defined and signatures from any two of the corresponding private keys are sufficient to unlock and spend the bitcoin.",
-   "source": "River multisig glossary, second paragraph"
-  },
-  {
-   "claim": "Most multisig transactions are executed as P2SH transactions, so the address will begin with a '3'.",
-   "source": "River multisig glossary, third paragraph"
-  },
-  {
-   "claim": "Under P2SH, the exact script determining which keys are required is not exposed to the blockchain until the bitcoin has been spent.",
-   "source": "River multisig glossary, third paragraph"
-  },
-  {
-   "claim": "The holders of a multisig address must remember their exact setup, called the RedeemScript, in order to spend the bitcoin.",
-   "source": "River multisig glossary, third paragraph"
-  },
-  {
-   "claim": "In the source's example, Alice, Bob, and Charlie each share one public key, agree on majority rule (any two of three signatures), and their 2-of-3 requirement is translated into a script that is hashed to yield the shared company-fund address.",
-   "source": "River multisig glossary, example paragraph"
-  },
-  {
-   "claim": "A private key is used to spend bitcoin received by its corresponding public key, and a private key can generate a public key but not the reverse.",
-   "source": "River multisig glossary, Related Terms: 'Private key'"
-  },
-  {
-   "claim": "P2SH is a transaction type that lets bitcoin be spent by satisfying any script the sender provides, and a P2SH transaction locks bitcoin to the hash of a redeem script; P2SH is used for multisig and SegWit.",
-   "source": "River multisig glossary, Related Terms: 'Pay-to-Script-Hash (P2SH)' and 'Redeem script'"
-  }
- ],
- "warnings": [
-  "Keep a safe backup of your RedeemScript and exact multisig setup (which keys, and what m-of-n) — without this record, the bitcoin cannot be spent.",
-  "Never share a private key, even with multisig partners — share public keys only."
- ],
- "source_title": "Multisig | River",
- "source_url": "/opt/data/cache/corpus-src/river-multisig.txt",
- "notes_for_reviewer": "1) Staleness risk: the claim that 'most' multisig uses P2SH (addresses beginning '3') likely reflects the article's writing date; since SegWit adoption, many multisig wallets use P2WSH (native SegWit, 'bc1...' addresses). Consider annotating before display. 2) The source says holders 'must remember the setup in order to spend' but does not explicitly state funds become unspendable if the RedeemScript is lost; the first warning extrapolates that implication — confirm phrasing is acceptable. 3) The source does not mention modern wallet descriptors or xpub backups, which today's wallets use to record multisig setups; a companion entry may be warranted. 4) The source URL was inferred from River's glossary structure — the cached file contained no URL; verify the link resolves. 5) The second warning ('never share a private key') is standard safety guidance derived from the source's private-key definition, not stated verbatim. 6) No procedural reset/delete/seed-reentry steps appear in the source, so risk_class was set to caution (redeem-script retention requirement) rather than danger. Human operator approved 2026-10-06 (Telegram).",
- "corpus_version": "0.0.1-poc",
- "verified_on": "not yet — awaiting human review",
- "reviewed": true,
- "reviewed_date": "2026-10-06"
+  "title": "What is multisig? (River)",
+  "topic_ids": [
+    "T05"
+  ],
+  "level": "novice",
+  "risk_class": "caution",
+  "plain": "Normally, sending bitcoin (digital money that exists only online) works like this: the coins go to an address (a long code, like a deposit-box number, that bitcoin can be sent to), and only one private key (a secret number, like a password, that controls those coins) can spend them.\n\nMultisig (short for 'multiple signatures') changes that rule. A signature is proof, made with a private key, that the key's owner approves a payment. With multisig, several different private keys exist, and a set number of them must sign before the coins can move. This lets a group, such as a family, business partners, or a company board, share control of the same bitcoin so no single person can steal it all.\n\nMultisig setups are written as m-of-n. 'n' is the total number of keys in the group. 'm' is how many must sign. A common choice is 2-of-3: three keys exist, and any two of them can spend the coins.\n\nImagine Alice, Bob, and Charlie start a company. Each shares one public key (the safe-to-share 'locker' version of their key). They pick majority rule, so any two of the three can approve spending. Their rule is written as a script (a small program), which is hashed (turned into a short fingerprint) to create the shared address they all pay into. That is a 2-of-3 multisig.\n\nOne important catch: most multisig uses a format called P2SH (Pay-to-Script-Hash), and those addresses start with the number '3'. With P2SH, the exact spending rules stay hidden from the blockchain (Bitcoin's public record) until the coins are actually spent. So the group must keep a copy of their setup, called the RedeemScript, which is the exact script that unlocks the coins. If that record is lost, they cannot spend their bitcoin.",
+  "technical": "A standard Bitcoin transaction pays to an address spendable by a single private key. Multisig instead requires signatures from multiple distinct private keys, enabling joint custody by families, business partners, corporate boards, or any collective, and preventing any single participant from spending shared funds alone.\n\nA multisig policy is expressed as m-of-n: n public keys are defined, and signatures from at least m corresponding private keys are required to spend. In a typical 2-of-3 setup, three public keys are defined and any two corresponding signatures are sufficient.\n\nMost multisig transactions are executed as P2SH (Pay-to-Script-Hash), so the address begins with '3'. Under P2SH, funds are locked to the hash of a script; the actual spending conditions, the RedeemScript encoding the m-of-n policy, are not exposed to the blockchain until the funds are spent. Participants must therefore retain the RedeemScript, the full script determining which keys are required, in order to redeem and spend the funds.\n\nIn the source's example, Alice, Bob, and Charlie form a company and share one public key each; their majority rule means any two of the three signatures can spend. This 2-of-3 requirement is encoded in a script, and hashing that script yields the address to which all partners send company funds.",
+  "claims": [
+    {
+      "claim": "A standard bitcoin transaction sends bitcoin to an address, and that bitcoin can be spent by the private key to which it belongs.",
+      "source": "River multisig glossary, opening paragraph"
+    },
+    {
+      "claim": "Bitcoin can be sent such that it requires multiple signatures from different private keys, allowing funds to be jointly held by a family, business partners, corporate boards, or any collective.",
+      "source": "River multisig glossary, first paragraph"
+    },
+    {
+      "claim": "Multisig setups are described as m-of-n: signatures of at least m private keys are required, and these keys must correspond to any of the n defined public keys.",
+      "source": "River multisig glossary, second paragraph"
+    },
+    {
+      "claim": "In a typical 2-of-3 setup, three public keys are defined and signatures from any two of the corresponding private keys are sufficient to unlock and spend the bitcoin.",
+      "source": "River multisig glossary, second paragraph"
+    },
+    {
+      "claim": "Most multisig transactions are executed as P2SH transactions, so the address will begin with a '3'.",
+      "source": "River multisig glossary, third paragraph"
+    },
+    {
+      "claim": "Under P2SH, the exact script determining which keys are required is not exposed to the blockchain until the bitcoin has been spent.",
+      "source": "River multisig glossary, third paragraph"
+    },
+    {
+      "claim": "The holders of a multisig address must remember their exact setup, called the RedeemScript, in order to spend the bitcoin.",
+      "source": "River multisig glossary, third paragraph"
+    },
+    {
+      "claim": "In the source's example, Alice, Bob, and Charlie each share one public key, agree on majority rule (any two of three signatures), and their 2-of-3 requirement is translated into a script that is hashed to yield the shared company-fund address.",
+      "source": "River multisig glossary, example paragraph"
+    },
+    {
+      "claim": "A private key is used to spend bitcoin received by its corresponding public key, and a private key can generate a public key but not the reverse.",
+      "source": "River multisig glossary, Related Terms: 'Private key'"
+    },
+    {
+      "claim": "P2SH is a transaction type that lets bitcoin be spent by satisfying any script the sender provides, and a P2SH transaction locks bitcoin to the hash of a redeem script; P2SH is used for multisig and SegWit.",
+      "source": "River multisig glossary, Related Terms: 'Pay-to-Script-Hash (P2SH)' and 'Redeem script'"
+    }
+  ],
+  "warnings": [
+    "Keep a safe backup of your RedeemScript and exact multisig setup (which keys, and what m-of-n) — without this record, the bitcoin cannot be spent.",
+    "Never share a private key, even with multisig partners — share public keys only."
+  ],
+  "source_title": "Multisig | River",
+  "source_url": "https://river.com/learn/",
+  "notes_for_reviewer": "1) Staleness risk: the claim that 'most' multisig uses P2SH (addresses beginning '3') likely reflects the article's writing date; since SegWit adoption, many multisig wallets use P2WSH (native SegWit, 'bc1...' addresses). Consider annotating before display. 2) The source says holders 'must remember the setup in order to spend' but does not explicitly state funds become unspendable if the RedeemScript is lost; the first warning extrapolates that implication — confirm phrasing is acceptable. 3) The source does not mention modern wallet descriptors or xpub backups, which today's wallets use to record multisig setups; a companion entry may be warranted. 4) The source URL was inferred from River's glossary structure — the cached file contained no URL; verify the link resolves. 5) The second warning ('never share a private key') is standard safety guidance derived from the source's private-key definition, not stated verbatim. 6) No procedural reset/delete/seed-reentry steps appear in the source, so risk_class was set to caution (redeem-script retention requirement) rather than danger. Human operator approved 2026-10-06 (Telegram).",
+  "corpus_version": "0.0.1-poc",
+  "verified_on": "not yet — awaiting human review",
+  "reviewed": true,
+  "reviewed_date": "2026-10-06",
+  "source_snapshot": "docs/references/river-multisig.txt"
 }

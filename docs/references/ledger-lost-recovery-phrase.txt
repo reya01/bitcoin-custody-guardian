@@ -1,0 +1,67 @@
+URL: https://support.ledger.com/article/4404382075537-zd
+TITLE: I lost my 24-word Secret Recovery Phrase (Ledger support; last updated 05/13/2026)
+
+This article describes what to do in the event you have lost your 24-word Secret Recovery Phrase but still have access to your PIN and Ledger device.
+
+## I lost my Secret Recovery Phrase but I no longer have access to my PIN or my Ledger device has reset
+
+If you have lost your Secret Recovery Phrase and no longer have access to your PIN, or if your Ledger device has reset and you don't have your Secret Recovery Phrase, unfortunately, it is impossible to access your assets. Ledger is unable to retrieve your Secret Recovery Phrase or PIN for you. It is essential to always keep your 24-word Secret Recovery Phrase safe and secure to guarantee access to your digital assets.
+
+## What is a 24-word Secret Recovery Phrase and why is it so important?
+
+Your 24-word Secret Recovery Phrase serves as a backup to all your private keys. As long as you have your Secret Recovery Phrase, you will always be able to regain access to your crypto assets. You can restore using a Secret Recovery Phrase or backup to recover the wallet configuration and access your assets (restore article: https://support.ledger.com/article/4404382560913-zd).
+
+This is why it is so important that you store your Recovery Sheet in a secure location. Anyone with access to your Secret Recovery Phrase can steal your crypto funds without even having access to your Ledger device.
+
+Ledger does not store your private key and we will never ask you for your Secret Recovery Phrase.
+
+## Not sure that your Secret Recovery Phrase is correctly backed up?
+
+If you're not sure that you have correctly written down your Secret Recovery Phrase, you can use the Recovery Check app in Ledger Wallet (formerly Ledger Live). The Recovery Check app developed by Ledger allows you to verify that the Secret Recovery Phrase has been written without any error in spelling or word order.
+
+## Lost your Secret Recovery Phrase?
+
+If you lost your Secret Recovery Phrase but still remember your PIN, you can unlock your Ledger device with the PIN and manage your crypto assets. However, it is highly recommended to quickly send all your crypto assets to temporary accounts and generate a new Secret Recovery Phrase since the Secret Recovery Phrase is the only backup to your crypto assets.
+
+### 1- Send your crypto assets to temporary accounts
+
+Send all your crypto assets to existing or temporary safe accounts. It can be accounts created on an exchange service, a software wallet, or any account linked to a hardware wallet. (Note about outdated Ledger OS preventing sending: try to send crypto to temporary accounts before updating the Ledger OS.)
+
+### 2- Remove all your accounts from Ledger Wallet
+
+Once you're done transferring your crypto to safe temporary accounts, it's recommended to remove your (now empty) accounts, so you don't risk accidentally sending funds to compromised accounts in the future. If you wish to keep a record of your transaction history, export your transaction history before removing your accounts.
+
+### 3- Reset your Ledger device
+
+Resetting the device removes all private keys, blockchain apps, and settings from your Ledger device. The device can either be reset from its settings menu or by entering three incorrect PINs when unlocking it.
+
+Please note: It's highly recommended that you avoid wiping your current Ledger device if you have a second one. Even if you believe you've transferred all assets linked to the Secret Recovery Phrase, it's advisable to keep the device set up in case you missed something.
+
+Reset from device settings (Nano X / Nano S / Nano S Plus):
+1. Hold both buttons to access the Control Center.
+2. Navigate to Security and press both buttons to validate.
+3. Choose Reset all by pressing both buttons.
+4. Read the warning by pressing the right button to continue.
+5. Press both buttons to Reset all.
+6. Enter your PIN to confirm. Your device will then be reset.
+
+Reset from PIN:
+1. Turn on your Ledger device.
+2. Enter an incorrect PIN three times in a row.
+3. The device will reset after the third incorrect attempt as a security measure.
+
+### 4- Set up your device as a new device
+
+Setting up your Ledger device as a new device will generate a new Secret Recovery Phrase.
+1. Turn on your Ledger device.
+2. Select the option Set up as new device.
+3. Choose your PIN. A new Secret Recovery Phrase will be displayed.
+4. Write down your new Secret Recovery Phrase on your Recovery Sheet.
+
+### 5- Update your device Ledger OS
+
+It is highly recommended to update your device to the latest Ledger OS version to benefit from the optimal security level and user experience.
+
+### 6- Transfer back your crypto assets
+
+You can now transfer back your crypto assets to your newly configured and updated Ledger device. Your crypto assets will be secured by your new Secret Recovery Phrase generated by your Ledger device. Since your Secret Recovery Phrase is a full backup to your crypto assets, make sure to store your Recovery Sheet in a secure location.

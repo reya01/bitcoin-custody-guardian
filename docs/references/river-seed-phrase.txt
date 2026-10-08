@@ -1,0 +1,26 @@
+# What is a seed phrase? (River Learn, 9 min read)
+SOURCE: https://river.com/learn/what-is-a-seed-phrase
+---
+A seed phrase, also known as a recovery or mnemonic phrase, is a series of words that stores all the information needed to recover a Bitcoin wallet. A seed phrase allows you to regain access to your bitcoin if your wallet is lost, stolen, or otherwise compromised.
+
+Importance: An estimated 20% of the Bitcoin supply is considered inaccessible or lost, often due to individuals losing access to their wallets. The solution is the seed phrase: a sequence of 12 to 24 words allowing users to recover their bitcoin.
+
+Your seed phrase will be the target of hackers and thieves, so you should never store your seed phrase online. Keep physical copies in a secure location.
+
+WARNING (River): No Bitcoin wallet provider or company will ever ask you for your seed phrase. If a wallet company requests your seed phrase to troubleshoot errors, someone malicious is likely impersonating the company and this is a scam.
+
+Hot and cold wallets utilize seed phrases to secure and recover your bitcoin. Seed phrases are compatible across different wallets, providing flexibility to switch between providers. If your hardware wallet gets destroyed, you can use your seed phrase to recover your assets on a new hardware wallet, even from a different company.
+
+Is a seed phrase the same as a private key? No — a private key is derived FROM a seed phrase. A seed phrase can be seen as a backup that recreates the private key. A private key is a string of numbers and letters used to send transactions. If a hacker gets access to your private key, they can still steal your bitcoin without using your seed phrase.
+
+Why seed phrases matter for self-custody: When you hold custody over your own bitcoin, the responsibility of looking after your seed phrase is on you. Beginners can start small — self-custody does not have to be all-or-nothing. Advanced users might opt for multi-signature (multisig) wallets, which involve multiple keys and seed phrases, some managed by trusted third parties, reducing the risk of losing a single key or seed phrase.
+
+Structure and types: BIP 39 seed phrases are the most common type, made from a list of 2,048 English words, in three lengths: 12 words (common), 18 words (rarely used), 24 words (highest security). Electrum uses a different word list not part of BIP 39. Some complex wallets use Shamir's Secret Sharing (Shamir Backup), splitting the seed into multiple parts — more complex, more user-error-prone; losing enough shares loses access.
+
+Recovery process (5 steps): 1) Set up your new wallet (download trusted hot wallet app, or connect hardware wallet). 2) Press recover/import. 3) Enter the seed phrase carefully, exact order. 4) Create a new password/PIN. 5) Sync with the blockchain.
+
+Security and storage: always keep a record of the seed phrase; keep an OFFLINE copy; electronic copies (laptop, cloud) are risky; ink fades — engraving on metal plate protects against fire and water. Never share the seed phrase with anyone, no matter how close; never share it with the wallet company.
+
+Risks: people have lost bitcoin permanently by losing the seed phrase. Misspelling or swapping words can cause recovery challenges. If you still have wallet access but lost the seed phrase, immediately transfer bitcoin to a new wallet and generate a new seed phrase. Sharing grants full access; an untrustworthy person can steal with no recovery. Many users who find self-custody intimidating trust an exchange or brokerage such as River — usually no cost, but you trust a third party to secure your bitcoin.
+
+Key takeaways: seed phrases are critical for regaining access; store offline, fire/water-resistant containers or Shamir; mismanagement = irreversible loss.

@@ -1,0 +1,64 @@
+URL: https://consumer.ftc.gov/articles/what-do-if-you-were-scammed
+TITLE: What To Do if You Were Scammed (FTC consumer article) — crypto-relevant excerpts
+
+Scammers contact us by phone, email, text message, and social media trying to get our money or sensitive personal information. Here's how to try to get your money back if you paid a scammer, and what to do if you gave a scammer your personal information or access to your computer.
+
+## How To Get Your Money Back if You Paid a Scammer
+
+Scammers ask you to pay in ways that make it hard to track them down. If you paid a scammer, your money might be gone already. But it's always worth asking the company you used to send the money if there's a way to get it back.
+
+### How To Get Your Money Back: Bank Transfers
+If you paid a scammer with Zelle or a bank transfer: 1. Report it to your bank or credit union immediately. 2. Ask them to reverse the payment and refund your money.
+
+### How To Get Your Money Back: Payment Apps
+If you paid a scammer with a payment app like Venmo, Cash App, or PayPal: 1. Report it to the payment app immediately. 2. Ask them to reverse the payment and refund your money.
+
+### How To Get Your Money Back: Wire Transfers
+If you sent a scammer money through a wire transfer company like Western Union or MoneyGram: 1. Report it to the wire transfer company immediately. 2. Tell them a scammer tricked you into sending money. 3. Ask them to refund your money.
+
+### How To Get Your Money Back: Credit Card Payments
+If someone used your credit card without your authorization or a scammer tricked you into paying them with a credit card: 1. Report it to the credit card issuer immediately. Use the number on the back of your card. 2. Ask them to refund your money. Federal law protects you from unauthorized use of your credit card.
+
+### How To Get Your Money Back: Debit Card Payments
+If you were tricked into paying a scammer with a debit card: 1. Report it to your bank or credit union immediately. 2. Ask them to refund your money. Federal law protects you from unauthorized use of your debit card.
+
+### How To Get Your Money Back: Gift Cards
+Scammers tell you to buy a gift card then ask you for the gift card number and PIN. If you paid a scammer with a gift card: 1. Contact the gift card issuer immediately. Use the number on the back of the card. 2. Tell them that a scammer tricked you into giving them the card number and PIN. 3. Ask them to refund your money. Keep the gift card and the receipt, if you have one.
+
+### How To Get Your Money Back: Cryptocurrency
+Scammers tell you to go to a cryptocurrency ATM and send money to a wallet.
+
+If you paid a scammer with cryptocurrency:
+1. Contact the cryptocurrency exchange or ATM operator immediately.
+2. Tell them it was a fraudulent transaction.
+3. Ask them to reverse the transaction and refund your money.
+
+Then report it to federal law enforcement authorities:
+- Report it to the FTC at ReportFraud.ftc.gov
+
+Cryptocurrency payments don't have the same legal protections as credit and debit cards do, so it can be hard to get your money back. But some states have passed laws that might help you. Visit the National Conference of State Legislatures (ncsl.org) to search for legislation in your state.
+
+Learn more about cryptocurrency payments and how to avoid a scam: https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-scams
+
+## What To Do if You Gave a Scammer Your Personal Information
+
+Scammers send phishing emails or text messages to trick you into giving them your personal information. A scammer might use your personal information to: steal your identity and impersonate you; open credit or utility accounts in your name; hack into your email or social media accounts.
+
+### What to do if you gave a scammer your Social Security number
+If you gave a scammer your Social Security number and they used it: 1. Go to IdentityTheft.gov to report it. 2. Get a customized recovery plan based on your situation. 3. Follow the recovery steps.
+
+### What to do if you gave a scammer your account information
+If you gave a scammer the username and password to one of your accounts and you can still log in: 1. Create a new, strong password for the account that was compromised. (If you use the same password on another account, change it there, too.) 2. Turn on two-factor authentication on the account.
+If you can't log in: see how to get back into your hacked email or social media account.
+
+## What To Do if You Gave a Scammer Access to Your Computer
+
+1. Update your security software to make sure you have the latest protections.
+2. Run a scan and delete anything it identifies as a problem.
+3. Change your passwords and turn on two-factor authentication to protect your accounts.
+
+## How To Report a Scammer to the FTC
+
+Report a scammer to the FTC at ReportFraud.ftc.gov.
+
+When you report a scam, the FTC can use the information to: build cases against scammers; spot trends; educate the public; share data about what is happening in your community.

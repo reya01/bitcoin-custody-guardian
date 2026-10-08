@@ -1,103 +1,104 @@
 {
- "title": "SeedSigner: air-gapped stateless signing device",
- "topic_ids": [
-  "T04",
-  "T05"
- ],
- "level": "intermediate",
- "risk_class": "danger",
- "plain": "SeedSigner is a Bitcoin signing device you can build yourself, usually for under $50 in parts. A 'signing device' is a small, single-purpose computer that holds your private key — the secret number that lets you spend your Bitcoin — and approves payments while staying away from everyday computers. SeedSigner is 'air-gapped,' meaning it never connects to the internet or any network. It is also 'stateless': it keeps your seed in memory only while switched on, and wipes all memory the moment you cut the power. A 'seed' is a list of 12 or 24 ordinary words that works like a master password for your Bitcoin. The project's goal is to make multisig cheaper and easier. 'Multisig' is short for 'multiple signatures' — a wallet that needs several keys to agree before money can move. Families like this: one stolen key alone cannot empty the funds. SeedSigner pairs with wallet software such as Sparrow, Specter Desktop, and BlueWallet Vaults — programs that track your Bitcoin and prepare payments. It can create a new seed for you using dice rolls (50 rolls for a 12-word list, 99 for a 24-word list) or camera pictures as the source of randomness. It also supports a 'passphrase' — an optional extra secret word added to the seed. Nothing travels over a network: your wallet hands over payment details through QR codes (square barcodes), and SeedSigner hands back its approval the same way. To build one, you need a Raspberry Pi Zero (a tiny computer, ideally version 1.3, which has no Wi-Fi or Bluetooth), a 240-by-240-pixel screen, and a camera. You normally must solder (join metal parts with melted metal) 40 connector pins, unless you buy solder-free 'hammer header' pins. You copy the free software onto a MicroSD card (a small memory card). Careful: this erases everything on that card. Startup can take up to 60 seconds — be patient. Always practice with small amounts, or on Testnet (a pretend copy of Bitcoin for practice), before moving real savings. Check that the download is genuine before installing; if the check fails, stop.",
- "technical": "SeedSigner is an open-source DIY air-gapped signing device built from a Raspberry Pi Zero (v1.3 preferred, no Wi-Fi/Bluetooth; any Pi 2/3/4 or Zero works; Pi 1 needs a hardware modification to the Waveshare LCD HAT), a Waveshare 1.3-inch 240x240-pixel LCD (exact pixel count matters), and a Pi Zero-compatible camera (Aokin/AuviPal 5MP 1080p with OV5647 sensor tested); parts usually cost under $50. Soldering the 40-pin GPIO header is required unless solderless 'hammer headers' are used. It is stateless: BIP39 seeds exist only in volatile memory while powered; all memory is wiped on power removal, and the SD card can be removed after boot so no secret data can be written to it. Seed generation: dice-roll entropy (99 rolls for a 24-word seed, 50 for a 12-word), camera image entropy, or manual entry with final-word checksum calculation. Also supported: BIP39 passphrase ('word 25'), SeedQR (QR-encoded seed) transcription for instant reload, native Segwit multisig XPUB export, PSBT-compliant signing via animated QR codes, receive-address verification, Mainnet and Testnet; Taproot is not yet supported. Companion wallets: Specter Desktop, Sparrow, BlueWallet Vaults. Boot can take up to 60 seconds. Software v0.7.0 ships as per-board images, under 42 MB each since v0.6.0. Since v0.7.0, GitHub-distributed images are reproducible (byte-for-byte from source). Pre-built images are prepared and PGP-signed solely by the project's eponymous creator, sole holder of the signing keys — a single point of trust the project itself discloses. Verify before mounting the .img (some OSes modify files on mount, breaking verification): import the project key from keybase.io/seedsigner (gpg --fetch-keys), verify the manifest signature (gpg --verify), confirm the rightmost 16 fingerprint characters match the Keybase listing, then check hashes (shasum -a 256 --ignore-missing --check; Windows: CertUtil -hashfile with manual comparison). 'Bad signature' or 'FAILED' means stop. Flash with Etcher, Raspberry Pi Imager, or dd; dd can overwrite the wrong disk, and flashing erases the card.",
- "claims": [
-  {
-   "claim": "A SeedSigner can be built from inexpensive, publicly available hardware components, usually for less than $50.",
-   "source": "Project Summary"
-  },
-  {
-   "claim": "The project's stated goal is to lower the cost and complexity of Bitcoin multisignature (multisig) wallet use.",
-   "source": "Project Summary"
-  },
-  {
-   "claim": "Seeds are temporarily stored in memory only while the device is powered; all memory is wiped when power is removed.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "The SD card is removable after boot to ensure no secret data can be written to it.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "A 24-word BIP39 seed phrase can be created with 99 dice rolls, or a 12-word phrase with 50 rolls.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "The device can calculate the final word (checksum) of a 12- or 24-word BIP39 seed phrase.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "BIP39 passphrase ('word 25') support is included.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "SeedSigner is PSBT-compliant and signs transactions and transfers XPUB data using animated QR codes.",
-   "source": "Feature Highlights"
-  },
-  {
-   "claim": "SeedSigner is built for compatibility with Specter Desktop, Sparrow, and BlueWallet Vaults.",
-   "source": "Considerations"
-  },
-  {
-   "claim": "The device takes up to 60 seconds to boot before the menu appears.",
-   "source": "Considerations"
-  },
-  {
-   "claim": "Taproot is not yet supported.",
-   "source": "Considerations"
-  },
-  {
-   "claim": "Users are advised to always test their setup before transferring larger amounts of bitcoin, and to try Testnet first.",
-   "source": "Considerations"
-  },
-  {
-   "claim": "Recommended parts are a Raspberry Pi Zero (preferably version 1.3 with no WiFi/Bluetooth), a Waveshare 1.3-inch 240x240-pixel LCD (correct pixel count is important), and a Pi Zero-compatible camera (Aokin/AuviPal 5MP 1080p with OV5647 sensor tested); soldering the 40 GPIO pins is needed unless 'GPIO Hammer Headers' are purchased.",
-   "source": "Shopping List"
-  },
-  {
-   "claim": "Starting with v0.7.0, the images distributed via GitHub are reproducible, meaning users can verify the released images are byte-for-byte the same when built from source.",
-   "source": "Software Installation - A Special Note On Minimizing Trust"
-  },
-  {
-   "claim": "Released images are prepared and signed by the eponymous creator of the project, who is additionally the only person in possession of the PGP keys used to sign the release images.",
-   "source": "Software Installation - A Special Note On Minimizing Trust"
-  },
-  {
-   "claim": "Since version 0.6.0, each image file is under 42 megabytes.",
-   "source": "Downloading the Software"
-  },
-  {
-   "claim": "Verification must be run before opening or mounting the .img file, because some operating systems modify the file on mount, causing verification to fail.",
-   "source": "Verifying the Software"
-  },
-  {
-   "claim": "If GPG verification displays 'Bad signature', or the hash check shows 'FAILED', the user must stop immediately and not continue.",
-   "source": "Verifying the Software"
-  },
-  {
-   "claim": "The DD command line utility can accidentally format the incorrect disk if not used carefully, and writing the software overwrites everything on the MicroSD card.",
-   "source": "Writing the software onto your MicroSD card"
-  }
- ],
- "warnings": [
-  "Flashing the software onto a MicroSD card erases everything on that card — use a blank or spare card only.",
-  "The DD command can permanently erase the wrong disk — always confirm the target disk before running it.",
-  "If download verification shows 'Bad signature' or 'FAILED', stop immediately and do not use the files.",
-  "Never move large amounts without testing the setup first — practice on Testnet or with small amounts.",
-  "Never share your seed words, passphrase, or any QR code made from them with anyone."
- ],
- "source_title": "Build an offline, airgapped Bitcoin signing device for less than $50!",
- "source_url": "/opt/data/cache/corpus-src/batch3/seedsigner-readme.txt",
- "notes_for_reviewer": "Source is a local snapshot (batch3/seedsigner-readme.txt) of the SeedSigner README; source_url is inferred as the GitHub repo — confirm it matches the file's origin. Highly version-sensitive: 'current' is v0.7.0 in the source; download links, image sizes, Taproot status ('not quite yet supported'), boot times, and verification steps may change with releases — recheck against the latest release before publishing. Internal inconsistencies in the source: (1) 'Considerations' says boot takes up to 60 seconds while the install section says allow about 45 seconds for the logo to appear; I used the conservative 60. (2) 'Planned Upcoming Improvements' still lists 'Reproducible builds' as future work, but the Minimizing Trust section states reproducibility shipped with v0.7.0; the latter appears authoritative. The '<$50' figure is the project's own 'usually' estimate and excludes tools and optional enclosure hardware. Trust concentration: all pre-built images are signed by one individual holding the sole PGP key (the project discloses this itself); reviewers may want to confirm the Keybase proof and out-of-band links (Twitter, GitHub gist, seedsigner.com) are still live and the key has not rotated. Dice-roll counts (99/50) and SeedQR template dimensions come from the README; linked sub-documents (dice_verification.md, seed_qr docs) were not in this snapshot and were not independently checked. Windows flashing guidance (run as administrator, disable Controlled Folder Access) is OS-version dependent. The '100x smaller' claim since 0.6.0 is the project's own framing; only the 'under 42 MB' figure was preserved as a claim. Human operator approved 2026-10-06 (Telegram).",
- "corpus_version": "0.0.1-poc",
- "verified_on": "not yet — awaiting human review",
- "reviewed": true,
- "reviewed_date": "2026-10-06"
+  "title": "SeedSigner: air-gapped stateless signing device",
+  "topic_ids": [
+    "T04",
+    "T05"
+  ],
+  "level": "intermediate",
+  "risk_class": "danger",
+  "plain": "SeedSigner is a Bitcoin signing device you can build yourself, usually for under $50 in parts. A 'signing device' is a small, single-purpose computer that holds your private key — the secret number that lets you spend your Bitcoin — and approves payments while staying away from everyday computers. SeedSigner is 'air-gapped,' meaning it never connects to the internet or any network. It is also 'stateless': it keeps your seed in memory only while switched on, and wipes all memory the moment you cut the power. A 'seed' is a list of 12 or 24 ordinary words that works like a master password for your Bitcoin. The project's goal is to make multisig cheaper and easier. 'Multisig' is short for 'multiple signatures' — a wallet that needs several keys to agree before money can move. Families like this: one stolen key alone cannot empty the funds. SeedSigner pairs with wallet software such as Sparrow, Specter Desktop, and BlueWallet Vaults — programs that track your Bitcoin and prepare payments. It can create a new seed for you using dice rolls (50 rolls for a 12-word list, 99 for a 24-word list) or camera pictures as the source of randomness. It also supports a 'passphrase' — an optional extra secret word added to the seed. Nothing travels over a network: your wallet hands over payment details through QR codes (square barcodes), and SeedSigner hands back its approval the same way. To build one, you need a Raspberry Pi Zero (a tiny computer, ideally version 1.3, which has no Wi-Fi or Bluetooth), a 240-by-240-pixel screen, and a camera. You normally must solder (join metal parts with melted metal) 40 connector pins, unless you buy solder-free 'hammer header' pins. You copy the free software onto a MicroSD card (a small memory card). Careful: this erases everything on that card. Startup can take up to 60 seconds — be patient. Always practice with small amounts, or on Testnet (a pretend copy of Bitcoin for practice), before moving real savings. Check that the download is genuine before installing; if the check fails, stop.",
+  "technical": "SeedSigner is an open-source DIY air-gapped signing device built from a Raspberry Pi Zero (v1.3 preferred, no Wi-Fi/Bluetooth; any Pi 2/3/4 or Zero works; Pi 1 needs a hardware modification to the Waveshare LCD HAT), a Waveshare 1.3-inch 240x240-pixel LCD (exact pixel count matters), and a Pi Zero-compatible camera (Aokin/AuviPal 5MP 1080p with OV5647 sensor tested); parts usually cost under $50. Soldering the 40-pin GPIO header is required unless solderless 'hammer headers' are used. It is stateless: BIP39 seeds exist only in volatile memory while powered; all memory is wiped on power removal, and the SD card can be removed after boot so no secret data can be written to it. Seed generation: dice-roll entropy (99 rolls for a 24-word seed, 50 for a 12-word), camera image entropy, or manual entry with final-word checksum calculation. Also supported: BIP39 passphrase ('word 25'), SeedQR (QR-encoded seed) transcription for instant reload, native Segwit multisig XPUB export, PSBT-compliant signing via animated QR codes, receive-address verification, Mainnet and Testnet; Taproot is not yet supported. Companion wallets: Specter Desktop, Sparrow, BlueWallet Vaults. Boot can take up to 60 seconds. Software v0.7.0 ships as per-board images, under 42 MB each since v0.6.0. Since v0.7.0, GitHub-distributed images are reproducible (byte-for-byte from source). Pre-built images are prepared and PGP-signed solely by the project's eponymous creator, sole holder of the signing keys — a single point of trust the project itself discloses. Verify before mounting the .img (some OSes modify files on mount, breaking verification): import the project key from keybase.io/seedsigner (gpg --fetch-keys), verify the manifest signature (gpg --verify), confirm the rightmost 16 fingerprint characters match the Keybase listing, then check hashes (shasum -a 256 --ignore-missing --check; Windows: CertUtil -hashfile with manual comparison). 'Bad signature' or 'FAILED' means stop. Flash with Etcher, Raspberry Pi Imager, or dd; dd can overwrite the wrong disk, and flashing erases the card.",
+  "claims": [
+    {
+      "claim": "A SeedSigner can be built from inexpensive, publicly available hardware components, usually for less than $50.",
+      "source": "Project Summary"
+    },
+    {
+      "claim": "The project's stated goal is to lower the cost and complexity of Bitcoin multisignature (multisig) wallet use.",
+      "source": "Project Summary"
+    },
+    {
+      "claim": "Seeds are temporarily stored in memory only while the device is powered; all memory is wiped when power is removed.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "The SD card is removable after boot to ensure no secret data can be written to it.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "A 24-word BIP39 seed phrase can be created with 99 dice rolls, or a 12-word phrase with 50 rolls.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "The device can calculate the final word (checksum) of a 12- or 24-word BIP39 seed phrase.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "BIP39 passphrase ('word 25') support is included.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "SeedSigner is PSBT-compliant and signs transactions and transfers XPUB data using animated QR codes.",
+      "source": "Feature Highlights"
+    },
+    {
+      "claim": "SeedSigner is built for compatibility with Specter Desktop, Sparrow, and BlueWallet Vaults.",
+      "source": "Considerations"
+    },
+    {
+      "claim": "The device takes up to 60 seconds to boot before the menu appears.",
+      "source": "Considerations"
+    },
+    {
+      "claim": "Taproot is not yet supported.",
+      "source": "Considerations"
+    },
+    {
+      "claim": "Users are advised to always test their setup before transferring larger amounts of bitcoin, and to try Testnet first.",
+      "source": "Considerations"
+    },
+    {
+      "claim": "Recommended parts are a Raspberry Pi Zero (preferably version 1.3 with no WiFi/Bluetooth), a Waveshare 1.3-inch 240x240-pixel LCD (correct pixel count is important), and a Pi Zero-compatible camera (Aokin/AuviPal 5MP 1080p with OV5647 sensor tested); soldering the 40 GPIO pins is needed unless 'GPIO Hammer Headers' are purchased.",
+      "source": "Shopping List"
+    },
+    {
+      "claim": "Starting with v0.7.0, the images distributed via GitHub are reproducible, meaning users can verify the released images are byte-for-byte the same when built from source.",
+      "source": "Software Installation - A Special Note On Minimizing Trust"
+    },
+    {
+      "claim": "Released images are prepared and signed by the eponymous creator of the project, who is additionally the only person in possession of the PGP keys used to sign the release images.",
+      "source": "Software Installation - A Special Note On Minimizing Trust"
+    },
+    {
+      "claim": "Since version 0.6.0, each image file is under 42 megabytes.",
+      "source": "Downloading the Software"
+    },
+    {
+      "claim": "Verification must be run before opening or mounting the .img file, because some operating systems modify the file on mount, causing verification to fail.",
+      "source": "Verifying the Software"
+    },
+    {
+      "claim": "If GPG verification displays 'Bad signature', or the hash check shows 'FAILED', the user must stop immediately and not continue.",
+      "source": "Verifying the Software"
+    },
+    {
+      "claim": "The DD command line utility can accidentally format the incorrect disk if not used carefully, and writing the software overwrites everything on the MicroSD card.",
+      "source": "Writing the software onto your MicroSD card"
+    }
+  ],
+  "warnings": [
+    "Flashing the software onto a MicroSD card erases everything on that card — use a blank or spare card only.",
+    "The DD command can permanently erase the wrong disk — always confirm the target disk before running it.",
+    "If download verification shows 'Bad signature' or 'FAILED', stop immediately and do not use the files.",
+    "Never move large amounts without testing the setup first — practice on Testnet or with small amounts.",
+    "Never share your seed words, passphrase, or any QR code made from them with anyone."
+  ],
+  "source_title": "Build an offline, airgapped Bitcoin signing device for less than $50!",
+  "source_url": "https://github.com/SeedSigner/SeedSigner",
+  "notes_for_reviewer": "Source is a local snapshot (batch3/seedsigner-readme.txt) of the SeedSigner README; source_url is inferred as the GitHub repo — confirm it matches the file's origin. Highly version-sensitive: 'current' is v0.7.0 in the source; download links, image sizes, Taproot status ('not quite yet supported'), boot times, and verification steps may change with releases — recheck against the latest release before publishing. Internal inconsistencies in the source: (1) 'Considerations' says boot takes up to 60 seconds while the install section says allow about 45 seconds for the logo to appear; I used the conservative 60. (2) 'Planned Upcoming Improvements' still lists 'Reproducible builds' as future work, but the Minimizing Trust section states reproducibility shipped with v0.7.0; the latter appears authoritative. The '<$50' figure is the project's own 'usually' estimate and excludes tools and optional enclosure hardware. Trust concentration: all pre-built images are signed by one individual holding the sole PGP key (the project discloses this itself); reviewers may want to confirm the Keybase proof and out-of-band links (Twitter, GitHub gist, seedsigner.com) are still live and the key has not rotated. Dice-roll counts (99/50) and SeedQR template dimensions come from the README; linked sub-documents (dice_verification.md, seed_qr docs) were not in this snapshot and were not independently checked. Windows flashing guidance (run as administrator, disable Controlled Folder Access) is OS-version dependent. The '100x smaller' claim since 0.6.0 is the project's own framing; only the 'under 42 MB' figure was preserved as a claim. Human operator approved 2026-10-06 (Telegram).",
+  "corpus_version": "0.0.1-poc",
+  "verified_on": "not yet — awaiting human review",
+  "reviewed": true,
+  "reviewed_date": "2026-10-06",
+  "source_snapshot": "docs/references/seedsigner-readme.txt"
 }

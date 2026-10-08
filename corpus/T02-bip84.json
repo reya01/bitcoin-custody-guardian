@@ -1,60 +1,61 @@
 {
- "title": "BIP-84 bech32 addresses",
- "topic_ids": [
-  "T02"
- ],
- "level": "novice",
- "risk_class": "danger",
- "plain": "A Bitcoin address is the code you give out so people can pay you. Addresses made with this standard start with bc1q. This one is from the standard's own test data - never send money to it: bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu. Where do these addresses come from? When you set up a wallet - an app or device that controls your Bitcoin - it shows you a short list of recovery words, usually 12 or 24. That list is the seed. The wallet does math on the seed to grow a tree of addresses, one per payment. This kind of wallet is called hierarchical deterministic, or HD. 'Deterministic' means the same seed always makes the same addresses. BIP-84 is the written standard for the bc1q type of address. A BIP (Bitcoin Improvement Proposal) is a rule that wallet makers agree to follow. BIP-84 says: from the seed, walk a fixed route through the tree. The route to your first address is written m/84'/0'/0'/0/0; the m means the seed, and the numbers are steps away from it. This route makes addresses in a format called segregated witness, or SegWit - a newer way of recording Bitcoin transactions. Engineers call this address type P2WPKH, short for pay-to-witness-public-key-hash. The bc1 letter style is called bech32. Because all BIP-84 wallets walk the same route, the same seed can be used in different wallets that support it, and each one finds the same money. Now the most important warning. A wallet that does not know this rule finds nothing and shows a balance of zero. That does not mean the money is gone. It means the wallet looked down the wrong route. Do not throw away the recovery words, and do not reset or delete anything. The right next step: check the seed again in a wallet that supports bech32 or native SegWit (SegWit used directly, not wrapped in an older format). You may also see a code starting with zpub. That is an extended public key: it lists your addresses but cannot spend from them. Keep it private anyway.",
- "technical": "BIP-84 ('Derivation scheme for P2WPKH based accounts'; author Pavol Rusnak; status Deployed; assigned 2017-12-28; license CC0-1.0) defines account derivation for BIP-32 hierarchical deterministic wallets producing P2WPKH addresses serialized per BIP-173. The path structure reuses BIP-44/BIP-49: m / purpose' / coin_type' / account' / change / address_index, with the purpose level fixed at 84' and remaining levels defined as in BIP-44/BIP-49 (test vectors use mainnet coin_type 0). P2WPKH output encapsulation per BIP-141: scriptPubKey = 0x0014{20-byte-key-hash}, empty scriptSig, witness = <signature> <pubkey>. Extended keys serialize with alternate version bytes: mainnet 0x04b24746 (zpub) and 0x04b2430c (zprv); testnet 0x045f1cf6 (vpub) and 0x045f18bc (vprv); SLIP-0132 lists additional registered version bytes. The scheme is not backwards compatible by design: an incompatible wallet will not discover these accounts at all, and the BIP notes the user 'will notice that something is wrong'; dedicated SegWit accounts ensure only compatible wallets detect and handle them. Test vectors (mnemonic 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about'): account 0 root m/84'/0'/0'; first receiving address m/84'/0'/0'/0/0 = bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu; second m/84'/0'/0'/0/1 = bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g; first change address m/84'/0'/0'/1/0 = bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el. Note: 'bech32' and 'native SegWit' are community names; the source cites BIP-173 as the base32 address format for native v0-16 witness outputs.",
- "claims": [
-  {
-   "claim": "BIP-84 defines the derivation scheme for HD wallets using the P2WPKH serialization format (BIP-173) for segregated witness transactions.",
-   "source": "Abstract"
-  },
-  {
-   "claim": "The public key derivation path is m / purpose' / coin_type' / account' / change / address_index, with the purpose level fixed at 84' and all other levels defined as in BIP-44 and BIP-49.",
-   "source": "Specifications - Public key derivation"
-  },
-  {
-   "claim": "A P2WPKH output uses a scriptPubKey of 0x0014{20-byte-key-hash}, an empty scriptSig, and a witness of <signature> <pubkey>, per the BIP-141 encapsulation.",
-   "source": "Specifications - Address derivation"
-  },
-  {
-   "claim": "Extended public keys use version bytes 0x04b24746 ('zpub') and extended private keys 0x04b2430c ('zprv'); testnet uses 0x045f1cf6 ('vpub') and 0x045f18bc ('vprv').",
-   "source": "Extended Key Version"
-  },
-  {
-   "claim": "Additional registered extended-key version bytes are listed in SLIP-0132.",
-   "source": "Extended Key Version"
-  },
-  {
-   "claim": "BIP-84 is not backwards compatible by design: an incompatible wallet will not discover its accounts at all, and the user will notice that something is wrong.",
-   "source": "Backwards Compatibility"
-  },
-  {
-   "claim": "A common derivation scheme allows the same masterseed to be used seamlessly across different compatible HD wallets; dedicated segregated witness accounts ensure only compatible wallets detect them.",
-   "source": "Motivation"
-  },
-  {
-   "claim": "Test vector: the mnemonic 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about' derives first receiving address m/84'/0'/0'/0/0 = bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu and first change address m/84'/0'/0'/1/0 = bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el.",
-   "source": "Test vectors"
-  },
-  {
-   "claim": "BIP-84 was authored by Pavol Rusnak, has status Deployed, was assigned 2017-12-28, and is licensed CC0-1.0.",
-   "source": "BIP header metadata"
-  }
- ],
- "warnings": [
-  "If a wallet shows a zero balance after you enter the recovery words, do NOT conclude the money is gone and do NOT discard the seed, reset the device, or delete the wallet - a wallet without bech32 (BIP-84) support cannot see these addresses at all. Check with a wallet that supports bech32/native SegWit first.",
-  "Never share, photograph, or type your recovery words (seed) into any wallet, website, or message - anyone who obtains them can steal everything. Only enter a seed into wallet software you have verified and trust.",
-  "A zpub cannot spend your money, but it reveals your addresses, balances, and transaction history - treat it as private too."
- ],
- "source_title": "BIP-84: Derivation scheme for P2WPKH based accounts",
- "source_url": "/opt/data/cache/corpus-src/bip-0084.txt",
- "notes_for_reviewer": "Judgment calls to verify: (1) risk_class is set to danger because the entry's practical takeaway requires re-entering the seed into another wallet and warns against discarding it after a zero balance; the BIP text itself is a non-procedural spec, so downgrade to caution if policy reserves danger strictly for procedures embedded in the source. (2) The source never uses the words 'bech32' or 'native SegWit' - it cites BIP-173 as the 'Base32 address format for native v0-16 witness outputs'; these names (and the title, per the hint) follow standard community usage. (3) 'Usually 12 or 24 recovery words' and the zpub note ('cannot spend, but reveals addresses/history') are standard BIP-39/BIP-32 knowledge not stated in this source. (4) The test mnemonic is a public BIP-32 test vector; I could not verify whether its published addresses have ever received funds, and the plain text explicitly warns users never to send money to the example address. (5) Staleness/nuance: the spec is stable (Deployed since 2017-12-28), but many modern wallets auto-scan multiple derivation paths (BIP-44/49/84), so the zero-balance failure mainly affects older or non-supporting wallets - consider a companion entry on choosing a compatible wallet before restoring. All claims in the claims array are directly supported by the source; none flagged as unsure. Human operator approved 2026-10-06 (Telegram).",
- "corpus_version": "0.0.1-poc",
- "verified_on": "not yet — awaiting human review",
- "reviewed": true,
- "reviewed_date": "2026-10-06"
+  "title": "BIP-84 bech32 addresses",
+  "topic_ids": [
+    "T02"
+  ],
+  "level": "novice",
+  "risk_class": "danger",
+  "plain": "A Bitcoin address is the code you give out so people can pay you. Addresses made with this standard start with bc1q. This one is from the standard's own test data - never send money to it: bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu. Where do these addresses come from? When you set up a wallet - an app or device that controls your Bitcoin - it shows you a short list of recovery words, usually 12 or 24. That list is the seed. The wallet does math on the seed to grow a tree of addresses, one per payment. This kind of wallet is called hierarchical deterministic, or HD. 'Deterministic' means the same seed always makes the same addresses. BIP-84 is the written standard for the bc1q type of address. A BIP (Bitcoin Improvement Proposal) is a rule that wallet makers agree to follow. BIP-84 says: from the seed, walk a fixed route through the tree. The route to your first address is written m/84'/0'/0'/0/0; the m means the seed, and the numbers are steps away from it. This route makes addresses in a format called segregated witness, or SegWit - a newer way of recording Bitcoin transactions. Engineers call this address type P2WPKH, short for pay-to-witness-public-key-hash. The bc1 letter style is called bech32. Because all BIP-84 wallets walk the same route, the same seed can be used in different wallets that support it, and each one finds the same money. Now the most important warning. A wallet that does not know this rule finds nothing and shows a balance of zero. That does not mean the money is gone. It means the wallet looked down the wrong route. Do not throw away the recovery words, and do not reset or delete anything. The right next step: check the seed again in a wallet that supports bech32 or native SegWit (SegWit used directly, not wrapped in an older format). You may also see a code starting with zpub. That is an extended public key: it lists your addresses but cannot spend from them. Keep it private anyway.",
+  "technical": "BIP-84 ('Derivation scheme for P2WPKH based accounts'; author Pavol Rusnak; status Deployed; assigned 2017-12-28; license CC0-1.0) defines account derivation for BIP-32 hierarchical deterministic wallets producing P2WPKH addresses serialized per BIP-173. The path structure reuses BIP-44/BIP-49: m / purpose' / coin_type' / account' / change / address_index, with the purpose level fixed at 84' and remaining levels defined as in BIP-44/BIP-49 (test vectors use mainnet coin_type 0). P2WPKH output encapsulation per BIP-141: scriptPubKey = 0x0014{20-byte-key-hash}, empty scriptSig, witness = <signature> <pubkey>. Extended keys serialize with alternate version bytes: mainnet 0x04b24746 (zpub) and 0x04b2430c (zprv); testnet 0x045f1cf6 (vpub) and 0x045f18bc (vprv); SLIP-0132 lists additional registered version bytes. The scheme is not backwards compatible by design: an incompatible wallet will not discover these accounts at all, and the BIP notes the user 'will notice that something is wrong'; dedicated SegWit accounts ensure only compatible wallets detect and handle them. Test vectors (mnemonic 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about'): account 0 root m/84'/0'/0'; first receiving address m/84'/0'/0'/0/0 = bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu; second m/84'/0'/0'/0/1 = bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g; first change address m/84'/0'/0'/1/0 = bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el. Note: 'bech32' and 'native SegWit' are community names; the source cites BIP-173 as the base32 address format for native v0-16 witness outputs.",
+  "claims": [
+    {
+      "claim": "BIP-84 defines the derivation scheme for HD wallets using the P2WPKH serialization format (BIP-173) for segregated witness transactions.",
+      "source": "Abstract"
+    },
+    {
+      "claim": "The public key derivation path is m / purpose' / coin_type' / account' / change / address_index, with the purpose level fixed at 84' and all other levels defined as in BIP-44 and BIP-49.",
+      "source": "Specifications - Public key derivation"
+    },
+    {
+      "claim": "A P2WPKH output uses a scriptPubKey of 0x0014{20-byte-key-hash}, an empty scriptSig, and a witness of <signature> <pubkey>, per the BIP-141 encapsulation.",
+      "source": "Specifications - Address derivation"
+    },
+    {
+      "claim": "Extended public keys use version bytes 0x04b24746 ('zpub') and extended private keys 0x04b2430c ('zprv'); testnet uses 0x045f1cf6 ('vpub') and 0x045f18bc ('vprv').",
+      "source": "Extended Key Version"
+    },
+    {
+      "claim": "Additional registered extended-key version bytes are listed in SLIP-0132.",
+      "source": "Extended Key Version"
+    },
+    {
+      "claim": "BIP-84 is not backwards compatible by design: an incompatible wallet will not discover its accounts at all, and the user will notice that something is wrong.",
+      "source": "Backwards Compatibility"
+    },
+    {
+      "claim": "A common derivation scheme allows the same masterseed to be used seamlessly across different compatible HD wallets; dedicated segregated witness accounts ensure only compatible wallets detect them.",
+      "source": "Motivation"
+    },
+    {
+      "claim": "Test vector: the mnemonic 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about' derives first receiving address m/84'/0'/0'/0/0 = bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu and first change address m/84'/0'/0'/1/0 = bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el.",
+      "source": "Test vectors"
+    },
+    {
+      "claim": "BIP-84 was authored by Pavol Rusnak, has status Deployed, was assigned 2017-12-28, and is licensed CC0-1.0.",
+      "source": "BIP header metadata"
+    }
+  ],
+  "warnings": [
+    "If a wallet shows a zero balance after you enter the recovery words, do NOT conclude the money is gone and do NOT discard the seed, reset the device, or delete the wallet - a wallet without bech32 (BIP-84) support cannot see these addresses at all. Check with a wallet that supports bech32/native SegWit first.",
+    "Never share, photograph, or type your recovery words (seed) into any wallet, website, or message - anyone who obtains them can steal everything. Only enter a seed into wallet software you have verified and trust.",
+    "A zpub cannot spend your money, but it reveals your addresses, balances, and transaction history - treat it as private too."
+  ],
+  "source_title": "BIP-84: Derivation scheme for P2WPKH based accounts",
+  "source_url": "https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki",
+  "notes_for_reviewer": "Judgment calls to verify: (1) risk_class is set to danger because the entry's practical takeaway requires re-entering the seed into another wallet and warns against discarding it after a zero balance; the BIP text itself is a non-procedural spec, so downgrade to caution if policy reserves danger strictly for procedures embedded in the source. (2) The source never uses the words 'bech32' or 'native SegWit' - it cites BIP-173 as the 'Base32 address format for native v0-16 witness outputs'; these names (and the title, per the hint) follow standard community usage. (3) 'Usually 12 or 24 recovery words' and the zpub note ('cannot spend, but reveals addresses/history') are standard BIP-39/BIP-32 knowledge not stated in this source. (4) The test mnemonic is a public BIP-32 test vector; I could not verify whether its published addresses have ever received funds, and the plain text explicitly warns users never to send money to the example address. (5) Staleness/nuance: the spec is stable (Deployed since 2017-12-28), but many modern wallets auto-scan multiple derivation paths (BIP-44/49/84), so the zero-balance failure mainly affects older or non-supporting wallets - consider a companion entry on choosing a compatible wallet before restoring. All claims in the claims array are directly supported by the source; none flagged as unsure. Human operator approved 2026-10-06 (Telegram).",
+  "corpus_version": "0.0.1-poc",
+  "verified_on": "not yet — awaiting human review",
+  "reviewed": true,
+  "reviewed_date": "2026-10-06",
+  "source_snapshot": "docs/references/bip-0084.txt"
 }

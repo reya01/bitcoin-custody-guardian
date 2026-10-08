@@ -1,0 +1,155 @@
+What Is Bitcoin Cold Storage? | River
+
+ Table of Contents
+
+Home
+
+ How to Store Bitcoin
+
+What is bitcoin cold storage?
+
+7 min read
+
+Cold storage refers to keeping bitcoin private keys offline in order to reduce exposure to online threats. This article explains what bitcoin cold storage is, how it differs from hot storage, and the tradeoffs between the main cold storage methods, including paper wallets, hardware wallets, and mnemonic backups.
+
+How is bitcoin stored?
+
+Bitcoin storage refers to the safekeeping of private keys. A private key is used to generate a signature for a Bitcoin transaction. Without a private key to send bitcoin from a particular address in the wallet, the bitcoin at that address remains locked and unspendable. Accordingly, “storing” Bitcoin is essentially managing private keys.
+
+➤ Learn more about how River secures client funds.
+
+There are several methods for storing Bitcoin private keys. Each method has distinct advantages and disadvantages in security, privacy, and convenience, including trade-offs between internal and external threats such as forgetfulness, physical destruction, or hacking.
+
+Due to the importance of private keys, many Bitcoin technology companies, banks, and other financial institutions offer custodial services to store Bitcoin private keys on behalf of clients. However, some individuals personally hold their private keys with self-custodial key storage methods.
+
+➤ Learn more about Bitcoin public and private keys.
+
+Hot vs. cold storage
+
+Bitcoin wallets can be described as “Hot” or “Cold.” Hot wallets are the most popular and most common method for storing Bitcoin private keys. However, an increasing number of keys are being moved to cold wallets. Keys in a hot wallet are stored in software connected to the internet, whereas keys in a cold wallet are isolated from the internet.
+
+Individuals move their Bitcoin into a cold wallet because the cold wallet can isolate the private keys from the internet. By removing internet connection from the equation, there is a lower risk of malware, spyware, and SIM swaps. Cold storage is believed to be superior to hot storage for security and autonomy, so long as adequate precautions are taken to avoid losing the Bitcoin private keys. Cold storage is most suitable for large amounts of bitcoin which are not intended to be spent often; many investors who do not need to transact frequently and those who own large amounts of Bitcoin have found cold storage to be a more secure alternative to hot storage.
+
+➤ Learn more about Bitcoin wallet basics.
+
+Cold wallet risk and utility analysis
+
+Various methods of storing Bitcoin private keys make trade-offs between security, privacy, and convenience, including trade-offs between security against internal and external threats such as forgetfulness, physical destruction, or hacking. Hot and cold storage solutions are implemented in a variety of ways by different companies or open-source projects, so selecting a particular solution should come after detailed research into the options.
+
+➤ Learn more about protecting your bitcoin.
+
+With regards to cold storage, there is an advantage in not having to upgrade software or change the setup very often. Consideration should also be given to inheritance procedures: if something happens to you, can your relatives recover your bitcoin?
+
+➤ Learn more about investing bitcoin in retirement accounts.
+
+Cold storage methods
+
+There are several options for Bitcoin cold storage. Due to the setup of most Bitcoin wallets, it is still possible to receive bitcoin while keeping your private keys cold. By keeping your public keys available through a watch-only wallet, the user can share addresses with other people in order to receive bitcoin straight to cold storage.
+
+Paper wallets
+
+The simplest cold storage method is to write down or print out the private key which stores your bitcoin. This solution is completely cold: there is no way to digitally access a piece of paper. However, a paper wallet usually does not give the user the ability to easily generate new addresses with which they can receive bitcoin.
+
+To safely generate a private key for a paper wallet, always disconnect the computer from the internet and bluetooth. Any service that offers to generate a key should be capable of running offline. Additionally, avoid copy-pasting or typing the key on any device.
+
+Although a paper wallet can help its user avoid bad actors on the internet, there are substantial physical risks associated with paper wallets. For example, a paper wallet can be accidentally discarded, overwritten, or destroyed. Sometimes the paper wallet’s location is forgotten. To avoid those physical risks, some users write or print their keys on a slip of paper, or engrave the keys onto a medium that is impervious to fire and other natural events that could destroy the key.
+
+Hardware wallets
+
+Hardware wallets are more secure against physical damage than paper wallets, but like all electronic devices, they are still vulnerable to water and should not be exposed to high heat or magnets.
+
+Hardware wallets are often single-purpose computers, only capable of storing keys, generating addresses, and signing transactions. A hardware wallet will generate a seed, which will allow a wallet to be restored on another device if the hardware wallet is lost or damaged. The seed is encoded in the form of a 12-24 word phrase. The words must be stored in order and should be backed up. If the seed is lost, the wallet will not be able to be restored; if it is exposed, all funds in the wallet can be stolen.
+
+Hardware wallets have several security features that are meant to protect a device from an attacker. First, a hardware wallet is meant to stay disconnected from a computer as much as possible, to reduce the threats of malicious software being introduced to the device. It’s a best practice not to install any additional software other than the official software associated with the hardware wallet. Reducing the amount of software on a hardware wallet reduces its attack surface, minimizing its vulnerability.
+
+Most hardware wallets also require a PIN to unlock. However, if an attacker gains physical access to a user’s hardware wallet, there is no way to ensure ultimate security; the PIN can be guessed or the seed can be extracted from the device. Thus, it is important to ensure the physical security of a hardware wallet, as well as the backup seed phrase.
+
+Mental wallets
+
+BIP 39 (Mnemonic Phrases) allows a Bitcoin wallet to be recreated using a mnemonic phrase containing 12-24 words. This ability creates a new category of cold storage known as a mental wallet. So long as the user remembers the wallet’s mnemonic phrase, that wallet can be recreated and the bitcoin within will again be accessible.
+
+BIP 39
+
+A hardware wallet will generate a seed, which will allow a wallet to be restored on another device if the hardware wallet is lost or damaged. The seed is encoded in the form of a 12-24 word mnemonic phrase. The words must be stored in order and should be backed up. If the seed is lost, the wallet will not be able to be restored; if it is exposed, all funds in the wallet can be stolen.
+
+Although the vast majority of wallets and other key storage services have implemented BIP 39, Bitcoin Core has not reached consensus on the BIP for the entirety of the network. This is because BIP39 suffers the same vulnerability as early seed phrases, namely the fact that BIP 39 includes a fixed word list, which means that all future versions of BIP 39 must include that same word list. Despite this shortcoming, mnemonic phrases remain widely used and offer superior privacy and protection to users who can memorize their phrase.
+
+➤ Learn more about choosing a Bitcoin wallet.
+
+ Notice: River does not provide investment, financial, tax, or legal advice. The information provided is general and illustrative in nature and therefore is not intended to provide, and should not be relied on for, tax advice. We encourage you to consult the appropriate tax professional to understand your personal tax circumstances.
+
+Key Takeaways
+
+Bitcoin keys held in cold storage have never touched the internet, which reduces the chance of malware, spyware, and other malicious computer hacking attempts.
+
+Bitcoin keys in cold storage may be recorded in a paper wallet, held on a hardware device, or imprinted into a physical medium.
+
+BIP 39 allows the user to memorize or record a mnemonic phrase, which acts as a cold storage backup method to recreate an inaccessible Bitcoin wallet.
+
+Users can still receive Bitcoin to a cold storage wallet by exporting an extended public key to create a watch-only wallet.
+
+Next Reads
+
+ What are public and private keys?
+
+ What is a Bitcoin wallet
+
+ How do bitcoin transactions work?
+
+ #
+
+ A
+
+ B
+
+ C
+
+ D
+
+ E
+
+ F
+
+ G
+
+ H
+
+ I
+
+ J
+
+ K
+
+ L
+
+ M
+
+ N
+
+ O
+
+ P
+
+ Q
+
+ R
+
+ S
+
+ T
+
+ U
+
+ V
+
+ W
+
+ X
+
+ Y
+
+ Z
+
+Buy Bitcoin instantly with River today
+
+ Buy bitcoin

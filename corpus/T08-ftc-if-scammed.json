@@ -1,92 +1,93 @@
 {
- "title": "What to do if you were scammed (FTC)",
- "topic_ids": [
-  "T08"
- ],
- "level": "novice",
- "risk_class": "danger",
- "plain": "A scammer is someone who tricks you into giving up money or private information. If one got yours, act fast. You may not get the money back, but always ask.\n\nHowever you paid, contact that company immediately and ask for a refund.\n\n• Zelle or bank transfer: tell your bank or credit union (a bank owned by its members). Ask them to reverse the payment — undo it.\n• Payment apps that send money (Venmo, Cash App, PayPal): report it in the app.\n• Wire transfer (money sent through Western Union or MoneyGram): call the company and say a scammer tricked you.\n• Credit card (borrowed money you repay): call the number on the back of the card. Federal law protects you when someone uses it without permission.\n• Debit card (money taken from your bank account): tell your bank or credit union. Federal law protects you here too.\n• Gift card: call the number on the back, say a scammer got the card number and PIN (its secret code), and keep the card and receipt.\n• Cryptocurrency (digital money like Bitcoin): scammers tell people to send money from a crypto ATM (a machine that turns cash into crypto) to a wallet (a crypto account). Contact the exchange (a company that trades crypto) or the ATM operator immediately, say it was a scam, and ask them to reverse it. Crypto lacks the legal protections cards have, so refunds are hard. Some states have laws that might help (ncsl.org).\n\nReport scams to the FTC (the U.S. consumer protection agency) at ReportFraud.ftc.gov.\n\nIf you gave away information: for a Social Security number (a government ID number), go to IdentityTheft.gov for a custom recovery plan. For a password, if you can still log in, set a new strong one, change it anywhere you reused it, and turn on two-factor authentication — a second check, like a code texted to your phone. If a scammer used your computer: update your security (antivirus) software, run a scan, and delete only what the scan flags as a problem. Then change your passwords and turn on two-factor authentication.",
- "technical": "The FTC advises that money paid to a scammer may already be gone, but victims should always ask the payment company about getting it back. Channel-specific steps: (1) Bank transfer or Zelle — report to the bank or credit union immediately; request reversal and refund. (2) Payment apps (Venmo, Cash App, PayPal) — report to the app immediately; request reversal and refund. (3) Wire transfers (Western Union, MoneyGram) — report immediately, state a scammer induced the payment, request a refund. (4) Credit card — report to the issuer immediately (number on the back of the card); federal law protects against unauthorized use. (5) Debit card — report to the bank or credit union immediately; federal law protects against unauthorized use. (6) Gift card — contact the issuer (number on the card), report that a scammer obtained the number and PIN, request a refund, and keep the card and receipt. (7) Cryptocurrency — scammers direct victims to cryptocurrency ATMs to send funds to a wallet; contact the exchange or ATM operator immediately, report the transaction as fraudulent, and request reversal. Cryptocurrency payments lack the legal protections of credit and debit cards, so recovery is hard; some states have passed potentially helpful laws (National Conference of State Legislatures, ncsl.org). Report scams to the FTC at ReportFraud.ftc.gov; the FTC uses reports to build cases, spot trends, educate the public, and share community data. If a Social Security number was compromised and misused, file at IdentityTheft.gov for a customized recovery plan. If credentials were exposed and the account is still accessible, set a new strong password, change it wherever it was reused, and enable two-factor authentication; if locked out, follow FTC hacked-account guidance. If the scammer had computer access, update security software, run a scan, delete only items the scan identifies as problematic, then change passwords and enable two-factor authentication.",
- "claims": [
-  {
-   "claim": "The FTC states that money paid to a scammer might already be gone, but it is always worth asking the company used to send the money if there is a way to get it back.",
-   "source": "Intro to 'How To Get Your Money Back if You Paid a Scammer'"
-  },
-  {
-   "claim": "For Zelle or bank transfer payments to a scammer, report to your bank or credit union immediately and ask them to reverse the payment and refund your money.",
-   "source": "'How To Get Your Money Back: Bank Transfers'"
-  },
-  {
-   "claim": "For payment apps such as Venmo, Cash App, or PayPal, report to the payment app immediately and ask them to reverse the payment and refund your money.",
-   "source": "'How To Get Your Money Back: Payment Apps'"
-  },
-  {
-   "claim": "For wire transfers sent through companies like Western Union or MoneyGram, report it to the wire transfer company immediately, tell them a scammer tricked you into sending money, and ask them to refund your money.",
-   "source": "'How To Get Your Money Back: Wire Transfers'"
-  },
-  {
-   "claim": "For credit card payments, report to the credit card issuer immediately using the number on the back of the card and ask for a refund; federal law protects you from unauthorized use of your credit card.",
-   "source": "'How To Get Your Money Back: Credit Card Payments'"
-  },
-  {
-   "claim": "For debit card payments, report to your bank or credit union immediately and ask for a refund; federal law protects you from unauthorized use of your debit card.",
-   "source": "'How To Get Your Money Back: Debit Card Payments'"
-  },
-  {
-   "claim": "For gift card payments, contact the gift card issuer immediately using the number on the back of the card, tell them a scammer tricked you into giving the card number and PIN, ask for a refund, and keep the gift card and the receipt.",
-   "source": "'How To Get Your Money Back: Gift Cards'"
-  },
-  {
-   "claim": "Scammers tell victims to go to a cryptocurrency ATM and send money to a wallet.",
-   "source": "'How To Get Your Money Back: Cryptocurrency', opening line"
-  },
-  {
-   "claim": "If you paid a scammer with cryptocurrency, contact the cryptocurrency exchange or ATM operator immediately, tell them it was a fraudulent transaction, and ask them to reverse the transaction and refund your money.",
-   "source": "'How To Get Your Money Back: Cryptocurrency', steps 1-3"
-  },
-  {
-   "claim": "Cryptocurrency payments do not have the same legal protections as credit and debit cards, so it can be hard to get your money back.",
-   "source": "'How To Get Your Money Back: Cryptocurrency'"
-  },
-  {
-   "claim": "Some states have passed laws that might help cryptocurrency scam victims; the FTC directs readers to the National Conference of State Legislatures (ncsl.org) to search for legislation in their state.",
-   "source": "'How To Get Your Money Back: Cryptocurrency'"
-  },
-  {
-   "claim": "Scams should be reported to the FTC at ReportFraud.ftc.gov; the FTC uses reports to build cases against scammers, spot trends, educate the public, and share data about what is happening in communities.",
-   "source": "'How To Report a Scammer to the FTC'"
-  },
-  {
-   "claim": "If you gave a scammer your Social Security number and they used it, report it at IdentityTheft.gov, get a customized recovery plan, and follow the recovery steps.",
-   "source": "'What to do if you gave a scammer your Social Security number'"
-  },
-  {
-   "claim": "If you gave a scammer the username and password to an account and you can still log in, create a new strong password for that account, change the password on any other account where it was reused, and turn on two-factor authentication.",
-   "source": "'What to do if you gave a scammer your account information'"
-  },
-  {
-   "claim": "If you gave a scammer access to your computer, update your security software, run a scan and delete anything it identifies as a problem, then change your passwords and turn on two-factor authentication.",
-   "source": "'What To Do if You Gave a Scammer Access to Your Computer'"
-  },
-  {
-   "claim": "A scammer who obtains your personal information might use it to steal your identity and impersonate you, open credit or utility accounts in your name, or hack into your email or social media accounts.",
-   "source": "'What To Do if You Gave a Scammer Your Personal Information', intro"
-  },
-  {
-   "claim": "The FTC links a companion article on cryptocurrency payments and avoiding scams at https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-scams.",
-   "source": "End of 'How To Get Your Money Back: Cryptocurrency' section"
-  }
- ],
- "warnings": [
-  "Never share your seed words (recovery phrase) with anyone — including anyone who promises to recover money you lost to a scam.",
-  "Delete only the files your security scan itself flags as a problem — never manually delete wallet files, backups, or written seed-word records.",
-  "Do not type your seed words into a computer a scammer had access to until it has been scanned and cleaned."
- ],
- "source_title": "What To Do if You Were Scammed (FTC consumer article) — crypto-relevant excerpts",
- "source_url": "/opt/data/cache/corpus-src/batch3/ftc-if-scammed.txt",
- "notes_for_reviewer": "Risk class set to danger solely because the computer-access procedure includes a deletion step ('delete anything it identifies as a problem'); our plain/technical versions add 'only' to scope that step safely — confirm this rendering is acceptable, and whether 'caution' would suffice instead. The three seed-word warnings are app-side safety additions, not statements from the FTC source — verify wording against app policy. Key ambiguity: the FTC's crypto advice ('ask them to reverse the transaction') is aimed at exchanges and ATM operators; it does not address Bitcoin sent from self-custody wallets, where on-chain transactions are effectively irreversible — ensure the entry does not create false hope for self-custody losses and consider cross-linking to wallet-specific recovery content. The state-law claim is vague in the source ('might help you') and state legislation changes frequently — staleness risk; re-verify the ncsl.org pointer. 'Federal law protects you' is asserted by the source without statute citations; we deliberately did not add FCBA/Reg E specifics since they are not in the source. FTC consumer pages are updated periodically; re-check the live URL and content at review time. Topic tagging: T11 was included because the entry enumerates official reporting resources (ReportFraud.ftc.gov, IdentityTheft.gov, ncsl.org) — remove if the directory topic is reserved for curated lists only. Only the cryptocurrency subsection is Bitcoin-specific; the rest is general U.S. consumer guidance — confirm scope fit for T08. Human operator approved 2026-10-06 (Telegram).",
- "corpus_version": "0.0.1-poc",
- "verified_on": "not yet — awaiting human review",
- "reviewed": true,
- "reviewed_date": "2026-10-06"
+  "title": "What to do if you were scammed (FTC)",
+  "topic_ids": [
+    "T08"
+  ],
+  "level": "novice",
+  "risk_class": "danger",
+  "plain": "A scammer is someone who tricks you into giving up money or private information. If one got yours, act fast. You may not get the money back, but always ask.\n\nHowever you paid, contact that company immediately and ask for a refund.\n\n• Zelle or bank transfer: tell your bank or credit union (a bank owned by its members). Ask them to reverse the payment — undo it.\n• Payment apps that send money (Venmo, Cash App, PayPal): report it in the app.\n• Wire transfer (money sent through Western Union or MoneyGram): call the company and say a scammer tricked you.\n• Credit card (borrowed money you repay): call the number on the back of the card. Federal law protects you when someone uses it without permission.\n• Debit card (money taken from your bank account): tell your bank or credit union. Federal law protects you here too.\n• Gift card: call the number on the back, say a scammer got the card number and PIN (its secret code), and keep the card and receipt.\n• Cryptocurrency (digital money like Bitcoin): scammers tell people to send money from a crypto ATM (a machine that turns cash into crypto) to a wallet (a crypto account). Contact the exchange (a company that trades crypto) or the ATM operator immediately, say it was a scam, and ask them to reverse it. Crypto lacks the legal protections cards have, so refunds are hard. Some states have laws that might help (ncsl.org).\n\nReport scams to the FTC (the U.S. consumer protection agency) at ReportFraud.ftc.gov.\n\nIf you gave away information: for a Social Security number (a government ID number), go to IdentityTheft.gov for a custom recovery plan. For a password, if you can still log in, set a new strong one, change it anywhere you reused it, and turn on two-factor authentication — a second check, like a code texted to your phone. If a scammer used your computer: update your security (antivirus) software, run a scan, and delete only what the scan flags as a problem. Then change your passwords and turn on two-factor authentication.",
+  "technical": "The FTC advises that money paid to a scammer may already be gone, but victims should always ask the payment company about getting it back. Channel-specific steps: (1) Bank transfer or Zelle — report to the bank or credit union immediately; request reversal and refund. (2) Payment apps (Venmo, Cash App, PayPal) — report to the app immediately; request reversal and refund. (3) Wire transfers (Western Union, MoneyGram) — report immediately, state a scammer induced the payment, request a refund. (4) Credit card — report to the issuer immediately (number on the back of the card); federal law protects against unauthorized use. (5) Debit card — report to the bank or credit union immediately; federal law protects against unauthorized use. (6) Gift card — contact the issuer (number on the card), report that a scammer obtained the number and PIN, request a refund, and keep the card and receipt. (7) Cryptocurrency — scammers direct victims to cryptocurrency ATMs to send funds to a wallet; contact the exchange or ATM operator immediately, report the transaction as fraudulent, and request reversal. Cryptocurrency payments lack the legal protections of credit and debit cards, so recovery is hard; some states have passed potentially helpful laws (National Conference of State Legislatures, ncsl.org). Report scams to the FTC at ReportFraud.ftc.gov; the FTC uses reports to build cases, spot trends, educate the public, and share community data. If a Social Security number was compromised and misused, file at IdentityTheft.gov for a customized recovery plan. If credentials were exposed and the account is still accessible, set a new strong password, change it wherever it was reused, and enable two-factor authentication; if locked out, follow FTC hacked-account guidance. If the scammer had computer access, update security software, run a scan, delete only items the scan identifies as problematic, then change passwords and enable two-factor authentication.",
+  "claims": [
+    {
+      "claim": "The FTC states that money paid to a scammer might already be gone, but it is always worth asking the company used to send the money if there is a way to get it back.",
+      "source": "Intro to 'How To Get Your Money Back if You Paid a Scammer'"
+    },
+    {
+      "claim": "For Zelle or bank transfer payments to a scammer, report to your bank or credit union immediately and ask them to reverse the payment and refund your money.",
+      "source": "'How To Get Your Money Back: Bank Transfers'"
+    },
+    {
+      "claim": "For payment apps such as Venmo, Cash App, or PayPal, report to the payment app immediately and ask them to reverse the payment and refund your money.",
+      "source": "'How To Get Your Money Back: Payment Apps'"
+    },
+    {
+      "claim": "For wire transfers sent through companies like Western Union or MoneyGram, report it to the wire transfer company immediately, tell them a scammer tricked you into sending money, and ask them to refund your money.",
+      "source": "'How To Get Your Money Back: Wire Transfers'"
+    },
+    {
+      "claim": "For credit card payments, report to the credit card issuer immediately using the number on the back of the card and ask for a refund; federal law protects you from unauthorized use of your credit card.",
+      "source": "'How To Get Your Money Back: Credit Card Payments'"
+    },
+    {
+      "claim": "For debit card payments, report to your bank or credit union immediately and ask for a refund; federal law protects you from unauthorized use of your debit card.",
+      "source": "'How To Get Your Money Back: Debit Card Payments'"
+    },
+    {
+      "claim": "For gift card payments, contact the gift card issuer immediately using the number on the back of the card, tell them a scammer tricked you into giving the card number and PIN, ask for a refund, and keep the gift card and the receipt.",
+      "source": "'How To Get Your Money Back: Gift Cards'"
+    },
+    {
+      "claim": "Scammers tell victims to go to a cryptocurrency ATM and send money to a wallet.",
+      "source": "'How To Get Your Money Back: Cryptocurrency', opening line"
+    },
+    {
+      "claim": "If you paid a scammer with cryptocurrency, contact the cryptocurrency exchange or ATM operator immediately, tell them it was a fraudulent transaction, and ask them to reverse the transaction and refund your money.",
+      "source": "'How To Get Your Money Back: Cryptocurrency', steps 1-3"
+    },
+    {
+      "claim": "Cryptocurrency payments do not have the same legal protections as credit and debit cards, so it can be hard to get your money back.",
+      "source": "'How To Get Your Money Back: Cryptocurrency'"
+    },
+    {
+      "claim": "Some states have passed laws that might help cryptocurrency scam victims; the FTC directs readers to the National Conference of State Legislatures (ncsl.org) to search for legislation in their state.",
+      "source": "'How To Get Your Money Back: Cryptocurrency'"
+    },
+    {
+      "claim": "Scams should be reported to the FTC at ReportFraud.ftc.gov; the FTC uses reports to build cases against scammers, spot trends, educate the public, and share data about what is happening in communities.",
+      "source": "'How To Report a Scammer to the FTC'"
+    },
+    {
+      "claim": "If you gave a scammer your Social Security number and they used it, report it at IdentityTheft.gov, get a customized recovery plan, and follow the recovery steps.",
+      "source": "'What to do if you gave a scammer your Social Security number'"
+    },
+    {
+      "claim": "If you gave a scammer the username and password to an account and you can still log in, create a new strong password for that account, change the password on any other account where it was reused, and turn on two-factor authentication.",
+      "source": "'What to do if you gave a scammer your account information'"
+    },
+    {
+      "claim": "If you gave a scammer access to your computer, update your security software, run a scan and delete anything it identifies as a problem, then change your passwords and turn on two-factor authentication.",
+      "source": "'What To Do if You Gave a Scammer Access to Your Computer'"
+    },
+    {
+      "claim": "A scammer who obtains your personal information might use it to steal your identity and impersonate you, open credit or utility accounts in your name, or hack into your email or social media accounts.",
+      "source": "'What To Do if You Gave a Scammer Your Personal Information', intro"
+    },
+    {
+      "claim": "The FTC links a companion article on cryptocurrency payments and avoiding scams at https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-scams.",
+      "source": "End of 'How To Get Your Money Back: Cryptocurrency' section"
+    }
+  ],
+  "warnings": [
+    "Never share your seed words (recovery phrase) with anyone — including anyone who promises to recover money you lost to a scam.",
+    "Delete only the files your security scan itself flags as a problem — never manually delete wallet files, backups, or written seed-word records.",
+    "Do not type your seed words into a computer a scammer had access to until it has been scanned and cleaned."
+  ],
+  "source_title": "What To Do if You Were Scammed (FTC consumer article) — crypto-relevant excerpts",
+  "source_url": "https://consumer.ftc.gov/",
+  "notes_for_reviewer": "Risk class set to danger solely because the computer-access procedure includes a deletion step ('delete anything it identifies as a problem'); our plain/technical versions add 'only' to scope that step safely — confirm this rendering is acceptable, and whether 'caution' would suffice instead. The three seed-word warnings are app-side safety additions, not statements from the FTC source — verify wording against app policy. Key ambiguity: the FTC's crypto advice ('ask them to reverse the transaction') is aimed at exchanges and ATM operators; it does not address Bitcoin sent from self-custody wallets, where on-chain transactions are effectively irreversible — ensure the entry does not create false hope for self-custody losses and consider cross-linking to wallet-specific recovery content. The state-law claim is vague in the source ('might help you') and state legislation changes frequently — staleness risk; re-verify the ncsl.org pointer. 'Federal law protects you' is asserted by the source without statute citations; we deliberately did not add FCBA/Reg E specifics since they are not in the source. FTC consumer pages are updated periodically; re-check the live URL and content at review time. Topic tagging: T11 was included because the entry enumerates official reporting resources (ReportFraud.ftc.gov, IdentityTheft.gov, ncsl.org) — remove if the directory topic is reserved for curated lists only. Only the cryptocurrency subsection is Bitcoin-specific; the rest is general U.S. consumer guidance — confirm scope fit for T08. Human operator approved 2026-10-06 (Telegram).",
+  "corpus_version": "0.0.1-poc",
+  "verified_on": "not yet — awaiting human review",
+  "reviewed": true,
+  "reviewed_date": "2026-10-06",
+  "source_snapshot": "docs/references/ftc-if-scammed.txt"
 }
