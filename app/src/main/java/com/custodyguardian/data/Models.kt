@@ -53,4 +53,6 @@ data class WalkthroughDay(
     val goal: String = "",
     val dos: List<String> = emptyList(),
     val donts: List<String> = emptyList(),
+    val notes: List<String> = emptyList(),
+    val feel_after: String = "",
 )

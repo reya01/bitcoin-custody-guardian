@@ -91,9 +91,19 @@ fun GuardianApp() {
                     onOpenScamChecker = { navController.navigate(Routes.SCAM) },
                 )
             }
-            composable(Routes.WALKTHROUGH) { WalkthroughScreen() }
+            composable(Routes.WALKTHROUGH) {
+                WalkthroughScreen(
+                    onAskAbout = { step ->
+                        navController.navigate("${Routes.CHAT}?prefill=${android.net.Uri.encode(step)}")
+                    },
+                )
+            }
             composable(Routes.CORPUS) { CorpusBrowserScreen() }
-            composable(Routes.CHAT) { ChatPlaceholderScreen() }
+            composable("${Routes.CHAT}?prefill={prefill}") { backStack ->
+                ChatPlaceholderScreen(
+                    prefill = backStack.arguments?.getString("prefill"),
+                )
+            }
             composable(Routes.SCAM) { ScamCheckerScreen() }
         }
     }

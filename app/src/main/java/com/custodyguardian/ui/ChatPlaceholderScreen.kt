@@ -33,10 +33,10 @@ fun modelFile(context: android.content.Context): File? {
 }
 
 @Composable
-fun ChatPlaceholderScreen() {
+fun ChatPlaceholderScreen(prefill: String? = null) {
     val context = androidx.compose.ui.platform.LocalContext.current
     val scope = rememberCoroutineScope()
-    var query by remember { mutableStateOf("") }
+    var query by remember { mutableStateOf(prefill ?: "") }
     var route by remember { mutableStateOf<CorpusRouter.Route?>(null) }
     var secretWarning by remember { mutableStateOf<String?>(null) }
     var answerState by remember { mutableStateOf<AnswerPipeline.Result?>(null) }
