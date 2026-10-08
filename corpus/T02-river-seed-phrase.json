@@ -90,5 +90,37 @@
   "corpus_version": "0.0.1-poc",
   "verified_on": "2026-10-06",
   "reviewed": true,
-  "source_snapshot": "docs/references/river-seed-phrase.txt"
+  "source_snapshot": "docs/references/river-seed-phrase.txt",
+  "key_points": [
+    "A seed phrase — also called a recovery phrase — is a list of 12 to 24 words that holds everything needed to rebuild a Bitcoin wallet.",
+    "The wallet builds the private key from the seed phrase, so the seed phrase is the master backup.",
+    "Seed phrases work across brands: a destroyed hardware wallet — a device made only to store keys — can be recovered on a new one, even from another company.",
+    "Never store the seed phrase online.",
+    "Never share it with anyone, no matter how close.",
+    "No real wallet company will ever ask for your seed phrase.",
+    "If you lose the phrase but can still open your wallet, move your bitcoin to a new wallet right away and start a fresh seed phrase.",
+    "When recovering, enter every word in the exact order; misspelled or swapped words cause problems."
+  ],
+  "dos": [
+    "Write it on paper (ink fades), or engrave it on metal to survive fire and water.",
+    "move your bitcoin to a new wallet right away and start a fresh seed phrase",
+    "enter every word in the exact order",
+    "check each word before confirming"
+  ],
+  "donts": [
+    "Never store your seed phrase online or as an electronic copy on a laptop or in the cloud.",
+    "Never share your seed phrase with anyone.",
+    "Anyone who asks is a scammer."
+  ],
+  "user_says": [
+    "what is a seed phrase",
+    "lost my seed phrase can i still get my bitcoin back",
+    "wallet support asking for my seed phrase is it a scam",
+    "my hardware wallet broke is my bitcoin gone",
+    "is a seed phrase the same as a private key",
+    "how should i store my seed phrase",
+    "entered seed words in wrong order will recovery fail",
+    "can i keep a picture of my seed phrase on my phone"
+  ],
+  "user_says_note": "retrieval-index-only; not authoritative content"
 }

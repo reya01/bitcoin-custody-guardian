@@ -21,6 +21,13 @@ data class CorpusEntry(
     val source_url: String = "",
     val corpus_version: String = "",
     val reviewed: Boolean = false,
+    // item-1 schema upgrade (2.2): verbatim subsets of approved text; rendered verbatim
+    val key_points: List<String> = emptyList(),
+    val dos: List<String> = emptyList(),
+    val donts: List<String> = emptyList(),
+    // retrieval-index-only paraphrases; NOT authoritative content
+    val user_says: List<String> = emptyList(),
+    val user_says_note: String = "",
 )
 
 @Serializable

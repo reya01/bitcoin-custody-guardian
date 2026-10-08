@@ -94,5 +94,33 @@
   "verified_on": "not yet — awaiting human review",
   "reviewed": true,
   "reviewed_date": "2026-10-06",
-  "source_snapshot": "docs/references/bip-39.txt"
+  "source_snapshot": "docs/references/bip-39.txt",
+  "key_points": [
+    "Because everyone follows the same rulebook, words created by one wallet can be restored in another.",
+    "128 bits gives 12 words; 256 bits gives 24.",
+    "The words are not a password you invent.",
+    "When you use the words, software runs them through a fixed formula and always gets the same seed — a 512-bit number the wallet builds all of its private keys from.",
+    "An optional passphrase — an extra secret password on top of the words — creates a completely different wallet; forget it and its money is unreachable.",
+    "Never translate your words into another language: that also makes a different wallet.",
+    "Finally, the checksum is small, so it catches most typing errors, not all — check every word when you copy them."
+  ],
+  "dos": [
+    "check every word when you copy them"
+  ],
+  "donts": [
+    "Never share your 12/24 words with anyone — anyone who has them can take the Bitcoin.",
+    "Never make up your own word sentence or choose the words yourself; phrases people invent are predictable and can be guessed by attackers.",
+    "Never translate your seed words into another language or wordlist — the translation produces a different wallet and your funds will appear missing."
+  ],
+  "user_says": [
+    "what are these 12 words my husband left with his papers",
+    "found a list of 24 words in my dads stuff is that the bitcoin",
+    "can i just make up my own seed words",
+    "are the 24 words the same as the password",
+    "he also had a passphrase what if i cant find it",
+    "the words are in another language can i translate them to english",
+    "i think i typed one word wrong will it still work",
+    "can i put his words into a different wallet"
+  ],
+  "user_says_note": "retrieval-index-only; not authoritative content"
 }
