@@ -140,6 +140,15 @@ fun ChatPlaceholderScreen() {
     }
 }
 
+const val FALLBACK_MODEL_MISSING =
+    "The question helper isn't installed yet. Checklists, the scam check, and all reading " +
+        "still work. You can add the helper later — see the app instructions."
+const val FALLBACK_ENGINE_ERROR =
+    "We're sorry. Something went wrong inside the app. The reviewed material below is still " +
+        "shown, and nothing was sent anywhere."
+const val FALLBACK_REFUSED =
+    "I only speak from reviewed material. Here is the closest reviewed passage to your question."
+
 private fun runAnswer(context: android.content.Context, question: String): AnswerPipeline.Result {
     val corpus = AssetLoader.loadCorpus(context)
     val routed = CorpusRouter.route(context, question, corpus)
@@ -159,15 +168,37 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
         mustNotInclude = emptyList(),
         warnings = warnings,
     )
-    val mf = modelFile(context) ?: return AnswerPipeline.Result(
-        text = "No on-device model installed. Sideload $MODEL_NAME into " +
-            "Android/data/com.custodyguardian/files/models/ and try again.",
-        backend = "model_missing",
-    )
+    val mf = modelFile(context)
+    if (mf == null) {
+        return fallback(fallbackText = FALLBACK_MODEL_MISSING, backend = "model_missing", routed = routed)
+    }
     val engine = LlamaEngine(mf.absolutePath)
     return try {
         AnswerPipeline(engine).answer(question, composed)
+    } catch (t: Throwable) {
+        fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
     } finally {
         engine.unload()
     }
+}
+
+/** No dead ends (plan item 1.5): any failure still renders the matched approved passage. */
+private fun fallback(
+    fallbackText: String,
+    backend: String,
+    routed: CorpusRouter.Route,
+): AnswerPipeline.Result {
+    val passage = routed.retrieved.firstOrNull()
+    val text = buildString {
+        append(fallbackText)
+        if (passage != null) {
+            append("\n\nFrom the reviewed corpus [")
+            append(passage.id)
+            append("] ")
+            append(passage.entry.title)
+            append(":\n")
+            append(passage.entry.plain.take(600))
+        }
+    }
+    return AnswerPipeline.Result(text = text, backend = backend)
 }

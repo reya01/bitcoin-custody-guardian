@@ -7,14 +7,40 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.custodyguardian.LlamaEngine
 import com.custodyguardian.util.MemoryGuards
 import com.custodyguardian.util.ScamRules
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+/** Model restatement of an already-fired verdict: select the loaded engine and ask. */
+fun explainVerdict(context: android.content.Context, verdict: String): String {
+    val mf = modelFile(context) ?: return ""
+    val engine = LlamaEngine(mf.absolutePath)
+    return try {
+        engine.answer(
+            systemPrompt = SIMPLER_WORDS_PROMPT,
+            question = "The verdict shown on screen: \"$verdict\"\nRestate it.",
+        ).trim()
+    } finally {
+        engine.unload()
+    }
+}
 
 /**
  * ScamCheckerScreen — paste-a-message UI. Scanned by local regex rules
- * (ScamRules) with NO LLM. Any text is also run through the secret-material
- * detector so seed words pasted by mistake are blocked, not echoed.
+ * (ScamRules) with NO LLM — the verdict is instant and cannot be talked out
+ * of. Optional model "Explain in simpler words" restates the verdict only
+ * (≤2 sentences, no new claims). Secret material pasted by mistake is
+ * blocked, not echoed. Copy: item2_copy.json (GLM-5.3 draft).
  */
+const val SCAM_INTRO =
+    "Paste any message below. It's checked instantly on your phone, and nothing ever leaves it."
+const val SIMPLER_WORDS_PROMPT =
+    "You are speaking to a grieving beginner who has just read a scam verdict on screen. " +
+        "Restate that verdict in simpler, kinder words. Use at most two short sentences. " +
+        "Add no new claims, details, or advice; only restate what the verdict already says. " +
+        "Use everyday words only. Keep a calm, gentle tone."
 @Composable
 fun ScamCheckerScreen() {
     var text by remember { mutableStateOf("") }
@@ -26,11 +52,7 @@ fun ScamCheckerScreen() {
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text("Scam checker", style = MaterialTheme.typography.headlineSmall)
-        Text(
-            "Paste the email / message / forum post below. Analysis runs fully offline " +
-                "with local regex rules — the text never leaves this device.",
-            style = MaterialTheme.typography.bodySmall,
-        )
+        Text(SCAM_INTRO, style = MaterialTheme.typography.bodySmall)
         OutlinedTextField(
             value = text,
             onValueChange = { text = it },
@@ -71,6 +93,41 @@ fun ScamCheckerScreen() {
                 color = if (res.clean) MaterialTheme.colorScheme.onSurface
                 else MaterialTheme.colorScheme.error,
             )
+            // Optional model restatement: only if a model is installed and a
+            // verdict exists. The verdict above already fired — this is pure framing.
+            if (modelFile(context) != null) {
+                var simpler by remember { mutableStateOf<String?>(null) }
+                var explaining by remember { mutableStateOf(false) }
+                val scope = rememberCoroutineScope()
+                if (simpler != null) {
+                    Surface(
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        shape = MaterialTheme.shapes.medium,
+                    ) {
+                        Text(
+                            simpler!!,
+                            Modifier.fillMaxWidth().padding(12.dp),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                } else {
+                    TextButton(
+                        enabled = !explaining,
+                        onClick = {
+                            explaining = true
+                            scope.launch(Dispatchers.Default) {
+                                simpler = runCatching {
+                                    explainVerdict(context, res.verdict)
+                                }.getOrElse {
+                                    "The explainer didn't work this time — the verdict above " +
+                                        "still stands, and nothing was sent anywhere."
+                                }
+                                explaining = false
+                            }
+                        },
+                    ) { Text(if (explaining) "One moment..." else "Explain in simpler words") }
+                }
+            }
             LazyColumn(
                 Modifier.fillMaxWidth().weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
