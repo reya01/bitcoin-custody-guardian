@@ -1,0 +1,13 @@
+# Notices (third-party code & models)
+
+- **llama.cpp / GGML** (statically linked into `libllama_btcg.so`):
+  MIT License — https://github.com/ggml-org/llama.cpp.
+  Copyright (c) 2013-2026 The GGML Authors and The llama.cpp Authors.
+- **Qwen3 1.7B Instruct** (Q4_K_M GGUF, sideloaded by the user):
+  Apache License 2.0 — https://huggingface.co/Qwen/Qwen3-1.7B-GGUF (base model
+  https://huggingface.co/Qwen/Qwen3-1.7B). Copyright (c) Alibaba Cloud.
+- **AndroidX / Kotlin / Compose** — Apache License 2.0 (per AOSP).
+- All corpus-derived content is credited in
+  [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md) (Authors & educators cited).
+
+Verify the model checksum before sideloading (see the v0.1.0-alpha release notes).

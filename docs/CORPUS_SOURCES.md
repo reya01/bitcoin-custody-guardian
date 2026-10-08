@@ -133,9 +133,14 @@ The deterministic guardrails (spec §8) check tags at runtime.
 ## Authors & educators cited (attribution)
 
 The corpus is built on the work of these authors and publishers. Entries in this
-repository are original plain-language rewrites (in-house, MIT corpus license)
-grounded in their material, credited per entry via `source_title` /
-`source_snapshot`, with license status recorded below.
+repository are **original plain-language works** that use facts, procedures, and
+warnings drawn from these references — not adaptations, not paraphrase-and-publish
+of their prose — and are credited per entry via `source_title` /
+`source_snapshot`, with license status recorded below. The corpus JSON is MIT
+licensed; entries derived from CC-BY-SA material (Mastering Bitcoin) use only
+facts and procedures, which are not copyrightable, and contain no sustained
+structural or expressive reuse; if you believe any entry crosses into an
+adaptation, please open an issue and it will be relicensed CC-BY-SA or rewritten.
 
 - **Andreas M. Antonopoulos** — *Mastering Bitcoin*, 3rd ed. (with David A. Harding),
   O'Reilly / github.com/bitcoinbook. **CC-BY-SA 4.0** (license verified:
@@ -144,25 +149,33 @@ grounded in their material, credited per entry via `source_title` /
   Snapshots: docs/references/ch04_keys.adoc etc.
 - **Jameson Lopp** — lopp.net Bitcoin security resources and "How to Back up a
   Seed Phrase" (blog.lopp.net). Snapshots: docs/references/lopp-security-links.txt,
-  lopp-backup-seed.txt. Licensing per-site; all reuse is original rewrite with attribution.
+  lopp-backup-seed.txt. License: **copyrighted, per-site — reference-only**, original
+  rewrite with attribution.
 - **River** (river.com/learn) — first-party Bitcoin-education library: self-custody,
   seed phrases, cold storage, multisig, public/private keys. **No explicit open
-  license (UNVERIFIED 2026-10-06)** — reference/ground-truth only, never
+  license (UNVERIFIED 2026-10-06) — copyrighted, reference-only**, never
   paraphrase-and-publish. Snapshots: docs/references/river-*.txt.
 - **BTC Guide** (btcguide.github.io, by @mflaxman) — multisig walkthroughs.
   **MIT** — rewrites with attribution OK. Snapshot: docs/references/btcguide.md.
 - **BTC Sessions / Ben Perrin** (btcsessions.ca) — bitcoin-only video educator,
-  free "Zero to Hero" track. Reference-only (video curriculum).
+  free "Zero to Hero" track. **Copyrighted video curriculum — reference-only**
+  (rewrite-from-notes with attribution).
   Snapshot of outline: docs/references/btcsessions_learn.md.
-- **Bitcoin.org** — "Securing your wallet" page. Snapshot: bitcoinorg-secure-wallet.txt.
-- **BIP authors** (bitcoin/bips repo) — BIP-32/39/43/44/49/84/86/174/329/371/327/341/342/380–382.
-  Snapshots of the four used directly: docs/references/ (bip-00xx.txt).
+- **Bitcoin.org** — "Securing your wallet" page. **MIT** (site-wide MIT license,
+  per bitcoin.org/github). Snapshot: bitcoinorg-secure-wallet.txt.
+- **BIP authors** (bitcoin/bips repo) — the BIPs used directly in entries:
+  **32, 39, 44, 49, 84** (the broader 43/86/174/329/371/327/341/342/380–382 set
+  informed the corpus plan). BIPs carry **per-BIP license headers** (mostly BSD or
+  AGPL-3.0; BIP-32/39/44 BSD-3). Snapshots: docs/references/bip-00xx.txt.
 - **Hardware-wallet vendors** — Ledger support, BitBox02/Shiftcrypto, Blockstream
-  Jade, SeedSigner. Snapshots: docs/references/{jade-setup-restore,seedsigner-readme,
-  bitbox-restore,ledger-lost-recovery-phrase}.txt.
-- **Casa** — "Dos and Don'ts of Key Management". Snapshot: casa-dos-donts.txt.
+  Jade, SeedSigner (MIT, github.com/SeedSigner/SeedSigner). Vendor support docs:
+  **copyrighted, reference-only**. Snapshots: docs/references/{jade-setup-restore,
+  seedsigner-readme, bitbox-restore, ledger-lost-recovery-phrase}.txt.
+- **Casa** — "Dos and Don'ts of Key Management". **Copyrighted, reference-only.**
+  Snapshot: casa-dos-donts.txt.
 - **FTC Consumer Advice** — scam-recovery and investment-scam articles.
-  Snapshots: ftc-if-scammed.txt, ftc-investment-scams.txt (US government work).
+  **US government work, public domain.**
+  Snapshots: ftc-if-scammed.txt, ftc-investment-scams.txt.
 
 Corrections welcome: if any attribution or license note above is wrong or
 missing, please open an issue.

@@ -4,37 +4,50 @@ A fully-local, no-network Android app: private on-device AI that helps bitcoiner
 (especially inheritors) understand and protect their self-custody setup.
 
 - **Privacy is architectural:** the app never holds the `INTERNET` permission.
-  Zero network code paths. Verified by monitoring tools: no traffic, ever.
-  Everything — retrieval, safety rules, the language model — runs on the phone.
+  Without that permission the OS will not let it open a network socket — there
+  is no network code path at all. Everything — retrieval, safety rules, the
+  language model — runs on the phone.
 - **The model never touches secrets:** seed phrases / xprvs pasted into the
   app are detected, warned about, and refused. The app never stores or
   transmits key material.
-- **Grounded answers:** every substantive answer is drawn from a curated,
-  versioned knowledge corpus and cites its source.
+- **Grounded answers:** answers are drawn from a curated, versioned knowledge
+  corpus. When retrieval can't ground a question, the app is designed to
+  refuse rather than guess.
 - **No answer beats a wrong answer:** "I don't know — it's not in my reviewed
   material" is always preferred over a confident guess. A wrong step with
   inherited bitcoin can lose it permanently.
 - **Errors are acceptable; silent errors are not:** when anything fails or
   falls back, the app says so plainly and tells the user what to do next.
+- **Educational only.** This app is an educational aid, not financial, legal,
+  tax, or estate-planning advice. No warranty; you alone are responsible for
+  custody decisions. For inheritance matters, consult a qualified professional.
 
-> **Status: experimental alpha — not yet safe to rely on.** The prototype is
-> real and testable (see below), but it should be treated as risky to use with
-> actual funds until the model-quality floor (see *Long-term vision*) is met.
+> **Status: experimental alpha — not yet safe to rely on.** The app is real,
+> installable, and answers on-device (v0.1.0-alpha, see Releases), but it
+> should be treated as risky to use with actual funds until the model-quality
+> floor (see *Long-term vision*) is met.
 
 ## Where the project stands
 
 - **Working prototype harness** (`prototype/`): corpus retrieval, deterministic
   guardrails, scam-rule engine, answer generation, and a 145-item eval suite
-  with strict + semantic grading. Current reproducible results (all runs at
-  temperature 0): walkthrough slice 21/40 strict; topical slices ~30% on the
-  by-meaning gate. Honest and improving — **retrieval coverage is 88%** (the
-  right guidance is found for nearly every question), so the remaining gap is
-  answer quality, not knowledge availability.
-- **Android app compiles** with 13/13 JVM unit tests green, covering the
-  safety-critical logic (secret detection, scam rules, refusal fallback).
-- **Curated corpus** of 20+ reviewed entries across 12 topics, drafted from
+  with strict + semantic grading. Current results (all runs at temperature 0;
+  answerer and judge are hosted models, so expect some run-to-run movement):
+  walkthrough slice **19/40 strict**; topical slices **24/105 (~23%)** on the
+  by-meaning gate; **overall 43/145 (~30%)**. Honest and improving —
+  **retrieval coverage is ~85% (103/122)**, so the remaining gap is answer
+  quality, not knowledge availability.
+- **Android app builds green** (debug + release) with **on-device llama.cpp
+  inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
+  offline. **19/19** JVM unit tests and 41/41 Python harness tests green,
+  covering the safety-critical logic (secret detection, scam rules, refusal
+  fallback, post-model veto).
+- **Curated corpus** of 30+ reviewed entries across 12 topics, drafted from
   designated references (Mastering Bitcoin 3rd ed., Lopp's security index,
-  Casa, bitcoin.org) with license discipline (CC-BY-SA 4.0 attribution).
+  River, BTC Guide, BTC Sessions, Casa, bitcoin.org) with per-source license
+  discipline — Mastering Bitcoin is CC-BY-SA 4.0; the per-source status for
+  everything else is recorded in
+  [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md).
 
 ## Long-term vision
 
@@ -63,7 +76,7 @@ hard floor, and the AI takes over more of the judgment on top.
 These are the current deficiencies that are model-bound, not design-bound:
 
 1. **Paraphrase delivery.** The corpus usually contains the right guidance,
-   but the small model rewords it loosely. A stronger model turns 88%
+   but the small model rewords it loosely. A stronger model turns ~85%
    retrieval coverage into correspondingly high answer quality; today the
    strict-match scores sit far below retrieval coverage for exactly this
    reason.
@@ -94,6 +107,7 @@ scheduled for measurement on a real 8 GB phone; the dev box cannot run the
 - [docs/INHERITANCE_WALKTHROUGH.md](docs/INHERITANCE_WALKTHROUGH.md) — the "first 7 days" guided walkthrough (core UX template)
 - [docs/EVAL_RESULTS.md](prototype/EVAL_RESULTS.md) — all eval addenda, honestly tracked
 - [docs/reviews/](docs/reviews/) — external review rounds and the reconciled plan
+- [NOTICES](NOTICES) — third-party code & model notices
 
 ## License
 MIT — see [LICENSE](LICENSE).
