@@ -220,8 +220,40 @@ def _point_ok(p: dict) -> bool:
     return _hash(p["text"]) in man
 
 
+def safety_block(composed, model_call) -> str:
+    """Hybrid mode: verbatim safety layer. Model selects safety-relevant key
+    points; warnings are pinned deterministically; block is hash-checked.
+    Returns '' on any failure (paraphrase answer still stands on its own)."""
+    try:
+        menu = build_menu(composed)
+        if not menu:
+            return ""
+        messages = [
+            {"role": "system",
+             "content": "Return only the compact JSON object. No reasoning text."},
+            {"role": "user", "content": build_selection_prompt(
+                "Safety-critical points relevant to the question, especially "
+                "warnings (never / do not / must not / only).", menu)},
+        ]
+        raw = model_call(messages)
+        sel, _ = parse_selection(raw, menu)
+        if not sel:
+            # deterministic floor: pin all warnings from the top 3 entries
+            sel = [p["pid"] for p in menu if p["warning"]][:6]
+        if not sel:
+            return ""
+        by_pid = {p["pid"]: p for p in menu}
+        sel = [s for s in sel if _point_ok(by_pid[s])]  # manifest check
+        if not sel:
+            return ""
+        text, _pinned = render(sel, "", menu)
+        return ("From the reviewed corpus, verbatim:\n\n" + text)
+    except Exception as exc:
+        print(f"[extractive] safety_block failure (dropped): {exc}", flush=True)
+        return ""
+
+
 def extractive_answer(question: str, composed, model_call) -> dict:
-    """model_call(messages) -> str. Returns answer_step-shaped dict; fails closed."""
     try:
         menu = build_menu(composed)
         if not menu:
