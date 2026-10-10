@@ -174,12 +174,28 @@ def sail_answer(messages: List[Dict[str, str]], timeout: int = 1200) -> str:
     raise LlamaServerError("sail_flex failed: %s" % last_err)
 
 
+def _veto_replace(g: "Guardrails", composed) -> str:
+    """Veto replacement: refusal template + retrieved warnings verbatim."""
+    warn_lines = []
+    seen = set()
+    for ch in composed.retrieved:
+        for w in ch.get("warnings", []) or []:
+            if w not in seen:
+                seen.add(w)
+                warn_lines.append("• " + w)
+    base = g.refusal("out_of_corpus")
+    text = base["text"] if base else "I cannot give a safe answer to this from my knowledge base."
+    return text + "\n\nSafety rules I must repeat:\n" + "\n".join(warn_lines)
+
+
 def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     """Generate the answer for a composed context.
 
     Returns {"answer": str, "backend": str}.
     Order: secret refusal (deterministic, no backend) -> scam verdict
-    (rules, scam-check mode only) -> llama-server (auto) -> sail flex.
+    (rules, scam-check mode only) -> EXTRACTIVE mode (ANSWER_MODE=extractive:
+    model selects approved key points, answer rendered verbatim) ->
+    llama-server (auto) -> sail flex.
     Post-generation: guardrail scrub + veto. On a must_not_include hit the
     candidate is DISCARDED and replaced by the refusal template plus the
     retrieved entries' warnings verbatim - wrong advice is structurally
@@ -200,6 +216,29 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
             ),
             "backend": "deterministic_secret_refusal",
         }
+    # 1b. Extractive mode (ANSWER_MODE=extractive, learn/other modes): the model
+    # selects approved key points; rendering is verbatim. Scam-check keeps its
+    # own deterministic verdict path below.
+    import os as _os
+    if (_os.environ.get("ANSWER_MODE") == "extractive"
+            and composed.mode != "scam-check" and not composed.refusal):
+        import extractive
+        try:
+            res = extractive.extractive_answer(
+                question, composed,
+                model_call=lambda msgs: sail_answer(msgs),
+            )
+        except Exception:
+            res = None
+        if res:
+            # veto layer still applies to the bridge sentence (the only
+            # free-form text in an extractive answer)
+            candidate, _inj = g.scrub(res["answer"], question)
+            failures = g.check_constraints(candidate, composed.constraints)
+            if failures["must_not_include"]:
+                cand2 = _veto_replace(g, composed)
+                return {"answer": cand2, "backend": "extractive_veto"}
+            return {"answer": candidate, "backend": res["backend"]}
     # 2. Scam verdict: deterministic rules, scam-check mode only (no false
     # verdicts on innocent questions like price checks).
     import scam_rules
