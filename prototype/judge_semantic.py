@@ -33,7 +33,11 @@ for fn in files:
         prompt = ("You grade a Bitcoin-safety assistant's answer against required guidance "
                   "phrasings. For each REQUIRED PHRASING, judge whether the ANSWER conveys "
                   "the same guidance (same meaning and actionable content), even if worded "
-                  "differently. Reply with one JSON object only:\n"
+                  "differently. "
+                  "EXTRACTIVE ANSWERS: if the answer quotes numbered corpus key points "
+                  "verbatim, judge whether the quoted points (taken together) convey the "
+                  "required guidance in their own words; exact phrase matches are not "
+                  "required. Reply with one JSON object only:\n"
                   '{"judgements": [{"phrase": "...", "verdict": "same|partial|different|contradicts"}]}\n\n'
                   "Verdict meanings: 'same' = same actionable guidance, different wording; "
                   "'partial' = conveys part of the guidance, omits the rest; "

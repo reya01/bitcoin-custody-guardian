@@ -174,6 +174,15 @@ def sail_answer(messages: List[Dict[str, str]], timeout: int = 1200) -> str:
     raise LlamaServerError("sail_flex failed: %s" % last_err)
 
 
+def _is_bridge_para(para: str) -> bool:
+    """The bridge is the paragraph between the last bulleted point and the
+    'Source:' footer — the only free-form text in an extractive answer."""
+    s = para.strip()
+    if s.startswith(("-", "•", "Source:", "(", "From the reviewed corpus")):
+        return False
+    return bool(s)
+
+
 def _veto_replace(g: "Guardrails", composed) -> str:
     """Veto replacement: refusal template + retrieved warnings verbatim."""
     warn_lines = []
@@ -217,27 +226,27 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
             "backend": "deterministic_secret_refusal",
         }
     # 1b. Extractive mode (ANSWER_MODE=extractive, learn/other modes): the model
-    # selects approved key points; rendering is verbatim. Scam-check keeps its
-    # own deterministic verdict path below.
+    # selects approved key points; rendering is verbatim; FAILS CLOSED (no
+    # remote-paraphrase fallthrough — a failure yields the canned message).
+    # Scam-check keeps its own deterministic verdict path below.
     import os as _os
     if (_os.environ.get("ANSWER_MODE") == "extractive"
             and composed.mode != "scam-check" and not composed.refusal):
         import extractive
-        try:
-            res = extractive.extractive_answer(
-                question, composed,
-                model_call=lambda msgs: sail_answer(msgs),
-            )
-        except Exception:
-            res = None
-        if res:
-            # veto layer still applies to the bridge sentence (the only
-            # free-form text in an extractive answer)
+        res = extractive.extractive_answer(
+            question, composed,
+            model_call=lambda msgs: sail_answer(msgs),
+        )
+        if res and res.get("answer"):
             candidate, _inj = g.scrub(res["answer"], question)
             failures = g.check_constraints(candidate, composed.constraints)
             if failures["must_not_include"]:
-                cand2 = _veto_replace(g, composed)
-                return {"answer": cand2, "backend": "extractive_veto"}
+                # Fix 6: the bridge is the only free-form surface — drop it and
+                # re-render verbatim points; verified safety content survives.
+                lines = [ln for ln in candidate.split("\n\n")
+                         if not _is_bridge_para(ln)]
+                return {"answer": "\n\n".join(lines),
+                        "backend": "extractive_veto_bridge_dropped"}
             return {"answer": candidate, "backend": res["backend"]}
     # 2. Scam verdict: deterministic rules, scam-check mode only (no false
     # verdicts on innocent questions like price checks).
