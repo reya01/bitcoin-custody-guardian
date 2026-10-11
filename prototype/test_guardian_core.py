@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import sys
 import unittest
 
@@ -306,6 +307,58 @@ class ErrorCommunicationTests(unittest.TestCase):
         self.assertEqual(out["backend"], "error_reported")
         self.assertIn("Something went wrong", out["answer"])
         self.assertNotIn("seed phrase is", out["answer"].lower())
+
+
+class TestCorpusVendorNeutrality(unittest.TestCase):
+    """External-review I7: no referrals, no affiliate params, no undated
+    vendor rankings. Corpus text must stay neutral (spec §12 policy)."""
+
+    CORPUS = os.environ.get("GUARDIAN_CORPUS",
+                            "/opt/data/projects/custody-guardian/corpus")
+
+    REFERRAL_URL = re.compile(
+        r"[?&](ref|referral|affiliate|utm_|aff|tag|partner)=",
+        re.I)
+    # vendor name + ranking superlative in the same sentence, undated
+    VENDOR = re.compile(
+        r"\b(trezor|ledger|bitbox|blockstream|jade|seedsigner|krux|liana|"
+        r"sparrow|coldcard|casa|unchained|river|swan|strike)\b", re.I)
+    SUPERLATIVE = re.compile(
+        r"\b(the best|the top|the leading|the most trusted|number one|#1|"
+        r"we recommend)\b", re.I)
+
+    def test_no_referral_or_affiliate_urls(self):
+        for fn in sorted(os.listdir(self.CORPUS)):
+            if not fn.endswith(".json"):
+                continue
+            text = json.dumps(json.load(open(os.path.join(self.CORPUS, fn))))
+            m = self.REFERRAL_URL.search(text)
+            self.assertIsNone(m, f"{fn}: referral/affiliate URL parameter: {m}")
+
+    def test_no_undated_vendor_rankings(self):
+        for fn in sorted(os.listdir(self.CORPUS)):
+            if not fn.endswith(".json"):
+                continue
+            e = json.load(open(os.path.join(self.CORPUS, fn)))
+            texts = [e.get("plain", ""), e.get("technical", "")]
+            texts += [kp for kp in (e.get("key_points") or []) if isinstance(kp, str)]
+            for text in texts:
+                for sentence in re.split(r"[.!?]\s", text):
+                    if self.SUPERLATIVE.search(sentence) and self.VENDOR.search(sentence):
+                        self.fail(
+                            f"{fn}: undated vendor ranking sentence: {sentence[:140]}")
+
+    def test_dates_present_near_rankings(self):
+        # if a superlative+vendor pairing exists anywhere it must carry a year
+        for fn in sorted(os.listdir(self.CORPUS)):
+            if not fn.endswith(".json"):
+                continue
+            e = json.load(open(os.path.join(self.CORPUS, fn)))
+            blob = json.dumps(e)
+            for m in re.finditer(r"[^.\n]*\b(the best|the top)\b[^.\n]*", blob, re.I):
+                seg = m.group(0)
+                if self.VENDOR.search(seg) and not re.search(r"\b20\d\d\b", seg):
+                    self.fail(f"{fn}: ranking without a date: {seg[:140]}")
 
 
 if __name__ == "__main__":

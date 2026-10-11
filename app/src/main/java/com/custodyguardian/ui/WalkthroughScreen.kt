@@ -51,6 +51,21 @@ fun WalkthroughScreen(onAskAbout: (String) -> Unit = {}) {
 
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         Text("The First 7 Days", style = MaterialTheme.typography.headlineSmall)
+        // Permanent honesty surface (external review C2b): model explanations
+        // can be wrong; the checklist itself is deterministic approved content.
+        Surface(
+            color = MaterialTheme.colorScheme.errorContainer,
+            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        ) {
+            Text(
+                "This checklist is fixed, reviewed content. Model explanations of a " +
+                    "step can be wrong — verify against your wallet's official " +
+                    "documentation before you act.",
+                modifier = Modifier.padding(8.dp),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+            )
+        }
         Spacer(Modifier.height(8.dp))
         // day chips
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {

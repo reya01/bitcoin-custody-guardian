@@ -29,25 +29,55 @@ A fully-local, no-network Android app: private on-device AI that helps bitcoiner
 
 ## Where the project stands
 
+**Current numbers** (dated; see [prototype/EVAL_RESULTS.md](prototype/EVAL_RESULTS.md)
+for the full addenda trail):
+
+| Metric | System | Value | As of |
+|---|---|---|---|
+| Walkthrough strict | hosted pipeline (p2) | 19/40 | Addendum 9 |
+| Topical FINAL | hosted paraphrase (p2) | 24/105 | Addendum 9 |
+| Topical FINAL | hosted hybrid — paraphrase + verbatim safety block (p7) | 31/105 | Addendum 10 |
+| Overall strict+semantic | hosted pipeline (p2) | 43/145 (~30%) | Addendum 9 |
+| Retrieval coverage | hosted pipeline | ~85% (103/122) | Addendum 9 |
+| On-device APK eval | **not yet measured** | — | pending (Addendum 11) |
+
+All runs at temperature 0 with hosted answerer and judge (Sail flex), so expect some
+run-to-run movement. **The numbers above describe the hosted pipeline; on-device
+(offline 1.7B) results have not yet been measured and will likely be lower.**
+
 - **Working prototype harness** (`prototype/`): corpus retrieval, deterministic
   guardrails, scam-rule engine, answer generation, and a 145-item eval suite
-  with strict + semantic grading. Current results (all runs at temperature 0;
-  answerer and judge are hosted models, so expect some run-to-run movement):
-  walkthrough slice **19/40 strict**; topical slices **24/105 (~23%)** on the
-  by-meaning gate; **overall 43/145 (~30%)**. Honest and improving —
-  **retrieval coverage is ~85% (103/122)**, so the remaining gap is answer
-  quality, not knowledge availability.
+  with strict + semantic grading.
 - **Android app builds green** (debug + release) with **on-device llama.cpp
   inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
-  offline. **19/19** JVM unit tests and 41/41 Python harness tests green,
+  offline. **22/22** JVM unit tests and 41/41 Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
-- **Curated corpus** of 30+ reviewed entries across 12 topics, drafted from
+- **Curated corpus** of 50 reviewed entries across 12 topics, drafted from
   designated references (Mastering Bitcoin 3rd ed., Lopp's security index,
   River, BTC Guide, BTC Sessions, Casa, bitcoin.org) with per-source license
   discipline — Mastering Bitcoin is CC-BY-SA 4.0; the per-source status for
   everything else is recorded in
   [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md).
+
+### Verification status (claimed / implemented / demonstrated)
+
+| Claim | Status |
+|---|---|
+| APK signed, sha256 published | **Demonstrated** (v0.1.0-alpha, hash on the release page) |
+| No INTERNET permission; nothing leaves the phone | **Demonstrated** (manifest + Android OS enforcement) |
+| Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented**; logic unit-tested; end-to-end on-device suite pending |
+| Corpus verbatim integrity | **Demonstrated** (schema fields are verbatim subsets, machine-checked; sha256 manifest) |
+| Model GGUF sha256 published | **Demonstrated** (release notes) |
+| Reproducible two-machine build | **Claimed, not demonstrated** |
+| Production signing key on hardware token | **Claimed** (planned at beta) |
+| On-device answer quality | **Not demonstrated** (Addendum 11 pending) |
+
+**Device floor:** the currently tested configuration is a 1.7B Q4_K_M model on
+flagship-class Android phones (≥8GB RAM assumed but **not yet measured on
+hardware**). The guided checklist, corpus browser, and scam-check verdicts are
+model-independent and are expected to work on much weaker phones; chat quality
+on 4GB-class devices is unverified. Honest device testing is scheduled (Addendum 11).
 
 ## Long-term vision
 
@@ -102,11 +132,12 @@ scheduled for measurement on a real 8 GB phone; the dev box cannot run the
 
 ## Documents
 - [docs/PRODUCT_SPEC.md](docs/PRODUCT_SPEC.md) — product specification (v0.1)
+- [docs/LICENSES.md](docs/LICENSES.md) — license split: code MIT, corpus CC BY-SA 4.0
 - [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md) — knowledge corpus sources & curation plan
 - [docs/EVAL_SET.md](docs/EVAL_SET.md) — golden eval set structure & samples (release gate)
 - [docs/INHERITANCE_WALKTHROUGH.md](docs/INHERITANCE_WALKTHROUGH.md) — the "first 7 days" guided walkthrough (core UX template)
 - [docs/EVAL_RESULTS.md](prototype/EVAL_RESULTS.md) — all eval addenda, honestly tracked
-- [docs/reviews/](docs/reviews/) — external review rounds and the reconciled plan
+- [docs/reviews/](https://github.com/reya01/bitcoin-custody-guardian/tree/main/docs/reviews) — external review rounds and the reconciled plan
 - [NOTICES](NOTICES) — third-party code & model notices
 
 ## License

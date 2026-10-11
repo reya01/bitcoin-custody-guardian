@@ -43,12 +43,25 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
     var busy by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Ask (offline)", style = MaterialTheme.typography.headlineSmall)
+        Text("Ask (offline) — beta", style = MaterialTheme.typography.headlineSmall)
         Text(
             "Answers come from the curated corpus via the on-device model, checked by " +
                 "deterministic safety rules. Never type seed words or keys here (or anywhere).",
             style = MaterialTheme.typography.bodySmall,
         )
+        // Permanent honesty surface: this app can be wrong (external review C2b).
+        Surface(
+            color = MaterialTheme.colorScheme.errorContainer,
+            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        ) {
+            Text(
+                "This app can be wrong. Verify every instruction against your wallet's " +
+                    "official documentation before you act. When unsure, stop and wait.",
+                modifier = Modifier.padding(8.dp),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+            )
+        }
         Spacer(Modifier.height(8.dp))
         OutlinedTextField(
             value = query,
