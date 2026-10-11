@@ -34,12 +34,17 @@ for the full addenda trail):
 
 | Metric | System | Value | As of |
 |---|---|---|---|
-| Walkthrough strict | hosted pipeline (p2) | 19/40 | Addendum 9 |
-| Topical FINAL | hosted paraphrase (p2) | 24/105 | Addendum 9 |
-| Topical FINAL | hosted hybrid — paraphrase + verbatim safety block (p7) | 31/105 | Addendum 10 |
-| Overall strict+semantic | hosted pipeline (p2) | 43/145 (~30%) | Addendum 9 |
-| Retrieval coverage | hosted pipeline | ~85% (103/122) | Addendum 9 |
+| Walkthrough strict | hosted pipeline (p2) | 19/40 | 2026-10-09 (Add. 9) |
+| Topical FINAL | hosted paraphrase (p2) | 24/105 | 2026-10-09 (Add. 9) |
+| Topical FINAL | hosted hybrid — paraphrase + verbatim safety block (p7) | 31/105 | 2026-10-10 (Add. 10) |
+| Overall strict+semantic | hosted pipeline (p2) | 43/145 (~30%) | 2026-10-09 (Add. 9) |
+| Retrieval coverage | hosted pipeline | 84% (103/122)* | 2026-10-09 (Add. 9) |
 | On-device APK eval | **not yet measured** | — | pending (Addendum 11) |
+
+\* Retrieval coverage is an upper bound — eval questions share sources with the
+corpus ([GATE_CONVENTIONS.md](docs/GATE_CONVENTIONS.md)). The 122 denominator is
+as recorded in Addendum 9's run; re-derivation and per-item breakdown are
+scheduled with the on-device eval (Addendum 11).
 
 All runs at temperature 0 with hosted answerer and judge (Sail flex), so expect some
 run-to-run movement. **The numbers above describe the hosted pipeline; on-device
@@ -50,7 +55,7 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   with strict + semantic grading.
 - **Android app builds green** (debug + release) with **on-device llama.cpp
   inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
-  offline. **22/22** JVM unit tests and 41/41 Python harness tests green,
+  offline. **26/26** JVM unit tests and **44/44** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
 - **Curated corpus** of 50 reviewed entries across 12 topics, drafted from
@@ -67,7 +72,7 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
 | APK signed, sha256 published | **Demonstrated** (v0.1.0-alpha, hash on the release page) |
 | No INTERNET permission; nothing leaves the phone | **Demonstrated** (manifest + Android OS enforcement) |
 | Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented**; logic unit-tested; end-to-end on-device suite pending |
-| Corpus verbatim integrity | **Demonstrated** (schema fields are verbatim subsets, machine-checked; sha256 manifest) |
+| Corpus verbatim integrity | **Demonstrated** (schema fields are verbatim subsets of the human-approved entry text, sha256 manifest recorded in `prototype/key_points_manifest.json`) |
 | Model GGUF sha256 published | **Demonstrated** (release notes) |
 | Reproducible two-machine build | **Claimed, not demonstrated** |
 | Production signing key on hardware token | **Claimed** (planned at beta) |
@@ -136,8 +141,10 @@ scheduled for measurement on a real 8 GB phone; the dev box cannot run the
 - [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md) — knowledge corpus sources & curation plan
 - [docs/EVAL_SET.md](docs/EVAL_SET.md) — golden eval set structure & samples (release gate)
 - [docs/INHERITANCE_WALKTHROUGH.md](docs/INHERITANCE_WALKTHROUGH.md) — the "first 7 days" guided walkthrough (core UX template)
-- [docs/EVAL_RESULTS.md](prototype/EVAL_RESULTS.md) — all eval addenda, honestly tracked
-- [docs/reviews/](https://github.com/reya01/bitcoin-custody-guardian/tree/main/docs/reviews) — external review rounds and the reconciled plan
+- [prototype/EVAL_RESULTS.md](prototype/EVAL_RESULTS.md) — all eval addenda, honestly tracked
+- [docs/reviews/](docs/reviews/) — external review rounds and the reconciled plan
+- [docs/SAFETY_CASE.md](docs/SAFETY_CASE.md) — safety case: threat model, mitigations, evidence, residual risks
+- [docs/GATE_CONVENTIONS.md](docs/GATE_CONVENTIONS.md) — evaluation integrity rules for gate runs
 - [NOTICES](NOTICES) — third-party code & model notices
 
 ## License

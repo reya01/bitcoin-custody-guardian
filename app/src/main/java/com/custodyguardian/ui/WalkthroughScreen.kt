@@ -23,7 +23,7 @@ import com.custodyguardian.data.WalkthroughDay
  */
 private const val PREFS = "walkthrough_progress"
 
-private fun keyFor(day: Int, step: String) = "d${day}_s${step.hashCode()}"
+private fun keyFor(day: Int, step: String) = "d${day}_${step.take(60)}"
 
 private fun loadProgress(context: android.content.Context): MutableSet<String> =
     context.getSharedPreferences(PREFS, android.content.Context.MODE_PRIVATE)

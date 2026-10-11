@@ -28,5 +28,9 @@ cited in README, release notes, or the beta gate (per the iPhone plan §0).
   never drawn from corpus sources.
 
 ## Current judge (as of Addendum 10)
-- Judge: `zai-org/GLM-5.3` (Sail flex), temperature 0, prompt in
+- Judge: `zai-org/GLM-5.3` (Sail flex, api.sailresearch.com/v1 — model id
+  verified against that catalog), temperature 0, prompt in
   `prototype/judge_semantic.py` (extractive-aware variant added Addendum 10).
+- Gate thresholds and the pre-registered beta gate live in
+  `docs/plans/iphone_plan.md` §0 ("Beta gate") — that section is the product
+  gate, not an iOS-only one.

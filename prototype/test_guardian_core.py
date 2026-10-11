@@ -41,7 +41,8 @@ class TestSecretDetectorSeed(unittest.TestCase):
         text = "the abilityX is absentabsurd but abandon ok"
         r = self.det.scan(text)
         for d in r.detections:
-            self.assertNotIn(24, [0])  # placeholder; real assert below
+            # detection here is allowed; the assertion below pins the run length
+            self.assertIsNotNone(d)
         # no 24-word run should fire on this
         runs = [
             d
@@ -313,52 +314,64 @@ class TestCorpusVendorNeutrality(unittest.TestCase):
     """External-review I7: no referrals, no affiliate params, no undated
     vendor rankings. Corpus text must stay neutral (spec §12 policy)."""
 
-    CORPUS = os.environ.get("GUARDIAN_CORPUS",
-                            "/opt/data/projects/custody-guardian/corpus")
+    CORPUS = os.environ.get("GUARDIAN_CORPUS", CORPUS_DIR)
 
     REFERRAL_URL = re.compile(
-        r"[?&](ref|referral|affiliate|utm_|aff|tag|partner)=",
+        r"[?&](ref|referral|ref_src|affiliate|utm_[a-z_]+|aff_id|aff|partner)=",
         re.I)
-    # vendor name + ranking superlative in the same sentence, undated
     VENDOR = re.compile(
         r"\b(trezor|ledger|bitbox|blockstream|jade|seedsigner|krux|liana|"
-        r"sparrow|coldcard|casa|unchained|river|swan|strike)\b", re.I)
+        r"sparrow|coldcard|coinkite|casa|unchained|river|swan|strike|"
+        r"foundation devices|passport|specter|bluewallet|electrum|nunchuk|"
+        r"shift crypto)\b", re.I)
     SUPERLATIVE = re.compile(
-        r"\b(the best|the top|the leading|the most trusted|number one|#1|"
-        r"we recommend)\b", re.I)
+        r"(?:\b(?:the best|the top|the leading|the most trusted|number one|"
+        r"the safest|the most secure|the easiest|the gold standard|"
+        r"industry standard|best-in-class|top-rated|highly recommended|"
+        r"our pick|the only choice|we recommend)\b|(?:^|\s)#1\b)", re.I)
+    DATE = re.compile(r"\b(19|20)\d{2}\b|\bas of\b|\bcurrently\b", re.I)
+
+    def _corpus_files(self):
+        files = [f for f in sorted(os.listdir(self.CORPUS)) if f.endswith(".json")]
+        self.assertGreater(len(files), 0, "no corpus files found — check GUARDIAN_CORPUS")
+        return files
+
+    def _texts(self, e):
+        out = [e.get("plain", ""), e.get("technical", ""), e.get("title", "")]
+        out += [kp for kp in (e.get("key_points") or []) if isinstance(kp, str)]
+        out += [w for w in (e.get("warnings") or []) if isinstance(w, str)]
+        return out
 
     def test_no_referral_or_affiliate_urls(self):
-        for fn in sorted(os.listdir(self.CORPUS)):
-            if not fn.endswith(".json"):
-                continue
+        for fn in self._corpus_files():
             text = json.dumps(json.load(open(os.path.join(self.CORPUS, fn))))
             m = self.REFERRAL_URL.search(text)
             self.assertIsNone(m, f"{fn}: referral/affiliate URL parameter: {m}")
 
     def test_no_undated_vendor_rankings(self):
-        for fn in sorted(os.listdir(self.CORPUS)):
-            if not fn.endswith(".json"):
-                continue
+        # vendor + superlative in the same sentence OR ±1 sentence, unless the
+        # passage carries a date (dated, factual rankings are allowed)
+        for fn in self._corpus_files():
             e = json.load(open(os.path.join(self.CORPUS, fn)))
-            texts = [e.get("plain", ""), e.get("technical", "")]
-            texts += [kp for kp in (e.get("key_points") or []) if isinstance(kp, str)]
-            for text in texts:
-                for sentence in re.split(r"[.!?]\s", text):
-                    if self.SUPERLATIVE.search(sentence) and self.VENDOR.search(sentence):
+            for text in self._texts(e):
+                sents = re.split(r"(?<=[.!?])\s+", text)
+                for i, sentence in enumerate(sents):
+                    window = " ".join(sents[max(0, i - 1):i + 2])
+                    if self.VENDOR.search(window) and self.SUPERLATIVE.search(window) \
+                            and not self.DATE.search(window):
+                        # "the gold standard"/"industry standard" describing a
+                        # technical standard (e.g. BIP39) is a factual claim,
+                        # not a vendor ranking
+                        if re.search(r"\bBIP\d+\b", window) and \
+                                re.search(r"(?:gold|industry) standard", window, re.I):
+                            continue
                         self.fail(
-                            f"{fn}: undated vendor ranking sentence: {sentence[:140]}")
+                            f"{fn}: undated vendor ranking: {window[:140]}")
 
-    def test_dates_present_near_rankings(self):
-        # if a superlative+vendor pairing exists anywhere it must carry a year
-        for fn in sorted(os.listdir(self.CORPUS)):
-            if not fn.endswith(".json"):
-                continue
-            e = json.load(open(os.path.join(self.CORPUS, fn)))
-            blob = json.dumps(e)
-            for m in re.finditer(r"[^.\n]*\b(the best|the top)\b[^.\n]*", blob, re.I):
-                seg = m.group(0)
-                if self.VENDOR.search(seg) and not re.search(r"\b20\d\d\b", seg):
-                    self.fail(f"{fn}: ranking without a date: {seg[:140]}")
+    def test_corpus_size_matches_readme_claim(self):
+        files = self._corpus_files()
+        self.assertGreaterEqual(len(files), 50,
+                                f"corpus shrank below the README's 50-entry claim: {len(files)}")
 
 
 if __name__ == "__main__":

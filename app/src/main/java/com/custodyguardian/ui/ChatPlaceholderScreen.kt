@@ -43,10 +43,11 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
     var busy by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Ask (offline) — beta", style = MaterialTheme.typography.headlineSmall)
+        Text("Ask (offline) — alpha (experimental)", style = MaterialTheme.typography.headlineSmall)
         Text(
             "Answers come from the curated corpus via the on-device model, checked by " +
-                "deterministic safety rules. Never type seed words or keys here (or anywhere).",
+                "deterministic safety rules. Never type seed words or keys into this app " +
+                "or any online service.",
             style = MaterialTheme.typography.bodySmall,
         )
         // Permanent honesty surface: this app can be wrong (external review C2b).
@@ -71,23 +72,29 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
             singleLine = true,
         )
         Spacer(Modifier.height(8.dp))
+        // Single guarded entry point: secret detection FIRST on every path
+        // (external review C1). On a hit, refuse — the model is never invoked,
+        // and the secret-bearing text is cleared from the editable field.
+        val secretHit = MemoryGuards.detectSecret(context, query) as? MemoryGuards.Refusal
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(
                 onClick = {
-                    val guard = MemoryGuards.detectSeedPhrase(context, query)
-                    if (guard is MemoryGuards.Result.SeedPhrase) {
-                        secretWarning = guard.message
-                        route = null
-                    } else {
-                        secretWarning = null
-                        val corpus = AssetLoader.loadCorpus(context)
-                        route = CorpusRouter.route(context, query, corpus)
+                    when (val guard = MemoryGuards.detectSecret(context, query)) {
+                        is MemoryGuards.Refusal -> {
+                            secretWarning = guard.message
+                            route = null
+                        }
+                        else -> {
+                            secretWarning = null
+                            val corpus = AssetLoader.loadCorpus(context)
+                            route = CorpusRouter.route(context, query, corpus)
+                        }
                     }
                 },
             ) { Text("Run router") }
 
             Button(
-                enabled = !busy && modelFile(context) != null,
+                enabled = !busy && modelFile(context) != null && secretHit == null,
                 onClick = {
                     busy = true
                     scope.launch(Dispatchers.Default) {
@@ -103,7 +110,10 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
             Text(
                 "No on-device model found. Sideload $MODEL_NAME into " +
                     "Android/data/com.custodyguardian/files/models/ (adb push or file " +
-                    "manager). Until then, only router retrieval is available.",
+                    "manager). Before trusting it, verify the file's SHA-256 against the " +
+                    "hash published on the project's GitHub release page: " +
+                    "b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897. " +
+                    "Until then, only router retrieval is available.",
                 style = MaterialTheme.typography.bodySmall,
             )
         }

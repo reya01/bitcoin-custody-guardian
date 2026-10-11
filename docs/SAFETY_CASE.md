@@ -20,20 +20,26 @@ eval) lands.
 - M2 (T2) Guided First-7-Days walkthrough: fixed, reviewed, deterministic
   checklist; model explains steps, never generates/reorders/completes them;
   "nothing is urgent" pacing; red un-checkable DON'Ts.
-- M3 (T3) Secret detection first in every path: seed-phrase/key input triggers
-  an explicit refusal and guidance; nothing is echoed or stored.
+- M3 (T3) Secret detection first in every path: seed-phrase, xprv-family, and
+  WIF key input triggers an explicit refusal and guidance on EVERY chat path
+  (enforced by a single guarded entry point both buttons call); nothing is
+  echoed or stored.
 - M4 (T4) Grounded answers only: retrieval over a 50-entry human-reviewed
-  corpus; schema fields are verbatim subsets (machine-checked, sha256
-  manifest); hybrid mode appends a verbatim safety block; veto layer replaces
-  answers that violate per-question constraints; honest refusals
-  (no-answer-beats-wrong-answer); errors are explicit, never silent.
+  corpus; schema fields are verbatim subsets of the approved entry text
+  (human-reviewed; sha256 manifest recorded in `prototype/key_points_manifest.json`);
+  hybrid mode appends a verbatim safety block; veto layer replaces answers that
+  violate per-question constraints — note: the veto vocabulary (`mustNotInclude`)
+  is defined per question by the compose step, but enforcement is **not yet
+  wired** in the shipped Android chat path (currently an empty list); planned
+  v0.2. Honest refusals (no-answer-beats-wrong-answer); errors are explicit,
+  never silent.
 - M5 (T4/T1) Privacy by permission-absence: no INTERNET permission; the app
   physically cannot send anything anywhere; model sideloaded and
   sha256-verified by the user.
 - M6 (T5) Signed APK with published sha256; model GGUF hash published.
 
 ## 3. Evidence
-- Logic tests: 22 Kotlin + 44 Python (incl. corpus vendor-neutrality lint).
+- Logic tests: 26 Kotlin + 44 Python (incl. corpus vendor-neutrality lint).
 - Hosted-pipeline evals: EVAL_RESULTS.md addenda 1–10 (best: hybrid 31/105
   topical FINAL; T06 19/40 strict) — **hosted, not the shipped model**.
 - On-device eval (production JNI path, 145 items + danger/refusal suite):

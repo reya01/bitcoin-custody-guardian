@@ -34,8 +34,13 @@ object MemoryGuards {
             val wordCount: Int,
             val matchedWords: List<String>,
             val confidence: Double,
-            val message: String,
-        ) : Result
+            override val message: String,
+        ) : Refusal
+    }
+
+    /** Any detected secret material: refuse to process, never echo, never store. */
+    interface Refusal : Result {
+        val message: String
     }
 
     /**
@@ -86,4 +91,49 @@ object MemoryGuards {
     /** Convenience wrapper that loads the wordlist from assets and scans the text. */
     fun detectSeedPhrase(context: Context, text: String): Result =
         detectSeedPhrase(text, loadWordlist(context))
+
+    // xprv-family extended private keys (x/t/v/z/u/p/r/y prv) base58-ish bodies,
+    // and WIF private keys (5/K/L prefixes). Raw 64-char hex is deliberately NOT
+    // detected: it is indistinguishable from txids (guaranteed false positives).
+    private val XPRV_RE = Regex("""\b[xtvzupry]prv[1-9A-HJ-NP-Za-km-z]{50,}\b""")
+    private val WIF_RE = Regex("""\b[5KL][1-9A-HJ-NP-Za-km-z]{50,51}\b""")
+
+    data class ExtendedSecret(
+        val kind: String,
+        override val message: String,
+    ) : Refusal
+
+    /**
+     * Extended-secret detection: xprv-family and WIF keys. Same contract as
+     * detectSeedPhrase: refuse to process, never echo the material.
+     */
+    fun detectExtendedSecret(text: String): Result {
+        if (text.isBlank()) return Result.Safe
+        val x = XPRV_RE.find(text)
+        if (x != null) return ExtendedSecret(
+            kind = "xprv",
+            message = "⚠ This looks like an extended private key (${x.value.take(4)}…). " +
+                "Anyone holding it can spend every wallet it derives. Never type or paste " +
+                "it into ANY app — including this one. This app has refused to process the " +
+                "text. Delete it from this screen and keep the key only in cold storage."
+        )
+        if (WIF_RE.containsMatchIn(text)) return ExtendedSecret(
+            kind = "wif",
+            message = "⚠ This looks like a private key in WIF format. Anyone holding it can " +
+                "spend the funds. Never type or paste it into ANY app — including this one. " +
+                "This app has refused to process the text. Delete it from this screen."
+        )
+        return Result.Safe
+    }
+
+    /**
+     * Single guarded entry point for chat: seed-phrase detection FIRST, then
+     * extended-secret detection. Both chat buttons must call this — no path
+     * reaches the model without it (external review C1 / SAFETY_CASE M3).
+     */
+    fun detectSecret(context: Context, text: String): Result {
+        val seed = detectSeedPhrase(context, text)
+        if (seed is Result.SeedPhrase) return seed
+        return detectExtendedSecret(text)
+    }
 }
