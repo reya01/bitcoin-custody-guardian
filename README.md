@@ -1,5 +1,8 @@
 # Bitcoin Custody Guardian
 
+**⬇ Download the alpha APK:** [btcg-0.1.0-alpha.apk](https://github.com/reya01/bitcoin-custody-guardian/releases/download/v0.1.0-alpha/btcg-0.1.0-alpha.apk)
+(release page: [v0.1.0-alpha](https://github.com/reya01/bitcoin-custody-guardian/releases/tag/v0.1.0-alpha) — includes the SHA-256 for verification)
+
 A fully-local, no-network Android app: private on-device AI that helps bitcoiners
 (especially inheritors) understand and protect their self-custody setup.
 
