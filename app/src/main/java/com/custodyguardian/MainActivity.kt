@@ -49,6 +49,16 @@ object Routes {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GuardianApp() {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val manifest = remember { com.custodyguardian.data.model.ModelPaths.manifest(context) }
+    val gate = remember(manifest) {
+        manifest?.let { com.custodyguardian.ui.model.ModelGateState(context, it) }
+    }
+    if (gate != null && !gate.ready) {
+        com.custodyguardian.ui.model.ModelGateScreen(gate) { gate.refresh() }
+        return
+    }
+
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: Routes.HOME

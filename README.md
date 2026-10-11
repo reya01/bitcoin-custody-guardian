@@ -1,7 +1,10 @@
 # Bitcoin Custody Guardian
 
-**⬇ Download the alpha APK:** [btcg-0.1.0-alpha.apk](https://github.com/reya01/bitcoin-custody-guardian/releases/download/v0.1.0-alpha/btcg-0.1.0-alpha.apk)
-(release page: [v0.1.0-alpha](https://github.com/reya01/bitcoin-custody-guardian/releases/tag/v0.1.0-alpha) — includes the SHA-256 for verification)
+**⬇ Get the app (v0.1.1-alpha):** [Releases page](https://github.com/reya01/bitcoin-custody-guardian/releases)
+— download **`btcg-<tag>-full.zip`** (APK + AI model + checksums, ~1.1 GB),
+install the APK, then tap **"Select the model file"** in the app and pick the
+zip. The app verifies the model's SHA-256 automatically. No desktop, no USB,
+no unzipping needed. Details below in **Getting the model**.
 
 A fully-local, no-network Android app: private on-device AI that helps bitcoiners
 (especially inheritors) understand and protect their self-custody setup.
@@ -29,6 +32,39 @@ A fully-local, no-network Android app: private on-device AI that helps bitcoiner
 > installable, and answers on-device (v0.1.0-alpha, see Releases), but it
 > should be treated as risky to use with actual funds until the model-quality
 > floor (see *Long-term vision*) is met.
+
+## Getting the model (primary path — everything happens on your phone)
+
+The app holds **no INTERNET permission**, so it cannot download its own AI
+model — you give it the file **once**, and it verifies that file's SHA-256
+itself before first use. After that it works offline forever.
+
+1. On your phone's browser, open the
+   [Releases page](https://github.com/reya01/bitcoin-custody-guardian/releases)
+   and download **`btcg-<tag>-full.zip`** (~1.1 GB; Wi-Fi recommended). It
+   contains the APK, the model, and checksums.
+2. Install the APK inside the zip ("allow install from this source" is the
+   normal Android prompt for apps outside a store).
+3. Open the app → **"Select the model file"** → pick the zip (no unzipping
+   needed — the app reads the model straight out of it) or the `.gguf` file
+   if you already have one.
+4. Wait a few minutes: the app copies the model into its private storage and
+   verifies the SHA-256 against the value pinned in the app. A mismatch is
+   refused with an explicit error.
+5. Optional checkbox (default on): delete the original file afterwards to
+   reclaim ~1.1 GB.
+
+Notes: importing needs ~1.1 GB free storage; uninstalling the app deletes the
+imported model (re-import after reinstall). Alternative source for the bare
+model file: HuggingFace (unsloth Qwen3-1.7B-GGUF, `Qwen3-1.7B-Q4_K_M.gguf`,
+SHA-256 `b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897`).
+
+### Troubleshooting fallback: adb sideload (desktop)
+If your phone's browser can't download the file, use a desktop:
+`adb push qwen3-1.7b-q4_k_m.gguf /sdcard/Download/` (all-lowercase name), then
+import it in the app via "Select the model file" from Downloads. The old
+v0.1.0 path (`Android/data/com.custodyguardian/files/models/` via adb) still
+works: on first launch the app verifies that copy in place and keeps using it.
 
 ## Where the project stands
 
@@ -58,7 +94,7 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   with strict + semantic grading.
 - **Android app builds green** (debug + release) with **on-device llama.cpp
   inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
-  offline. **26/26** JVM unit tests and **44/44** Python harness tests green,
+  offline. **39/39** JVM unit tests and **44/44** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
 - **Curated corpus** of 50 reviewed entries across 12 topics, drafted from
@@ -170,7 +206,7 @@ Code MIT — see [LICENSE](LICENSE). The corpus is licensed separately
 - **No OS backup**: `allowBackup="false"` — nothing in the app is included in
   Android auto-backup.
 - **Claims guard**: `scripts/check_claims.py` fails CI if documented test
-  counts (26 Kotlin / 44 Python) or the 50-entry corpus count drift.
+  counts (39 Kotlin + 44 Python) or the 50-entry corpus count drift.
 - **Walkthrough progress** is stored per day + step-text prefix (stable across
   app updates, no hash).
 

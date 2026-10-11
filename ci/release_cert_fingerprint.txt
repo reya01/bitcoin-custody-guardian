@@ -1,0 +1,5 @@
+# SHA-256 fingerprint of the alpha release signing certificate.
+# Asserted by ci/make_bundle.sh: an APK signed with any other key is refused
+# (a fingerprint change breaks upgrades for existing users and must be called
+# out in release notes).
+07:9C:F4:31:2F:1A:D7:58:2C:7C:32:13:B8:66:50:75:0D:59:CB:27:62:3D:D5:34:37:EB:D9:C8:1A:09:79:EE

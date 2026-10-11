@@ -14,8 +14,8 @@ android {
         applicationId = "com.custodyguardian"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.1.1"
         ndk {
             abiFilters += listOf("arm64-v8a")
         }
@@ -84,4 +84,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     testImplementation("junit:junit:4.13.2")
+    // Real org.json for JVM unit tests (android.jar stubs are not mocked).
+    testImplementation("org.json:json:20240303")
 }

@@ -26,11 +26,8 @@ import java.io.File
  */
 private const val MODEL_NAME = "qwen3-1.7b-q4_k_m.gguf"
 
-fun modelFile(context: android.content.Context): File? {
-    val dir = File(context.getExternalFilesDir(null), "models")
-    val f = File(dir, MODEL_NAME)
-    return if (f.canRead()) f else null
-}
+fun modelFile(context: android.content.Context): File? =
+    com.custodyguardian.data.model.ModelPaths.modelFile(context)
 
 @Composable
 fun ChatPlaceholderScreen(prefill: String? = null) {
@@ -108,12 +105,9 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
 
         if (modelFile(context) == null) {
             Text(
-                "No on-device model found. Sideload $MODEL_NAME into " +
-                    "Android/data/com.custodyguardian/files/models/ (adb push or file " +
-                    "manager). Before trusting it, verify the file's SHA-256 against the " +
-                    "hash published on the project's GitHub release page: " +
-                    "b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897. " +
-                    "Until then, only router retrieval is available.",
+                "No on-device model found. Restart the app to open the import screen, " +
+                    "or see the README's \"Getting the model\" section. Until then, only " +
+                    "router retrieval is available.",
                 style = MaterialTheme.typography.bodySmall,
             )
         }
