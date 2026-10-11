@@ -57,7 +57,13 @@ def _manifest() -> dict:
     if _MANIFEST_CACHE is None:
         try:
             _MANIFEST_CACHE = json.load(open(MANIFEST_PATH))
-        except Exception:
+            if not _MANIFEST_CACHE:
+                print("[extractive] WARNING manifest file empty — integrity "
+                      "check disabled until a non-empty manifest exists",
+                      flush=True)
+        except Exception as exc:
+            print(f"[extractive] WARNING manifest load failed ({exc}) — "
+                  "integrity check disabled for this call", flush=True)
             _MANIFEST_CACHE = {}
     return _MANIFEST_CACHE
 
@@ -172,7 +178,7 @@ def _validate_bridge(bridge: str, sel_items: list) -> str:
         return ""
     if re.search(r"https?://|www\.|\w+\.(com|org|net|io|ca)\b", bridge, re.I):
         return ""
-    digits_in_points = set("".join(re.findall(r"\d+", " ".join(p["text"] for p in sel_items))))
+    digits_in_points = set(re.findall(r"\d+", " ".join(p["text"] for p in sel_items)))
     for d in re.findall(r"\d+", bridge):
         if d not in digits_in_points:
             return ""
@@ -182,7 +188,9 @@ def _validate_bridge(bridge: str, sel_items: list) -> str:
 
 
 def render(sel: list, bridge: str, menu: list) -> tuple:
-    """Render verbatim, menu order, with warning pinning. Returns (text, pinned)."""
+    """Render verbatim, menu order, with warning pinning. Returns (text, pinned).
+    Manifest check runs on the FINAL ordered set (post-pinning) so pinned
+    warnings cannot bypass the integrity check."""
     by_pid = {p["pid"]: p for p in menu}
     ordered = [by_pid[s] for s in sel if s in by_pid]
     # deterministic safety pin (Fix 5): warnings from selected entries that the
@@ -193,6 +201,10 @@ def render(sel: list, bridge: str, menu: list) -> tuple:
         if p["warning"] and p["entry_id"] in sel_entries and p["pid"] not in sel:
             ordered.append(p)
             pinned.append(p["pid"])
+    # integrity gate on the final rendered set — pinning cannot bypass it
+    ordered = [p for p in ordered if _point_ok(p)]
+    if not ordered:
+        return "", []
     parts, seen = [], set()
     for p in ordered:
         if _norm(p["text"]) in seen:
@@ -220,10 +232,21 @@ def _point_ok(p: dict) -> bool:
     return _hash(p["text"]) in man
 
 
-def safety_block(composed, model_call) -> str:
-    """Hybrid mode: verbatim safety layer. Model selects safety-relevant key
-    points; warnings are pinned deterministically; block is hash-checked.
-    Returns '' on any failure (paraphrase answer still stands on its own)."""
+def safety_block(composed, model_call, question: str = "") -> str:
+    """Hybrid mode: verbatim safety layer appended to the grounded paraphrase.
+
+    question: the real user question — selection is question-relevant, not
+    question-blind. model_call should be the SAME backend that produced the
+    paraphrase (local engine on-device, remote only where the paraphrase was
+    remote) so the offline story stays true.
+
+    Fail-soft: returns '' on any failure — the block is additive defense-in-depth
+    over an already-vetoed paraphrase, so failing closed would trade a vetted
+    answer for a canned non-answer. Preconditions that make soft-fail safe:
+    every rendered point passes the manifest check inside render() (post-pinning)
+    AND the independent corpus re-check below, AND answer_step re-runs the veto
+    constraint check on the final concatenated answer.
+    """
     try:
         menu = build_menu(composed)
         if not menu:
@@ -232,21 +255,33 @@ def safety_block(composed, model_call) -> str:
             {"role": "system",
              "content": "Return only the compact JSON object. No reasoning text."},
             {"role": "user", "content": build_selection_prompt(
-                "Safety-critical points relevant to the question, especially "
-                "warnings (never / do not / must not / only).", menu)},
+                (question or "Safety-critical points relevant to the user's "
+                 "question") + "\n(Select the safety-critical points — "
+                "especially warnings: never / do not / must not / only — that "
+                "apply to this question.)", menu)},
         ]
         raw = model_call(messages)
         sel, _ = parse_selection(raw, menu)
         if not sel:
-            # deterministic floor: pin all warnings from the top 3 entries
+            # deterministic floor: up to 6 warnings, retrieval order (may come
+            # from any of the retrieved entries — order, not a fixed entry count)
             sel = [p["pid"] for p in menu if p["warning"]][:6]
         if not sel:
             return ""
         by_pid = {p["pid"]: p for p in menu}
-        sel = [s for s in sel if _point_ok(by_pid[s])]  # manifest check
+        # independent verbatim re-check against a fresh corpus load
+        for s in sel:
+            p = by_pid[s]
+            entry = _entry_by_id(p["entry_id"]) or {}
+            if _norm(p["text"]) not in _norm(json.dumps(entry, ensure_ascii=False)):
+                print(f"[extractive] safety_block corpus re-check failed for {s}",
+                      flush=True)
+                sel = [x for x in sel if x != s]
         if not sel:
             return ""
         text, _pinned = render(sel, "", menu)
+        if not text:
+            return ""
         return ("From the reviewed corpus, verbatim:\n\n" + text)
     except Exception as exc:
         print(f"[extractive] safety_block failure (dropped): {exc}", flush=True)

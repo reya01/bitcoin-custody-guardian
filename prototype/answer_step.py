@@ -245,15 +245,21 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
                 # re-render verbatim points; verified safety content survives.
                 lines = [ln for ln in candidate.split("\n\n")
                          if not _is_bridge_para(ln)]
-                return {"answer": "\n\n".join(lines),
+                cand2, _inj2 = g.scrub("\n\n".join(lines), question)
+                failures2 = g.check_constraints(cand2, composed.constraints)
+                if failures2["must_not_include"]:
+                    # a verbatim point itself trips the constraint: fail closed
+                    return extractive._fallback(composed)
+                return {"answer": cand2,
                         "backend": "extractive_veto_bridge_dropped"}
             return {"answer": candidate, "backend": res["backend"]}
     # 1c. Hybrid mode (ANSWER_MODE=hybrid): grounded paraphrase for coverage
     # (path 2 below) PLUS a verbatim safety block from extractive selection.
-    # The block is appended after the paraphrase and veto does NOT run on it
-    # (it is approved corpus text, hash-checked); veto still governs the
-    # paraphrase. Scam-check/secret refusals keep their deterministic paths.
+    # Veto still governs the paraphrase AND a post-append constraint re-check
+    # governs the block (see step 6). Scam-check mode and veto-replaced answers
+    # keep their deterministic paths — no model-selected block rides on them.
     _hybrid = _os.environ.get("ANSWER_MODE") == "hybrid"
+    _veto_fired = False
     # 2. Scam verdict: deterministic rules, scam-check mode only (no false
     # verdicts on innocent questions like price checks).
     import scam_rules
@@ -307,6 +313,7 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     candidate, injected = g.scrub(candidate, question)
     failures = g.check_constraints(candidate, composed.constraints)
     if failures["must_not_include"]:
+        _veto_fired = True
         warn_lines = []
         seen = set()
         for ch in composed.retrieved:
@@ -335,15 +342,34 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
                     warn_lines.append("• " + w)
         if warn_lines:
             candidate += "\n\nSafety rules for this step:\n" + "\n".join(warn_lines)
-    # 6. Hybrid mode: append the verbatim safety block (approved corpus text,
-    # manifest-hash-checked inside safety_block; failure just drops the block).
-    if _hybrid and not composed.refusal:
+    # 6. Hybrid mode: append the verbatim safety block. Uses the SAME backend
+    # as the paraphrase (local stays local) so the offline story holds. Per-line
+    # dedup drops only bullets already present; post-append constraint re-check
+    # drops the whole block if any corpus point trips a question constraint.
+    if (_hybrid and not composed.refusal and not _veto_fired
+            and composed.mode != "scam-check"):
         import extractive
+        if backend.startswith("local"):
+            _sel_fn = llama_answer
+        else:
+            _sel_fn = sail_answer
         block = extractive.safety_block(
-            composed, model_call=lambda msgs: sail_answer(msgs))
-        if block and not any(ln in candidate for ln in block.split("\n") if ln.startswith("- ")):
-            candidate = candidate + "\n\n" + block
-        backend += "+extractive_safety"
+            composed, model_call=lambda msgs: _sel_fn(msgs), question=question)
+        if block:
+            block_lines = block.split("\n")
+            kept = [ln for ln in block_lines
+                    if not (ln.startswith("- ")
+                            and ln in candidate)]
+            kept_block = "\n".join(kept).strip()
+            if kept_block and kept_block != "From the reviewed corpus, verbatim:":
+                merged = candidate + "\n\n" + kept_block
+                mfail = g.check_constraints(merged, composed.constraints)
+                if not mfail["must_not_include"]:
+                    candidate = merged
+                    backend += "+extractive_safety"
+                else:
+                    print("[answer_step] safety block dropped: constraint hit",
+                          flush=True)
     return {"answer": candidate, "backend": backend}
 
 

@@ -360,3 +360,41 @@ Analysis:
   states.
 
 p2_* result files in eval/extra/.
+## Addendum 10 — Extractive answers v1→v2 and Hybrid mode (item 2.1)
+
+Sequence: extractive v1 (chunk selection) → Kimi/DeepSeek inspection → GLM fix plan
+→ v2 (fail-closed, manifest checks, warning pinning) → clean re-runs → user decision
+→ hybrid → second Kimi/DeepSeek inspection (both FAIL) → all fixes applied → final run.
+
+Scores (topical slices T01+T02+T08+T10 = 105 items, FINAL policy gate):
+- Grounded paraphrase baseline (p2): 24/105
+- Pure extractive v2 (p5): 12/105 phrase-gate; 13/105 with extractive-aware judge
+- Hybrid v2 (p6, pre-inspection): 31/105
+- Hybrid v2 hardened (p7, post-inspection): 31/105 (T01 10, T02 4, T08 6, T10 11)
+
+Purity: extractive 105/105 by design (only deterministic refusal paths off-mode).
+Hybrid: remainder = deterministic refusal paths; backend labels now only claim
+"+extractive_safety" when a block actually shipped.
+
+Inspection findings fixed (hyb_kimi.md / hyb_dsv4.md, both FAIL → fixed):
+- safety_block now receives the real user question (was question-blind)
+- manifest check moved INTO render() post-pinning (pinning could bypass it)
+- manifest load failures logged loudly (was silent fail-open)
+- safety_block has independent corpus re-check (fresh load, normalized containment)
+- selection uses the same backend as the paraphrase (local stays local — offline story)
+- per-line dedup (was all-or-nothing substring check)
+- "+extractive_safety" label only when block actually appended
+- block skipped on scam-check mode and veto-replaced answers
+- post-append constraint re-check drops the whole block on any must_not_include hit
+- extractive veto path re-checks after bridge drop; fails closed to canned message
+- _validate_bridge digit check compares digit-sequences, not characters
+- _hybrid flag defined before any early-return branch
+
+Fairness note (reviewer M5): hybrid vs baseline uses the same questions, same judge,
+same model; delta attributable to the appended verbatim block. On-device note: the
+Android app's extractive/hybrid selection runs on the local engine (no INTERNET
+permission); host evals use Sail by design and are labeled as host-side.
+
+Result files: p5_* (extractive), p6_* (hybrid pre-fix), p7_* (hybrid final);
+j4/j5/j6/j7/j8/j9 judge logs. Commits: ce681eb (extractive v2), 8be8c71 (hybrid),
+this commit (inspection fixes).
