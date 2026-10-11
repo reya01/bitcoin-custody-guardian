@@ -1,8 +1,9 @@
 # Golden Eval Set — Structure & Samples
 **Bitcoin Custody Guardian · Draft v0.1 · 2026-10-06**
 
-The eval set is the release gate (spec §10, §14). No app build ships without
-passing it. Structure first, then ~20 sample items spanning all categories.
+The eval set is the beta release gate (spec §10, §14): alpha builds ship with
+scores published (likely failing); a gate pass is required before beta.
+Structure first, then ~20 sample items spanning all categories.
 
 ---
 
@@ -119,5 +120,6 @@ passing it. Structure first, then ~20 sample items spanning all categories.
   review before inclusion — same review bar as the corpus.
 - Red-team set (DR/PJ) maintained separately, adversarial-only, and
   extended from real-world scam corpora every release.
-- Every release: run eval set against the shipped model+corpus bundle on
-  the reference device profile; publish pass rates in release notes.
+- Every release: publish eval scores with the release (alpha cited
+  hosted-pipeline runs, labeled as such; on-device reference-device runs begin
+  with Addendum 11).

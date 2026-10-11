@@ -25,7 +25,7 @@
 **D. Product/process:**
 - Corpus frozen at 50 entries; hash published.
 - EVAL_RESULTS.md updated with beta numbers and addenda.
-- Signed APK, published sha256, all 63 tests (22 unit + 41 harness) green in CI.
+- Signed APK, published sha256, all tests green in CI. [corrected 2026-10-11: plan-time counts were 22+41; the check_claims-enforced counts are now 26 Kotlin + 44 Python = 70]
 - Android tagged (e.g., v1.0-beta); repo in maintenance mode (safety fixes only).
 - **Golden-vector exporter merged** (see §3) — the gate itself produces the artifact iOS needs.
 - Repo layout: `/shared` created holding corpus JSON, prompt templates, checklist JSON, eval sets, golden vectors; Android references it via a one-line sourceSet change. This is the *last* Android-touching change before the freeze.

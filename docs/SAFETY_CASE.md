@@ -25,8 +25,9 @@ eval) lands.
   (enforced by a single guarded entry point both buttons call); nothing is
   echoed or stored.
 - M4 (T4) Grounded answers only: retrieval over a 50-entry human-reviewed
-  corpus; schema fields are verbatim subsets of the approved entry text
-  (human-reviewed; sha256 manifest recorded in `prototype/key_points_manifest.json`);
+  corpus; `key_points`/`dos`/`donts` are verbatim subsets of the approved entry
+  text (human-reviewed; sha256 manifest in `prototype/key_points_manifest.json`);
+  `user_says` is retrieval-index-only, non-authoritative;
   hybrid mode appends a verbatim safety block; veto layer replaces answers that
   violate per-question constraints — note: the veto vocabulary (`mustNotInclude`)
   is defined per question by the compose step, but enforcement is **not yet

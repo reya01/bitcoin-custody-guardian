@@ -1,6 +1,17 @@
 # PRODUCT SPEC — Bitcoin Custody Guardian
-**Status:** Draft v0.1 — for iteration & brainstorm only. Not a commitment to build.
-**Last updated:** 2026-10-06
+**Status:** v0.1.0-alpha SHIPPED (signed APK, GitHub Releases); this spec tracks the implementation.
+**Last updated:** 2026-10-11
+
+> **Superseded decisions (2026-10-07/08):** the app shipped with a
+> **sideloaded, no-download model architecture** instead of the bundled-model
+> "Option A" below, and with **GitHub Releases direct-APK distribution** instead
+> of F-Droid-first. The alpha has NO INTERNET permission — it physically cannot
+> fetch its own model; the user sideloads the GGUF and verifies its SHA-256
+> in-app. Distribution path: GitHub Releases now (signed v0.1.0-alpha);
+> F-Droid at beta, after the planned legal review of corpus licensing;
+> iPhone later (docs/plans/iphone_plan.md, plan only). Sections below keep the
+> original decision history; where they say "bundled" or "F-Droid first", read
+> "sideloaded" and "GitHub Releases first".
 
 ---
 
@@ -10,8 +21,8 @@ A fully-local, privacy-first Android app that helps bitcoiners — especially
 non-technical people who *suddenly* find themselves custodians (inheritors,
 spouses, accidental recipients) — understand their self-custody setup and take
 safe next steps. All AI runs on-device. The app has no network access at all.
-It never asks for, stores, or transmits secret material (seed words, xpubs,
-passphrases).
+It never asks for, stores, or transmits secret material (seed words, private
+keys, passphrases). xpubs are public data and are not treated as secrets.
 
 **One-sentence pitch:** "A private, local AI expert in Bitcoin self-custody
 that lives entirely on your phone and helps you figure out what you're holding
@@ -105,9 +116,9 @@ target ≥8 GB RAM flagships; graceful degradation to a smaller model on 6 GB.
 - **Distribution-level:** a repackaged/modified APK. Mitigation: reproducible
   builds, F-Droid + independently verifiable GitHub releases, pinned signing
   key fingerprint published in the docs (§9).
-- **Model-supply-level:** poisoned/tampered GGUF weights. Mitigation: model is
-  bundled in the APK and covered by the reproducible-build verification;
-  weight SHA-256 published per release.
+- **Model-supply-level:** poisoned/tampered GGUF weights. Mitigation: the GGUF
+  is sideloaded by the user and verified in-app against the published SHA-256
+  (instructions shown in the model-missing state); hash published per release.
 
 ### Explicitly out of scope (documented honestly)
 - Protecting against a compromised phone/OS, keyloggers, or screen recording.
@@ -126,7 +137,7 @@ MLC/TVM GPU-compiled), **SmolChat** (Apache-2.0, Kotlin-native, small models),
 | Practice | Adopted from | Our adaptation |
 |---|---|---|
 | llama.cpp via GGUF as the inference core | PocketPal, ChatterUI, SmolChat | Bundled JNI/Kotlin binding; no remote backend support *by design* (ChatterUI's remote mode is the anti-pattern for us) |
-| Model selection & RAM floors per device tier | PocketPal, AI Edge Gallery allowlist | Bundled model only; device RAM gate at startup with clear messaging |
+| Model selection & RAM floors per device tier | PocketPal, AI Edge Gallery allowlist | One pinned, sideloaded, hash-verified model; device RAM gate with clear messaging |
 | Q4_K_M default quant, Q8 for reasoning-heavy | community consensus (multiple sources) | Q4_K_M base; Q8 build for 12 GB devices |
 | Per-conversation params, context window discipline | PocketPal | Hard context budget (see §8) to keep RAM bounded |
 | Offline claim "nothing leaves the device" | PocketPal/Enclave docs | Upgraded from *policy* to *architecture*: no INTERNET permission |
@@ -161,8 +172,8 @@ The model is commodity; the corpus is the moat.
 - **Corpus curation can run as a long-term Sail flex GLM-5.3 job:** batch
   drafting of plain-language rewrites + risk tags, then human review (you) —
   flex tier is exactly right for this slow, cost-insensitive work.
-- **In-app:** bundled at build time (no download = no leak channel and no
-  malicious-update vector). Size target ≤150 MB.
+- **In-app:** the model is sideloaded by the user (no download code = no leak
+  channel and no malicious-update vector). APK carries app + corpus only.
 
 ## 8. Architecture (high level)
 
@@ -177,7 +188,7 @@ The model is commodity; the corpus is the moat.
 ├────────────────────────────────────────────────┤
 │ Grounded Answerer:                             │
 │   • local retrieval over corpus (BM25+embed)   │
-│   • llama.cpp (JNI) with GGUF model, bundled   │
+│   • llama.cpp (JNI), sideloaded hash-verified GGUF │
 │   • forced citation format; refusal template   │
 │     when retrieval confidence is low           │
 ├────────────────────────────────────────────────┤
@@ -193,9 +204,11 @@ NO INTERNET PERMISSION. NO exported components. NO analytics.
 ```
 
 **Model strategy (initial):**
-- Primary: **Qwen3 4B**-class or **Gemma 4 E2B/E4B** (Apache-family license),
-  Q4_K_M GGUF, ~1.5–3 GB — verified in the 2026-07 landscape as the sweet
-  spot on 8 GB flagships; thinking-mode capped for latency.
+- Primary (SHIPPED): **Qwen3 1.7B Q4_K_M** (~1.1 GB, sideloaded, hash-verified
+  in-app) — runs on-device today. [updated 2026-10-11]
+- Candidate for the 8GB-phone floor test: **Qwen3 4B**-class or
+  **Gemma 4 E2B/E4B** (Apache-family license), Q4_K_M GGUF, ~1.5–3 GB —
+  thinking-mode capped for latency.
 - Alternate: **Phi-4-mini** (MIT) if license cleanliness is prioritized
   (Gemma terms have redistribution quirks; Apache/MIT models are cleaner for
   bundling).
@@ -208,8 +221,9 @@ constrained format beats the same model asked an open-ended question."
 
 ## 9. Distribution & Supply Chain
 
-1. **F-Droid first** (builds from our source on their servers = the strongest
-   third-party verification), then GitHub Releases with
+1. **GitHub Releases first** (v0.1.0-alpha shipped there, signed), then F-Droid
+   at beta (builds from our source on their servers = the strongest
+   third-party verification; awaits the corpus legal review) with
    `AllowedAPKSigningKeys` pinning so users can verify developer-signed
    reproducible APKs.
 2. **Reproducible builds** from day one (F-Droid docs are explicit about the
@@ -224,7 +238,7 @@ constrained format beats the same model asked an open-ended question."
    in-app fetch (that would require INTERNET permission — disallowed).
    Updates arrive through the distribution channel, verified by signature.
 
-## 9a. Size Strategy (Option A — everything bundled, one file, no downloads)
+## 9a. Size Strategy (SUPERSEDED: shipped as sideloaded model, no downloads in-app)
 
 **Constraints found (2026-10-06):**
 - Google Play: base module ≤500 MB, install-time asset packs ≤1.5 GB each,
@@ -295,13 +309,13 @@ constrained format beats the same model asked an open-ended question."
   inventory apps/devices → what each thing is → safe verification path →
   when to get human help).
 - Secret-material detector with warning overlay.
-- Device RAM gate + bundled model.
+- Device RAM gate + sideloaded, hash-verified model.
 - No-log default; optional encrypted session notes (opt-in, passphrase).
 
 ### v1.0
 - Jargon decoder (paste any custody sentence → plain-English rewrite with
   the original terms preserved).
-- Scam-checker mode: paste a message/email → systematic red-flag analysis
+- Scam-checker mode (SHIPPED in v0.1.0-alpha): paste a message → deterministic red-flag verdict
   grounded in corpus scam patterns ("recovery agents", seed-phrase phishing,
   fake support, urgency pressure).
 - Verify mode: read-only checklists for common setups (single-sig hardware
@@ -331,7 +345,7 @@ constrained format beats the same model asked an open-ended question."
 
 | # | Risk / question | Notes |
 |---|---|---|
-| 1 | **Bundled model size** (~1.5–3 GB APK) | RESEARCHED 2026-10-06 — DECIDED: Option A (bundle). See §9a "Size strategy". Play allows up to 4 GB cumulative install-time (base 500 MB + asset packs ≤1.5 GB each). GitHub release assets max 2 GiB per file → the primary APK must stay under ~2 GB. F-Droid has no hard published cap (ABI split "highly encouraged" for large APKs) but exact multi-GB practical limits still to be verified with F-Droid directly. |
+| 1 | **Model size** (~1.1 GB GGUF, sideloaded; APK stays small) | RESEARCHED 2026-10-06 — DECIDED: Option A (bundle). See §9a "Size strategy". Play allows up to 4 GB cumulative install-time (base 500 MB + asset packs ≤1.5 GB each). GitHub release assets max 2 GiB per file → the primary APK must stay under ~2 GB. F-Droid has no hard published cap (ABI split "highly encouraged" for large APKs) but exact multi-GB practical limits still to be verified with F-Droid directly. |
 | 2 | **Model license for bundling** | DECIDED 2026-10-06: use Apache/MIT-licensed models only — Qwen3 (Apache-2.0) primary; Phi-4-mini (MIT) alternate. No Gemma (Google use terms). |
 | 3 | **Small-model answer quality** on nuanced inheritance questions | Mitigated by router + grounded retrieval + refusal template; eval set is the gate. Research consensus: constrained small models beat open-ended small models. |
 | 4 | **Who is the "verified next step"?** | DECIDED 2026-10-06: the corpus includes BOTH categories and specific named recommendations, and it is deliberately opinionated where data supports it. Bitcoin-only companies only, ranked by verifiable track record: customer-service quality, proof of reserves, regulation/jurisdiction, longevity. Named examples for the "temporary custodian while heirs figure things out" path (e.g., River — US-based, strong customer service, proof of reserves) and for learning/support. Every named entry carries: why it's listed, what data supports the ranking, date ranked, and how to re-verify. No payments/affiliates/referral codes ever. |

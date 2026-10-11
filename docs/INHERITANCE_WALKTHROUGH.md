@@ -145,11 +145,12 @@ learn to open the wallet on a clean computer, verify you can see the balance
 money never passes through anyone's hands.
 
 Path B — **Move to a temporary custodian while you decide:**
-Some heirs want funds somewhere simpler *while the estate is sorted*. If you
-go this way, the corpus directory names Bitcoin-only companies with strong
-customer service, proof of reserves, and long track records — and states
-their criticisms honestly (custodial exchanges can freeze accounts during
-compliance reviews; nothing there is "yours" in the self-custody sense).
+Some heirs want funds somewhere simpler *while the estate is sorted*. The
+app's guides explain temporary-custodian options and their risks (custodial
+exchanges can freeze accounts during bankruptcy) — a curated T11 service
+directory with proof-of-reserves and track-record vetting is planned but not
+yet built, so verify any company independently before moving funds.
+Nothing there is "yours" in the self-custody sense.
 Moving funds means the keys *were* used, so this is only done once you have
 practiced recovering the wallet yourself. Never because a stranger suggested
 it.
@@ -219,7 +220,7 @@ inherited crypto, it is a scam if ANY of these are true:
 
 The safe answer is always: stop contact, do nothing, ask the app.
 You lose nothing by ignoring every such message. The app's Scam-Checker
-mode will analyze any message you paste — fully offline.
+mode analyzes any message you paste — fully offline.
 
 ---
 

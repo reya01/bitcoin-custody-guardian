@@ -1,3 +1,8 @@
+> **LATEST (2026-10-10): Addendum 10 — hybrid answer mode 31/105 topical FINAL.**
+> On-device eval = Addendum 11, pending (needs 8GB-phone hardware). Addenda below
+> are a chronological record; earlier interim numbers (e.g. the 23/40 progress-log
+> entry) are superseded by later re-grades and kept for history only.
+
 # T06 Walkthrough — End-to-End Answer Harness Eval Results
 
 **Answerer:** local llama.cpp llama-server (built from source with GGML_NATIVE=ON, CPU) running Qwen3-1.7B Q4_K_M GGUF (sha256-verified, unsloth mirror: b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897) at 127.0.0.1:9200, temperature 0, generous completion cap (1600; caps exist only to prevent runaway errors), /no_think.

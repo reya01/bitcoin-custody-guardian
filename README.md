@@ -71,8 +71,8 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
 |---|---|
 | APK signed, sha256 published | **Demonstrated** (v0.1.0-alpha, hash on the release page) |
 | No INTERNET permission; nothing leaves the phone | **Demonstrated** (manifest + Android OS enforcement) |
-| Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented**; logic unit-tested; end-to-end on-device suite pending |
-| Corpus verbatim integrity | **Demonstrated** (schema fields are verbatim subsets of the human-approved entry text, sha256 manifest recorded in `prototype/key_points_manifest.json`) |
+| Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented** (secret refusal + ScamRules active on every chat path; per-question veto vocabulary lands in the Android chat path in v0.2); logic unit-tested; end-to-end on-device suite pending |
+| Corpus verbatim integrity | **Demonstrated** (`key_points`/`dos`/`donts` are verbatim subsets of the human-approved entry text; `user_says` is retrieval-index-only and non-authoritative; sha256 manifest in `prototype/key_points_manifest.json`) |
 | Model GGUF sha256 published | **Demonstrated** (release notes) |
 | Reproducible two-machine build | **Claimed, not demonstrated** |
 | Production signing key on hardware token | **Claimed** (planned at beta) |
@@ -148,4 +148,26 @@ scheduled for measurement on a real 8 GB phone; the dev box cannot run the
 - [NOTICES](NOTICES) — third-party code & model notices
 
 ## License
-MIT — see [LICENSE](LICENSE).
+Code MIT — see [LICENSE](LICENSE). The corpus is licensed separately
+(original expression of facts from cited sources; per-source status in
+[docs/LICENSES.md](docs/LICENSES.md) and [docs/CORPUS_SOURCES.md](docs/CORPUS_SOURCES.md)).
+
+## Implementation notes
+- **Answer modes** (`ANSWER_MODE` env, prototype harness): default = grounded
+  paraphrase + veto; `hybrid` = paraphrase + appended verbatim safety block
+  (best measured: 31/105 topical FINAL); `extractive` = fail-closed verbatim
+  selection (12–13/105; kept for safety layering, not the default).
+- **Secret refusal**: both chat entry points route through a single guarded
+  detector (`MemoryGuards.detectSecret` — seed phrases, xprv-family, WIF);
+  the Answer button is disabled while a secret is present; raw 64-char hex is
+  deliberately not flagged (indistinguishable from txids).
+- **Banners**: permanent "this app can be wrong — verify before acting"
+  surfaces on the chat, walkthrough, and scam-check screens; chat is labeled
+  "alpha (experimental)".
+- **No OS backup**: `allowBackup="false"` — nothing in the app is included in
+  Android auto-backup.
+- **Claims guard**: `scripts/check_claims.py` fails CI if documented test
+  counts (26 Kotlin / 44 Python) or the 50-entry corpus count drift.
+- **Walkthrough progress** is stored per day + step-text prefix (stable across
+  app updates, no hash).
+

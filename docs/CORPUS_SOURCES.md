@@ -115,7 +115,8 @@ The deterministic guardrails (spec §8) check tags at runtime.
 ## 5. Corpus format & versioning
 
 - Packaged as a single compressed bundle in the APK (≤150 MB).
-- Entry = JSON: id, topic, title, plain, technical, tags, claims[], source{title,url-frozen,license,date}, corpus_version.
+- Entry = JSON: id, topic_ids, title, plain, technical, key_points, dos, donts,
+user_says (retrieval-index-only, non-authoritative), claims[], source_url, corpus_version, source{title,url-frozen,license,date}, corpus_version.
 - Retrieval index built at build time (BM25 + small embedding model, both local).
 - Every release ships: corpus version, changelog, SHA-256, signed release notes.
 - Stale marking: entries carry `verified_on` dates; UI shows staleness for >6 months.
@@ -166,7 +167,7 @@ adaptation, please open an issue and it will be relicensed CC-BY-SA or rewritten
 - **BIP authors** (bitcoin/bips repo) — the BIPs used directly in entries:
   **32, 39, 44, 49, 84** (the broader 43/86/174/329/371/327/341/342/380–382 set
   informed the corpus plan). BIPs carry **per-BIP license headers** (mostly BSD or
-  AGPL-3.0; BIP-32/39/44 BSD-3). Snapshots: docs/references/bip-00xx.txt.
+  AGPL-3.0; BIP-32 is BSD-2-Clause; BIP-39/44 per-header BSD). Snapshots: docs/references/bip-00xx.txt.
 - **Hardware-wallet vendors** — Ledger support, BitBox02/Shiftcrypto, Blockstream
   Jade, SeedSigner (MIT, github.com/SeedSigner/SeedSigner). Vendor support docs:
   **copyrighted, reference-only**. Snapshots: docs/references/{jade-setup-restore,
