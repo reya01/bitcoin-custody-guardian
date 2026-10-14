@@ -56,12 +56,46 @@ class ModelGateState(
     enum class Phase { WELCOME, COPYING, SUCCESS, ERROR }
 
     init {
-        refresh()
+        // Quick synchronous check first (record + size, no hashing); the one-time
+        // legacy migration (hash-verified copy) runs on IO when no internal
+        // model exists yet.
+        if (ModelLocations.resolve(context, manifest) != null) {
+            ready = true
+            phase = Phase.SUCCESS
+        } else {
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                val result = ModelLocations.migrateLegacyModel(context, manifest)
+                kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+                    when (result) {
+                        is ModelLocations.MigrationResult.Migrated,
+                        is ModelLocations.MigrationResult.AlreadyMigrated -> {
+                            ready = true
+                            phase = Phase.SUCCESS
+                        }
+                        is ModelLocations.MigrationResult.Tampered -> {
+                            errorText = "The previously sideloaded model failed its " +
+                                "security check (SHA-256 mismatch). Delete it and " +
+                                "import the current file from the GitHub release page."
+                            phase = Phase.ERROR
+                        }
+                        is ModelLocations.MigrationResult.NeedsSpace -> {
+                            errorText = "A security upgrade needs to move your model " +
+                                "into the app's private storage, but there is not " +
+                                "enough free space (${result.needed / (1024 * 1024)} MB " +
+                                "needed). Free up space and reopen the app, or import " +
+                                "the model file directly below."
+                            phase = Phase.ERROR
+                        }
+                        else -> { /* Noop/CopyFailed: stay on Welcome (import path) */ }
+                    }
+                }
+            }
+        }
     }
 
-    /** Re-checks for a usable model (internal record or legacy in-place verify). */
+    /** Re-checks for a usable model (called after import success). */
     fun refresh() {
-        ready = ModelLocations.isReady(context, manifest)
+        ready = ModelLocations.resolve(context, manifest) != null
         if (ready) phase = Phase.SUCCESS
     }
 

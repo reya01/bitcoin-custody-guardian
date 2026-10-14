@@ -28,6 +28,5 @@ object ModelPaths {
     fun modelFile(context: Context): File? {
         val manifest = manifest(context) ?: return null
         return ModelLocations.resolve(context, manifest)
-            ?: ModelLocations.verifyLegacyInPlace(context, manifest)
     }
 }

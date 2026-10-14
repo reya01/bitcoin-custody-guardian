@@ -80,6 +80,9 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
                         is MemoryGuards.Refusal -> {
                             secretWarning = guard.message
                             route = null
+                            // Clear the pasted secret from the field (the old
+                            // comment claimed this happened; now it does).
+                            query = ""
                         }
                         else -> {
                             secretWarning = null

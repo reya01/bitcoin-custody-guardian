@@ -18,13 +18,8 @@ import shutil
 import subprocess
 import sys
 import zipfile
-
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
-
-
-def sh(cmd):
-    return subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
 
 def die(msg):
@@ -50,11 +45,22 @@ def find_tool(name):
     return shutil.which(name)
 
 
+def find_java():
+    jh = os.environ.get("JAVA_HOME")
+    if jh and os.path.exists(os.path.join(jh, "bin", "java")):
+        return os.path.join(jh, "bin", "java")
+    return shutil.which("java")
+
+
 def main():
-    if len(sys.argv) < 2:
-        die("usage: make_bundle.py <tag> [signed-apk] [model-file]")
-    tag = sys.argv[1]
-    apk = sys.argv[2] if len(sys.argv) > 2 else \
+    global ALLOW_MISSING_TOOLS
+    args = [a for a in sys.argv[1:] if a != "--allow-missing-tools"]
+    ALLOW_MISSING_TOOLS = "--allow-missing-tools" in sys.argv
+    gates_skipped = False
+    if len(args) < 1:
+        die("usage: make_bundle.py [--allow-missing-tools] <tag> [signed-apk] [model-file]")
+    tag = args[0]
+    apk = args[1] if len(args) > 1 else \
         "app/build/outputs/apk/release/app-release.apk"
     if not os.path.exists(apk):
         die(f"APK not found: {apk}")
@@ -63,8 +69,9 @@ def main():
                   if m["id"] == manifest["defaultModelId"]), None)
     if entry is None:
         die("defaultModelId not found in manifest")
+    assert entry is not None
 
-    model = sys.argv[3] if len(sys.argv) > 3 else f"build/models/{entry['fileName']}"
+    model = args[2] if len(args) > 2 else f"build/models/{entry['fileName']}"
     if not os.path.exists(model):
         die(f"model not found: {model} (run ci/fetch_and_verify_models.sh)")
 
@@ -75,10 +82,19 @@ def main():
     if a_size != entry["sizeBytes"]:
         die(f"model size mismatch ({a_size} != {entry['sizeBytes']})")
 
-    # 2. cert pin (when apksigner available)
+    # build-tools wrappers (apksigner/aapt) need java on PATH
+    env = dict(os.environ)
+    java = find_java()
+    if java:
+        env["PATH"] = os.path.dirname(java) + os.pathsep + env.get("PATH", "")
+
+    # 2. cert pin — FAIL CLOSED unless --allow-missing-tools (dev-only)
     apksigner = find_tool("apksigner")
     if apksigner:
-        out = sh(f"'{apksigner}' verify --print-certs '{apk}'").stdout
+        out = subprocess.run(
+            [apksigner, "verify", "--print-certs", apk],
+            capture_output=True, text=True, env=env,
+        ).stdout
         fp = None
         for line in out.splitlines():
             if "sha-256" in line.lower() and ":" in line:
@@ -91,17 +107,28 @@ def main():
         pin = "".join(c for c in pin if c.isalnum()).lower()
         if fp != pin:
             die(f"APK signing cert {fp} != pinned {pin}")
+    elif ALLOW_MISSING_TOOLS:
+        print("WARN: apksigner not available; skipping cert pin check (dev-only)")
+        gates_skipped = True
     else:
-        print("WARN: apksigner not available; skipping cert pin check")
+        die("cert-pin gate requires apksigner (install Android build-tools, "
+            "or pass --allow-missing-tools for dev-only bundles)")
 
-    # 3. no-INTERNET gate (when aapt available)
+    # 3. no-INTERNET gate — FAIL CLOSED unless --allow-missing-tools (dev-only)
     aapt = find_tool("aapt")
     if aapt:
-        perms = sh(f"{aapt} dump permissions '{apk}'").stdout
+        perms = subprocess.run(
+            [aapt, "dump", "permissions", apk],
+            capture_output=True, text=True, env=env,
+        ).stdout
         if "android.permission.INTERNET" in perms:
             die("APK requests android.permission.INTERNET — core guarantee broken")
+    elif ALLOW_MISSING_TOOLS:
+        print("WARN: aapt not available; skipping INTERNET-permission gate (dev-only)")
+        gates_skipped = True
     else:
-        print("WARN: aapt not available; skipping INTERNET-permission gate")
+        die("no-INTERNET gate requires aapt (install Android build-tools, "
+            "or pass --allow-missing-tools for dev-only bundles)")
 
     # stage + zip (STORED: GGUF is entropy-dense; extraction = flash-speed copy)
     stage = "dist/stage"
@@ -137,6 +164,11 @@ def main():
         die(f"zip contents unexpected: {names}")
 
     shutil.rmtree(stage)
+    if gates_skipped:
+        # Sidecar marker: a dev bundle must never be mistaken for a gated one.
+        open(zip_path + ".DEVGATES-SKIPPED", "w").write(
+            "built with --allow-missing-tools; cert-pin/no-INTERNET gates NOT run\n")
+        print("BUNDLE BUILT WITH GATES SKIPPED (dev-only)")
     print(f"OK: {zip_path}")
     print(f"OK: dist/btcg-{tag}-SHA256SUMS.txt")
     for p in os.listdir("dist"):
