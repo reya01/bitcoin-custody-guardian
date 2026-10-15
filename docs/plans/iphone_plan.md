@@ -23,7 +23,7 @@
 - Model load + sha256 verify success ≥ 98% of reported sessions.
 
 **D. Product/process:**
-- Corpus frozen at 50 entries; hash published.
+- Corpus frozen (51 entries as of 2026-10-11) at beta; hash published.
 - EVAL_RESULTS.md updated with beta numbers and addenda.
 - Signed APK, published sha256, all tests green in CI. [corrected 2026-10-11: plan-time counts were 22+41; the check_claims-enforced counts are now 26 Kotlin + 44 Python = 70]
 - Android tagged (e.g., v1.0-beta); repo in maintenance mode (safety fixes only).

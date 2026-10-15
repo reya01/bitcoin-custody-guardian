@@ -1,0 +1,117 @@
+Snapshot of the Bitkey Learning Hub (bitkey.world/learning-hub) — captured 2026-10-11
+for corpus drafting. Copyrighted vendor content: REFERENCE-ONLY (facts extracted
+into the corpus entry as original expression; no verbatim reuse). Sections: index,
+self-custody-wallets, how-bitkey-works, bitkey-security, bitkey-privacy.
+
+=== INDEX ===
+Learning hub: Self-custody wallets (2 chapters), How Bitkey Works (8 chapters),
+Bitkey Security (4 chapters), Bitkey Privacy (4 chapters). Bitkey: "Resilient
+self-custody. Secured for life." seedless sovereignty, Private Multisig, reliable
+recovery, Inheritance. $250 USD. Specs: 66 x 60 x 13.6 mm, 79 g, Corian solid
+surface, OLED touchscreen, biometric fingerprint sensor, NFC, USB-C, up to 1 year
+battery.
+
+=== SELF-CUSTODY WALLETS ===
+Hardware wallets vs software wallets vs signers: "hardware wallet" combines two
+concepts — wallets (interact with the bitcoin network, must be online) and signers
+(hold private keys, produce signatures when prompted; never need to be online; don't
+know the balance). A signer alone isn't enough — wallet software is required.
+Bitkey combines hardware and software (wallet + signers) in one self-custody system.
+Hot vs cold: cold wallet = offline hardware signer holding keys offline; hot wallet
+= signer + wallet bundled in one internet-connected app (day-to-day transactions;
+storing wealth in them is considered risky since the only signing key is online).
+Bitkey combines a cold signer (the hardware) with hot-wallet flexibility (the app).
+
+=== HOW BITKEY WORKS ===
+Why no seed phrase: private keys are the core of self custody; a seed phrase is one
+way of thinking about recovery that introduces more problems than it solves. Seed
+phrase = 12- or 24-word backup; easy for the owner to recover and equally easy for
+anyone else. Lost, stolen, trashed, burned; deters people who don't trust themselves
+to store one phrase forever. Single point of failure.
+Multisig: singlesig = all trust in one powerful key (a prime target). Bitkey = 2-of-3
+multisig: three keys protect the money — one on the mobile device, one in the
+hardware device, one held on the Bitkey server. Two of three needed to sign. You
+hold two, so you can always move funds without Bitkey; Bitkey can't move funds
+without you. Server key used for recovery scenarios and opt-in "Transfer without
+hardware" (spend up to a set daily limit). Key distribution enables recovery without
+a seed phrase and enables passing bitcoin to beneficiaries.
+Phone loss: use hardware key (fingerprint-protected) + Bitkey server to regain
+access. Download app on new phone, sign in to cloud account (Google Drive or
+iCloud), unlock hardware, tap to decrypt the encrypted app-key backup. Backup is
+encrypted; only the unlocked physical device can decrypt it. If cloud backup is also
+lost: hardware key + server recover funds, but a new wallet with three new keys is
+needed to sweep funds into; 7-day security waiting period with notifications via
+SMS/email/app; then approve the sweep; network fee applies.
+Hardware loss: app key + Bitkey server key set up a new hardware device; order new
+hardware, pair, 7-day waiting period with notifications, then approve the sweep;
+network fee.
+Both lost: Recovery Contacts — people you know and trust who verify your request.
+They help create an encrypted backup of the mobile key without ever accessing keys,
+balance, or transactions. You share a code with them; their only job is to confirm
+you are you; they hold their own encryption key (not your spending key) and can
+never access your wallet.
+What if Bitkey goes down: Emergency Exit Kit (EEK) — encrypted app key in PDF form,
+generated at setup, stored in your cloud account. You always control two private
+keys without relying on Block. One key on the hardware (communicates with
+third-party software over NFC); the other in the EEK PDF. Download the PDF, decrypt
+using the hardware, create and sign with both keys. Open-source software to automate
+this is provided (QR code in the EEK); you may build your own.
+Inheritance: add a beneficiary in the app; beneficiary needs their own Bitkey app +
+hardware. Until a claim is processed the beneficiary has no access to keys, bitcoin,
+or wallet info. Claim initiates a 6-month security waiting period; Bitkey attempts
+to notify the primary user (push/email/SMS); the primary user can cancel while
+active. After expiry the claim is processed: the app key was encrypted at setup so
+ONLY the beneficiary can decrypt it; Bitkey holds the encrypted version but cannot
+unlock it; it delivers the encrypted key and co-signs with the server key. Avoids
+seed-phrase sharing pitfalls (insecure, reveals balances) and lost/misunderstood
+written instructions.
+
+=== BITKEY SECURITY ===
+Multi-layered approach; aims to eliminate single points of failure; accidents and
+mistakes shouldn't mean losing bitcoin forever. Built in the open; app is open
+source. Core: 2-of-3 multisig — no single key can move funds alone; raises the cost
+and technical bar versus singlesig (where the seed phrase alone can suffice).
+Block, Inc. track record: company behind Square and Cash App; 2020 open-sourced
+Subzero (HSM-based custodial solution) used for Cash App customer balances and
+Block's treasury. Customer server keys reside in an AWS Nitro Enclave (hardware-
+isolated secure execution); code deployment requires approval from multiple
+engineers in a dedicated deployer group and hardware-token authentication.
+Hardware key: generated and stored completely offline; protected by secure enclave;
+requires fingerprint; can't be unlocked by someone else. Contrast: a singlesig
+wallet can be breached with PIN/passphrase + physical access; Bitkey needs biometrics
+AND a second key.
+App key: second key in your possession; exists in the mobile app and encrypted in
+your personal cloud account (for phone-loss recovery); Bitkey servers can never
+access it (it's in YOUR cloud); useless without the unlocked hardware. The app
+manages money, sets security/spending rules, starts recovery; cannot sign payments
+over the set limit without hardware.
+Server key: held for you on Bitkey servers; helps recover money if phone/hardware/
+both lost; co-signs app-key payments up to the set limit (opt-in feature). It can't
+move money by itself and can't authorize recovery without your hardware or app key.
+Resides in AWS Nitro Enclave.
+
+=== BITKEY PRIVACY ===
+No KYC required, no biometrics stored, no customer support authorizing actions;
+cryptographic keys verify actions. Recovery Contacts let your personal network verify
+recovery requests without Bitkey intervening. Shares some privacy issues with other
+hardware wallets and collaborative custody (e-commerce platform, shipping, comms
+channels) — except most collaborative providers require full KYC and/or biometric
+support approval. Improvements: accepts bitcoin payment; ship to thousands of
+third-party pickup points instead of a home address; novel cryptography.
+Pickup points: buy on bitkey.world, ship to FedEx pickup points (U.S.), Dollar
+General, Albertsons, Kroger, ~9,000 Walgreens. Paying with bitcoin + pickup point:
+only an email address and a pickup name required.
+Private balance/history: past collaborative custody services could see every past
+and future transaction (3rd-party signers holding a key). Chain Code Delegation
+(bitcoin improvement by former/current Bitkey engineers) fixes this for any
+collaborative provider/multisig implementing it: cosigners participate in recovery
+and spending limits without learning unrelated transactions or balances. (3rd-party
+keyholders still see transactions requiring their participation.)
+Data collected: transparent about what/why/protection/choices. Hardware shipping
+requires address/billing info; buying with bitcoin avoids billing info; pickup point
+avoids address. Security notifications via email; optional SMS. Strong controls: 2FA
+on production accounts, detection/response, dual-control requiring multiple
+engineers. Co-authored a BIP that all multisig/collaborative solutions can adopt to
+shield customer balances/transactions, and implemented it. Recovery co-signing gives
+a momentary view into wallet balance; not logged or stored; working on a feature to
+let anyone verify servers don't log. Privacy notice: bitkey.world/en-US/legal/privacy-notice.

@@ -97,7 +97,8 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   offline. **39/39** JVM unit tests and **44/44** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
-- **Curated corpus** of 50 reviewed entries across 12 topics, drafted from
+- **Curated corpus** of 51 entries (50 human-reviewed; the new Bitkey entry
+  awaits approval) across 12 topics, drafted from
   designated references (Mastering Bitcoin 3rd ed., Lopp's security index,
   River, BTC Guide, BTC Sessions, Casa, bitcoin.org) with per-source license
   discipline — Mastering Bitcoin is CC-BY-SA 4.0; the per-source status for
@@ -206,7 +207,7 @@ Code MIT — see [LICENSE](LICENSE). The corpus is licensed separately
 - **No OS backup**: `allowBackup="false"` — nothing in the app is included in
   Android auto-backup.
 - **Claims guard**: `scripts/check_claims.py` fails CI if documented test
-  counts (39 Kotlin + 44 Python) or the 50-entry corpus count drift.
+  counts (39 Kotlin + 44 Python) or the 51-entry corpus count drift.
 - **Walkthrough progress** is stored per day + step-text prefix (stable across
   app updates, no hash).
 

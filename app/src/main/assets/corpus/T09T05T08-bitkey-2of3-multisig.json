@@ -1,0 +1,139 @@
+{
+  "id": "T09T05T08-bitkey-2of3-multisig",
+  "topic_ids": [
+    "T09",
+    "T05",
+    "T08"
+  ],
+  "title": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+  "level": "intermediate",
+  "risk_class": "collaborative-custody",
+  "plain": "Bitkey is a self-custody bitcoin wallet from Block, Inc., the company behind Square and Cash App, that replaces the traditional seed phrase with a 2-of-3 multisig design. Instead of one master key, three keys protect the funds: one generated and stored on the hardware device, one held in the mobile app, and one held on Bitkey's servers. Any two of the three keys are required to move money. Because the user holds two of the keys (the hardware key and the app key), funds can always be moved without Bitkey's participation, and Bitkey cannot move funds on its own.\n\nEach key has a distinct job. The hardware key is generated and stored completely offline, is protected by a secure enclave, and requires the owner's fingerprint to unlock. The app key lives in the mobile app and as an encrypted backup in the user's own cloud account (Google Drive or iCloud); Bitkey's servers can never access that backup, and the app key alone cannot sign payments above a set limit without the hardware. The server key, held by Bitkey in an AWS Nitro Enclave, can co-sign app-key payments up to the set daily limit if the user opts in to 'Transfer without hardware', and it participates in recovery, but it cannot move money by itself and cannot authorize recovery without the user's hardware or app key.\n\nBecause there is no seed phrase, recovery works through key replacement rather than phrase restoration. If you lose your phone, download the app on a new phone, sign in to your cloud account, unlock the hardware device, and tap to decrypt the encrypted app-key backup. Only the unlocked physical device can decrypt that backup. If the hardware is lost, the app key and the server key are used to pair a new hardware device, after a 7-day security waiting period with notifications sent by SMS, email, and the app; a network fee applies when funds are swept to the new wallet. If the cloud backup is lost as well, the hardware key plus the server key can still recover the funds, but a new wallet with three new keys must be created to sweep the funds into, again after the 7-day waiting period. If both the phone and the hardware are lost, Recovery Contacts — people you know and trust — verify your identity with a shared code and help create a new encrypted backup of the mobile key; they never gain access to your keys, balance, or transactions. If Bitkey itself becomes unavailable, the Emergency Exit Kit, a PDF generated at setup and stored in your cloud account, contains the encrypted app key; the hardware device decrypts it over NFC, and open-source software can then coordinate signing with both of your keys.\n\nBitkey also offers an inheritance feature. A beneficiary is added in the app, and the beneficiary needs their own Bitkey app and hardware device. Until a claim is processed, the beneficiary has no access to keys, bitcoin, or wallet information. A claim starts a 6-month security waiting period during which Bitkey attempts to notify the primary user by push, email, and SMS, and the primary user can cancel the claim while it is active. After the waiting period, Bitkey delivers the app key — which was encrypted at setup so that only the beneficiary can decrypt it — and co-signs with the server key.\n\nOn privacy, Bitkey requires no KYC, stores no biometrics, and has no customer support staff authorizing actions; cryptographic keys verify actions instead. Orders can be shipped to third-party pickup points such as FedEx locations, Dollar General, Albertsons, Kroger, and about 9,000 Walgreens stores in the United States, and paying with bitcoin plus a pickup point requires only an email address and a pickup name. A technique called Chain Code Delegation, co-developed by Bitkey engineers as a bitcoin improvement proposal, lets the third-party keyholder participate in recovery and spending limits without learning your unrelated transactions or balances, though it still sees transactions that require its participation.\n\nKeep the honest limitations in view. Do not assume Bitkey is trustless self-custody: the server key makes it a collaborative design, and you rely on Block, Inc. to operate its key honestly. The product costs money ($250 USD at the time of this snapshot), and everyday use, recovery, and inheritance depend on Block's app and servers remaining available. Keep access to the email address and phone number tied to your wallet, because recovery and inheritance notifications are sent through those channels. Do not treat email and SMS notifications as guaranteed, because losing those channels means missing delay-period warnings. Store the Emergency Exit Kit PDF in your cloud account and keep access to it, because it is your path to your funds if Bitkey becomes unavailable. If you intend to use the inheritance feature, add a beneficiary in the app and make sure they have their own Bitkey app and hardware device. Do not rely on the inheritance feature for immediate access: the claim includes a 6-month waiting period, and until it is processed the beneficiary has no access to keys, bitcoin, or wallet information. Do not enable 'Transfer without hardware' unless you accept that the server key can co-sign app payments up to your set daily limit.",
+  "technical": "Bitkey combines a cold signer (the hardware device, which holds keys offline, never needs to be online to sign, and does not know the wallet balance) with hot-wallet flexibility (the mobile app); a signer alone is not enough, because wallet software is required to interact with the bitcoin network, and a purely hot wallet keeps its only signing key on an internet-connected device. The 2-of-3 multisig construction means no single key can move funds, which raises the cost and technical bar compared with singlesig, where knowledge of a seed phrase alone can suffice. The vendor's stated rationale for dropping the seed phrase is that a 12- or 24-word backup is a single point of failure that is as easy for anyone else to use as it is for the owner. The Bitkey mobile app is open source. Block, Inc. open-sourced Subzero, an HSM-based custodial solution, in 2020; it is used for Cash App customer balances and Block's treasury, which is relevant context for the company's operational track record. Customer server keys reside in an AWS Nitro Enclave, a hardware-isolated secure execution environment, and code deployments require approval from multiple engineers in a dedicated deployer group with hardware-token authentication. The hardware key is generated and stored completely offline and protected by a secure enclave; a singlesig wallet can be breached with a PIN or passphrase plus physical access, while spending with Bitkey requires biometrics and a second key. The app key is useless without the unlocked hardware device, and the app can set security and spending rules and start recovery but cannot sign payments over the set limit without hardware. The hardware measures 66 x 60 x 13.6 mm, weighs 79 g, has a Corian solid-surface body with an OLED touchscreen, a biometric fingerprint sensor, NFC, USB-C, and a battery rated for up to one year.\n\nThe Emergency Exit Kit is a PDF generated at setup that contains the encrypted app key and is stored in the user's cloud account; the hardware device communicates with third-party software over NFC to decrypt it, a QR code in the kit links to open-source software that automates creating and signing with both user-held keys, and users may build their own, so the owner always controls two private keys without relying on Block. Recovery Contacts hold their own encryption key rather than the owner's spending key, so their participation verifies identity without granting them wallet access. During inheritance, Bitkey holds the encrypted app key but cannot unlock it; after the 6-month waiting period it delivers the encrypted key and co-signs with the server key, which avoids the pitfalls of seed-phrase sharing (insecure and reveals balances) and of written instructions that can be lost or misunderstood.\n\nOn privacy engineering, no KYC is required and no biometrics are stored; actions are verified by cryptographic keys rather than by customer support staff. Chain Code Delegation, a bitcoin improvement co-authored by Bitkey engineers that any multisig or collaborative provider can adopt, lets a cosigner participate in recovery and spending limits without learning unrelated transactions or balances, though the third-party keyholder still sees transactions that require its participation. Recovery co-signing gives the server a momentary view into the wallet balance, which Bitkey states is not logged or stored, and the company says it is working on a feature that would let anyone verify that its servers do not log. Compared with most collaborative-custody providers, which require full KYC and/or biometric support approval, Bitkey's remaining privacy exposure is mainly the e-commerce platform, shipping, and communications channels; hardware shipping requires address and billing information, while paying with bitcoin avoids billing information and using a pickup point avoids a home address.",
+  "claims": [
+    {
+      "claim": "Bitkey uses a 2-of-3 multisig model in which one key is held on the mobile device, one in the hardware device, and one on the Bitkey server, and two of the three are needed to sign.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The user holds two of the three keys, so funds can always be moved without Bitkey, and Bitkey cannot move funds without the user.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Bitkey does not use a seed phrase; its recovery model relies on key distribution, encrypted backups, and replacement devices instead.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Phone-loss recovery uses the hardware key plus the Bitkey server: the user signs in to a cloud account (Google Drive or iCloud) and taps the unlocked hardware device to decrypt the encrypted app-key backup.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Hardware-loss recovery pairs a new device using the app key and server key, then applies a 7-day security waiting period with SMS/email/app notifications before a sweep that incurs a network fee.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "If both phone and hardware are lost, Recovery Contacts verify the owner's identity with a shared code and help create an encrypted backup of the mobile key without ever accessing keys, balance, or transactions.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The Emergency Exit Kit is a PDF generated at setup containing the encrypted app key; it is stored in the user's cloud account and, combined with the hardware device over NFC and open-source software, allows the owner to control two private keys without relying on Block.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The inheritance feature requires the beneficiary to have their own Bitkey app and hardware, imposes a 6-month security waiting period during which the primary user can cancel, and delivers an app key encrypted at setup so only the beneficiary can decrypt it.",
+      "source": "Bitkey Learning Hub — How Bitkey Works (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The hardware key is generated and stored completely offline, is protected by a secure enclave, and requires a fingerprint to unlock.",
+      "source": "Bitkey Learning Hub — Bitkey Security (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The app key exists in the mobile app and as an encrypted backup in the user's personal cloud account, which Bitkey servers can never access.",
+      "source": "Bitkey Learning Hub — Bitkey Security (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The server key resides in an AWS Nitro Enclave, cannot move money by itself, and cannot authorize recovery without the user's hardware or app key; code deployments require multiple-engineer approval with hardware-token authentication.",
+      "source": "Bitkey Learning Hub — Bitkey Security (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Block, Inc., the company behind Square and Cash App, open-sourced its Subzero HSM-based custodial solution in 2020.",
+      "source": "Bitkey Learning Hub — Bitkey Security (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Bitkey requires no KYC, stores no biometrics, and verifies actions with cryptographic keys rather than customer support approval.",
+      "source": "Bitkey Learning Hub — Bitkey Privacy (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Chain Code Delegation, a bitcoin improvement co-authored by Bitkey engineers, lets a third-party cosigner participate in recovery and spending limits without learning unrelated transactions or balances.",
+      "source": "Bitkey Learning Hub — Bitkey Privacy (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Bitkey orders can ship to third-party pickup points (FedEx locations, Dollar General, Albertsons, Kroger, and roughly 9,000 Walgreens stores in the U.S.), and paying with bitcoin plus a pickup point requires only an email address and a pickup name.",
+      "source": "Bitkey Learning Hub — Bitkey Privacy (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Recovery co-signing gives Bitkey's server a momentary view of the wallet balance, which the company states is not logged or stored.",
+      "source": "Bitkey Learning Hub — Bitkey Privacy (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "Bitkey pairs a cold signer (the offline hardware device) with the flexibility of a hot wallet (the mobile app), while a purely hot wallet keeps its only signing key on an internet-connected device.",
+      "source": "Bitkey Learning Hub — Self-custody wallets (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    },
+    {
+      "claim": "The Bitkey hardware costs $250 USD and has an OLED touchscreen, biometric fingerprint sensor, NFC, USB-C, and up to a one-year battery.",
+      "source": "Bitkey Learning Hub — Index (bitkey.world/learning-hub, snapshot 2026-10-11)"
+    }
+  ],
+  "warnings": [
+    "Collaborative-custody element: Bitkey's server holds one of the three keys, so the user relies on Block, Inc. to operate that key honestly and to keep its infrastructure secure; this is not fully independent self-custody.",
+    "Paid, company-dependent product: the hardware cost $250 USD at the snapshot date, and everyday use, recovery, and inheritance features depend on Block's app and servers remaining available.",
+    "Notification-channel reliance: recovery and inheritance delay periods notify via email, SMS, and push; losing access to those channels can mean missing warnings, including the chance to cancel an inheritance claim.",
+    "Opt-in spending without hardware: when 'Transfer without hardware' is enabled, the server key co-signs app payments up to a set daily limit, weakening the property that every spend requires the hardware device.",
+    "Snapshot-dated facts: pricing, waiting-period lengths, pickup-point availability, and feature details reflect the vendor's learning hub as captured 2026-10-11 and may change; verify against current Bitkey documentation."
+  ],
+  "source_title": "Bitkey Learning Hub (bitkey.world)",
+  "source_url": "https://bitkey.world/learning-hub",
+  "notes_for_reviewer": "Drafted from a vendor marketing snapshot of the Bitkey Learning Hub (captured 2026-10-11). All prose is original expression of extracted facts; no sentences were reused from the source. Vendor-neutral policy applied: no rankings, no marketing adjectives, and honest treatment of the collaborative-custody element (Block-held server key), the $250 price, dependence on Block's app/server availability, and reliance on email/SMS notification channels. Time-sensitive facts (price, 7-day and 6-month waiting periods, pickup-point list, 'Transfer without hardware' details) should be re-verified against current Bitkey documentation before this entry leaves draft. Verbatim rule: every key_points/dos/donts item is a full-sentence substring of 'plain' (none drawn from 'technical'), so the sha256 manifest check should pass. Suggested filename: corpus/T09-bitkey-2of3-multisig-recovery.json. Topic rationale: T09 vendor product profile; T05 2-of-3 multisig and inheritance mechanics; T08 seedless recovery paths. Vendor privacy notice for reference: https://bitkey.world/en-US/legal/privacy-notice.",
+  "corpus_version": "0.3.0-draft",
+  "reviewed": false,
+  "key_points": [
+    "Instead of one master key, three keys protect the funds: one generated and stored on the hardware device, one held in the mobile app, and one held on Bitkey's servers.",
+    "Because the user holds two of the keys (the hardware key and the app key), funds can always be moved without Bitkey's participation, and Bitkey cannot move funds on its own.",
+    "Because there is no seed phrase, recovery works through key replacement rather than phrase restoration.",
+    "If the hardware is lost, the app key and the server key are used to pair a new hardware device, after a 7-day security waiting period with notifications sent by SMS, email, and the app; a network fee applies when funds are swept to the new wallet.",
+    "Until a claim is processed, the beneficiary has no access to keys, bitcoin, or wallet information.",
+    "A claim starts a 6-month security waiting period during which Bitkey attempts to notify the primary user by push, email, and SMS, and the primary user can cancel the claim while it is active.",
+    "On privacy, Bitkey requires no KYC, stores no biometrics, and has no customer support staff authorizing actions; cryptographic keys verify actions instead.",
+    "The server key, held by Bitkey in an AWS Nitro Enclave, can co-sign app-key payments up to the set daily limit if the user opts in to 'Transfer without hardware', and it participates in recovery, but it cannot move money by itself and cannot authorize recovery without the user's hardware or app key."
+  ],
+  "dos": [
+    "If you lose your phone, download the app on a new phone, sign in to your cloud account, unlock the hardware device, and tap to decrypt the encrypted app-key backup.",
+    "Keep access to the email address and phone number tied to your wallet, because recovery and inheritance notifications are sent through those channels.",
+    "Store the Emergency Exit Kit PDF in your cloud account and keep access to it, because it is your path to your funds if Bitkey becomes unavailable.",
+    "If you intend to use the inheritance feature, add a beneficiary in the app and make sure they have their own Bitkey app and hardware device."
+  ],
+  "donts": [
+    "Do not assume Bitkey is trustless self-custody: the server key makes it a collaborative design, and you rely on Block, Inc. to operate its key honestly.",
+    "Do not treat email and SMS notifications as guaranteed, because losing those channels means missing delay-period warnings.",
+    "Do not rely on the inheritance feature for immediate access: the claim includes a 6-month waiting period, and until it is processed the beneficiary has no access to keys, bitcoin, or wallet information.",
+    "Do not enable 'Transfer without hardware' unless you accept that the server key can co-sign app payments up to your set daily limit."
+  ],
+  "user_says": [
+    "how does bitkey work without a seed phrase",
+    "what are bitkey's three keys",
+    "who holds the third key in a bitkey wallet",
+    "can bitkey or block move my bitcoin without me",
+    "what happens if i lose my bitkey hardware device",
+    "i lost my phone how do i get back into bitkey",
+    "lost both phone and hardware bitkey recovery contacts",
+    "what is the bitkey emergency exit kit",
+    "how long does bitkey inheritance take",
+    "can i cancel a bitkey inheritance claim",
+    "does bitkey require kyc or id verification",
+    "bitkey privacy pickup points chain code delegation",
+    "how much does the bitkey hardware cost",
+    "is bitkey real self custody or collaborative custody",
+    "bitkey transfer without hardware daily limit"
+  ],
+  "user_says_note": "retrieval-index-only; not authoritative content"
+}

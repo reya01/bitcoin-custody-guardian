@@ -1475,6 +1475,70 @@
 "entry": "Spotting investment scams (FTC)",
 "file": "T08-ftc-investment-scams.json"
 },
+"f36e70c313964ab0821230f3c5ab6a99c3479083a4175680510127976c31bcf5": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"4dd3b0e5b190663af28247fc1deaea3f85a007e33ff04e02965ddeb84438cf36": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"dda744f409fe96acee980e0b5725f5264707bcacc31caba6224a7954145b57a5": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"223f9198aef3943364c84aada5fd36127adfbe458e8622b2de6d4688baa887b6": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"6fe2a3bd6caf87ad5c07cc6e6c9264c93a09da56eb8f337efc24f9fdbffcf0a3": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"e46fe3945c26cc73e1ef5f569df40730556b2c08f7035d00568c5bb17cd234ab": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"8598e1719c9cdd4d61781741c0b8ec3337fd4c3992298adf16f05030e14bb442": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"d35f677f515d541e569657fd7acf5b466986e4125ff9a3d00f2a99b9d1dbe021": {
+"entry": "Bitkey (Block, Inc.): 2-of-3 multisig keys, seedless recovery, inheritance, and privacy",
+"file": "T09T05T08-bitkey-2of3-multisig.json"
+},
+"254db0528df78ee865bf56ff7ff94e3070c658120f5e14a92fee6d3a3856a1e2": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"a75dfd4a2acde39d6a7a116b79122291856e0861737fe3bf7d680f3ad410ce2d": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"d315952be7fddbee4a2d5f185e80dd2a94a5c8f609cbd57f7441054633619810": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"d77187433205fe5e5bcfe9d6596ea94c1167b4654ba5b3450d06bf477d6e4454": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"4093c333f1d3030cc7688cd0f239c64ae48bb376b4ead8e58310d440aa965953": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"904fcd37c132ef2eb3bc309fede956483a891a420c4f0891e1a2728909d84c1c": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"6cb43c056135900a90850ec5957da822a93cd52c23e891fb983823596b8228c8": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
+"0bf54ababe189e26041afc488e58b72dcfb983b589c217600a22dd8b32a0d1ba": {
+"entry": "Recognizing Bitcoin Scams: Phishing Texts to Fake Recovery",
+"file": "T10-recognizing-bitcoin-scams-phishing-texts-to-f.json"
+},
 "aa8b96f887372a62d2bd8ea99c81377b00878cf050676fb0476241f93cb81023": {
 "entry": "Sending Bitcoin Safely: Units, Fees, Confirmations, and Refusing Scam Scripts",
 "file": "T10-sending-bitcoin-safely-units-fees-confirmatio.json"
@@ -1506,5 +1570,37 @@
 "03c643e913b46b6ccf09735f5d153fdc1ff4ad5032a38eaafb11fc3c7f4ae7bd": {
 "entry": "Sending Bitcoin Safely: Units, Fees, Confirmations, and Refusing Scam Scripts",
 "file": "T10-sending-bitcoin-safely-units-fees-confirmatio.json"
+},
+"465e5b116715990b6f17cf7a5d645f051da3044190adcdb94264c0b61383f44c": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"2dcc07053b9cdc9ead9ef14a35f90987664abe887ff5c173c1cfc520edb5ad62": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"0397ecdd8077d42d924efb73280b8f25f745de042759ccdf23a3a79761d36488": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"0e96ec46e58075b2614bf91a2fed223855d5516ee90bbc721b5e32f04b16e635": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"ce050783e68fd9af5093f6ffad30843c417a685e1fa695636fcfb24900c2c206": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"23890c3438f0aa93726454fcf70721d338f526f2e53a329328bad03081d0fd85": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"5095c8ff819303718d036f04564d186b543d2cdf41dbd5c53a19fb3634ed94c2": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
+},
+"cce7a2f0a92763314f1e8a7d5524251aa56e7dc1c341faab666dc95909b467cd": {
+"entry": "Social-Engineering Scams: Romance, Fake Jobs, and Urgency Scripts",
+"file": "T10-social-engineering-scams-romance-fake-jobs-an.json"
 }
 }
