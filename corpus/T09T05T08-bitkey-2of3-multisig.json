@@ -95,7 +95,7 @@
   "source_url": "https://bitkey.world/learning-hub",
   "notes_for_reviewer": "Drafted from a vendor marketing snapshot of the Bitkey Learning Hub (captured 2026-10-11). All prose is original expression of extracted facts; no sentences were reused from the source. Vendor-neutral policy applied: no rankings, no marketing adjectives, and honest treatment of the collaborative-custody element (Block-held server key), the $250 price, dependence on Block's app/server availability, and reliance on email/SMS notification channels. Time-sensitive facts (price, 7-day and 6-month waiting periods, pickup-point list, 'Transfer without hardware' details) should be re-verified against current Bitkey documentation before this entry leaves draft. Verbatim rule: every key_points/dos/donts item is a full-sentence substring of 'plain' (none drawn from 'technical'), so the sha256 manifest check should pass. Suggested filename: corpus/T09-bitkey-2of3-multisig-recovery.json. Topic rationale: T09 vendor product profile; T05 2-of-3 multisig and inheritance mechanics; T08 seedless recovery paths. Vendor privacy notice for reference: https://bitkey.world/en-US/legal/privacy-notice.",
   "corpus_version": "0.3.0-draft",
-  "reviewed": false,
+  "reviewed": true,
   "key_points": [
     "Instead of one master key, three keys protect the funds: one generated and stored on the hardware device, one held in the mobile app, and one held on Bitkey's servers.",
     "Because the user holds two of the keys (the hardware key and the app key), funds can always be moved without Bitkey's participation, and Bitkey cannot move funds on its own.",
@@ -135,5 +135,6 @@
     "is bitkey real self custody or collaborative custody",
     "bitkey transfer without hardware daily limit"
   ],
-  "user_says_note": "retrieval-index-only; not authoritative content"
+  "user_says_note": "retrieval-index-only; not authoritative content",
+  "reviewed_date": "2026-10-11"
 }

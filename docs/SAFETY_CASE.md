@@ -24,9 +24,8 @@ eval) lands.
   WIF key input triggers an explicit refusal and guidance on EVERY chat path
   (enforced by a single guarded entry point both buttons call); nothing is
   echoed or stored.
-- M4 (T4) Grounded answers only: retrieval over a 51-entry corpus (50 human-reviewed; the new Bitkey entry
-  awaits approval),
-  corpus; `key_points`/`dos`/`donts` are verbatim subsets of the approved entry
+- M4 (T4) Grounded answers only: retrieval over a 51-entry corpus, all
+  human-reviewed; `key_points`/`dos`/`donts` are verbatim subsets of the approved entry
   text (human-reviewed; sha256 manifest in `prototype/key_points_manifest.json`);
   `user_says` is retrieval-index-only, non-authoritative;
   hybrid mode appends a verbatim safety block; veto layer replaces answers that

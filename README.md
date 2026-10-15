@@ -97,8 +97,7 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   offline. **39/39** JVM unit tests and **44/44** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
-- **Curated corpus** of 51 entries (50 human-reviewed; the new Bitkey entry
-  awaits approval) across 12 topics, drafted from
+- **Curated corpus** of 51 entries, all human-reviewed, across 12 topics, drafted from
   designated references (Mastering Bitcoin 3rd ed., Lopp's security index,
   River, BTC Guide, BTC Sessions, Casa, bitcoin.org) with per-source license
   discipline — Mastering Bitcoin is CC-BY-SA 4.0; the per-source status for
