@@ -76,6 +76,8 @@ for the full addenda trail):
 | Walkthrough strict | hosted pipeline (p2) | 19/40 | 2026-10-09 (Add. 9) |
 | Topical FINAL | hosted paraphrase (p2) | 24/105 | 2026-10-09 (Add. 9) |
 | Topical FINAL | hosted hybrid — paraphrase + verbatim safety block (p7) | 31/105 | 2026-10-10 (Add. 10) |
+| Topical FINAL | hosted hybrid + Bitkey corpus entry (p8sail) | 32/105 | 2026-10-11 (Add. 12) |
+| T06 walkthrough strict | hosted hybrid + Bitkey corpus entry (p8sail) | 35/40 | 2026-10-11 (Add. 12) |
 | Overall strict+semantic | hosted pipeline (p2) | 43/145 (~30%) | 2026-10-09 (Add. 9) |
 | Retrieval coverage | hosted pipeline | 84% (103/122)* | 2026-10-09 (Add. 9) |
 | On-device APK eval | **not yet measured** | — | pending (Addendum 11) |

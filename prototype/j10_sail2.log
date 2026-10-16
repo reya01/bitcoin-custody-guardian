@@ -1,0 +1,9 @@
+/opt/data/work/answerer/p8sail_T01.json - judging 25 failed items
+/opt/data/work/answerer/p8sail_T01.json strict 0/25; FINAL (policy gate) 9/25
+/opt/data/work/answerer/p8sail_T02.json - judging 30 failed items
+/opt/data/work/answerer/p8sail_T02.json strict 0/30; FINAL (policy gate) 5/30
+/opt/data/work/answerer/p8sail_T08.json - judging 23 failed items
+/opt/data/work/answerer/p8sail_T08.json strict 2/25; FINAL (policy gate) 7/25
+/opt/data/work/answerer/p8sail_T10.json - judging 24 failed items
+/opt/data/work/answerer/p8sail_T10.json strict 1/25; FINAL (policy gate) 11/25
+EXIT=0

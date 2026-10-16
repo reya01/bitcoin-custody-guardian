@@ -57,7 +57,7 @@ for fn in files:
             prompt += "- " + p + "\n"
         try:
             out = call_flex("zai-org/GLM-5.3", [{"role": "user", "content": prompt}],
-                            max_completion_tokens=32000)
+                            max_completion_tokens=32000, timeout_s=120)
             m = json.loads(out[out.find('{'):out.rfind('}')+1])
             sem = {}
             for j in m.get('judgements', []):

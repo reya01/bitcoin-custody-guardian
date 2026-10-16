@@ -128,7 +128,7 @@ def _strip_think(text: str) -> str:
     return text.strip()
 
 
-def llama_answer(messages: List[Dict[str, str]], timeout: int = 1500) -> str:
+def llama_answer(messages: List[Dict[str, str]], timeout: int = 300) -> str:
     url = LLAMA_SERVER_URL.rstrip("/") + "/v1/chat/completions"
     payload = {
         "model": "qwen3",
@@ -165,7 +165,7 @@ def sail_answer(messages: List[Dict[str, str]], timeout: int = 1200) -> str:
     for attempt in range(2):
         try:
             out = call_flex("zai-org/GLM-5.3", msgs,
-                            max_completion_tokens=16000, timeout_s=timeout)
+                            max_completion_tokens=32768, timeout_s=timeout)
             out = _strip_think(out)
             if out:
                 return out
