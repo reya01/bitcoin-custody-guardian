@@ -16,7 +16,7 @@ iOS work starts only when **all** of the following hold. Numbers are proposals �
 - Cold start ≤5s and first token ≤5s on a defined floor Android device.
 
 **Release hygiene:**
-- Signed APK, published sha256, EVAL_RESULTS.md current, all 63 tests (22 unit + 41 harness) green in CI.
+- Signed APK, published sha256, EVAL_RESULTS.md current, all 70 tests (26 unit + 44 harness) green [corrected 2026-10-11: plan-time counts 22+41; check_claims-enforced counts are now 26+44] in CI.
 - **Golden-vector exporter merged** (see §3) — the gate itself produces the artifact iOS needs.
 - Repo layout: `/shared` created holding corpus JSON, prompt templates, checklist JSON, eval sets, golden vectors; Android references it via a one-line sourceSet change. This is the *last* Android-touching change before the freeze.
 
