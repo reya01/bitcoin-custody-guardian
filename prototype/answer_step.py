@@ -50,6 +50,14 @@ FALLBACK_NOTE = (
     "were available for this question."
 )
 
+# Appended to the answer whenever backend "auto" falls back from the local
+# engine to the remote one — the downgrade must never be silent.
+DOWNGRADE_NOTE = (
+    "\n\n*(Note: the on-device answer engine did not respond, so this "
+    "answer came from the backup engine. The guidance is checked by "
+    "the same safety rules either way.)*"
+)
+
 
 def _chunks_block(retrieved: List[Dict]) -> str:
     if not retrieved:
@@ -233,9 +241,33 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
     if (_os.environ.get("ANSWER_MODE") == "extractive"
             and composed.mode != "scam-check" and not composed.refusal):
         import extractive
+
+        # Route the selector model call by backend. "llama" is local ONLY —
+        # an engine failure lands in extractive's fail-closed fallback with
+        # the engine-down note. "auto" tries local first, falls back to
+        # sail_answer, and marks the answer so DOWNGRADE_NOTE is appended on
+        # every return path below. "sail" (anything else) is remote, as before.
+        _downgraded = False
+        if backend == "llama":
+            model_call = llama_answer
+        elif backend == "auto":
+            def model_call(messages):
+                nonlocal _downgraded
+                try:
+                    return llama_answer(messages)
+                except LlamaServerError:
+                    _downgraded = True
+                    return sail_answer(messages)
+        else:
+            model_call = sail_answer
         res = extractive.extractive_answer(
             question, composed,
-            model_call=lambda msgs: sail_answer(msgs),
+            model_call=model_call,
+            fallback_note=(
+                "The on-device answer engine did not respond, so no answer "
+                "could be generated."
+                if backend == "llama" else None
+            ),
         )
         if res and res.get("answer"):
             candidate, _inj = g.scrub(res["answer"], question)
@@ -250,8 +282,12 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
                 if failures2["must_not_include"]:
                     # a verbatim point itself trips the constraint: fail closed
                     return extractive._fallback(composed)
+                if _downgraded:
+                    cand2 += DOWNGRADE_NOTE
                 return {"answer": cand2,
                         "backend": "extractive_veto_bridge_dropped"}
+            if _downgraded:
+                candidate += DOWNGRADE_NOTE
             return {"answer": candidate, "backend": res["backend"]}
     # 1c. Hybrid mode (ANSWER_MODE=hybrid): grounded paraphrase for coverage
     # (path 2 below) PLUS a verbatim safety block from extractive selection.
@@ -282,7 +318,13 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
             try:
                 body = llama_answer(messages) if backend in ("auto", "llama") else sail_answer(messages)
             except LlamaServerError:
+                if backend == "llama":
+                    # Local-only was requested: never silently go remote.
+                    raise
                 body = sail_answer(messages)
+                if backend == "auto":
+                    # Same visible downgrade disclosure as the main path.
+                    body += DOWNGRADE_NOTE
             candidate = verdict + "\n\n" + body.strip()
             backend = "scam_rules+" + backend
         elif backend == "sail":
@@ -298,11 +340,7 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
                 candidate = sail_answer(messages)
                 backend = "sail_glm53 (fallback: local engine unavailable)"
                 # Errors are acceptable; silent downgrades are not. Tell the user.
-                candidate += (
-                    "\n\n*(Note: the on-device answer engine did not respond, so this "
-                    "answer came from the backup engine. The guidance is checked by "
-                    "the same safety rules either way.)*"
-                )
+                candidate += DOWNGRADE_NOTE
     except Exception as e:  # every backend failed: say so, never improvise
         return {
             "answer": REFUSAL_ERROR["text"] + f"\n\n(Technical detail: {type(e).__name__})",

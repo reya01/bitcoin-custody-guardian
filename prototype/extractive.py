@@ -223,9 +223,14 @@ def render(sel: list, bridge: str, menu: list) -> tuple:
     return text, pinned
 
 
-def _fallback(composed) -> dict:
-    """Fail-closed fallback: canned message; never free-form, never remote."""
-    return {"answer": CANNED_LOCAL_UNAVAILABLE, "backend": "extractive_fallback"}
+def _fallback(composed, note=None) -> dict:
+    """Fail-closed fallback: canned message; never free-form, never remote.
+    `note` (only passed when the answer ENGINE itself failed) is appended so
+    the message says the on-device engine did not respond."""
+    text = CANNED_LOCAL_UNAVAILABLE
+    if note:
+        text = text + " " + note
+    return {"answer": text, "backend": "extractive_fallback"}
 
 
 def _point_ok(p: dict) -> bool:
@@ -294,7 +299,7 @@ def safety_block(composed, model_call, question: str = "") -> str:
         return ""
 
 
-def extractive_answer(question: str, composed, model_call) -> dict:
+def extractive_answer(question: str, composed, model_call, fallback_note=None) -> dict:
     try:
         menu = build_menu(composed)
         if not menu:
@@ -304,10 +309,17 @@ def extractive_answer(question: str, composed, model_call) -> dict:
              "content": "Return only the compact JSON object. No reasoning text."},
             {"role": "user", "content": build_selection_prompt(question, menu)},
         ]
-        raw = model_call(messages)
+        try:
+            raw = model_call(messages)
+        except Exception:
+            # the ENGINE failed (not a bad selection): say so precisely
+            return _fallback(composed, note=fallback_note)
         sel, bridge = parse_selection(raw, menu)
         if not sel:  # one retry, then fail closed
-            raw = model_call(messages)
+            try:
+                raw = model_call(messages)
+            except Exception:
+                return _fallback(composed, note=fallback_note)
             sel, bridge = parse_selection(raw, menu)
         if not sel:
             return _fallback(composed)

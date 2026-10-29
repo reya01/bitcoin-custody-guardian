@@ -310,6 +310,87 @@ class ErrorCommunicationTests(unittest.TestCase):
         self.assertNotIn("seed phrase is", out["answer"].lower())
 
 
+class TestBackendRouting(unittest.TestCase):
+    """DO NEXT round (2026-10-29): the extractive path and the scam-verdict
+    branch must honor backend=="llama" as LOCAL-ONLY — no silent remote
+    fallback — and "auto" downgrades must carry the visible DOWNGRADE_NOTE."""
+
+    def setUp(self):
+        import answer_step
+        self.answer_step = answer_step
+        self.orig = (answer_step.llama_answer, answer_step.sail_answer)
+
+    def tearDown(self):
+        (self.answer_step.llama_answer, self.answer_step.sail_answer) = self.orig
+
+    def test_extractive_llama_engine_down_fails_closed_with_note_and_never_goes_remote(self):
+        import extractive
+        calls = {"sail": 0}
+
+        def llama_down(messages, timeout=300):
+            raise self.answer_step.LlamaServerError("engine dead")
+
+        def sail_spy(messages, timeout=1200):
+            calls["sail"] += 1
+            return "should never be called"
+
+        self.answer_step.llama_answer = llama_down
+        self.answer_step.sail_answer = sail_spy
+        c = gc.compose("what is a seed phrase", CORPUS_DIR, top_k=3)
+        old_mode = os.environ.get("ANSWER_MODE")
+        os.environ["ANSWER_MODE"] = "extractive"
+        try:
+            out = self.answer_step.answer_step("what is a seed phrase", c, backend="llama")
+        finally:
+            if old_mode is None:
+                os.environ.pop("ANSWER_MODE", None)
+            else:
+                os.environ["ANSWER_MODE"] = old_mode
+        self.assertEqual(calls["sail"], 0, "local-only backend must never call the remote API")
+        self.assertEqual(out["backend"], "extractive_fallback")
+        self.assertIn("on-device answer engine did not respond", out["answer"])
+
+    def test_extractive_llama_garbage_output_fallback_has_no_engine_note(self):
+        # engine UP but returns garbage: the fallback must NOT claim the
+        # engine did not respond (precision of the error message)
+        old_mode = os.environ.get("ANSWER_MODE")
+        os.environ["ANSWER_MODE"] = "extractive"
+        try:
+            self.answer_step.llama_answer = lambda messages, timeout=300: "no json here at all"
+            self.answer_step.sail_answer = lambda messages, timeout=1200: "no json here at all"
+            c = gc.compose("what is a seed phrase", CORPUS_DIR, top_k=3)
+            out = self.answer_step.answer_step("what is a seed phrase", c, backend="llama")
+        finally:
+            if old_mode is None:
+                os.environ.pop("ANSWER_MODE", None)
+            else:
+                os.environ["ANSWER_MODE"] = old_mode
+        self.assertEqual(out["backend"], "extractive_fallback")
+        self.assertNotIn("on-device answer engine", out["answer"])
+
+    def test_scam_branch_llama_failure_never_falls_back_to_remote(self):
+        calls = {"sail": 0}
+
+        def llama_down(messages, timeout=300):
+            raise self.answer_step.LlamaServerError("engine dead")
+
+        def sail_spy(messages, timeout=1200):
+            calls["sail"] += 1
+            return "should never be called"
+
+        self.answer_step.llama_answer = llama_down
+        self.answer_step.sail_answer = sail_spy
+        c = gc.compose(
+            "someone asked for my seed phrase — is this a scam?", CORPUS_DIR, top_k=3
+        )
+        self.assertEqual(c.mode, "scam-check")
+        out = self.answer_step.answer_step(
+            "someone asked for my seed phrase — is this a scam?", c, backend="llama"
+        )
+        self.assertEqual(calls["sail"], 0, "local-only backend must never call the remote API")
+        self.assertEqual(out["backend"], "error_reported")
+
+
 class TestCorpusVendorNeutrality(unittest.TestCase):
     """External-review I7: no referrals, no affiliate params, no undated
     vendor rankings. Corpus text must stay neutral (spec §12 policy)."""
