@@ -94,6 +94,11 @@ object ModelImporter {
                     }
 
                     if (looksLikeGguf(head)) {
+                        // Write the peeked magic bytes FIRST (full-repo review
+                        // 2026-10-29, both reviewers): they were hashed and
+                        // counted but never written — the imported file was 4
+                        // bytes short yet passed size+sha256 and reported Ok.
+                        out.write(head, 0, headFill)
                         md.update(head, 0, headFill)
                         written += headFill
                         checkSize(written, entry)

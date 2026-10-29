@@ -29,18 +29,18 @@ eval) lands.
   text (human-reviewed; sha256 manifest in `prototype/key_points_manifest.json`);
   `user_says` is retrieval-index-only, non-authoritative;
   hybrid mode appends a verbatim safety block; veto layer replaces answers that
-  violate per-question constraints — note: the veto vocabulary (`mustNotInclude`)
-  is defined per question by the compose step, but enforcement is **not yet
-  wired** in the shipped Android chat path (currently an empty list); planned
-  v0.2. Honest refusals (no-answer-beats-wrong-answer); errors are explicit,
-  never silent.
+  violate safety constraints — shipped in commit 69f23f0 (`util/VetoRules.kt`):
+  a global negation-aware veto + scrub applies to every free-form model surface
+  (scam-check guidance and the extractive bridge); caller-supplied
+  `mustNotInclude` constraints are judged by the same rule. Honest refusals
+  (no-answer-beats-wrong-answer); errors are explicit, never silent.
 - M5 (T4/T1) Privacy by permission-absence: no INTERNET permission; the app
   physically cannot send anything anywhere; model sideloaded and
   sha256-verified by the user.
 - M6 (T5) Signed APK with published sha256; model GGUF hash published.
 
 ## 3. Evidence
-- Logic tests: 85 Kotlin + 44 Python (incl. corpus vendor-neutrality lint + model-import matrix).
+- Logic tests: 101 Kotlin + 48 Python (incl. corpus vendor-neutrality lint + model-import matrix).
 - Hosted-pipeline evals: EVAL_RESULTS.md addenda 1–10 (best: hybrid 31/105
   topical FINAL; T06 19/40 strict) — **hosted, not the shipped model**.
 - On-device eval (production JNI path, 145 items + danger/refusal suite):

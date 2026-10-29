@@ -8,19 +8,25 @@ package com.custodyguardian.util
  *
  * Deterministic only — the LLM never sits in a safety-critical path.
  *
- * Two phrase lists, two jobs (design review 2026-10-29, GLM-5.3):
+ * Two trigger sets, two jobs (full-repo review 2026-10-29, Kimi-K3 +
+ * DeepSeek-V4.1-Flash, GLM-5.3 synthesis):
  *  - DANGER_PHRASES (1:1 prototype parity): trigger the scrub WARNING
  *    injection. Fail-safe direction — an over-broad hit only adds a warning.
- *  - VETO_PHRASES (curated): trigger the veto (discard the whole free-form
- *    candidate). These are REWORDED variants of the prototype phrases so
- *    legitimate guidance ("enter your seed on your new hardware wallet")
- *    never vetoes — only website/online variants of the same danger do.
+ *  - VETO_PHRASES / VETO_PATTERNS (curated): trigger the veto (discard the
+ *    whole free-form candidate). Patterns use regex so "type your seed
+ *    PHRASE into the site" can't slip between string variants, and
+ *    on-device restore guidance ("enter your seed on your hardware wallet")
+ *    still never matches — only website/online objects do.
  *
- * A veto phrase is a violation only when its segment is affirmative:
- *  - no negation token within 5 tokens before the phrase (word-boundary
- *    matched, so "another" never matches "not"), and
- *  - no reported-speech marker ("asks you to", "tells you to", …) in the
- *    same window — scam-check output legitimately describes scammer asks.
+ * A veto trigger is a violation only when its clause is affirmative:
+ *  - no negation token within the phrase's clause (negation windows reset at
+ *    clause boundaries , ; : — –) and within 5 tokens before the phrase
+ *    (word-boundary matched, so "another" never matches "not"), and
+ *  - no reported-speech marker before the phrase in the clause ("asks you
+ *    to", "telling you to", …) — scam-check output legitimately DESCRIBES
+ *    scammer asks, and
+ *  - no scam-descriptor in the clause ("remote support is a scam" is a
+ *    warning, not advice).
  * Approved corpus text is NEVER vetoed (scope: free-form surfaces only).
  */
 object VetoRules {
@@ -42,11 +48,11 @@ object VetoRules {
 
     /**
      * Veto triggers: affirmative constructions that are dangerous advice.
-     * Every phrase must survive this test: could it legitimately appear in
-     * reviewed warning text? (Warnings carry negations, which suppress.)
+     * Every entry must survive this test: could it legitimately appear in
+     * reviewed warning text? (Warnings carry negations/scam-descriptors,
+     * which suppress.)
      */
     val VETO_PHRASES = listOf(
-        // prototype phrases, safe to veto affirmatively
         "reset the device",
         "reset device",
         "wipe the device",
@@ -54,20 +60,10 @@ object VetoRules {
         "restore without checking",
         "share your seed",
         "share your phrase",
+        "share your mnemonic",
+        "share your recovery phrase",
         "verify by phone",
         "remote support",
-        // website/online variants only — on-device restore is legitimate
-        "type your seed into a",
-        "type your seed into the",
-        "type your seed into their",
-        "type your seed into any",
-        "enter your seed on a",
-        "enter your seed on the",
-        "enter your seed on their",
-        "enter your seed online",
-        "enter your seed into a",
-        "enter your seed into the",
-        "enter your seed into their",
         // affirmative-only constructions (a warning would carry a negation)
         "it is safe to share",
         "you can share your seed",
@@ -89,10 +85,27 @@ object VetoRules {
         "enter your mnemonic",
         "type your recovery phrase",
         "enter your recovery phrase",
-        "share your mnemonic",
-        "share your recovery phrase",
         "wipe your phone",
         "reset your phone",
+    )
+
+    /**
+     * Regex triggers for the seed-entry family: optional middle noun
+     * ("seed phrase" / "seed words" / bare "seed") + website/online objects
+     * ONLY — on-device/hardware-wallet restore is legitimate guidance and
+     * must never match (the earlier "enter your seed on" variant was too
+     * broad and vetoed legitimate restore guidance).
+     */
+    val VETO_PATTERNS = listOf(
+        Regex(
+            "(type|enter)\\s+your\\s+seed\\s+(phrase\\s+|words\\s+)?(into|on)\\s+" +
+                "(a\\s+|the\\s+|their\\s+|any\\s+|this\\s+|that\\s+)?(website|site|web\\s*page|webpage|form|browser|link)",
+            RegexOption.IGNORE_CASE,
+        ),
+        Regex(
+            "(type|enter)\\s+your\\s+seed\\s+(phrase\\s+|words\\s+)?online",
+            RegexOption.IGNORE_CASE,
+        ),
     )
 
     /** 1:1 port of the prototype SEED_TOPIC_TERMS (scrub gate parity). */
@@ -103,14 +116,20 @@ object VetoRules {
 
     private val NEGATION_RE = Regex(
         "(?<!\\p{L})(never|no|not|cannot|can't|cant|won't|wont|shouldn't|shouldnt|" +
-            "wouldn't|wouldnt|couldn't|couldnt|don't|dont|avoid|stop|refuse)(?!\\p{L})",
+            "wouldn't|wouldnt|couldn't|couldnt|don't|dont|do\\s+not|must\\s+not)(?!\\p{L})",
     )
     private val REPORTED_SPEECH_RE = Regex(
-        "(?<!\\p{L})(as?ks?|asked|tells?|told|wants?|wished?|instructs?|instructed)\\s+" +
-            "(you|him|her|them|us|me)\\s+to\\b",
+        "(?<!\\p{L})(as?ks?|asking|asked|tells?|telling|told|wants?|wanting|wished?|" +
+            "instructs?|instructing|instructed)\\s+" +
+            "(you|him|her|them|us|me|anyone)\\s+to\\b",
+    )
+    private val SCAM_DESCRIPTOR_RE = Regex(
+        "\\b(is|are|it's|it\\s+is|was|were)\\s+(a\\s+|an\\s+)?(scam|fraud|phishing)\\b",
+        RegexOption.IGNORE_CASE,
     )
 
     private val NEGATION_WINDOW_TOKENS = 5
+    private val ZERO_WIDTH = Regex("[\\u200b-\u200f\u2060\ufeff]")
 
     val MANDATORY_WARNING =
         "WARNING: Never reset or wipe a device that still holds your Bitcoin " +
@@ -119,9 +138,19 @@ object VetoRules {
             "for it. If someone instructs you to do either, it is a scam. Stop " +
             "and verify your backup offline first."
 
-    /** Lowercase, curly apostrophes to straight, trim. */
+    /**
+     * Lowercase, curly apostrophes to straight, strip zero-width/format
+     * characters, collapse all whitespace (so "share your\nseed" can't
+     * bypass matching by splitting across a segment boundary).
+     */
     fun normalize(text: String): String =
-        text.lowercase().replace('\u2019', '\'').replace('\u2018', '\'').trim()
+        ZERO_WIDTH.replace(text, "")
+            .replace('\u2019', '\'')
+            .replace('\u2018', '\'')
+            .lowercase()
+            .split(Regex("\\s+"))
+            .joinToString(" ")
+            .trim()
 
     /** True when the text talks about seed/backup topics (scrub gate). */
     fun isSeedRelated(text: String): Boolean {
@@ -130,33 +159,50 @@ object VetoRules {
     }
 
     /**
-     * Veto phrases appearing affirmatively: no negation and no reported-speech
-     * marker within [NEGATION_WINDOW_TOKENS] tokens before the phrase, inside
-     * the phrase's segment (segments split on sentence punctuation, newlines
-     * and semicolons — bullets are their own segment). [extraPhrases] are
-     * caller-supplied must-not-include constraints, judged by the SAME
-     * negation-aware rule (a constraint like "share your seed" must not veto
-     * the warning "Never share your seed").
+     * Veto triggers appearing affirmatively. [extraPhrases] are caller-supplied
+     * must-not-include constraints, judged by the SAME negation-aware rule
+     * (a constraint like "share your seed" must not veto the warning
+     * "Never share your seed"). Blank constraints are skipped (a blank
+     * matches at index 0 and would veto everything).
      */
     fun findViolations(
         text: String,
         extraPhrases: List<String> = emptyList(),
     ): List<String> {
         val t = normalize(text)
-        if (t.isBlank()) return emptyList()
+        if (t.isEmpty()) return emptyList()
         val violations = mutableListOf<String>()
         // newline first so bullets/new lines start their own segment
-        val segments = t.replace("\n", ". ").split(Regex("(?<=[.!?;:])\\s*"))
+        val segments = t.replace("\n", ". ").split(Regex("(?<=[.!?])\\s+"))
         for (rawSegment in segments) {
             val segment = rawSegment.replace(Regex("^\\s*[-*\u2022]\\s*"), "").trim()
             if (segment.isEmpty()) continue
+            // clauses: negation windows reset at , ; : — –
+            val clauses = segment.split(Regex("[,;:\u2014\u2013]+"))
+            for (pattern in VETO_PATTERNS) {
+                for (clause in clauses) {
+                    val m = pattern.find(clause) ?: continue
+                    if (!suppressedIn(clause, m.range.first)) {
+                        if (pattern.pattern !in violations) violations.add(pattern.pattern)
+                    }
+                }
+            }
             for (phrase in VETO_PHRASES + extraPhrases) {
                 val p = normalize(phrase)
+                if (p.isEmpty()) continue
                 var idx = segment.indexOf(p)
                 while (idx >= 0) {
-                    if (!suppressedBefore(segment, idx)) {
-                        if (phrase !in violations) violations.add(phrase)
-                        break
+                    // find the clause containing idx
+                    var clauseStart = 0
+                    for (clause in clauses) {
+                        val end = clauseStart + clause.length
+                        if (idx < end) {
+                            if (!suppressedIn(clause, idx - clauseStart)) {
+                                if (phrase !in violations) violations.add(phrase)
+                            }
+                            break
+                        }
+                        clauseStart = end + 1
                     }
                     idx = segment.indexOf(p, idx + 1)
                 }
@@ -165,14 +211,17 @@ object VetoRules {
         return violations
     }
 
-    /** Negation or reported-speech marker within the token window before idx. */
-    private fun suppressedBefore(segment: String, idx: Int): Boolean {
-        val before = segment.substring(0, idx)
-        val tokens = before.split(Regex("\\s+")).filter { it.isNotBlank() }
+    /** Negation / reported-speech / scam-descriptor suppression within the clause. */
+    private fun suppressedIn(clause: String, idx: Int): Boolean {
+        val before = clause.substring(0, idx.coerceIn(0, clause.length))
+        val tokens = before.split(" ").filter { it.isNotBlank() }
         // the 5 tokens immediately before the phrase = distances 1..5
         val window = tokens.takeLast(NEGATION_WINDOW_TOKENS).joinToString(" ")
         if (NEGATION_RE.containsMatchIn(window)) return true
-        if (REPORTED_SPEECH_RE.containsMatchIn(window)) return true
+        // reported speech anywhere before the phrase in the clause
+        if (REPORTED_SPEECH_RE.containsMatchIn(before)) return true
+        // scam-descriptor anywhere in the clause: warning context, not advice
+        if (SCAM_DESCRIPTOR_RE.containsMatchIn(clause)) return true
         return false
     }
 

@@ -10,22 +10,39 @@ import androidx.compose.ui.unit.dp
 import com.custodyguardian.LlamaEngine
 import com.custodyguardian.util.MemoryGuards
 import com.custodyguardian.util.ScamRules
+import com.custodyguardian.util.VetoRules
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/** Model restatement of an already-fired verdict: select the loaded engine and ask. */
+/** Model restatement of an already-fired verdict: select the loaded engine and ask.
+ *
+ * Hardened (full-repo review 2026-10-29): the restatement is model output and
+ * passes through the VetoRules scrub/veto before display — a corrupted model
+ * must not be able to restate "it's a scam" as "looks safe, reply". Blank
+ * output is treated as a failure, never rendered as an empty box.
+ */
 fun explainVerdict(context: android.content.Context, verdict: String): String {
     val mf = modelFile(context) ?: return ""
     val engine = LlamaEngine(mf.absolutePath)
     return try {
-        engine.answer(
+        val raw = engine.answer(
             systemPrompt = SIMPLER_WORDS_PROMPT,
             question = "The verdict shown on screen: \"$verdict\"\nRestate it.",
         ).trim()
+        if (raw.isEmpty()) {
+            return EXPLAIN_FAILED
+        }
+        val violations = VetoRules.findViolations(raw)
+        if (violations.isNotEmpty()) return EXPLAIN_FAILED
+        VetoRules.scrub(raw).first
     } finally {
-        engine.unload()
+        runCatching { engine.unload() }
     }
 }
+
+const val EXPLAIN_FAILED =
+    "The plain-words explainer didn't produce a safe answer this time, so nothing was " +
+        "added. The verdict above still stands, and nothing was sent anywhere."
 
 /**
  * ScamCheckerScreen — paste-a-message UI. Scanned by local regex rules

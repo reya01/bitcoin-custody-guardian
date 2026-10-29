@@ -93,6 +93,26 @@ class ModelImporterTest {
     }
 
     @Test
+    fun bare_gguf_import_is_byte_identical_round_trip() {
+        // Full-repo review 2026-10-29 regression: the GGUF branch hashed and
+        // counted the 4 peeked magic bytes but never WROTE them — the imported
+        // file was 4 bytes short yet passed size+sha256 and reported Ok.
+        val bytes = gguf(ByteArray(2048) { (it * 31).toByte() })
+        val dir = tempDir()
+        val r = ModelImporter.import(
+            { ByteArrayInputStream(bytes) },
+            entry(bytes.size.toLong(), sha256(bytes)),
+            dir,
+        )
+        assertTrue("expected Ok, got $r", r is ModelImporter.ImportResult.Ok)
+        val imported = File(dir, "test-model.gguf").readBytes()
+        assertTrue(
+            "imported file must be byte-identical to the source",
+            imported.contentEquals(bytes),
+        )
+    }
+
+    @Test
     fun truncated_download_reports_incomplete() {
         val bytes = gguf(ByteArray(4096))
         val dir = tempDir()

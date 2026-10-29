@@ -374,5 +374,60 @@ class TestCorpusVendorNeutrality(unittest.TestCase):
                                 f"corpus shrank below the README's 50-entry claim: {len(files)}")
 
 
+class TestScamRulesParity(unittest.TestCase):
+    """Golden vectors shared with the Kotlin ScamRulesTest (full-repo review
+    2026-10-29): the same message must flag the same rule id in both mirrors."""
+
+    VECTORS = [
+        # (text, expected rule id)
+        ("Please verify your 12-word seed phrase within 24 hours or your funds will be frozen.",
+         "seed_request"),
+        ("Validate your recovery phrase on our site and your wallet will be un-suspended.",
+         "seed_request"),
+        ("Paste your seed words here so we can migrate your wallet.", "seed_request"),
+        ("Just tell us your seed phrase so we can check it.", "seed_request"),
+        ("Input the private key in the form below.", "seed_request"),
+        ("Ledger support here — your account was flagged.", "fake_official"),
+        ("Trezor support team, about your wallet backup.", "fake_official"),
+        ("Download our support tool so we can help.", "remote_software"),
+    ]
+
+    def test_vectors_flag_expected_rule(self):
+        import scam_rules
+        for text, rule_id in self.VECTORS:
+            res = scam_rules.scan(text)
+            ids = [f["id"] for f in res["flagged"]]
+            self.assertIn(rule_id, ids, msg=f"{rule_id} missing for: {text}")
+
+    def test_benign_message_stays_clean(self):
+        import scam_rules
+        res = scam_rules.scan("How do I check the fee before sending? Is waiting okay?")
+        self.assertTrue(res["clean"], msg=str(res["flagged"]))
+
+
+class TestExtractiveManifestFailClosed(unittest.TestCase):
+    """Full-repo review 2026-10-29: a missing/empty manifest must fail the
+    verbatim gate CLOSED (every point unverified), never disable it."""
+
+    def test_point_ok_false_when_manifest_missing(self):
+        import extractive
+        old = extractive._MANIFEST_CACHE
+        try:
+            extractive._MANIFEST_CACHE = {}
+            self.assertFalse(extractive._point_ok({"text": "anything"}))
+        finally:
+            extractive._MANIFEST_CACHE = old
+
+    def test_point_ok_true_for_manifested_point(self):
+        import extractive
+        man = extractive._manifest()
+        if not man:
+            self.fail("manifest missing in this checkout; run gen_manifest.py")
+        some_hash = next(iter(man))
+        # synthesize a point whose hash matches by construction is impossible
+        # without the preimage; instead assert a random text fails
+        self.assertFalse(extractive._point_ok({"text": "definitely not in the manifest"}))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

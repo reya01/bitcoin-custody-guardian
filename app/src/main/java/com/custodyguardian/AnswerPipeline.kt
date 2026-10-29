@@ -35,7 +35,11 @@ class AnswerPipeline(
                 backend = "deterministic_secret_refusal",
             )
         }
-        // 2. Scam verdict: rules only, scam-check mode only.
+        // 2. Scam verdict: rules only, scam-check mode only. The verdict is
+        //    PRIMARY and un-overridable (SAFETY_CASE M1) — it is embedded in
+        //    the prompt AND shipped in the final text on every outcome path
+        //    (full-repo review 2026-10-29: previously discarded on
+        //    blank/vetoed model output).
         val verdict = if (composed.mode == "scam-check") {
             val scan = ScamRules.scan(question)
             if (!scan.clean) scan.verdict else null
@@ -55,13 +59,27 @@ class AnswerPipeline(
             )
         }
         if (candidate.isBlank()) {
-            return Result(
-                text = "I don't know this one — it's not in my reviewed material. " +
-                    "Please try asking in a different way, or ask about wallets, seed " +
-                    "phrases, backups, scams, or inheritance planning.",
-                backend = "no_answer",
-            )
+            // Blank model output must not swallow the verdict (review 2026-10-29).
+            return if (verdict != null) {
+                Result(
+                    text = verdict + "\n\n(No scenario guidance was produced — treat the " +
+                        "verdict above as final: stop contact, do nothing, keep your seed " +
+                        "phrase offline.)",
+                    backend = "no_answer_with_verdict",
+                )
+            } else {
+                Result(
+                    text = "I don't know this one — it's not in my reviewed material. " +
+                        "Please try asking in a different way, or ask about wallets, seed " +
+                        "phrases, backups, scams, or inheritance planning.",
+                    backend = "no_answer",
+                )
+            }
         }
+
+        // The verdict rides on top of whatever the model produced (prototype
+        // parity: candidate = verdict + body), so scrub/veto see the full text.
+        val full = if (verdict != null) verdict + "\n\n" + candidate else candidate
 
         // 4. Veto FIRST on the RAW candidate (a scrub-injected warning
         //    template must never be able to trip the veto), then scrub what
@@ -70,14 +88,21 @@ class AnswerPipeline(
         //    constraints judged by the same rule. The shipped app no longer
         //    relies on the caller passing rules — the global set is always
         //    active (audit Medium 2026-10-19).
-        val vetoed = VetoRules.findViolations(candidate, composed.mustNotInclude)
+        val vetoed = VetoRules.findViolations(full, composed.mustNotInclude)
         if (vetoed.isNotEmpty()) {
             val warns = composed.warnings.distinct().joinToString("\n") { "• $it" }
-            val text = OUT_OF_CORPUS_REFUSAL +
-                (if (composed.warnings.isNotEmpty()) "\n\nSafety rules I must repeat:\n$warns" else "")
+            // Distinct refusal: the cause is a FAILED SAFETY CHECK, not an
+            // out-of-corpus question (full-repo review 2026-10-29).
+            val text = buildString {
+                if (verdict != null) append(verdict + "\n\n")
+                append(VETOED_REFUSAL)
+                if (composed.warnings.isNotEmpty()) {
+                    append("\n\nSafety rules I must repeat:\n$warns")
+                }
+            }
             return Result(text = text, backend = "vetoed_refusal")
         }
-        var text = VetoRules.scrub(candidate).first
+        var text = VetoRules.scrub(full).first
 
         // 5. Walkthrough mode ships retrieved warnings verbatim.
         if (composed.mode == "walkthrough") {
@@ -127,6 +152,11 @@ class AnswerPipeline(
                 "If someone asked you for them, it is a scam. Handle the phrase only on " +
                 "paper, offline, and move the text out of this screen."
             )
+        val VETOED_REFUSAL =
+            "The answer engine's reply failed this app's safety check, so it was not shown. " +
+                "This is the safety layer working as designed — nothing dangerous reaches you. " +
+                "Ask again in different words, or use the checklists, which are fixed reviewed " +
+                "content and always available."
         val OUT_OF_CORPUS_REFUSAL =
             "I can't answer that from the verified corpus. This app only answers questions " +
                 "covered by its reviewed curriculum. Try asking about wallets, seed phrases, " +

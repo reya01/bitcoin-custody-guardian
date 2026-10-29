@@ -94,6 +94,46 @@ class CoreLogicTest {
         assertFalse(r.clean)
     }
 
+    // Golden vectors shared with prototype/test_guardian_core.py
+    // TestScamRulesParity (full-repo review 2026-10-29): same message, same
+    // rule id in both mirrors.
+    @Test
+    fun scam_rules_parity_vectors_flag_expected_rule() {
+        val vectors = listOf(
+            "Please verify your 12-word seed phrase within 24 hours or your funds will be frozen." to "seed_request",
+            "Validate your recovery phrase on our site and your wallet will be un-suspended." to "seed_request",
+            "Paste your seed words here so we can migrate your wallet." to "seed_request",
+            "Just tell us your seed phrase so we can check it." to "seed_request",
+            "Input the private key in the form below." to "seed_request",
+            "Ledger support here — your account was flagged." to "fake_official",
+            "Trezor support team, about your wallet backup." to "fake_official",
+            "Download our support tool so we can help." to "remote_software",
+        )
+        for ((text, ruleId) in vectors) {
+            val r = ScamRules.scan(text)
+            assertTrue(
+                "expected $ruleId for: $text",
+                r.flagged.any { it.id == ruleId },
+            )
+        }
+    }
+
+    @Test
+    fun scam_rules_benign_message_stays_clean() {
+        val r = ScamRules.scan("How do I check the fee before sending? Is waiting okay?")
+        assertTrue(r.clean)
+    }
+
+    // ---- MemoryGuards wordlist integrity (fail closed) ----
+
+    @Test
+    fun invalid_wordlist_refuses_to_process() {
+        val truncated = wordlist.take(1000).toSet()
+        val r = MemoryGuards.detectSeedPhrase("how do I store my backup?", truncated)
+        assertTrue(r is MemoryGuards.Refusal)
+        assertTrue((r as MemoryGuards.Refusal).message.contains("Reinstall"))
+    }
+
     // ---- CorpusRouter ----
 
     private val sampleCorpus: List<Pair<String, CorpusEntry>> by lazy { listOf(
@@ -181,17 +221,20 @@ class CoreLogicTest {
 
     @Test
     fun detect_secret_covers_both_detectors() {
-        val wordlist = setOf("abandon", "ability", "absurd") // minimal; detection needs runs
         // extended secret fires through the combined entry point
         val xprv = "xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbPy6cqKjP" +
             "P9ryWaqBmutwinyVzsjfmvDYxJNbPyvFy"
         assertTrue(MemoryGuards.detectExtendedSecret(xprv) is MemoryGuards.Refusal)
-        // seed detection still works through it (wordlist path needs context loader,
-        // so exercised via detectSeedPhrase with an explicit wordlist)
-        val seed = "abandon ability absurd"
+        // an invalid (non-2048) wordlist now FAILS CLOSED (full-repo review
+        // 2026-10-29): detection must never run on a truncated list
         assertTrue(
-            MemoryGuards.detectSeedPhrase(
-                "note to self: $seed", wordlist) is MemoryGuards.Result.Safe // 3 words: under threshold
+            MemoryGuards.detectSeedPhrase("note to self: abandon ability absurd", setOf("abandon", "ability", "absurd"))
+                is MemoryGuards.Refusal
+        )
+        // with the REAL wordlist, 3 scattered words stay under threshold
+        assertTrue(
+            MemoryGuards.detectSeedPhrase("note to self: abandon ability absurd", wordlist)
+                is MemoryGuards.Result.Safe
         )
     }
 }

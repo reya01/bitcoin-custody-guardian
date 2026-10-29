@@ -99,9 +99,20 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
                 onClick = {
                     busy = true
                     scope.launch(Dispatchers.Default) {
-                        val result = runAnswer(context, query)
+                        // try/finally: a throw before runAnswer's internal try
+                        // must never leave the button permanently disabled
+                        // (full-repo review 2026-10-29).
+                        val result = try {
+                            runAnswer(context, query)
+                        } catch (t: Throwable) {
+                            AnswerPipeline.Result(
+                                text = FALLBACK_ENGINE_ERROR,
+                                backend = "engine_error",
+                            )
+                        } finally {
+                            busy = false
+                        }
                         answerState = result
-                        busy = false
                     }
                 },
             ) { Text(if (busy) "Thinking..." else "Answer") }
@@ -171,6 +182,16 @@ const val FALLBACK_REFUSED =
     "I only speak from reviewed material. Here is the closest reviewed passage to your question."
 
 private fun runAnswer(context: android.content.Context, question: String): AnswerPipeline.Result {
+    // Defense-in-depth (full-repo review 2026-10-29): the guard also ran at
+    // click time; re-check INSIDE the answer path so no code path can reach
+    // the model with secret material, whatever the UI state said.
+    when (val guard = MemoryGuards.detectSecret(context, question)) {
+        is MemoryGuards.Refusal -> return AnswerPipeline.Result(
+            text = guard.message,
+            backend = "deterministic_secret_refusal",
+        )
+        else -> {}
+    }
     val corpus = AssetLoader.loadCorpus(context)
     val routed = CorpusRouter.route(context, question, corpus)
     val mode = when {
@@ -209,7 +230,7 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
         } catch (t: Throwable) {
             fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
         } finally {
-            engine.unload()
+            runCatching { engine.unload() }
         }
     }
 
@@ -232,7 +253,7 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
     } catch (t: Throwable) {
         fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
     } finally {
-        engine.unload()
+        runCatching { engine.unload() }
     }
 }
 

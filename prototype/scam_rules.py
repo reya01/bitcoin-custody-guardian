@@ -17,6 +17,8 @@ RULES = [
             r"share\s*your\s*(seed|recovery|words|private|mnemonic|xprv)|"
             r"enter\s*your\s*(seed|recovery|words|private|mnemonic)|"
             r"confirm\s*your\s*(seed|recovery|words|mnemonic)|"
+            r"(verify|validate|paste|tell|input)\s*(us\s+|me\s+|your\s+|the\s+|"
+            r"\d+[-\s]word\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|"
             r"give\s*(me|us)\s*(your|the)\s*(seed|recovery|words|private|mnemonic|keys)|"
             r"ask(s|ed)?\s*(me|you|for)?\s*(my|your)\s*(seed|recovery|words|private\s*keys?|mnemonic)|"
             r"read\s*(out|me)\s*(your|the)\s*(seed|recovery|words)|"
@@ -30,7 +32,7 @@ RULES = [
         "remote_software",
         "Remote-control software",
         re.compile(
-            r"(anydesk|teamviewer|remote\s*desktop|\"support\s*tool\"|install\s*the\s*support|"
+            r"(anydesk|teamviewer|remote\s*desktop|support\s*tool|install\s*the\s*support|"
             r"screen\s*shar)",
             re.IGNORECASE,
         ),
@@ -42,7 +44,8 @@ RULES = [
         "Artificial urgency",
         re.compile(
             r"(urgent|urgently|deadline|immediately|right\s*now|expires?\s*today|"
-            r"last\s*chance|act\s*now|funds?\s*(are|is)\s*at\s*risk|locked\s*out)",
+            r"last\s*chance|act\s*now|funds?\s*(are|is)\s*at\s*risk|locked\s*out|"
+            r"frozen|suspended|within\s*\d+\s*(hours?|minutes?|days?))",
             re.IGNORECASE,
         ),
         "Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent "
@@ -86,7 +89,8 @@ RULES = [
         "Impersonates an official service",
         re.compile(
             r"(official\s*(support|team)|certified\s*(agent|partner)|ledger\s*support|"
-            r"coinbase\s*support|blockchain\s*support|support\s*team\s*here|"
+            r"coinbase\s*support|blockchain\s*support|trezor\s*support|"
+            r"bitbox\s*support|blockstream\s*support|support\s*team\s*here|"
             r"customer\s*care\s*department)",
             re.IGNORECASE,
         ),

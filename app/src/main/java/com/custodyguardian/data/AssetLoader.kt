@@ -17,18 +17,39 @@ object AssetLoader {
         json.decodeFromString<Walkthrough>(readAsset(context, "walkthrough.json"))
     }.getOrDefault(Walkthrough())
 
-    /** All corpus entries from assets/corpus/, with their file id (e.g. "T02-river-seed-phrase"). */
+    /**
+     * All corpus entries from assets/corpus/, with their file id (e.g. "T02-river-seed-phrase").
+     *
+     * Only `reviewed == true` entries are served (full-repo review 2026-10-29):
+     * an unreviewed draft must never reach users as if human-approved. Parse
+     * failures and skipped drafts are counted, not swallowed — the count is
+     * visible in [skippedDrafts] for the browser screen to surface.
+     */
     fun loadCorpus(context: Context): List<Pair<String, CorpusEntry>> {
         val out = mutableListOf<Pair<String, CorpusEntry>>()
+        skippedDrafts = 0
+        parseErrors = 0
         val files = context.assets.list("corpus")?.filter { it.endsWith(".json") } ?: return out
         for (file in files.sorted()) {
             runCatching {
                 val entry = json.decodeFromString<CorpusEntry>(readAsset(context, "corpus/$file"))
-                out.add(file.removeSuffix(".json") to entry)
-            }
+                if (entry.reviewed) {
+                    out.add(file.removeSuffix(".json") to entry)
+                } else {
+                    skippedDrafts++
+                }
+            }.onFailure { parseErrors++ }
         }
         return out
     }
+
+    /** Entries skipped for reviewed=false in the last loadCorpus call. */
+    var skippedDrafts: Int = 0
+        private set
+
+    /** Corpus files that failed to parse in the last loadCorpus call. */
+    var parseErrors: Int = 0
+        private set
 
     /**
      * The bundled key_points sha256 manifest (prototype/gen_manifest.py output,
@@ -45,5 +66,5 @@ object AssetLoader {
         context.assets.open(path).bufferedReader().use { it.readText() }
 
     fun readAssetLines(context: Context, path: String): List<String> =
-        context.assets.open(path).bufferedReader().readLines()
+        context.assets.open(path).bufferedReader().use { it.readLines() }
 }

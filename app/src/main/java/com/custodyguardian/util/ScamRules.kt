@@ -23,6 +23,8 @@ object ScamRules {
                     "share\\s*your\\s*(seed|recovery|words|private|mnemonic|xprv)|" +
                     "enter\\s*your\\s*(seed|recovery|words|private|mnemonic)|" +
                     "confirm\\s*your\\s*(seed|recovery|words|mnemonic)|" +
+                    "(verify|validate|paste|tell|input)\\s*(us\\s+|me\\s+|your\\s+|the\\s+|" +
+                    "\\d+[-\\s]word\\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|" +
                     "give\\s*(me|us)\\s*(your|the)\\s*(seed|recovery|words|private|mnemonic|keys)|" +
                     "ask(s|ed)?\\s*(me|you|for)?\\s*(my|your)\\s*(seed|recovery|words|private\\s*keys?|mnemonic)|" +
                     "read\\s*(out|me)\\s*(your|the)\\s*(seed|recovery|words)|" +
@@ -36,7 +38,7 @@ object ScamRules {
             "remote_software",
             "Remote-control software",
             Regex(
-                "(anydesk|teamviewer|remote\\s*desktop|\"support\\s*tool\"|install\\s*the\\s*support|" +
+                "(anydesk|teamviewer|remote\\s*desktop|support\\s*tool|install\\s*the\\s*support|" +
                     "screen\\s*shar)",
                 RegexOption.IGNORE_CASE
             ),
@@ -48,7 +50,8 @@ object ScamRules {
             "Artificial urgency",
             Regex(
                 "(urgent|urgently|deadline|immediately|right\\s*now|expires?\\s*today|" +
-                    "last\\s*chance|act\\s*now|funds?\\s*(are|is)\\s*at\\s*risk|locked\\s*out)",
+                    "last\\s*chance|act\\s*now|funds?\\s*(are|is)\\s*at\\s*risk|locked\\s*out|" +
+                    "frozen|suspended|within\\s*\\d+\\s*(hours?|minutes?|days?))",
                 RegexOption.IGNORE_CASE
             ),
             "Pressure to act fast is a control tactic. Nothing in Bitcoin is urgent for a " +
@@ -92,7 +95,8 @@ object ScamRules {
             "Impersonates an official service",
             Regex(
                 "(official\\s*(support|team)|certified\\s*(agent|partner)|ledger\\s*support|" +
-                    "coinbase\\s*support|blockchain\\s*support|support\\s*team\\s*here|" +
+                    "coinbase\\s*support|blockchain\\s*support|trezor\\s*support|" +
+                    "bitbox\\s*support|blockstream\\s*support|support\\s*team\\s*here|" +
                     "customer\\s*care\\s*department)",
                 RegexOption.IGNORE_CASE
             ),

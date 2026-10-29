@@ -91,10 +91,15 @@ def main():
     # 2. cert pin — FAIL CLOSED unless --allow-missing-tools (dev-only)
     apksigner = find_tool("apksigner")
     if apksigner:
-        out = subprocess.run(
+        # Full-repo review 2026-10-29: check the returncode and reject empty
+        # output — a tool failure must fail the gate CLOSED, never pass it.
+        proc = subprocess.run(
             [apksigner, "verify", "--print-certs", apk],
             capture_output=True, text=True, env=env,
-        ).stdout
+        )
+        if proc.returncode != 0 or not proc.stdout.strip():
+            die(f"apksigner failed (rc={proc.returncode}); cannot verify the cert pin")
+        out = proc.stdout
         fp = None
         for line in out.splitlines():
             if "sha-256" in line.lower() and ":" in line:
@@ -117,10 +122,16 @@ def main():
     # 3. no-INTERNET gate — FAIL CLOSED unless --allow-missing-tools (dev-only)
     aapt = find_tool("aapt")
     if aapt:
-        perms = subprocess.run(
+        # Full-repo review 2026-10-29: check the returncode and reject empty
+        # output — a tool failure must fail the gate CLOSED (previously an
+        # empty permission dump silently PASSED the no-INTERNET gate).
+        proc = subprocess.run(
             [aapt, "dump", "permissions", apk],
             capture_output=True, text=True, env=env,
-        ).stdout
+        )
+        if proc.returncode != 0 or not proc.stdout.strip():
+            die(f"aapt failed (rc={proc.returncode}); cannot verify the no-INTERNET gate")
+        perms = proc.stdout
         if "android.permission.INTERNET" in perms:
             die("APK requests android.permission.INTERNET — core guarantee broken")
     elif ALLOW_MISSING_TOOLS:

@@ -96,10 +96,11 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   with strict + semantic grading.
 - **Android app builds green** (debug + release) with **on-device llama.cpp
   inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
-  offline. **85/85** JVM unit tests and **44/44** Python harness tests green,
+  offline. **101/101** JVM unit tests and **48/48** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
-- **Curated corpus** of 51 entries, all human-reviewed, across 12 topics, drafted from
+- **Curated corpus** of 51 entries, 48 human-reviewed and shipped (3 T10 drafts
+  remain unreviewed and are excluded from the app by a `reviewed` filter), across 12 topics, drafted from
   designated references (Mastering Bitcoin 3rd ed., Lopp's security index,
   River, BTC Guide, BTC Sessions, Casa, bitcoin.org) with per-source license
   discipline — Mastering Bitcoin is CC-BY-SA 4.0; the per-source status for
@@ -110,9 +111,9 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
 
 | Claim | Status |
 |---|---|
-| APK signed, sha256 published | **Demonstrated** (v0.1.0-alpha, hash on the release page) |
+| APK signed, sha256 published in-repo | **Demonstrated** (v0.1.0-alpha + v0.1.1-alpha, hashes in [docs/RELEASES.md](docs/RELEASES.md)) |
 | No INTERNET permission; nothing leaves the phone | **Demonstrated** (manifest + Android OS enforcement) |
-| Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented** (secret refusal + ScamRules active on every chat path; per-question veto vocabulary lands in the Android chat path in v0.2); logic unit-tested; end-to-end on-device suite pending |
+| Deterministic safety layer (ScamRules, secret refusal, veto) | **Implemented** (secret refusal + ScamRules active on every chat path; a global negation-aware veto + scrub shipped in commit 69f23f0 via `util/VetoRules.kt` and applies to every free-form model surface); logic unit-tested; end-to-end on-device suite pending |
 | Corpus verbatim integrity | **Demonstrated** (`key_points`/`dos`/`donts` are verbatim subsets of the human-approved entry text; `user_says` is retrieval-index-only and non-authoritative; sha256 manifest in `prototype/key_points_manifest.json`) |
 | Model GGUF sha256 published | **Demonstrated** (release notes) |
 | Reproducible two-machine build | **Claimed, not demonstrated** |
@@ -208,7 +209,7 @@ Code MIT — see [LICENSE](LICENSE). The corpus is licensed separately
 - **No OS backup**: `allowBackup="false"` — nothing in the app is included in
   Android auto-backup.
 - **Claims guard**: `scripts/check_claims.py` fails CI if documented test
-  counts (85 Kotlin + 44 Python) or the 51-entry corpus count drift.
+  counts (101 Kotlin + 48 Python) or the 51-entry corpus count drift.
 - **Walkthrough progress** is stored per day + step-text prefix (stable across
   app updates, no hash).
 

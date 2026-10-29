@@ -132,9 +132,12 @@ class ExtractiveAnswerTest {
 
     // ---- render ----
 
+    /** All menu points are in the manifest (used by pinning/render tests). */
+    private val fullManifest = menu.map { ExtractiveAnswer.sha256(it.text) }.toSet()
+
     @Test
     fun render_outputs_points_verbatim_in_menu_order_with_source_line() {
-        val (text, pinned) = ExtractiveAnswer.render(listOf("P4", "P1"), "", menu, emptySet())
+        val (text, pinned) = ExtractiveAnswer.render(listOf("P4", "P1"), "", menu, fullManifest)
         assertTrue(text.startsWith("- Keep two copies in separate places. [b]"))
         assertTrue(text.contains("- The seed phrase is 12 or 24 ordinary words. [a]"))
         assertTrue(text.endsWith("Source: a, b (human-reviewed corpus)"))
@@ -144,7 +147,7 @@ class ExtractiveAnswerTest {
 
     @Test
     fun render_pins_warnings_of_selected_entries_that_model_omitted() {
-        val (text, pinned) = ExtractiveAnswer.render(listOf("P1"), "", menu, emptySet())
+        val (text, pinned) = ExtractiveAnswer.render(listOf("P1"), "", menu, fullManifest)
         // entry "a" selected -> its warning key point (P2) must be pinned
         assertTrue("P2" in pinned)
         assertTrue(text.contains("Never type the seed words into any website."))
@@ -244,6 +247,20 @@ class ExtractiveAnswerTest {
             modelCall = { _, _ -> """{"selected": ["P1"], "bridge": ""}""" },
         )
         assertEquals("extractive_fallback", result.backend)
+    }
+
+    @Test
+    fun empty_manifest_fails_closed_never_renders() {
+        // Integrity gate (full-repo review 2026-10-29): a missing/empty
+        // manifest must DISABLE rendering (fail closed), never disable the
+        // gate itself.
+        val result = ExtractiveAnswer.answer(
+            "what is a seed phrase?", menu, corpusById, emptySet(),
+            modelCall = { _, _ -> """{"selected": ["P1", "P3"], "bridge": ""}""" },
+            fallbackPassage = "The seed phrase is 12 or 24 ordinary words.",
+        )
+        assertEquals("extractive_fallback", result.backend)
+        assertTrue(result.text.startsWith(ExtractiveAnswer.CANNED_UNAVAILABLE))
     }
 
     @Test

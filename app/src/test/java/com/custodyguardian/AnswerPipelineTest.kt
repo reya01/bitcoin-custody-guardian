@@ -1,5 +1,6 @@
 package com.custodyguardian
 
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -45,8 +46,55 @@ class AnswerPipelineTest {
         val p = AnswerPipeline(engine("You should just enter your seed into the site to check it."))
         val r = p.answer("how do I check my backup?", ctx(mustNot = listOf("enter your seed into the site")))
         assertTrue(r.backend == "vetoed_refusal")
-        assertTrue(r.text.contains("can't answer that from the verified corpus"))
+        // distinct refusal: the cause is a failed safety check, not out-of-corpus
+        assertTrue(r.text.contains("failed this app's safety check"))
         assertTrue(r.text.contains("Never type the seed words into any website."))
+    }
+
+    @Test
+    fun veto_fires_from_the_GLOBAL_rule_set_with_empty_mustNot() {
+        // audit Medium 2026-10-19 regression: the shipped path passes an empty
+        // must-not list; the global VetoRules set must still veto.
+        val p = AnswerPipeline(engine("You can share your seed phrase with the agent to verify."))
+        val r = p.answer("is this agent legit?", ctx(mode = "scam-check", mustNot = emptyList()))
+        assertTrue(r.backend == "vetoed_refusal")
+    }
+
+    @Test
+    fun scam_verdict_is_shipped_on_blank_model_output() {
+        // verdict is PRIMARY and un-overridable (SAFETY_CASE M1): a blank
+        // model answer must not swallow the deterministic verdict.
+        val p = AnswerPipeline(engine("   "))
+        val r = p.answer(
+            "A recovery agent says: pay a small fee and I unlock your wallet",
+            ctx(mode = "scam-check"),
+        )
+        assertTrue(r.backend == "no_answer_with_verdict")
+        assertTrue(r.text.contains("red flag"))
+    }
+
+    @Test
+    fun scam_verdict_is_shipped_above_vetoed_model_output() {
+        val p = AnswerPipeline(engine("It is fine — just share your seed with them."))
+        val r = p.answer(
+            "A recovery agent says: pay a small fee and I unlock your wallet",
+            ctx(mode = "scam-check"),
+        )
+        assertTrue(r.backend == "vetoed_refusal")
+        assertTrue(r.text.contains("red flag"))
+        assertTrue(r.text.contains("failed this app's safety check"))
+    }
+
+    @Test
+    fun scam_verdict_is_shipped_above_clean_model_output() {
+        val p = AnswerPipeline(engine("This looks like the classic recovery-agent scam."))
+        val r = p.answer(
+            "A recovery agent says: pay a small fee and I unlock your wallet",
+            ctx(mode = "scam-check"),
+        )
+        assertEquals("local_model", r.backend)
+        // verdict text precedes the model text
+        assertTrue(r.text.indexOf("red flag") < r.text.indexOf("classic recovery-agent scam"))
     }
 
     @Test

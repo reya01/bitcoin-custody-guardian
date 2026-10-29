@@ -33,6 +33,8 @@ notes and pinned for reproducible verification (PRODUCT_SPEC §9).
 ```bash
 # 1. NO android.permission.INTERNET anywhere in the manifest:
 grep -rn "INTERNET" app/src/main/AndroidManifest.xml   # must output NOTHING
+# also scan the gradle scripts — a dependency can pull in network code:
+grep -rn "INTERNET" build.gradle.kts settings.gradle.kts app/build.gradle.kts   # must output NOTHING
 # 2. NO permissions at all:
 grep -n "<uses-permission" app/src/main/AndroidManifest.xml   # must output NOTHING
 # 3. Only the launcher activity is exported:

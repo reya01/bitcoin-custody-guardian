@@ -288,4 +288,66 @@ class VetoRulesTest {
         assertTrue(VetoRules.findViolations("").isEmpty())
         assertTrue(VetoRules.findViolations("   ").isEmpty())
     }
+
+    // ---- Hardening round 2 (synthesis DO NOW 3, full-repo review 2026-10-29) ----
+
+    @Test
+    fun line_break_inside_phrase_cannot_bypass() {
+        // normalize collapses whitespace, so a newline inside the phrase no
+        // longer splits it across segments
+        assertTrue(
+            VetoRules.findViolations("Please share your\nseed phrase with our agent.").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun middle_noun_variants_cannot_bypass() {
+        // "seed phrase" / "seed words" between "your" and the verb/object
+        assertTrue(
+            VetoRules.findViolations("Type your seed phrase into the website to check it.").isNotEmpty(),
+        )
+        assertTrue(
+            VetoRules.findViolations("Enter your seed words on that site.").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun determiner_gaps_cannot_bypass() {
+        assertTrue(
+            VetoRules.findViolations("Type your seed into this website.").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun blank_extra_phrase_does_not_veto_everything() {
+        assertTrue(
+            VetoRules.findViolations("Keep two copies of your backup.", listOf("   ")).isEmpty(),
+        )
+    }
+
+    @Test
+    fun scam_descriptor_is_warning_context_not_advice() {
+        assertTrue(
+            VetoRules.findViolations("Remote support is a scam — refuse it.").isEmpty(),
+        )
+    }
+
+    @Test
+    fun on_device_restore_with_the_still_narrowed_patterns() {
+        assertTrue(
+            VetoRules.findViolations(
+                "Enter your seed phrase on your hardware wallet to restore.",
+            ).isEmpty(),
+        )
+    }
+
+    @Test
+    fun stop_and_avoid_are_not_negations() {
+        // "stop at nothing to make you X" must not suppress X
+        assertTrue(
+            VetoRules.findViolations(
+                "They will stop at nothing to make you share your seed.",
+            ).isNotEmpty(),
+        )
+    }
 }

@@ -192,7 +192,11 @@ object ExtractiveAnswer {
                 pinned.add(p.pid)
             }
         }
-        val ok = ordered.filter { manifest.isEmpty() || sha256(it.text) in manifest }
+        // Integrity gate is FAIL-CLOSED (full-repo review 2026-10-29): an
+        // empty manifest (load error silently returned emptySet) must NOT
+        // disable the gate — it must refuse to render. Missing manifest =
+        // broken install, never a free pass.
+        val ok = ordered.filter { sha256(it.text) in manifest }
         if (ok.isEmpty()) return "" to emptyList()
         val parts = mutableListOf<String>()
         val seen = mutableSetOf<String>()

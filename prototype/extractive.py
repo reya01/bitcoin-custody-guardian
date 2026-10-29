@@ -58,12 +58,16 @@ def _manifest() -> dict:
         try:
             _MANIFEST_CACHE = json.load(open(MANIFEST_PATH))
             if not _MANIFEST_CACHE:
-                print("[extractive] WARNING manifest file empty — integrity "
-                      "check disabled until a non-empty manifest exists",
-                      flush=True)
+                # FAIL-CLOSED (full-repo review 2026-10-29): an empty/missing
+                # manifest disables the verbatim gate by construction — that
+                # is a broken install, not a free pass. Callers must treat a
+                # missing manifest as "every point unverified".
+                print("[extractive] FATAL manifest file empty — every point "
+                      "is treated as unverified (fail closed)", flush=True)
+                _MANIFEST_CACHE = {}
         except Exception as exc:
-            print(f"[extractive] WARNING manifest load failed ({exc}) — "
-                  "integrity check disabled for this call", flush=True)
+            print(f"[extractive] FATAL manifest load failed ({exc}) — every "
+                  "point is treated as unverified (fail closed)", flush=True)
             _MANIFEST_CACHE = {}
     return _MANIFEST_CACHE
 
@@ -225,10 +229,12 @@ def _fallback(composed) -> dict:
 
 
 def _point_ok(p: dict) -> bool:
-    """Fix 7: hash of the point must match the approved manifest (if present)."""
+    """Fix 7, hardened (full-repo review 2026-10-29): hash must match the
+    approved manifest — and a missing/empty manifest fails CLOSED, never
+    open (a broken install cannot silently disable the integrity gate)."""
     man = _manifest()
     if not man:
-        return True
+        return False
     return _hash(p["text"]) in man
 
 

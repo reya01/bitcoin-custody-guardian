@@ -14,17 +14,29 @@ object MemoryGuards {
     @Volatile
     private var wordlist: Set<String>? = null
 
-    fun loadWordlist(context: Context): Set<String> =
-        wordlist ?: synchronized(this) {
-            wordlist ?: run {
+    /**
+     * Fail closed (full-repo review 2026-10-29): a missing/truncated wordlist
+     * silently disabled seed detection on every path. Now the load RESULT
+     * carries validity; callers must treat an invalid list as "cannot scan"
+     * and refuse to process text (see [detectSeedPhrase]).
+     */
+    data class Wordlist(val words: Set<String>, val valid: Boolean)
+
+    fun loadWordlistValidated(context: Context): Wordlist =
+        wordlist?.let { Wordlist(it, it.size == WORDLIST_SIZE) }
+            ?: synchronized(this) {
+                wordlist?.let { return Wordlist(it, it.size == WORDLIST_SIZE) }
                 val words = AssetLoader.readAssetLines(context, "bip39_wordlist.txt")
                     .map { it.trim().lowercase() }
                     .filter { it.isNotEmpty() }
                     .toSet()
                 wordlist = words
-                words
+                Wordlist(words, words.size == WORDLIST_SIZE)
             }
-        }
+
+    const val WORDLIST_SIZE = 2048
+
+    fun loadWordlist(context: Context): Set<String> = loadWordlistValidated(context).words
 
     sealed interface Result {
         /** Nothing secret-looking found. Safe to process. */
@@ -32,11 +44,15 @@ object MemoryGuards {
         /** Seed-phrase-like material detected. Refuse to process. */
         data class SeedPhrase(
             val wordCount: Int,
-            val matchedWords: List<String>,
             val confidence: Double,
             override val message: String,
         ) : Refusal
     }
+
+    /** Wordlist asset invalid — cannot scan safely; refuse to process (fail closed). */
+    data class WordlistInvalid(
+        override val message: String,
+    ) : Refusal
 
     /** Any detected secret material: refuse to process, never echo, never store. */
     interface Refusal : Result {
@@ -49,9 +65,23 @@ object MemoryGuards {
      * Heuristic: tokenize on non-letters, count how many tokens (>=3 chars) are
      * BIP-39 words, and how many of them appear *consecutively* as a run.
      * A run of 8+ BIP-39 words, or >=90% of the tokens matching, is flagged.
+     *
+     * Fail closed (full-repo review 2026-10-29): an invalid wordlist
+     * (missing/truncated asset) REFUSES to process instead of scanning with
+     * a partial list — seed detection must never fail open.
+     *
+     * matchedWords was dropped from the result (review finding): the refusal
+     * result must never carry a copy of the user's words.
      */
     fun detectSeedPhrase(text: String, wordlist: Set<String>): Result {
         if (text.isBlank()) return Result.Safe
+        if (wordlist.size != WORDLIST_SIZE) {
+            return WordlistInvalid(
+                message = "⚠ This app's safety wordlist looks damaged, so it cannot " +
+                    "check this text safely. Nothing was processed or sent anywhere. " +
+                    "Reinstall the app from the official release before using it.",
+            )
+        }
         val tokens = text.lowercase()
             .split(Regex("[^a-z]+"))
             .filter { it.length >= 3 }
@@ -74,7 +104,6 @@ object MemoryGuards {
         return if (flagged) {
             Result.SeedPhrase(
                 wordCount = longest,
-                matchedWords = matched,
                 confidence = ratio,
                 message = "⚠ This looks like seed-phrase material ($longest BIP-39 words in a row). " +
                     "Never type or paste your seed phrase into ANY app — including this one. " +
