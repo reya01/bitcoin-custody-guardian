@@ -1,6 +1,7 @@
 package com.custodyguardian
 
 import com.custodyguardian.util.ScamRules
+import com.custodyguardian.util.VetoRules
 
 /**
  * AnswerPipeline - the Kotlin port of the Python answer_step flow
@@ -62,15 +63,21 @@ class AnswerPipeline(
             )
         }
 
-        // 4. Veto: wrong advice is structurally unshippable.
-        var text = candidate
-        val violated = composed.mustNotInclude.firstOrNull { text.lowercase().contains(it.lowercase()) }
-        if (violated != null) {
+        // 4. Veto FIRST on the RAW candidate (a scrub-injected warning
+        //    template must never be able to trip the veto), then scrub what
+        //    renders. veto = affirmative danger advice (VetoRules,
+        //    negation-aware so reviewed warnings pass) plus any caller
+        //    constraints judged by the same rule. The shipped app no longer
+        //    relies on the caller passing rules — the global set is always
+        //    active (audit Medium 2026-10-19).
+        val vetoed = VetoRules.findViolations(candidate, composed.mustNotInclude)
+        if (vetoed.isNotEmpty()) {
             val warns = composed.warnings.distinct().joinToString("\n") { "• $it" }
-            text = OUT_OF_CORPUS_REFUSAL +
+            val text = OUT_OF_CORPUS_REFUSAL +
                 (if (composed.warnings.isNotEmpty()) "\n\nSafety rules I must repeat:\n$warns" else "")
             return Result(text = text, backend = "vetoed_refusal")
         }
+        var text = VetoRules.scrub(candidate).first
 
         // 5. Walkthrough mode ships retrieved warnings verbatim.
         if (composed.mode == "walkthrough") {

@@ -40,7 +40,7 @@ eval) lands.
 - M6 (T5) Signed APK with published sha256; model GGUF hash published.
 
 ## 3. Evidence
-- Logic tests: 39 Kotlin + 44 Python (incl. corpus vendor-neutrality lint + model-import matrix).
+- Logic tests: 85 Kotlin + 44 Python (incl. corpus vendor-neutrality lint + model-import matrix).
 - Hosted-pipeline evals: EVAL_RESULTS.md addenda 1–10 (best: hybrid 31/105
   topical FINAL; T06 19/40 strict) — **hosted, not the shipped model**.
 - On-device eval (production JNI path, 145 items + danger/refusal suite):

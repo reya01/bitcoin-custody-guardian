@@ -96,7 +96,7 @@ run-to-run movement. **The numbers above describe the hosted pipeline; on-device
   with strict + semantic grading.
 - **Android app builds green** (debug + release) with **on-device llama.cpp
   inference packaged** (arm64): a JNI bridge runs a Qwen3-class model fully
-  offline. **39/39** JVM unit tests and **44/44** Python harness tests green,
+  offline. **85/85** JVM unit tests and **44/44** Python harness tests green,
   covering the safety-critical logic (secret detection, scam rules, refusal
   fallback, post-model veto).
 - **Curated corpus** of 51 entries, all human-reviewed, across 12 topics, drafted from
@@ -208,7 +208,7 @@ Code MIT — see [LICENSE](LICENSE). The corpus is licensed separately
 - **No OS backup**: `allowBackup="false"` — nothing in the app is included in
   Android auto-backup.
 - **Claims guard**: `scripts/check_claims.py` fails CI if documented test
-  counts (39 Kotlin + 44 Python) or the 51-entry corpus count drift.
+  counts (85 Kotlin + 44 Python) or the 51-entry corpus count drift.
 - **Walkthrough progress** is stored per day + step-text prefix (stable across
   app updates, no hash).
 

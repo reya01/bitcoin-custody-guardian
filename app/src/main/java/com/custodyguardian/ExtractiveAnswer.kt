@@ -1,6 +1,7 @@
 package com.custodyguardian
 
 import com.custodyguardian.data.CorpusEntry
+import com.custodyguardian.util.VetoRules
 import java.security.MessageDigest
 
 /**
@@ -164,6 +165,10 @@ object ExtractiveAnswer {
             if (d.value !in digitsInPoints) return ""
         }
         if (BRIDGE_BLOCKLIST.containsMatchIn(bridge)) return ""
+        // Veto layer applies to every free-form surface (audit Medium
+        // 2026-10-19): affirmative danger advice in the bridge drops the
+        // bridge; the verbatim points still render (no dead ends).
+        if (VetoRules.findViolations(bridge).isNotEmpty()) return ""
         return bridge
     }
 
