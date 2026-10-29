@@ -3,9 +3,61 @@
 Schema per day: {day, title, goal, dos[], donts[]}"""
 import json, re, sys
 
-src = "/opt/data/projects/custody-guardian/INHERITANCE_WALKTHROUGH.md"
-out = "/opt/data/work/guardian-android/app/src/main/assets/walkthrough.json"
+import os
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+src = os.path.join(ROOT, "docs", "INHERITANCE_WALKTHROUGH.md")
+out = os.path.join(ROOT, "app", "src", "main", "assets", "walkthrough.json")
 text = open(src, encoding="utf-8").read()
+
+def parse_day(body):
+    """Extract (dos, donts) from one day's markdown body.
+
+    Handles: explicit DO:/DON'T: blocks, ❌ bullets (multi-line, bold
+    stripped), and column-0 numbered plan steps as DOs. Nested/indented
+    lines are continuations of the current item, never new items."""
+    dos, donts = [], []
+    cur = None          # list currently being filled (dos/donts), or None
+    item = None         # lines of the item being accumulated
+    item_is_dont = False
+
+    def flush():
+        nonlocal item
+        if item:
+            text_ = re.sub(r"\s+", " ", " ".join(item)).strip()
+            text_ = re.sub(r"\*\*(.+?)\*\*", r"\1", text_).strip()
+            target = donts if item_is_dont else dos
+            if text_:
+                target.append(text_)
+            item = None
+
+    for line in body.split("## The scam-defense card")[0].splitlines():
+        s = line.strip()
+        if re.match(r"^(DO|Do|Do today)[:.]?$", s.replace("**", "")):
+            flush(); cur = dos; continue
+        if re.match(r"^(DON'T|Don't|DONT)[:.]?$", s.replace("**", "")):
+            flush(); cur = donts; continue
+        bullet = re.match(r"^-\s+(.*)$", s)
+        numbered = re.match(r"^(\d+)\.\s+(.*)$", s)
+        # only COLUMN-0 bullets/numbered items start a new item; indented
+        # ones are nested sub-steps and stay inside the current item's text
+        col0 = bool(line) and not line[0].isspace()
+        if (bullet or numbered) and col0:
+            flush()
+            raw = bullet.group(1) if bullet else (numbered.group(2) if numbered else "")
+            item_is_dont = "❌" in s
+            raw = raw.replace("❌", "").strip()
+            item = [raw] if raw else None
+            # numbered plan steps outside a DO/DON'T block are DOs
+            if numbered and cur is None:
+                cur = dos
+        elif item is not None and (bool(s) and not col0):
+            # continuation or nested sub-step: keep inside the item's wording
+            item.append(s)
+        elif s and not s.startswith("#") and item is not None:
+            flush()
+    flush()
+    return dos, donts
+
 
 days = []
 # split on "## Day N — Title"
@@ -17,33 +69,7 @@ for i in range(1, len(parts), 2):
     goal = ""
     if m:
         goal = " ".join(m.group(1).replace("*", "").split())
-    dos, donts = [], []
-    cur = None
-    bullets = False
-    for line in body.splitlines():
-        s = line.strip()
-        if re.match(r"^(DO|Do):?$", s.replace("**","")):
-            cur = dos; continue
-        if re.match(r"^DON'?T:?$", s.replace("**","")):
-            cur = donts; continue
-        if cur is not None and (s.startswith("- ") or s.startswith("- ❌ ")):
-            item = s.lstrip("- ").replace("❌ ", "").strip()
-            item = re.sub(r"\*\*(.+?)\*\*", r"\1", item)
-            if item and not item.startswith(("|","For")):
-                cur.append(item)
-        elif cur is not None and (s.startswith("- ") or (bullets and s and not s.startswith("#"))):
-            pass
-    # fallback for days whose DO/DON'T sections use different headers
-    if not dos and not donts:
-        body = body.split("## The scam-defense card")[0]
-        for line in body.splitlines():
-            s = line.strip()
-            if s.startswith("- ") and "❌" not in s:
-                item = re.sub(r"\*\*(.+?)\*\*", r"\1", s[2:].strip())
-                if item and not item.startswith(("|","For","An app","A laptop")):
-                    dos.append(item)
-            elif "❌" in s and s.startswith("- "):
-                donts.append(re.sub(r"\*\*(.+?)\*\*", r"\1", s.lstrip("- ❌ ").strip()))
+    dos, donts = parse_day(body)
     days.append({"day": day, "title": title, "goal": goal, "dos": dos, "donts": donts})
 
 doc = {

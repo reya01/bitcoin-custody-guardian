@@ -5,9 +5,15 @@ The heart of the app. This walkthrough is for someone who knows nothing about
 Bitcoin and just lost someone who held it. It is written to be read straight
 through, one day at a time — and its first rule outranks everything else:
 
-> **Rule #1 — Nothing is urgent.** Bitcoin cannot be stolen by waiting. It
-> *can* be lost by rushing. Every irreversible mistake in Bitcoin happens in
-> minutes; every safe step can be taken calmly. You have time. Use it.
+> **Rule #1 — Nothing is urgent.** While the words are only in your hands,
+> Bitcoin cannot be stolen by waiting. It *can* be lost by rushing. Every
+> irreversible mistake in Bitcoin happens in minutes; every safe step can
+> be taken calmly. You have time. Use it. **One exception:** if the words
+> may already have left his control — a photo, a cloud backup, an email
+> draft, anything typed into a phone or website — closing that leak is the
+> one urgent thing. You close it by securing the exposed copy, or by
+> securing and then moving the funds — never by rushing the wallet work
+> itself.
 
 Read this once today, then do only Day 1. Come back tomorrow.
 
@@ -85,6 +91,12 @@ For word lists: **do not copy the words into your inventory.** Write only:
 statements, or exchange accounts. List the company names you see. These are
 records, not keys — they are fine to read and keep.
 
+**Don't:**
+- ❌ **Never write the seed words themselves into the inventory.** The
+  inventory page is a plain paper list — write only "24-word list found,
+  sealed envelope, 3 pages." A written copy of the words is a second copy
+  that can be lost, seen, or stolen.
+
 ---
 
 ## Day 3 — Learn what each thing is (the app explains, the box stays closed)
@@ -132,6 +144,16 @@ device-and-words setup with an extra passphrase, a multisig setup with
 several devices, and/or does he also have accounts at companies?" Most
 setups are one of those four shapes.
 
+**Don't:**
+- ❌ **Do not power any device on yet.** Some devices erase themselves after
+  too many wrong PIN attempts — you will power them on only when you have
+  both the PIN *and* the backup words, later.
+- ❌ **Do not log into anything.** Look at bookmarks and account names only;
+  today is look, not touch.
+- ❌ **Do not try to reset any account password today.** Account recovery is
+  a legal/identity process you will do deliberately in Day 5–6 with
+  documents in hand.
+
 ---
 
 ## Day 5 — Know your options (no action yet)
@@ -165,6 +187,20 @@ evidence; the app never picks a paid professional for you.
 **Today's decision is not "which path" — it is only "which path do I want to
 learn more about."** The app has deep-dive guides for each.
 
+**Do today:**
+- Read the three paths and open the app's deep-dive guide for the one you
+  want to understand first.
+- Settle for today on learning, not choosing — the only decision today is
+  *which guide to read first*.
+
+**Don't:**
+- ❌ **Don't move any bitcoin to a custodian today.** Path B means the keys
+  were used, and it is only ever done after you have practiced recovering
+  the wallet yourself — never because a stranger suggested it.
+- ❌ **Don't hire anyone who calls themselves a "recovery expert."** Complex
+  estates call for a Bitcoin-knowledgeable estate attorney; the app never
+  picks a paid professional for you.
+
 ---
 
 ## Day 6 — Assemble your verification plan
@@ -172,21 +208,54 @@ learn more about."** The app has deep-dive guides for each.
 **Goal today: a written plan for the *first real action*, which is always
 the same: prove you can open the wallet without risking anything.**
 
+One rule comes before the plan:
+
+- ❌ **Never wipe, reset, or reinstall his computer — not today, not while
+  the estate is unsettled.** It may hold wallet files, descriptor files,
+  and browser bookmarks that count as evidence. Wiping it destroys them.
+  His old laptop is *not* your clean machine. Day 1's rule stands until
+  the estate is settled.
+
 Your plan will include:
-1. **A clean computer** (his old laptop, wiped/reinstalled, or your own
-   device used offline) — the app's guide explains what "clean" means and
-   why.
+
+1. **A clean computer — a separate one.** A new machine, or your own
+   computer used offline. Never his. "Clean" means a dedicated offline
+   machine, or a freshly installed operating system you control. The
+   app's guide explains what "clean" means and why. Seed words are never
+   entered on a networked or possibly-compromised machine.
+
 2. **The wallet software** — downloaded only from the official site, with
-   the checksum verification the guide walks you through (this is where the
-   app earns its keep — verification is mechanical and safe).
+   the checksum verification the guide walks you through (this is where
+   the app earns its keep — verification is mechanical and safe).
+
 3. **The order of operations** — the non-negotiable sequence:
-   1. Install software → 2. Verify download → 3. Enter the seed words ONCE
-      (into the verified software only) → 4. Write down the first receiving
-      address → 5. Confirm the balance appears (or ask the app why it
-      doesn't) → 6. **Nothing else.** No sending, no "upgrading", no
-      swapping wallets the same day.
+   1. Install the software.
+   2. Verify the download.
+   3. Restore the wallet.
+      - **Hardware wallet first, if there is one.** Enter its PIN on the
+        device — never on a computer. If the wallet must be restored, the
+        device asks for the words itself, and they are entered on the
+        device too. (Some devices erase themselves after too many wrong
+        PIN attempts — which is why the backup words are confirmed
+        before any power-on.)
+      - **No hardware wallet?** Then the words are typed ONCE, into the
+        verified recovery software on the clean machine. This is the
+        single exception to Day 1's "do not type the words into any app,
+        website, or this app." The only place the words may ever be
+        typed: wallet-recovery software that was checksum-verified,
+        running on a clean machine. Nowhere else.
+   4. Write down the first receiving address.
+   5. Confirm the balance appears (or ask the app why it doesn't).
+   6. **Nothing else.** No sending, no "upgrading", no swapping wallets
+      the same day.
+
 4. **A helper rule:** one difficult thing per day. Two in one day is how
    mistakes happen.
+
+Write the plan on paper. Today you plan; you do not act. If a piece is
+missing — no clean machine yet, no verified download — the plan just says
+what to get. Nothing today touches the money. Tomorrow, you follow it one
+line at a time.
 
 ---
 

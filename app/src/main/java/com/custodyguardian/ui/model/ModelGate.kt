@@ -51,18 +51,35 @@ class ModelGateState(
     var pickedUri by mutableStateOf<Uri?>(null)
         private set
 
-    val entry: ManifestEntry = manifest.byId(manifest.defaultModelId)!!
+    // Null when the bundled manifest is damaged or lacks the default model id.
+    // Every consumer must treat null as "import is impossible": the gate fails
+    // closed into Phase.ERROR (see init) and the picker button is disabled.
+    // Never `!!` here — that crashed the whole app at gate construction
+    // (round-5 finding, ModelGate.kt:55).
+    val entry: ManifestEntry? = manifest.byId(manifest.defaultModelId)
 
     enum class Phase { WELCOME, COPYING, SUCCESS, ERROR }
 
     init {
-        // Quick synchronous check first (record + size, no hashing); the one-time
-        // legacy migration (hash-verified copy) runs on IO when no internal
-        // model exists yet.
-        if (ModelLocations.resolve(context, manifest) != null) {
-            ready = true
-            phase = Phase.SUCCESS
+        if (entry == null) {
+            // Damaged manifest: fail closed with a plain message instead of
+            // crashing the whole app at gate construction. No import path may
+            // run in this state — the picker button is disabled and every
+            // entry point below is guarded.
+            errorText = "Something went wrong inside the app: a built-in safety file is " +
+                "damaged, so the app cannot check the AI model it needs. Please " +
+                "uninstall the app and install it again from the official GitHub " +
+                "release page — that replaces the damaged file. Nothing has been " +
+                "sent anywhere: the app has no internet access at all."
+            phase = Phase.ERROR
         } else {
+            // Quick synchronous check first (record + size, no hashing); the one-time
+            // legacy migration (hash-verified copy) runs on IO when no internal
+            // model exists yet.
+            if (ModelLocations.resolve(context, manifest) != null) {
+                ready = true
+                phase = Phase.SUCCESS
+            } else {
             kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
                 val result = ModelLocations.migrateLegacyModel(context, manifest)
                 kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
@@ -90,23 +107,26 @@ class ModelGateState(
                     }
                 }
             }
+            }
         }
     }
 
     /** Re-checks for a usable model (called after import success). */
     fun refresh() {
+        if (entry == null) return // damaged manifest: never report ready
         ready = ModelLocations.resolve(context, manifest) != null
         if (ready) phase = Phase.SUCCESS
     }
 
     fun onPicked(uri: Uri?) {
         if (uri == null) return // user cancelled the picker: stay on Welcome
+        val e = entry ?: return // damaged manifest: importing is impossible; stay on Error
         pickedUri = uri
         errorText = null
         startedFor = null
         phase = Phase.COPYING
         progressBytes = 0
-        totalBytes = entry.sizeBytes
+        totalBytes = e.sizeBytes
     }
 
     private var startedFor: Uri? = null
@@ -118,6 +138,7 @@ class ModelGateState(
      */
     fun startImport(scope: kotlinx.coroutines.CoroutineScope) {
         val uri = pickedUri ?: return
+        val e = entry ?: return // damaged manifest: phase can never be COPYING here; guarded anyway
         if (startedFor == uri) return
         startedFor = uri
         scope.launch {
@@ -129,7 +150,7 @@ class ModelGateState(
                         resolver.openInputStream(uri)
                             ?: throw java.io.IOException("cannot open selected file")
                     },
-                    entry = entry,
+                    entry = e,
                     modelsDir = ModelLocations.internalModelsDir(context),
                     onProgress = { done, total ->
                         progressBytes = done
@@ -140,7 +161,7 @@ class ModelGateState(
             }
             when (result) {
                 is ModelImporter.ImportResult.Ok -> {
-                    ModelLocations.writeRecord(context, entry)
+                    ModelLocations.writeRecord(context, e)
                     if (deleteSource) deleteSourceQuietly(pickedUri)
                     phase = Phase.SUCCESS
                     ready = true
@@ -160,7 +181,7 @@ class ModelGateState(
                 ModelImporter.ImportResult.NotAModel ->
                     fail(
                         "That file is not a model file. Select either the " +
-                            "btcg-...-full.zip bundle or the ${entry.fileName} file.",
+                            "btcg-...-full.zip bundle or the ${e.fileName} file.",
                     )
                 ModelImporter.ImportResult.NoModelInZip ->
                     fail(
@@ -177,6 +198,7 @@ class ModelGateState(
     }
 
     fun retry() {
+        if (entry == null) return // damaged manifest: only a reinstall helps; stay on Error
         if (pickedUri != null) {
             startedFor = null
             phase = Phase.COPYING
@@ -186,6 +208,7 @@ class ModelGateState(
     }
 
     fun backToWelcome() {
+        if (entry == null) return // damaged manifest: stay on Error
         phase = Phase.WELCOME
         errorText = null
     }
@@ -284,7 +307,12 @@ fun ModelGateScreen(state: ModelGateState, onOpenChat: () -> Unit) {
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
-                    Button({ pick() }, Modifier.fillMaxWidth()) { Text("Select the model file") }
+                    Button(
+                        onClick = { pick() },
+                        modifier = Modifier.fillMaxWidth(),
+                        // Inert when the manifest is damaged: no picker, no crash.
+                        enabled = state.entry != null,
+                    ) { Text("Select the model file") }
                     OutlinedButton(
                         {
                             try {
@@ -330,11 +358,37 @@ fun ModelGateScreen(state: ModelGateState, onOpenChat: () -> Unit) {
                 }
 
                 ModelGateState.Phase.ERROR -> {
-                    Text("Import failed", style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        if (state.entry == null) "Something is wrong with the app"
+                        else "Import failed",
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
                     Text(state.errorText ?: "", style = MaterialTheme.typography.bodyMedium)
-                    Button({ state.retry() }, Modifier.fillMaxWidth()) { Text("Try again") }
-                    OutlinedButton({ state.backToWelcome() }, Modifier.fillMaxWidth()) {
-                        Text("Choose a different file")
+                    if (state.entry == null) {
+                        // Damaged manifest: retrying inside the app cannot
+                        // help. Offer only the way to the official release
+                        // page — the same browser hand-off the Welcome screen
+                        // uses; this app still has no network code of its own.
+                        OutlinedButton(
+                            {
+                                try {
+                                    context.startActivity(
+                                        android.content.Intent(
+                                            android.content.Intent.ACTION_VIEW,
+                                            android.net.Uri.parse(
+                                                "https://github.com/reya01/bitcoin-custody-guardian/releases",
+                                            ),
+                                        ),
+                                    )
+                                } catch (_: Exception) { /* no browser: user opens it themselves */ }
+                            },
+                            Modifier.fillMaxWidth(),
+                        ) { Text("Open the official download page") }
+                    } else {
+                        Button({ state.retry() }, Modifier.fillMaxWidth()) { Text("Try again") }
+                        OutlinedButton({ state.backToWelcome() }, Modifier.fillMaxWidth()) {
+                            Text("Choose a different file")
+                        }
                     }
                 }
             }
