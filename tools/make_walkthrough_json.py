@@ -76,7 +76,7 @@ doc = {
     "title": "The First 7 Days — An Inheritance Walkthrough",
     "app": "Bitcoin Custody Guardian",
     "version": "0.1",
-    "rule_one": "Nothing is urgent. Bitcoin cannot be stolen by waiting. It can be lost by rushing. Every irreversible mistake in Bitcoin happens in minutes; every safe step can be taken calmly. You have time. Use it.",
+    "rule_one": "Nothing is urgent. While the words are only in your hands, Bitcoin cannot be stolen by waiting. It can be lost by rushing. Every irreversible mistake in Bitcoin happens in minutes; every safe step can be taken calmly. You have time. Use it. One exception: if the words may already have left his control — a photo, a cloud backup, an email draft, anything typed into a phone or website — closing that leak is the one urgent thing. You close it by securing the exposed copy, or by securing and then moving the funds — never by rushing the wallet work itself.",
     "days": days,
 }
 with open(out, "w", encoding="utf-8") as f:

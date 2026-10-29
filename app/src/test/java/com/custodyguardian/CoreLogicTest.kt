@@ -108,6 +108,8 @@ class CoreLogicTest {
             "Ledger support here — your account was flagged." to "fake_official",
             "Trezor support team, about your wallet backup." to "fake_official",
             "Download our support tool so we can help." to "remote_software",
+            // DS/K3 review 2026-10-29: plural count-as-noun ("12 words") parity
+            "Enter your 12 words here." to "seed_request",
         )
         for ((text, ruleId) in vectors) {
             val r = ScamRules.scan(text)

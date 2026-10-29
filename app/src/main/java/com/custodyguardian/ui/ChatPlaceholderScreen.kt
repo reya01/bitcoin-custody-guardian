@@ -104,6 +104,8 @@ fun ChatPlaceholderScreen(prefill: String? = null) {
                         // (full-repo review 2026-10-29).
                         val result = try {
                             runAnswer(context, query)
+                        } catch (ce: kotlinx.coroutines.CancellationException) {
+                            throw ce
                         } catch (t: Throwable) {
                             AnswerPipeline.Result(
                                 text = FALLBACK_ENGINE_ERROR,
@@ -227,6 +229,8 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
                 fallbackPassage = passage,
             )
             AnswerPipeline.Result(text = sel.text, backend = sel.backend)
+        } catch (ce: kotlinx.coroutines.CancellationException) {
+            throw ce
         } catch (t: Throwable) {
             fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
         } finally {
@@ -250,6 +254,8 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
     val engine = LlamaEngine(mf.absolutePath)
     return try {
         AnswerPipeline(engine).answer(question, composed)
+    } catch (ce: kotlinx.coroutines.CancellationException) {
+        throw ce
     } catch (t: Throwable) {
         fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
     } finally {

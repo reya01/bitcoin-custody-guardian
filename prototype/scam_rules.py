@@ -18,11 +18,16 @@ RULES = [
             r"enter\s*your\s*(seed|recovery|words|private|mnemonic)|"
             r"confirm\s*your\s*(seed|recovery|words|mnemonic)|"
             r"(verify|validate|paste|tell|input)\s*(us\s+|me\s+|your\s+|the\s+|"
-            r"\d+[-\s]word\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|"
+            r"\d+[-\s]words?\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|"
             r"give\s*(me|us)\s*(your|the)\s*(seed|recovery|words|private|mnemonic|keys)|"
             r"ask(s|ed)?\s*(me|you|for)?\s*(my|your)\s*(seed|recovery|words|private\s*keys?|mnemonic)|"
             r"read\s*(out|me)\s*(your|the)\s*(seed|recovery|words)|"
-            r"type\s*(your|the)\s*(seed|recovery|words|private))",
+            r"type\s*(your|the)\s*(seed|recovery|words|private)|"
+            # count-as-noun: "enter your 12 words" / "tell me your 12 words" —
+            # the \d+[-\s]words? group above consumes the noun when 'words' is
+            # the terminal word, so this needs its own branch (DS/K3 review)
+            r"(enter|type|paste|input|give|tell|send|share|confirm|validate|verify)"
+            r"\s*(me|us)?\s*your\s*\d+[-\s]words?\b)",
             re.IGNORECASE,
         ),
         "No legitimate party — vendor, support, or \"recovery expert\" — ever needs "

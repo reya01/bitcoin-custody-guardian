@@ -282,11 +282,14 @@ def answer_step(question: str, composed, backend: str = "auto") -> Dict:
                 if failures2["must_not_include"]:
                     # a verbatim point itself trips the constraint: fail closed
                     return extractive._fallback(composed)
-                if _downgraded:
+                # DS/K3 review 2026-10-29: when BOTH engines failed, the result
+                # is the canned fallback — the downgrade note must not claim
+                # "this answer came from the backup engine".
+                if _downgraded and res.get("backend") != "extractive_fallback":
                     cand2 += DOWNGRADE_NOTE
                 return {"answer": cand2,
                         "backend": "extractive_veto_bridge_dropped"}
-            if _downgraded:
+            if _downgraded and res.get("backend") != "extractive_fallback":
                 candidate += DOWNGRADE_NOTE
             return {"answer": candidate, "backend": res["backend"]}
     # 1c. Hybrid mode (ANSWER_MODE=hybrid): grounded paraphrase for coverage

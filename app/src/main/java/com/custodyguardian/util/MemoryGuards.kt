@@ -26,10 +26,15 @@ object MemoryGuards {
         wordlist?.let { Wordlist(it, it.size == WORDLIST_SIZE) }
             ?: synchronized(this) {
                 wordlist?.let { return Wordlist(it, it.size == WORDLIST_SIZE) }
-                val words = AssetLoader.readAssetLines(context, "bip39_wordlist.txt")
-                    .map { it.trim().lowercase() }
-                    .filter { it.isNotEmpty() }
-                    .toSet()
+                // Fail closed on a missing asset too (review K1): a missing
+                // bip39_wordlist.txt throws IOException, so converge on the
+                // invalid-wordlist refusal instead of crashing.
+                val words = runCatching {
+                    AssetLoader.readAssetLines(context, "bip39_wordlist.txt")
+                        .map { it.trim().lowercase() }
+                        .filter { it.isNotEmpty() }
+                        .toSet()
+                }.getOrDefault(emptySet())
                 wordlist = words
                 Wordlist(words, words.size == WORDLIST_SIZE)
             }

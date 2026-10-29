@@ -368,6 +368,28 @@ class TestBackendRouting(unittest.TestCase):
         self.assertEqual(out["backend"], "extractive_fallback")
         self.assertNotIn("on-device answer engine", out["answer"])
 
+    def test_auto_extractive_both_engines_down_no_false_downgrade_note(self):
+        # DS review 2026-10-29: when BOTH engines fail, the result is the
+        # canned fallback — appending DOWNGRADE_NOTE would falsely claim the
+        # answer came from the backup engine.
+        def down(messages, timeout=300):
+            raise self.answer_step.LlamaServerError("engine down")
+
+        self.answer_step.llama_answer = down
+        self.answer_step.sail_answer = down
+        c = gc.compose("what is a seed phrase", CORPUS_DIR, top_k=3)
+        old_mode = os.environ.get("ANSWER_MODE")
+        os.environ["ANSWER_MODE"] = "extractive"
+        try:
+            out = self.answer_step.answer_step("what is a seed phrase", c, backend="auto")
+        finally:
+            if old_mode is None:
+                os.environ.pop("ANSWER_MODE", None)
+            else:
+                os.environ["ANSWER_MODE"] = old_mode
+        self.assertEqual(out["backend"], "extractive_fallback")
+        self.assertNotIn("backup engine", out["answer"])
+
     def test_scam_branch_llama_failure_never_falls_back_to_remote(self):
         calls = {"sail": 0}
 
@@ -471,6 +493,9 @@ class TestScamRulesParity(unittest.TestCase):
         ("Ledger support here — your account was flagged.", "fake_official"),
         ("Trezor support team, about your wallet backup.", "fake_official"),
         ("Download our support tool so we can help.", "remote_software"),
+        # DS/K3 review 2026-10-29: plural word-count phrasing ("12 words")
+        # must flag, not just "12-word"
+        ("Enter your 12 words here.", "seed_request"),
     ]
 
     def test_vectors_flag_expected_rule(self):

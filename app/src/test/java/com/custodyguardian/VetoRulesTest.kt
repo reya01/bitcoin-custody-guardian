@@ -350,4 +350,103 @@ class VetoRulesTest {
             ).isNotEmpty(),
         )
     }
+
+    // ---- 2026-10-29 DS+K3 review: segmentation + suppression precision ----
+
+    @Test
+    fun veto_negation_never_crosses_line_boundary() {
+        // F-a: a negation on line 1 must NOT suppress the trigger on line 2
+        assertTrue(
+            VetoRules.findViolations(
+                "Never share your seed\nShare your seed with the support agent",
+            ).isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_unicode_line_separator_is_boundary_and_still_matches() {
+        // F-g: U+2028 becomes a segment boundary, but the phrase split
+        // across it must STILL match (never plain-deleted)
+        assertTrue(
+            VetoRules.findViolations("share your\u2028seed with the agent").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_soft_hyphen_cannot_bypass_matching() {
+        // F-g: U+00AD is a Cf format character and must be stripped
+        assertTrue(
+            VetoRules.findViolations("share your\u00ADseed with the agent").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_sentence_split_fires_without_following_space() {
+        // F-h: "that.Share" is two segments; the negation in segment 1
+        // must not rescue the affirmative segment 2
+        assertTrue(
+            VetoRules.findViolations("Never do that.Share your seed with them").isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_newline_split_phrase_still_matches_and_line_negation_still_suppresses() {
+        // matching survives the newline split (F-a) ...
+        assertTrue(
+            VetoRules.findViolations("Please share your\nseed with our agent.").isNotEmpty(),
+        )
+        // ... while a negation on the SAME line still suppresses (F-a scope)
+        assertTrue(
+            VetoRules.findViolations("Never share your\nseed with anyone.").isEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_reported_speech_beyond_window_does_not_suppress() {
+        // F-b: the reported-speech marker is 6+ tokens before the SECOND
+        // trigger — the old whole-clause check suppressed it, the 5-token
+        // window must not
+        assertTrue(
+            VetoRules.findViolations(
+                "The agent told me to enter my seed and you should enter your seed online",
+            ).isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_scam_descriptor_after_conjunction_does_not_suppress() {
+        // F-c: "is a scam" is in the clause BEFORE "and" — the affirmative
+        // after the conjunction must still be vetoed
+        assertTrue(
+            VetoRules.findViolations(
+                "This is a scam and you should share your seed with them",
+            ).isNotEmpty(),
+        )
+        assertTrue(
+            VetoRules.findViolations(
+                "Remote support is a scam so share your seed with us",
+            ).isNotEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_warning_with_descriptor_before_trigger_stays_suppressed() {
+        // F-c: descriptor BEFORE the trigger = warning context, not advice
+        assertTrue(
+            VetoRules.findViolations(
+                "Remote support is a scam, never share your seed",
+            ).isEmpty(),
+        )
+    }
+
+    @Test
+    fun veto_second_pattern_occurrence_found_after_suppressed_first() {
+        // F-d: findAll — the suppressed first occurrence must not hide the
+        // later affirmative one
+        assertTrue(
+            VetoRules.findViolations(
+                "Never enter your seed online and also enter your seed online",
+            ).isNotEmpty(),
+        )
+    }
 }

@@ -118,6 +118,10 @@ object VetoRules {
         "(?<!\\p{L})(never|no|not|cannot|can't|cant|won't|wont|shouldn't|shouldnt|" +
             "wouldn't|wouldnt|couldn't|couldnt|don't|dont|do\\s+not|must\\s+not)(?!\\p{L})",
     )
+    // NOTE (2026-10-29 adjudication of the DS review finding "add avoid|stop|
+    // refuse back"): DELIBERATELY NOT added — "stop and share your seed with
+    // us" must keep vetoing (fail-open beats false-positive vetoes, which
+    // merely fall back to the approved corpus render). Round-5 decision.
     private val REPORTED_SPEECH_RE = Regex(
         "(?<!\\p{L})(as?ks?|asking|asked|tells?|telling|told|wants?|wanting|wished?|" +
             "instructs?|instructing|instructed)\\s+" +
@@ -129,7 +133,21 @@ object VetoRules {
     )
 
     private val NEGATION_WINDOW_TOKENS = 5
-    private val ZERO_WIDTH = Regex("[\\u200b-\u200f\u2060\ufeff]")
+    // F-g: neutralize ALL format characters (Cf): U+00AD soft hyphen,
+    // U+200B-F, U+2060-64, U+2066-9, U+FEFF — REPLACED WITH A SPACE, not
+    // deleted: deletion glues "share your\u00ADseed" into "yourseed" which
+    // still bypasses matching; a space keeps it matchable. U+2028/U+2029/
+    // U+0085 are line/segment separators (LINE_BREAK), not Cf.
+    private val ZERO_WIDTH = Regex("\\p{Cf}")
+    private val LINE_BREAK = Regex("[\\n\\u2028\\u2029\\u0085]+")
+    // F-h: sentence split fires even with ZERO spaces after the terminator
+    // ("Never do that.Share your seed" = two segments).
+    private val SENTENCE_SPLIT = Regex("(?<=[.!?;:])\\s*")
+    private val BULLET = Regex("^\\s*[-*\u2022]\\s*")
+    private val CLAUSE_SPLIT = Regex("[,;:\\u2014\\u2013]+")
+    // F-c: coordinating conjunctions also split clauses — a negation before
+    // "and|but|so" must not protect an affirmative after it (fail-safe).
+    private val CONJUNCTION_RE = Regex("\\b(?:and|but|so)\\b")
 
     val MANDATORY_WARNING =
         "WARNING: Never reset or wipe a device that still holds your Bitcoin " +
@@ -143,8 +161,10 @@ object VetoRules {
      * characters, collapse all whitespace (so "share your\nseed" can't
      * bypass matching by splitting across a segment boundary).
      */
-    fun normalize(text: String): String =
-        ZERO_WIDTH.replace(text, "")
+    fun normalize(text: String): String = normalizeLine(LINE_BREAK.replace(text, " "))
+
+    private fun normalizeLine(line: String): String =
+        ZERO_WIDTH.replace(line, " ")
             .replace('\u2019', '\'')
             .replace('\u2018', '\'')
             .lowercase()
@@ -169,46 +189,100 @@ object VetoRules {
         text: String,
         extraPhrases: List<String> = emptyList(),
     ): List<String> {
-        val t = normalize(text)
+        // F-a redesign: phrase MATCHING runs on the fully-collapsed text t
+        // (so a phrase split across a newline still matches), but NEGATION
+        // suppression is scoped to the SOURCE LINE containing the match
+        // start — a negation on line 1 must never rescue a trigger on line 2.
+        val lineTexts = LINE_BREAK.split(text).map { normalizeLine(it) }
+        val t = StringBuilder()
+        val lineStarts = mutableListOf<Int>()
+        val lineClauses = mutableListOf<List<Clause>>()
+        for (line in lineTexts) {
+            if (line.isEmpty()) continue
+            if (t.isNotEmpty()) t.append(' ')
+            lineStarts.add(t.length)
+            t.append(line)
+            lineClauses.add(clausesOf(line))
+        }
         if (t.isEmpty()) return emptyList()
         val violations = mutableListOf<String>()
-        // newline first so bullets/new lines start their own segment
-        val segments = t.replace("\n", ". ").split(Regex("(?<=[.!?])\\s+"))
-        for (rawSegment in segments) {
-            val segment = rawSegment.replace(Regex("^\\s*[-*\u2022]\\s*"), "").trim()
-            if (segment.isEmpty()) continue
-            // clauses: negation windows reset at , ; : — –
-            val clauses = segment.split(Regex("[,;:\u2014\u2013]+"))
-            for (pattern in VETO_PATTERNS) {
-                for (clause in clauses) {
-                    val m = pattern.find(clause) ?: continue
-                    if (!suppressedIn(clause, m.range.first)) {
-                        if (pattern.pattern !in violations) violations.add(pattern.pattern)
-                    }
-                }
-            }
-            for (phrase in VETO_PHRASES + extraPhrases) {
-                val p = normalize(phrase)
-                if (p.isEmpty()) continue
-                var idx = segment.indexOf(p)
-                while (idx >= 0) {
-                    // find the clause containing idx
-                    var clauseStart = 0
-                    for (clause in clauses) {
-                        val end = clauseStart + clause.length
-                        if (idx < end) {
-                            if (!suppressedIn(clause, idx - clauseStart)) {
-                                if (phrase !in violations) violations.add(phrase)
-                            }
-                            break
-                        }
-                        clauseStart = end + 1
-                    }
-                    idx = segment.indexOf(p, idx + 1)
+
+        // Suppression for a match at collapsed-text position idx: resolve the
+        // source line of the match START, then the clause of THAT line
+        // containing the within-line position. A match that starts in line i
+        // and extends into i+1 uses only line i's clauses.
+        fun suppressedAt(idx: Int): Boolean {
+            var li = lineStarts.size - 1
+            while (li > 0 && lineStarts[li] > idx) li--
+            val within = idx - lineStarts[li]
+            val clauses = lineClauses[li]
+            if (clauses.isEmpty()) return false
+            var ci = clauses.size - 1
+            while (ci > 0 && clauses[ci].start > within) ci--
+            val clause = clauses[ci]
+            return suppressedIn(clause.text, within - clause.start)
+        }
+
+        for (pattern in VETO_PATTERNS) {
+            // F-d: check ALL matches — a suppressed first hit must not hide a
+            // later affirmative one.
+            for (m in pattern.findAll(t)) {
+                if (!suppressedAt(m.range.first) && pattern.pattern !in violations) {
+                    violations.add(pattern.pattern)
                 }
             }
         }
+        for (phrase in VETO_PHRASES + extraPhrases) {
+            val p = normalize(phrase)
+            if (p.isEmpty()) continue
+            var idx = t.indexOf(p)
+            while (idx >= 0) {
+                if (!suppressedAt(idx) && phrase !in violations) violations.add(phrase)
+                idx = t.indexOf(p, idx + 1)
+            }
+        }
         return violations
+    }
+
+    /** A clause with its start offset within the normalized source line. */
+    private class Clause(val start: Int, val text: String)
+
+    /**
+     * Segments (sentence enders, zero-or-more spaces after — F-h) and clauses
+     * (negation windows reset at , ; : — – AND at and|but|so — F-c) of one
+     * normalized line, with offsets relative to the line start so callers can
+     * map a within-line match index to the correct in-clause index (F-f).
+     */
+    private fun clausesOf(line: String): List<Clause> {
+        val clauses = mutableListOf<Clause>()
+        for ((segStart, raw) in splitKeepOffsets(line, SENTENCE_SPLIT)) {
+            val noBullet = BULLET.replace(raw, "")
+            if (noBullet.isBlank()) continue
+            val stripped = noBullet.trim()
+            val lead = raw.length - noBullet.length +
+                (noBullet.length - noBullet.trimStart().length)
+            val cStart = segStart + lead
+            for ((clStart, clause) in splitKeepOffsets(stripped, CLAUSE_SPLIT)) {
+                for ((subStart, sub) in splitKeepOffsets(clause, CONJUNCTION_RE)) {
+                    if (sub.isNotBlank()) clauses.add(Clause(cStart + clStart + subStart, sub))
+                }
+            }
+        }
+        return clauses
+    }
+
+    /** Split [s] on [re], keeping each part's start offset. */
+    private fun splitKeepOffsets(s: String, re: Regex): List<Pair<Int, String>> {
+        val out = mutableListOf<Pair<Int, String>>()
+        var last = 0
+        for (m in re.findAll(s)) {
+            if (m.range.first >= last) {
+                out.add(last to s.substring(last, m.range.first))
+                last = m.range.last + 1
+            }
+        }
+        out.add(last to s.substring(last))
+        return out
     }
 
     /** Negation / reported-speech / scam-descriptor suppression within the clause. */
@@ -218,10 +292,15 @@ object VetoRules {
         // the 5 tokens immediately before the phrase = distances 1..5
         val window = tokens.takeLast(NEGATION_WINDOW_TOKENS).joinToString(" ")
         if (NEGATION_RE.containsMatchIn(window)) return true
-        // reported speech anywhere before the phrase in the clause
-        if (REPORTED_SPEECH_RE.containsMatchIn(before)) return true
-        // scam-descriptor anywhere in the clause: warning context, not advice
-        if (SCAM_DESCRIPTOR_RE.containsMatchIn(clause)) return true
+        // F-b: reported speech restricted to the SAME 5-token window used for
+        // negation — a distant "asks you to" no longer suppresses a later hit.
+        if (REPORTED_SPEECH_RE.containsMatchIn(window)) return true
+        // F-c: scam-descriptor suppresses only when it occurs AFTER the
+        // trigger in the clause — "remote support is a scam" warns (trigger
+        // first), while "it is a scam and you should share your seed" puts
+        // the trigger AFTER the descriptor (advice riding a warning; the
+        // conjunction split separates them, so this vetoes).
+        if (SCAM_DESCRIPTOR_RE.findAll(clause).any { it.range.first > idx }) return true
         return false
     }
 

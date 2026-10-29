@@ -24,11 +24,16 @@ object ScamRules {
                     "enter\\s*your\\s*(seed|recovery|words|private|mnemonic)|" +
                     "confirm\\s*your\\s*(seed|recovery|words|mnemonic)|" +
                     "(verify|validate|paste|tell|input)\\s*(us\\s+|me\\s+|your\\s+|the\\s+|" +
-                    "\\d+[-\\s]word\\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|" +
+                    "\\d+[-\\s]words?\\s+)*(seed|recovery|words|private|mnemonic|phrase|keys?)|" +
                     "give\\s*(me|us)\\s*(your|the)\\s*(seed|recovery|words|private|mnemonic|keys)|" +
                     "ask(s|ed)?\\s*(me|you|for)?\\s*(my|your)\\s*(seed|recovery|words|private\\s*keys?|mnemonic)|" +
                     "read\\s*(out|me)\\s*(your|the)\\s*(seed|recovery|words)|" +
-                    "type\\s*(your|the)\\s*(seed|recovery|words|private))",
+                    "type\\s*(your|the)\\s*(seed|recovery|words|private)|" +
+                    // count-as-noun: "enter your 12 words" — the \d+[-\s]words?
+                    // group consumes the noun when 'words' is terminal; parity
+                    // with prototype scam_rules.py (DS/K3 review 2026-10-29)
+                    "(enter|type|paste|input|give|tell|send|share|confirm|validate|verify)" +
+                        "\\s*(me|us)?\\s*your\\s*\\d+[-\\s]words?\\b)",
                 RegexOption.IGNORE_CASE
             ),
             "No legitimate party — vendor, support, or \"recovery expert\" — ever needs your " +
