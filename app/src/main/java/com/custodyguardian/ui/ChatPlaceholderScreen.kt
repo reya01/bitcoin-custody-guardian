@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.custodyguardian.AnswerPipeline
+import com.custodyguardian.ExtractiveAnswer
 import com.custodyguardian.LlamaEngine
 import com.custodyguardian.data.AssetLoader
 import com.custodyguardian.util.CorpusRouter
@@ -177,6 +178,43 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
         routed.detectedIntent.contains("walkthrough", ignoreCase = true) -> "walkthrough"
         else -> "learn"
     }
+    val mf = modelFile(context)
+    if (mf == null) {
+        return fallback(fallbackText = FALLBACK_MODEL_MISSING, backend = "model_missing", routed = routed)
+    }
+
+    // Learn / walkthrough questions go through the EXTRACTIVE path
+    // (round-4 review consensus, plan item 2.1): the model only SELECTS
+    // key-point IDs from the retrieved approved entries; the answer text is
+    // the human-reviewed corpus verbatim, hash-checked against the bundled
+    // manifest and re-checked verbatim against the claimed entry. Fail-closed:
+    // any selection failure renders the canned message plus the top retrieved
+    // passage — never a free-form paraphrase from the 1.7B model.
+    if (mode != "scam-check") {
+        val manifest = AssetLoader.loadKeyPointManifest(context)
+        val corpusById = routed.retrieved.associate { it.id to it.entry }
+        val menu = ExtractiveAnswer.buildMenu(routed.retrieved.map { it.id to it.entry })
+        val passage = routed.retrieved.firstOrNull()?.entry?.plain?.take(600) ?: ""
+        val engine = LlamaEngine(mf.absolutePath)
+        return try {
+            val sel = ExtractiveAnswer.answer(
+                question = question,
+                menu = menu,
+                corpusById = corpusById,
+                manifest = manifest,
+                modelCall = { system: String, user: String -> engine.answer(system, user) },
+                fallbackPassage = passage,
+            )
+            AnswerPipeline.Result(text = sel.text, backend = sel.backend)
+        } catch (t: Throwable) {
+            fallback(FALLBACK_ENGINE_ERROR, "engine_error", routed)
+        } finally {
+            engine.unload()
+        }
+    }
+
+    // Scam-check keeps the existing pipeline: deterministic ScamRules verdict
+    // (final) + model scenario guidance, subject to the veto layer.
     val chunks = routed.retrieved.take(6).map {
         AnswerPipeline.ComposedContext.Chunk("[${it.id}] ${it.entry.title}", it.entry.plain)
     }
@@ -188,10 +226,6 @@ private fun runAnswer(context: android.content.Context, question: String): Answe
         mustNotInclude = emptyList(),
         warnings = warnings,
     )
-    val mf = modelFile(context)
-    if (mf == null) {
-        return fallback(fallbackText = FALLBACK_MODEL_MISSING, backend = "model_missing", routed = routed)
-    }
     val engine = LlamaEngine(mf.absolutePath)
     return try {
         AnswerPipeline(engine).answer(question, composed)

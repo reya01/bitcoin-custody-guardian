@@ -30,6 +30,17 @@ object AssetLoader {
         return out
     }
 
+    /**
+     * The bundled key_points sha256 manifest (prototype/gen_manifest.py output,
+     * regenerated from the repo corpus on every corpus change). Keys only: the
+     * extractive renderer verifies each rendered point's hash against this set.
+     */
+    fun loadKeyPointManifest(context: Context): Set<String> = runCatching {
+        json.decodeFromString<Map<String, kotlinx.serialization.json.JsonElement>>(
+            readAsset(context, "key_points_manifest.json"),
+        ).keys
+    }.getOrDefault(emptySet())
+
     fun readAsset(context: Context, path: String): String =
         context.assets.open(path).bufferedReader().use { it.readText() }
 
